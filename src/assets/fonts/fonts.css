@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Inter-400';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Roboto Bold'),
+    url('./Inter-Regular.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Inter-500';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Roboto Bold'),
+    url('./Inter-Medium.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Inter-600';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src:
+    local('Roboto Bold'),
+    url('./Inter-SemiBold.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'Inter-700';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    local('Roboto Bold'),
+    url('./Inter-Bold.ttf') format('ttf');
+}
