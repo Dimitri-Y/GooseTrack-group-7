@@ -6,6 +6,7 @@ import HalfPage from './pages/HalfPage/HalfPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { AppWrapper } from './App.styled';
 import MainPage from './pages/MainPage/MainPage';
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
 
 const test = import.meta.env.VITE_API_TEST;
 
@@ -15,6 +16,7 @@ function App() {
     <AppWrapper>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/user" element={<UserProfilePage />} />
         {/* <Route path="/" element={<SharedLayout />}> */}
         {/* <Route path="/first" element={<FirstPage />} />
           <Route path="/second" element={<SecondPage />}>
