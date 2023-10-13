@@ -4,7 +4,7 @@ function ColumnTasksList({ tasks }) {
   console.log();
   return (
     <ul>
-      {tasks.map((task) => (
+      {tasks && tasks.map((task) => (
         <TaskColumnCard task={task} key={task.id}></TaskColumnCard>
       ))}
     </ul>

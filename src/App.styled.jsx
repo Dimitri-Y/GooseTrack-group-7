@@ -2,6 +2,11 @@ import styled from '@emotion/styled';
 import example from './assets/example.png';
 
 export const AppWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
   width: 100%;
   height: 100vh;
   background-image: url(${example});

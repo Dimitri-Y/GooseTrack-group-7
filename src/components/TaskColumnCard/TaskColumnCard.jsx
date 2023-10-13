@@ -1,27 +1,38 @@
 import TaskToolbar from '../TaskToolbar/TaskToolbar';
 import {
   Container,
+  ContainerAvatar,
   ContainerPhotoProfile,
   ContainerTaskCard,
   PriorityTask,
   TaskText,
 } from './TaskColumnCard.styled';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import photoProfile from '../../assets/photo-profile.png';
 
-function TaskColumnCard({ text, priority }) {
-  const photoProfile = useSelector();
-  console.log();
+const TaskColumnCard = ({ task: { title, priority, category } }) => {
+  // const photoProfile = useSelector('../Icons/photo-profile.png');
+  console.log(priority);
   return (
     <ContainerTaskCard>
-      <TaskText>{text}</TaskText>
+      <TaskText>{title.length > 30 ? `${title}...` : title}</TaskText>
       <Container>
         <ContainerPhotoProfile>
-          <img src={photoProfile} alt="" width="32" height="32"></img>
-          <PriorityTask>{priority}</PriorityTask>
+          <ContainerAvatar>
+            {photoProfile && (
+              <img
+                src={photoProfile}
+                alt="photo profile"
+                width="32"
+                height="32"
+              ></img>
+            )}
+          </ContainerAvatar>
+          <PriorityTask >{priority}</PriorityTask>
         </ContainerPhotoProfile>
-        <TaskToolbar />
+        <TaskToolbar category={category} />
       </Container>
     </ContainerTaskCard>
   );
-}
+};
 export default TaskColumnCard;

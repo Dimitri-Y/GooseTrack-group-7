@@ -1,5 +1,6 @@
-@import-normalize;
 @import url('./assets/fonts/fonts.css');
+@import-normalize;
+
 
 body {
   /* background-color: #000; */
