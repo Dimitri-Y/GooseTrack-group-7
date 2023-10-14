@@ -13,7 +13,6 @@ const test = import.meta.env.VITE_API_TEST;
 function App() {
   console.log(test);
   return (
-    <AppWrapper>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/user" element={<UserProfilePage />} />
@@ -26,7 +25,8 @@ function App() {
         {/* <Route path="*" element={<ErrorPage />} /> */}
         {/* </Route> */}
       </Routes>
-    </AppWrapper>
   );
 }
 export default App;
+    // <AppWrapper>
+    // </AppWrapper>
