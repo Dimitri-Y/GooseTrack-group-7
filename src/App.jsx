@@ -1,32 +1,30 @@
 import { Route, Routes } from 'react-router-dom';
-import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx';
-import FirstPage from './pages/FirstPage/FirstPage';
-import SecondPage from './pages/SecondPage/SecondPage';
-import HalfPage from './pages/HalfPage/HalfPage';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import { AppWrapper } from './App.styled';
+// import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx';
+// import ErrorPage from './pages/ErrorPage/ErrorPage';
 import MainPage from './pages/MainPage/MainPage';
 import UserProfilePage from './pages/UserProfilePage/UserProfilePage';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
+import ChoosedDay from './components/ChoosedDay/ChoosedDay';
 
 const test = import.meta.env.VITE_API_TEST;
 
 function App() {
   console.log(test);
   return (
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/user" element={<UserProfilePage />} />
-        {/* <Route path="/" element={<MainLayout />}> */}
-        {/* <Route path="/first" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
-          </Route> */}
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/user" element={<UserProfilePage />} />
+      <Route path="/calendar" element={<CalendarPage />}>
+        {/* <Route path="/month/:currentDate" element={<ChoosedMonth />} /> */}
+        <Route path="/day/:currentDay" element={<ChoosedDay />} />
+      </Route>
 
-        {/* <Route path="*" element={<ErrorPage />} /> */}
-        {/* </Route> */}
-      </Routes>
+      {/* <Route path="/" element={<MainLayout />}> */}
+      {/* <Route path="*" element={<ErrorPage />} /> */}
+      {/* </Route> */}
+    </Routes>
   );
 }
 export default App;
-    // <AppWrapper>
-    // </AppWrapper>
+// <AppWrapper>
+// </AppWrapper>
