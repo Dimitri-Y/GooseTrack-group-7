@@ -10,9 +10,9 @@ import {
 // import { useSelector } from 'react-redux';
 import photoProfile from '../../assets/photo-profile.png';
 
-const TaskColumnCard = ({ task: { title, priority, category } }) => {
-  // const photoProfile = useSelector('../Icons/photo-profile.png');
-  console.log(priority);
+const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
+  // const photoProfile = useSelector(selectPhotoProfile);
+  console.log(id);
   return (
     <ContainerTaskCard>
       <TaskText>{title.length > 30 ? `${title}...` : title}</TaskText>
@@ -28,9 +28,9 @@ const TaskColumnCard = ({ task: { title, priority, category } }) => {
               ></img>
             )}
           </ContainerAvatar>
-          <PriorityTask >{priority}</PriorityTask>
+          <PriorityTask>{priority}</PriorityTask>
         </ContainerPhotoProfile>
-        <TaskToolbar category={category} />
+        <TaskToolbar id={id} category={category} />
       </Container>
     </ContainerTaskCard>
   );

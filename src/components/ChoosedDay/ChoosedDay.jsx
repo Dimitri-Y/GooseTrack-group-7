@@ -1,7 +1,7 @@
 import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 
-function ChoosedDay() {
+const ChoosedDay = () => {
   // const tasks = useSelector(selectTasks);
   let toDo = [];
   let inProgress = [];
@@ -66,5 +66,5 @@ function ChoosedDay() {
       ></TasksColumnsList>
     </section>
   );
-}
+};
 export default ChoosedDay;

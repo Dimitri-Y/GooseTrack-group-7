@@ -1,12 +1,10 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 export const ContainerTaskCard = styled.div`
   display: flex;
   gap: 32px;
   flex-direction: column;
   justify-content: space-between;
-  /* width: 300px;
-  height: 112px; */
   padding: 15px;
   border-radius: 8px;
   background-color: #f7f6f9;
@@ -19,6 +17,7 @@ export const Container = styled.div`
 
 export const ContainerPhotoProfile = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const ContainerAvatar = styled.div`
@@ -42,6 +41,7 @@ export const PriorityTask = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 12px;
   padding: 4px 12px;
   margin: 0;
   border-radius: 4px;

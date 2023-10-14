@@ -3,7 +3,7 @@ import ColumnHeadBar from '../ColumnHeadBar/ColumnHeadBar';
 import ColumnTasksList from '../ColumnTasksList/ColumnTasksList';
 import { ContainerColum } from './TasksColumn.styled';
 
-function TasksColumn({ header, tasksGroup }) {
+const TasksColumn = ({ header, tasksGroup }) => {
   console.log();
   return (
     <ContainerColum>
@@ -12,5 +12,5 @@ function TasksColumn({ header, tasksGroup }) {
       <AddTaskBtn></AddTaskBtn>
     </ContainerColum>
   );
-}
+};
 export default TasksColumn;

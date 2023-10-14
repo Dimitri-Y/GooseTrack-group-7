@@ -1,7 +1,7 @@
 import TasksColumn from '../TasksColumn/TasksColumn';
 import { ContainerColumsList } from './TasksColumnsList.styled';
 
-function TasksColumnsList({ toDo, inProgress, done }) {
+const TasksColumnsList = ({ toDo, inProgress, done }) => {
   console.log();
   return (
     <ContainerColumsList>
@@ -10,5 +10,5 @@ function TasksColumnsList({ toDo, inProgress, done }) {
       <TasksColumn header="done" tasksGroup={done}></TasksColumn>
     </ContainerColumsList>
   );
-}
+};
 export default TasksColumnsList;

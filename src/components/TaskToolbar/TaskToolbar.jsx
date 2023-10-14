@@ -1,102 +1,85 @@
 import { ReactComponent as ButtonMove } from '../Icons/move.svg';
 import { ReactComponent as ButtonEdit } from '../Icons/edit.svg';
 import { ReactComponent as ButtonDelete } from '../Icons/delete.svg';
-import { ContainerButton, ContainerTaskToolbar } from './TaskToolbar.styled';
-import { useState } from 'react';
-// import { createContext } from 'react';
+import {
+  ContainerButton,
+  ContainerTaskToolbar,
+  ContextMenu,
+  ContextMenuItem,
+} from './TaskToolbar.styled';
+import { useEffect, useState } from 'react';
+// import { useDispatch } from 'react-redux';
 
-// export const ContextMenuProvider = ({ children }) => {
-//   const [contextMenuItems, setContextMenuItems] = useState([]);
-//   return(<ContextMenu.Provider value={{}}></ContextMenu.Provider>)
-
-// }
-
-// export const ContextMenuItem = {
-//   name: 'srting',
-//   onClick: () => {},
-// };
-
-// export const ContextMenuModel = {
-//   setContextMenu: (items) => {},
-// };
-
-// export const ContextMenu = createContext({ setContextMenu: () => {} });
-
-// export const ContextMenu = () => {
-//   return <></>;
-// };
-
-const TaskToolbar = ({ category }) => {
+const TaskToolbar = ({ id, category }) => {
+  const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
   const [visible, setVisible] = useState(false);
+  // const dispatch = useDispatch();
 
   const moveTask = () => {
-    console.log('move task');
     setVisible(true);
   };
 
-  const editTask = () => {
-    console.log('edit task');
+  const editTask = (id) => {
+    console.log(`edit task ${id}`);
+    // dispatch(updateTask(id, { }));
   };
 
-  const deleteTask = () => {
-    console.log('delete task');
+  const deleteTask = (id) => {
+    console.log(`delete task ${id}`);
+    // dispatch(deleteTask(id));
   };
 
-  const handleClick = (event) => {
-    console.log('handle click');
+  const handleClickCategory = (event) => {
+    setVisible(false);
+    const value = event.nativeEvent.target.innerHTML;
+    console.log(value);
 
-    if (event.nativeEvent.target.innerHTML === 'To do') {
+    if (value === 'To do') {
       console.log('To do');
-      // dispatch(updateTask({ category: "to-do"}));
+      // dispatch(updateTask(id, { category: "to-do"}));
     }
-    if (event.nativeEvent.target.innerHTML === 'In progress') {
+    if (value === 'In progress') {
       console.log('In progress');
-      // dispatch(updateTask({ category: 'in-progress' }));
+      // dispatch(updateTask(id, { category: 'in-progress' }));
     }
-    if (event.nativeEvent.target.innerHTML === 'Done') {
+    if (value === 'Done') {
       console.log('Done');
-      // dispatch(updateTask({ category: 'done' }));
+      // dispatch(updateTask(id, { category: 'done' }));
     }
   };
 
-  const getVisibleContextMenuItems = () => {
-    let visibleContextMenuItems = [];
-
+  useEffect(() => {
     if (category === 'to-do') {
-      visibleContextMenuItems.push('In progress', 'Done');
+      setVisibleContextMenuItems(['In progress', 'Done']);
     }
     if (category === 'in-progress') {
-      visibleContextMenuItems.push('To do', 'Done');
+      setVisibleContextMenuItems(['To do', 'Done']);
     }
     if (category === 'done') {
-      visibleContextMenuItems.push('To do', 'In progress');
+      setVisibleContextMenuItems(['To do', 'In progress']);
     }
-
-    return visibleContextMenuItems;
-  };
-
-  const visibleContextMenuItems = getVisibleContextMenuItems();
+  }, [category]);
 
   return (
     <ContainerTaskToolbar>
       <ContainerButton>
         <ButtonMove type="button" onClick={moveTask} />
-        {visible && (
-          <div>
-            {visibleContextMenuItems.map((item, index) => (
-              <div key={index} onClick={handleClick}>
-                {item}
-              </div>
-            ))}
-          </div>
-        )}
       </ContainerButton>
       <ContainerButton>
-        <ButtonEdit type="button" onClick={editTask} />
+        <ButtonEdit type="button" onClick={() => editTask(id)} />
       </ContainerButton>
       <ContainerButton>
-        <ButtonDelete type="button" onClick={deleteTask} />
+        <ButtonDelete type="button" onClick={() => deleteTask(id)} />
       </ContainerButton>
+      {visible && (
+        <ContextMenu>
+          {visibleContextMenuItems.map((item, index) => (
+            <ContextMenuItem key={index} onClick={handleClickCategory}>
+              {item}
+            </ContextMenuItem>
+          ))}
+        </ContextMenu>
+      )}
     </ContainerTaskToolbar>
   );
 };
