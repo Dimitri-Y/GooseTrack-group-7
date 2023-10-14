@@ -1,10 +1,18 @@
 import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
 
 const CalendarPage = () => {
-  useEffect(() => {}, []);
+  const navigate = useNavigate();
+  const day = 'monday';
+
+  useEffect(() => {
+    navigate(`/calendar/day/${day}`);
+  }, [navigate]);
+
   return (
     <main>
-      {/* <ChoosedMonth /> */}
+      {/* <CalendarToolbar /> */}
+      <Outlet />
     </main>
   );
 };

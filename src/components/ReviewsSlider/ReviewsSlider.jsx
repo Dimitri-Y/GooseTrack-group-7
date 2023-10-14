@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper, SwiperSlide } from 'swiper/react';
 // import SwiperCore, { Autoplay } from 'swiper';
 // import { Navigation } from 'swiper';
 // import 'swiper/css';
@@ -21,7 +21,7 @@ const ReviewsSlider = () => {
     <ReviewsSection>
       <ReviewsTitle>REVIEWS</ReviewsTitle>
       <SliderWrapper>
-        <Swiper>Here will bi slides</Swiper>
+        {/* <Swiper>Here will bi slides</Swiper> */}
       </SliderWrapper>
       <SwiperNavBox>
         <SwiperNavBtn id="my-prev-button">
