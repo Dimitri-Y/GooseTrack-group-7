@@ -15,16 +15,16 @@ function App() {
   return (
     <AppWrapper>
       <Routes>
-        {/* <Route path="/" element={<MainPage />} /> */}
+        <Route path="/" element={<MainPage />} />
         <Route path="/user" element={<UserProfilePage />} />
-        <Route path="/" element={<MainLayout />}>
-          {/* <Route path="/first" element={<FirstPage />} />
+        {/* <Route path="/" element={<MainLayout />}> */}
+        {/* <Route path="/first" element={<FirstPage />} />
           <Route path="/second" element={<SecondPage />}>
             <Route path=":half" element={<HalfPage />} />
           </Route> */}
 
-          {/* <Route path="*" element={<ErrorPage />} /> */}
-        </Route>
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+        {/* </Route> */}
       </Routes>
     </AppWrapper>
   );
