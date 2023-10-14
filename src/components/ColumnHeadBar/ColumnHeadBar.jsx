@@ -1,10 +1,22 @@
+import { useState } from 'react';
+import { ReactComponent as ButtonAddTask } from '../Icons/button-add-task.svg';
+import { ContainerHeadBar, HeadColum } from './ColumnHeadBar.styled';
+import TaskModal from '../TaskModal/TaskModal';
+
 const ColumnHeadBar = ({ header }) => {
-  console.log();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleClick = () => {
+    console.log('Click button add task');
+    setIsOpenModal(true);
+  };
+
   return (
-    <>
-      <h2>{header}</h2>
-      <button type="button">+</button>
-    </>
+    <ContainerHeadBar>
+      <HeadColum>{header}</HeadColum>
+      <ButtonAddTask onClick={handleClick} />
+      {isOpenModal && <TaskModal headerCategory={header} />}
+    </ContainerHeadBar>
   );
 };
 export default ColumnHeadBar;

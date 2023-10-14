@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ContainerTaskToolbar = styled.ul`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 10px;
 `;
 
