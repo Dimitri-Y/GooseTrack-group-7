@@ -5,7 +5,8 @@ export const ContainerTaskCard = styled.div`
   gap: 32px;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px;
+  padding: 15px 15px 18px;
+  border: 1px solid #dce3e5;
   border-radius: 8px;
   background-color: #f7f6f9;
 `;
@@ -17,7 +18,7 @@ export const Container = styled.div`
 
 export const ContainerPhotoProfile = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
 `;
 
 export const ContainerAvatar = styled.div`
