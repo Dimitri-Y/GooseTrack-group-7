@@ -1,8 +1,28 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const HeaderContainer = styled.div`
-  padding: 10px;
+export const HeaderContainer = styled.header`
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const BurgerBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: 1px solid blue;
+`;
+
+export const Icon = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
 export const Navigation = styled.nav`
