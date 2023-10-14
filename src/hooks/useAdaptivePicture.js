@@ -6,11 +6,9 @@ export const useAdaptivePicture  = () => {
         query: '(min-width: 768px) and (max-width: 1439px)',
     });
     const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
   return {
     isMobile,
     isTablet,
     isDesktop,
-    isRetina,
   };
 };
