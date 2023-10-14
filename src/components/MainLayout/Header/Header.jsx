@@ -1,14 +1,23 @@
+import AddFeedbackBtn from "../AddFeedbackBtn/AddFeedbackBtn.jsx";
+import ThemeToggler from "../ThemeToggler/ThemeToggler.jsx";
+import UserInfo from "../UserInfo/UserInfo.jsx";
+
 import {
   HeaderContainer,
   Navigation,
   StyledLink,
   IconWrapper,
-} from './Header.styled';
-import sprite from '../../assets/sprite.svg';
+} from './Header.styled.jsx';
+import sprite from '../../../assets/sprite.svg';
 
-export const Header = () => {
+const Header = () => {
   return (
     <HeaderContainer>
+      <AddFeedbackBtn />
+      <ThemeToggler />
+      <UserInfo />
+
+
       <Navigation>
         <StyledLink to="/first">
           <IconWrapper>
@@ -26,3 +35,5 @@ export const Header = () => {
     </HeaderContainer>
   );
 };
+
+export default Header;
