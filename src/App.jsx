@@ -15,8 +15,8 @@ function App() {
       <Route path="/" element={<MainPage />} />
       <Route path="/user" element={<UserProfilePage />} />
       <Route path="/calendar" element={<CalendarPage />}>
-        {/* <Route path="/month/:currentDate" element={<ChoosedMonth />} /> */}
-        <Route path="/day/:currentDay" element={<ChoosedDay />} />
+        {/* <Route path="month/:currentDate" element={<ChoosedMonth />} /> */}
+        <Route path="day/:currentDay" element={<ChoosedDay />} />
       </Route>
 
       {/* <Route path="/" element={<MainLayout />}> */}

@@ -9,9 +9,11 @@ export const ContainerTaskToolbar = styled.ul`
 
 export const ContainerButton = styled.li`
   width: 14px;
+  height: 14px;
 
   @media (min-width: 375px) {
     width: 16px;
+    height: 16px;
   }
 `;
 

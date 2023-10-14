@@ -47,8 +47,8 @@ export const PriorityTask = styled.p`
   border-radius: 4px;
   font-size: 10px;
   color: #ffffff;
-  background-color: ${(priority) => {
-    switch (priority) {
+  background-color: ${(props) => {
+    switch (props.priority) {
       case 'Low':
         return '#72c2f8';
       case 'Medium':

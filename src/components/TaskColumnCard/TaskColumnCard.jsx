@@ -13,6 +13,7 @@ import photoProfile from '../../assets/photo-profile.png';
 const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
   // const photoProfile = useSelector(selectPhotoProfile);
   console.log(id);
+
   return (
     <ContainerTaskCard>
       <TaskText>{title.length > 30 ? `${title}...` : title}</TaskText>
@@ -28,7 +29,7 @@ const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
               ></img>
             )}
           </ContainerAvatar>
-          <PriorityTask>{priority}</PriorityTask>
+          <PriorityTask priority={priority}>{priority}</PriorityTask>
         </ContainerPhotoProfile>
         <TaskToolbar id={id} category={category} />
       </Container>
