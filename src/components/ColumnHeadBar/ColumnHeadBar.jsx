@@ -1,4 +1,4 @@
-function ColumnHeadBar({ header }) {
+const ColumnHeadBar = ({ header }) => {
   console.log();
   return (
     <>
@@ -6,5 +6,5 @@ function ColumnHeadBar({ header }) {
       <button type="button">+</button>
     </>
   );
-}
+};
 export default ColumnHeadBar;
