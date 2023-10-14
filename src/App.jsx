@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from './components/SharedLayout/SharedLayout';
+import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx';
 import FirstPage from './pages/FirstPage/FirstPage';
 import SecondPage from './pages/SecondPage/SecondPage';
 import HalfPage from './pages/HalfPage/HalfPage';
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/user" element={<UserProfilePage />} />
-        {/* <Route path="/" element={<SharedLayout />}> */}
+        {/* <Route path="/" element={<MainLayout />}> */}
         {/* <Route path="/first" element={<FirstPage />} />
           <Route path="/second" element={<SecondPage />}>
             <Route path=":half" element={<HalfPage />} />
