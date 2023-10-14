@@ -6,14 +6,14 @@ export const UserInfoStyled = styled.div`
   gap: 8px;
 `;
 
-export const UserName = styled.img`
+export const UserName = styled.span`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
   color: #343434;
 `;
 
-export const UserAvatar = styled.span`
+export const UserAvatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 32px;
