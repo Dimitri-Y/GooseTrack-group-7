@@ -74,27 +74,8 @@ export const SliderWrapper = styled.div`
   }
 `;
 
-// export const ReviewSliderCard = styled.div`
-//   width: 335px;
-//   height: 194px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   gap: 20px;
-//   border-radius: 8px;
-//   border: 1px solid rgba(17, 17, 17, 0.1);
-//   padding: 24px;
-//   overflow: hidden;
-//   @media screen and (min-width: 768px) {
-//     width: 580px;
-//     height: 187px;
-//     padding: 32px;
-//   }
-// `;
-
-
 export const ReviewSliderCard = styled.div`
-  height: 190px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -106,7 +87,7 @@ export const ReviewSliderCard = styled.div`
   @media screen and (min-width: 768px) {
     padding: 32px 32px 32px 32px;
     gap: 18px;
-    height: 187px;
+    min-height: 150px;
   }
 `;
 

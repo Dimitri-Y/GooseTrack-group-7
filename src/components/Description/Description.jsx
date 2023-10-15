@@ -4,6 +4,7 @@ import {
   DescriptionWrapper,
   DescriptionSection,
   DescriptionSectionBox,
+  DescriptionSidebarBox,
   Number,
   Text,
   Title,
@@ -80,7 +81,7 @@ export const Description = () => {
         </ImageWrapper>
       </DescriptionSection>
       <DescriptionSection>
-        <DescriptionSectionBox>
+        <DescriptionSidebarBox>
           <Number>2.</Number>
           <SubTitle>SIDEBAR</SubTitle>
           <Text>
@@ -89,7 +90,7 @@ export const Description = () => {
             profile information and preferences, while the calendar provides a
             quick and convenient way to view your upcoming events and tasks.
           </Text>
-        </DescriptionSectionBox>
+        </DescriptionSidebarBox>
         <ImageWrapper>
           {isMobile && (
             <picture>
