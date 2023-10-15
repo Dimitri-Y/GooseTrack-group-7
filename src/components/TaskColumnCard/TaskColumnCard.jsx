@@ -12,11 +12,18 @@ import photoProfile from '../../assets/photo-profile.png';
 
 const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
   // const photoProfile = useSelector(selectPhotoProfile);
-  console.log(id);
+
+  const getVisibleTaskText = () => {
+    let taskText = title;
+    if (title.length > 34) {
+      taskText = `${title.split('').slice(0, 34).join('')}...`;
+    }
+    return taskText;
+  };
 
   return (
     <ContainerTaskCard>
-      <TaskText>{title.length > 30 ? `${title}...` : title}</TaskText>
+      <TaskText>{getVisibleTaskText()}</TaskText>
       <Container>
         <ContainerPhotoProfile>
           <ContainerAvatar>

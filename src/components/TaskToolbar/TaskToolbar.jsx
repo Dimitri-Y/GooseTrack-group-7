@@ -3,16 +3,19 @@ import { ReactComponent as ButtonEdit } from '../Icons/edit.svg';
 import { ReactComponent as ButtonDelete } from '../Icons/delete.svg';
 import {
   ContainerButton,
+  ContainerContextMenuItem,
   ContainerTaskToolbar,
   ContextMenu,
   ContextMenuItem,
 } from './TaskToolbar.styled';
 import { useEffect, useState } from 'react';
+import TaskModal from '../TaskModal/TaskModal';
 // import { useDispatch } from 'react-redux';
 
 const TaskToolbar = ({ id, category }) => {
   const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   // const dispatch = useDispatch();
 
   const moveTask = () => {
@@ -21,7 +24,7 @@ const TaskToolbar = ({ id, category }) => {
 
   const editTask = (id) => {
     console.log(`edit task ${id}`);
-    // dispatch(updateTask(id, { }));
+    setIsOpenModal(true);
   };
 
   const deleteTask = (id) => {
@@ -32,7 +35,6 @@ const TaskToolbar = ({ id, category }) => {
   const handleClickCategory = (event) => {
     setVisible(false);
     const value = event.nativeEvent.target.innerHTML;
-    console.log(value);
 
     if (value === 'To do') {
       console.log('To do');
@@ -63,20 +65,30 @@ const TaskToolbar = ({ id, category }) => {
   return (
     <ContainerTaskToolbar>
       <ContainerButton>
-        <ButtonMove type="button" onClick={moveTask} />
+        <ButtonMove className="button" type="button" onClick={moveTask} />
       </ContainerButton>
       <ContainerButton>
-        <ButtonEdit type="button" onClick={() => editTask(id)} />
+        <ButtonEdit
+          className="button"
+          type="button"
+          onClick={() => editTask(id)}
+        />
+        {isOpenModal && <TaskModal />}
       </ContainerButton>
       <ContainerButton>
-        <ButtonDelete type="button" onClick={() => deleteTask(id)} />
+        <ButtonDelete
+          className="button"
+          type="button"
+          onClick={() => deleteTask(id)}
+        />
       </ContainerButton>
       {visible && (
         <ContextMenu>
           {visibleContextMenuItems.map((item, index) => (
-            <ContextMenuItem key={index} onClick={handleClickCategory}>
-              {item}
-            </ContextMenuItem>
+            <ContainerContextMenuItem key={index} onClick={handleClickCategory}>
+              <ContextMenuItem>{item}</ContextMenuItem>
+              <ButtonMove />
+            </ContainerContextMenuItem>
           ))}
         </ContextMenu>
       )}

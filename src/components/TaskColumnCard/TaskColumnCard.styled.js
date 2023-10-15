@@ -33,7 +33,6 @@ export const TaskText = styled.p`
   margin: 0;
   width: 272px;
   height: 16px;
-  overflow: hidden;
   font-size: 14px;
   color: #111111;
 `;

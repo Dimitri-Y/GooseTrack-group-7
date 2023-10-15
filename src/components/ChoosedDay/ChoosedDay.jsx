@@ -1,97 +1,124 @@
+import { nanoid } from 'nanoid';
 import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
+import filter from '../../utils/filter';
+import { ContainerSection } from './ChoosedDay.styled';
+// import { useMemo } from 'react';
+// import { useSelector } from "react-redux";
+
+const tasks = [
+  {
+    id: nanoid(),
+    title: 'Brainstorm ideas for new content or products',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Low',
+    date: '',
+    category: 'to-do',
+  },
+  {
+    id: nanoid(),
+    title: 'Review and update my portfolio',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Midium',
+    date: '',
+    category: 'to-do',
+  },
+  {
+    id: nanoid(),
+    title: 'Read and respond to emails and messages',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Low',
+    date: '',
+    category: 'in-progress',
+  },
+  {
+    id: nanoid(),
+    title: 'Conducted a successful workshop',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Hight',
+    date: '',
+    category: 'in-progress',
+  },
+  {
+    id: nanoid(),
+    title: 'Building a prototype (mock-up)',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Hight',
+    date: '',
+    category: 'in-progress',
+  },
+  {
+    id: nanoid(),
+    title: 'Refining designs based on feedback',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Midium',
+    date: '',
+    category: 'done',
+  },
+  {
+    id: nanoid(),
+    title: 'Refining designs based on feedback',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Hight',
+    date: '',
+    category: 'done',
+  },
+  {
+    id: nanoid(),
+    title: 'Refining designs based on feedback',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Midium',
+    date: '',
+    category: 'done',
+  },
+  {
+    id: nanoid(),
+    title: 'Refining designs based on feedback',
+    start: '14.30',
+    end: '18.30',
+    priority: 'Low',
+    date: '',
+    category: 'done',
+  },
+];
 
 const ChoosedDay = () => {
   // const tasks = useSelector(selectTasks);
-  let toDo = [];
-  let inProgress = [];
-  let done = [];
 
-  const tasks = [
-    {
-      id: 'oikjhdbsf',
-      title: "'sdfvgbhnjmkl.l,kmjhgfc",
-      start: '14.30',
-      end: '18.30',
-      priority: 'Low',
-      date: '',
-      category: 'to-do',
-    },
-    {
-      id: 'oikjhvvvb',
-      title: "'sdfvgbhnjmkl.l,kmjhgfc",
-      start: '14.30',
-      end: '18.30',
-      priority: 'Midium',
-      date: '',
-      category: 'to-do',
-    },
-    {
-      id: 'wertyuikl',
-      title: "'sdfvgbhnjmkl.l,kmjhgfc",
-      start: '14.30',
-      end: '18.30',
-      priority: 'Low',
-      date: '',
-      category: 'in-progress',
-    },
-    {
-      id: 'mkloiuytr',
-      title: "'sdfvgbhnjmkl.l,kmjhgfc",
-      start: '14.30',
-      end: '18.30',
-      priority: 'Hight',
-      date: '',
-      category: 'in-progress',
-    },
-    {
-      id: 'zcghnpkmr',
-      title: "'sdfvgbhnjmkl.l,kmjhgfc",
-      start: '14.30',
-      end: '18.30',
-      priority: 'Hight',
-      date: '',
-      category: 'in-progress',
-    },
-    {
-      id: 'bcfgbnmmp',
-      title: 'sdfvgbhnjmkl.l,kmjhgfc',
-      start: '14.30',
-      end: '18.30',
-      priority: 'Midium',
-      date: '',
-      category: 'done',
-    },
-  ];
+  const toDo = filter(tasks, 'category', 'to-do');
+  const inProgress = filter(tasks, 'category', 'in-progress');
+  const done = filter(tasks, 'category', 'done');
 
-  const getTasksGroup = () => {
-    tasks.map((task) => {
-      if (task.category === 'to-do') {
-        toDo.push(task);
-      }
+  // const toDo = useMemo(
+  //   () => filter(tasks, 'category', 'to-do'),
+  //     [tasks]
+  // )
+  // const inProgress = useMemo(
+  //   () => filter(tasks, 'category', 'in-progress'),
+  //     [tasks]
+  // );
+  // const done = useMemo(
+  //   () => filter(tasks, 'category', 'done'),
+  //     [tasks]
+  // );
 
-      if (task.category === 'in-progress') {
-        inProgress.push(task);
-      }
-
-      if (task.category === 'done') {
-        done.push(task);
-      }
-    });
-  };
-
-  getTasksGroup();
-
-  console.log();
   return (
-    <section>
+    <ContainerSection>
       <DayCalendarHead></DayCalendarHead>
       <TasksColumnsList
         toDo={toDo}
         inProgress={inProgress}
         done={done}
       ></TasksColumnsList>
-    </section>
+    </ContainerSection>
   );
 };
 export default ChoosedDay;
