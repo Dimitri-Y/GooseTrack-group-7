@@ -20,9 +20,16 @@ export const BurgerBtn = styled.button`
   outline: 1px solid blue;
 `;
 
-export const Icon = styled.svg`
+export const IconMenu = styled.svg`
   width: 24px;
   height: 24px;
+  stroke: currentColor;
+  fill: none;
+
+  @media screen and (min-width: 768px ) {
+    width: 34px;
+    height: 34px;
+  }
 `;
 
 export const Navigation = styled.nav`
