@@ -73,3 +73,90 @@ export const SliderWrapper = styled.div`
   @media screen and (min-width: 1440px) {
   }
 `;
+
+export const ReviewSliderCard = styled.div`
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 8px;
+  border: 1px solid #e7e5e5;
+  padding: 24px;
+  overflow-y: auto;
+
+  @media screen and (min-width: 768px) {
+    padding: 32px 32px 32px 32px;
+    gap: 18px;
+    min-height: 150px;
+  }
+`;
+
+export const ReviewContentBox = styled.div`
+  position: sticky;
+  top: 0px;
+  display: flex;
+  background-color: #ffffff;
+`;
+
+export const AvatarWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #616161;
+  margin-right: 18px;
+  overflow: hidden;
+`;
+
+export const AvatarImg = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+export const BackgroundName = styled.div`
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(228, 216, 30, 0.7147233893557423) 9%,
+    rgba(241, 255, 13, 0.8155637254901961) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const UserNameIcon = styled.p`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+
+  color: black;
+`;
+
+export const Name = styled.h1`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: #13151a;
+`;
+
+export const Rate = styled.div`
+  width: 110px;
+  height: 14px;
+  margin-top: 11px;
+`;
+
+export const ReviewText = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: rgba(17, 17, 17, 0.7);
+  @media screen and (min-width: 768px) {
+    margin-left: 68px;
+  }
+`;

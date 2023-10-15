@@ -5,12 +5,11 @@ import MainPage from './pages/MainPage/MainPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import ChoosedDay from './components/ChoosedDay/ChoosedDay';
-import StatisticsPage from './pages/StatisticsPage/StatisticsPage'
+import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
 
-const test = import.meta.env.VITE_API_TEST;
+// const test = import.meta.env.VITE_API_TEST;
 
 function App() {
-  console.log(test);
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />

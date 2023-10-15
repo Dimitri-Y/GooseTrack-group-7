@@ -26,7 +26,7 @@ export const DescriptionWrapper = styled.div`
 `;
 
 export const DescriptionSection = styled.section`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 335px;
@@ -36,8 +36,10 @@ display: flex;
   }
 
   @media screen and (min-width: 768px) {
+    display: flex;
     width: 704px;
     max-width: 704px;
+    
   }
 
   @media screen and (min-width: 1440px) {
@@ -70,6 +72,27 @@ export const DescriptionSectionBox = styled.div`
     margin-bottom: 0;
   }
 `;
+
+export const DescriptionSidebarBox = styled.div`
+  max-width: 335px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 275px;
+    max-width: 275px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 48px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-left: 77px;
+    margin-bottom: 0;
+  }
+`;
+
 export const Number = styled.h2`
   margin-top: 0;
   margin-bottom: 22px;

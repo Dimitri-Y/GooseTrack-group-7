@@ -5,9 +5,18 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
-  max-width: 100%;
-  height: 100vh;
+  min-width: 375px;
+  min-height: 812px;
   background-color: #3e85f3;
+
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    min-height: 1024px;
+  }
+  @media screen and (min-width: 1440px) {
+    min-width: 1440px;
+    min-height: 770px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -45,7 +54,7 @@ export const Header = styled.h1`
     margin-bottom: 40px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }
