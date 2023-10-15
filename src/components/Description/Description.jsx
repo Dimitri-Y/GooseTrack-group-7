@@ -82,8 +82,7 @@ export const Description = () => {
       <DescriptionSection>
         <DescriptionSectionBox>
           <Number>2.</Number>
-          <Title>SIDEBAR</Title>
-          <SubTitle>VIEW</SubTitle>
+          <SubTitle>SIDEBAR</SubTitle>
           <Text>
             GooseTrack offers easy access to your account settings, calendar,
             and filters. The "My Account" section allows you to manage your
