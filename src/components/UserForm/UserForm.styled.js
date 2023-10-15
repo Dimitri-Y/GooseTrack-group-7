@@ -1,4 +1,5 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+
 
 export const Input = styled.input`
 opacity: 0;
