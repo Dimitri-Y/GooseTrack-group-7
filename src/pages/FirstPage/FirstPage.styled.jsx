@@ -23,3 +23,17 @@ export const StyledImage = styled.img`
   height: 40px;
   object-fit: cover;
 `;
+
+export const StyledButton = styled.button`
+  background-color: #1976d2;
+  cursor: pointer;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  border: none;
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: 100;
+  transition: background-color 0.2s ease-in-out;
+`

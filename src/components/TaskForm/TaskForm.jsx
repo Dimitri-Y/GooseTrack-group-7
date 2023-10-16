@@ -1,17 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Label, FormTask, Button } from './TaskForm.styled';
+import {  Button, FormTask  } from './TaskForm.styled';
 
 const initialValues = { title: '', start: null, end: null, priority: '' };
 
-const userSchema = Yup.object().shape({
+const schema = Yup.object().shape({
   title: Yup.string().required(),
   start: Yup.number().required(),
   end: Yup.number().required(),
   priority: Yup.string().required(),
 });
 
-function TaskForm({ task, closeModal }) {
+const TaskForm = ({ task, closeModal }) => {
   console.log(task, closeModal);
 
   const handleSubmit = (values, actions) => {
@@ -22,25 +22,25 @@ function TaskForm({ task, closeModal }) {
     <FormTask>
       <Formik
         initialValues={initialValues}
-        validationSchema={userSchema}
+        validationSchema={schema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Label>
+        <Form className='form'>
+          <label className='label'>
             <span>Title</span>
             <Field type="text" name="title" title="" />
             <ErrorMessage name="title" component="div" />
-          </Label>
-          <Label>
+          </label>
+          <label>
             <span>Start</span>
             <Field type="number" name="start" title="" />
             <ErrorMessage name="start" component="div" />
-          </Label>
-          <Label>
+          </label>
+          <label>
             <span>End</span>
             <Field type="number" name="end" title="" />
             <ErrorMessage name="end" component="div" />
-          </Label>
+          </label>
 
           {/* <label>
             Low
