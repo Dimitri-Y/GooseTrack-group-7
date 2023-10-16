@@ -9,6 +9,7 @@ const TasksColumn = ({ header, tasksGroup }) => {
       <ColumnHeadBar header={header}></ColumnHeadBar>
       {tasksGroup && <ColumnTasksList tasks={tasksGroup}></ColumnTasksList>}
       <AddTaskBtn header={header}></AddTaskBtn>
+      <AddTaskBtn header={header}></AddTaskBtn>
     </ContainerColum>
   );
 };
