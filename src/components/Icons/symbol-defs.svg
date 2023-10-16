@@ -56,5 +56,9 @@
 <symbol id="icon-left" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3" d="M12 24l8-8-8-8"></path>
 </symbol>
+<symbol id="icon-close" viewBox="0 0 31 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.56" d="M23.040 8.32l-15.36 15.36"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.56" d="M7.68 8.32l15.36 15.36"></path>
+</symbol>
 </defs>
 </svg>
