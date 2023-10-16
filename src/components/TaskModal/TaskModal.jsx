@@ -1,11 +1,11 @@
 import Modal from '../Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
 
-function TaskModal({ closeModal, task }) {
-  console.log(closeModal, task);
+function TaskModal({ task, closeModal }) {
+  console.log(task);
   return (
     <Modal>
-      <TaskForm></TaskForm>
+      <TaskForm task={task} closeModal={closeModal}></TaskForm>
     </Modal>
   );
 }

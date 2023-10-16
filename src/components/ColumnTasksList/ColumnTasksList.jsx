@@ -2,7 +2,7 @@ import TaskColumnCard from '../TaskColumnCard/TaskColumnCard';
 import { TasksList } from './ColumnTasksList.styled';
 
 const ColumnTasksList = ({ tasks }) => {
-  console.log();
+  
   return (
     <TasksList>
       {tasks &&
