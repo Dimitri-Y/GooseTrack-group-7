@@ -4,8 +4,11 @@ import {
     NavList,
     NavItem,
     NavItemIcon,
-    NavItemName
+    NavItemIconFill,
+    NavItemName,
 } from './UserNav.styled.jsx';
+import icon from '../../Icons/symbol-defs.svg';
+
 const UserNav = () => {
 
     const handleNavLinkClick = () => {
@@ -18,19 +21,25 @@ const UserNav = () => {
                 <NavItem
                     to="/account"
                     onClick={handleNavLinkClick}>
-                    <NavItemIcon></NavItemIcon>
+                    <NavItemIcon>
+                        <use href={icon + "#icon-user"}></use>
+                    </NavItemIcon>
                     <NavItemName>My account</NavItemName>
                 </NavItem>
                 <NavItem
                     to="/calendar"
                     onClick={handleNavLinkClick}>
-                    <NavItemIcon></NavItemIcon>
+                    <NavItemIcon>
+                        <use href={icon + "#icon-calendar"}></use>
+                    </NavItemIcon>
                     <NavItemName>Calendar</NavItemName>
                 </NavItem>
                 <NavItem
                     to="/statistics"
                     onClick={handleNavLinkClick}>
-                    <NavItemIcon></NavItemIcon>
+                    <NavItemIconFill>
+                        <use href={icon + "#icon-chart"}></use>
+                    </NavItemIconFill>
                     <NavItemName>Statistics</NavItemName>
                 </NavItem>
             </NavList>
