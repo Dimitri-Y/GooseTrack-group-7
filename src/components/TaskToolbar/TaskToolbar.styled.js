@@ -1,24 +1,15 @@
 import styled from 'styled-components';
 
-export const ContainerTaskToolbar = styled.ul`
+export const ContainerTaskToolbar = styled.div`
   position: relative;
   display: flex;
   align-items: end;
   gap: 10px;
-`;
-
-export const ContainerButton = styled.li`
-  width: 14px;
-  height: 14px;
-  
-  @media (min-width: 375px) {
-    width: 16px;
-    height: 16px;
-  }
 
   .button {
     width: 14px;
     height: 14px;
+    cursor: pointer;
 
     @media (min-width: 375px) {
       width: 16px;
@@ -51,6 +42,7 @@ export const ContainerContextMenuItem = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  cursor: pointer;
 `;
 
 export const ContextMenuItem = styled.div`

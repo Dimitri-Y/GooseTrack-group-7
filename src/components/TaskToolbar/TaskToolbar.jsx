@@ -2,7 +2,6 @@ import { ReactComponent as ButtonMove } from '../Icons/move.svg';
 import { ReactComponent as ButtonEdit } from '../Icons/edit.svg';
 import { ReactComponent as ButtonDelete } from '../Icons/delete.svg';
 import {
-  ContainerButton,
   ContainerContextMenuItem,
   ContainerTaskToolbar,
   ContextMenu,
@@ -12,11 +11,12 @@ import { useEffect, useState } from 'react';
 import TaskModal from '../TaskModal/TaskModal';
 // import { useDispatch } from 'react-redux';
 
-const TaskToolbar = ({ id, category }) => {
+const TaskToolbar = ({ task }) => {
   const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
   const [visible, setVisible] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   // const dispatch = useDispatch();
+  const { id, category } = task;
 
   const moveTask = () => {
     setVisible(true);
@@ -64,24 +64,18 @@ const TaskToolbar = ({ id, category }) => {
 
   return (
     <ContainerTaskToolbar>
-      <ContainerButton>
-        <ButtonMove className="button" type="button" onClick={moveTask} />
-      </ContainerButton>
-      <ContainerButton>
-        <ButtonEdit
-          className="button"
-          type="button"
-          onClick={() => editTask(id)}
-        />
-        {isOpenModal && <TaskModal />}
-      </ContainerButton>
-      <ContainerButton>
-        <ButtonDelete
-          className="button"
-          type="button"
-          onClick={() => deleteTask(id)}
-        />
-      </ContainerButton>
+      <ButtonMove className="button" type="button" onClick={moveTask} />
+      <ButtonEdit
+        className="button"
+        type="button"
+        onClick={() => editTask(id)}
+      />
+      {isOpenModal && <TaskModal task={task} />}
+      <ButtonDelete
+        className="button"
+        type="button"
+        onClick={() => deleteTask(id)}
+      />
       {visible && (
         <ContextMenu>
           {visibleContextMenuItems.map((item, index) => (

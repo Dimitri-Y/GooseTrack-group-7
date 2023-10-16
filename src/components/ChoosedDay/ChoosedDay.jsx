@@ -3,8 +3,10 @@ import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 import filter from '../../utils/filter';
 import { ContainerSection } from './ChoosedDay.styled';
+// import { useEffect } from 'react';
 // import { useMemo } from 'react';
 // import { useSelector } from "react-redux";
+// import { useDispatch } from 'react-redux';
 
 const tasks = [
   {
@@ -92,6 +94,7 @@ const tasks = [
 
 const ChoosedDay = () => {
   // const tasks = useSelector(selectTasks);
+  // const dispatch = useDispatch();
 
   const toDo = filter(tasks, 'category', 'to-do');
   const inProgress = filter(tasks, 'category', 'in-progress');
@@ -109,6 +112,8 @@ const ChoosedDay = () => {
   //   () => filter(tasks, 'category', 'done'),
   //     [tasks]
   // );
+
+  // useEffect(()=> dispatch(getTasks()), [])
 
   return (
     <ContainerSection>

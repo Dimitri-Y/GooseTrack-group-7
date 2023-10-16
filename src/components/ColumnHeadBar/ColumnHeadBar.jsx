@@ -14,7 +14,7 @@ const ColumnHeadBar = ({ header }) => {
   return (
     <ContainerHeadBar>
       <HeadColum>{header}</HeadColum>
-      <ButtonAddTask onClick={handleClick} />
+      <ButtonAddTask className="button" onClick={handleClick} />
       {isOpenModal && <TaskModal headerCategory={header} />}
     </ContainerHeadBar>
   );

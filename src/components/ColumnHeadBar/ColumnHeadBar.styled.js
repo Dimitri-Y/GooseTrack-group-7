@@ -4,6 +4,10 @@ export const ContainerHeadBar = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 28px;
+
+  .button {
+    cursor: pointer;
+  }
 `;
 
 export const HeadColum = styled.h2`
