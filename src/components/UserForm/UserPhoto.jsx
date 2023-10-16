@@ -1,4 +1,4 @@
-import { BoxPlus, BoxCircle, BoxPlaceholder, Image } from './User.styled';
+import { BoxPlus, BoxCircle, BoxPlaceholder, Image } from './UserPhoto.styled';
 import { ReactComponent as Human } from '../Icons/human.svg';
 import { ReactComponent as Plus } from '../Icons/plus-elipse.svg';
 

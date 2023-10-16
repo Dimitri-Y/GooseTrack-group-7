@@ -4,12 +4,12 @@ import ColumnTasksList from '../ColumnTasksList/ColumnTasksList';
 import { ContainerColum } from './TasksColumn.styled';
 
 const TasksColumn = ({ header, tasksGroup }) => {
-  console.log();
+  
   return (
     <ContainerColum>
       <ColumnHeadBar header={header}></ColumnHeadBar>
       {tasksGroup && <ColumnTasksList tasks={tasksGroup}></ColumnTasksList>}
-      <AddTaskBtn></AddTaskBtn>
+      <AddTaskBtn header={header}></AddTaskBtn>
     </ContainerColum>
   );
 };

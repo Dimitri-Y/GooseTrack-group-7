@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import UserPhoto from './UserPhoto'
-import { Input } from './UserForm.styled';
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import { Input, Box, AccountForm, UserName, User, ButtonSubmit, InputBox, InputFile, Label } from './UserForm.styled';
+import { Formik, ErrorMessage  } from 'formik';
 
 import * as yup from 'yup';
 
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   }),
   name: yup.string().required(`Це обов'язкове поле`).max(16),
   email: yup.string().email().required(),
-  birthday: yup.date().required(),
+  birthday: yup.date().default(() => new Date()),
   number: yup.string().matches(/^\+380\d{9}$/,  {  excludeEmptyString : true  }),
   skype: yup.string().max(16),
 });
@@ -30,7 +30,7 @@ const UserForm = () => {
   const initialValue = {
     name: '',
     number: '',
-    birthday: '',
+    birthday: new Date(),
     skype: '',
     email: ''
   }
@@ -66,68 +66,74 @@ const UserForm = () => {
 console.log(data)
   };
   return (
+    <Box>
     <Formik onSubmit={handleSubmit} initialValues={initialValue} validationSchema={schema}>
-    <Form>
+    <AccountForm>
         
       <UserPhoto onClick={handleClick} selectedImage={selectedImage}/>
-      <Input
+      <InputFile
         type="file"
         name='avatar'
         onChange={handleChangePhoto}
         ref={filePicker}
         accept="image/*,.png,.ipg,.jpeg,.webp"
       />
-      <label>
+      <UserName>User Name</UserName>
+      <User>User</User>
+      <InputBox>
+      <Label>
         User Name
-        <Field  
+        <Input  
         type="text" 
         name="name"
         maxLength="16"
         required
         />
         <ErrorMessage name='name'/>
-      </label>
-      <label>
+      </Label>
+      <Label>
         Phone
-        <Field  
+        <Input  
         type="tel" 
         name="number"
         pattern="/^(\+380\d{9})$/"
         />
         <ErrorMessage name='number'/>
-      </label>
-      <label>
+      </Label>
+      <Label>
         Birthday
-        <Field  
+        <Input  
         type="date" 
         name="birthday"
         />
         <ErrorMessage name='birthday'/>
-      </label>
-      <label>
+      </Label>
+      <Label>
         Skype
-        <Field  
+        <Input  
         type="text" 
         name="skype"
         />
         <ErrorMessage name='skype'/>
 
-      </label>
-      <label>
+      </Label>
+      <Label>
         Email
-        <Field  type="email" 
+        <Input  type="email" 
         name="email"
         pattern='([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*@([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*[\.]([A-zА-я])+'
 
         />
         <ErrorMessage name='email'/>
 
-      </label>
-      <button type="submit">
+      </Label>
+      </InputBox>
+      <ButtonSubmit type="submit">
         Save Changes
-      </button>
-    </Form>
+      </ButtonSubmit>
+    </AccountForm>
     </Formik>
+    </Box>
   );
 };
 

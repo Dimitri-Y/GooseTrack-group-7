@@ -7,14 +7,14 @@ const ColumnHeadBar = ({ header }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleClick = () => {
-    console.log('Click button add task');
+    console.log(`Click button add task to ${header}`);
     setIsOpenModal(true);
   };
 
   return (
     <ContainerHeadBar>
       <HeadColum>{header}</HeadColum>
-      <ButtonAddTask onClick={handleClick} />
+      <ButtonAddTask className="button" onClick={handleClick} />
       {isOpenModal && <TaskModal headerCategory={header} />}
     </ContainerHeadBar>
   );
