@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
+import CalendarToolbar from 'components/CalendarToolbar/CalendarToolbar';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const CalendarPage = () => {
 
   return (
     <main>
-      {/* <CalendarToolbar /> */}
+      <CalendarToolbar />
       <Outlet />
     </main>
   );
