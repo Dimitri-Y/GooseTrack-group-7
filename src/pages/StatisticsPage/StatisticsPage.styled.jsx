@@ -55,8 +55,11 @@ export const TextTimeSymbolStatistics = styled.p`
 
 export const ContainerScheduleStatistics = styled.div`
     width: 100%;
-    height: 400px;
+    height: 300px;
     border: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 20px;
     border-width: 0.8px;
     padding: 40px 0;
