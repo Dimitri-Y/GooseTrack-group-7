@@ -19,6 +19,7 @@
     "axios": "^1.5.1",
     "date-fns": "^2.30.0",
     "formik": "^2.4.5",
+    "nanoid": "^4.0.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",

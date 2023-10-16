@@ -7,16 +7,21 @@ import {
   PriorityTask,
   TaskText,
 } from './TaskColumnCard.styled';
+import getVisibleTaskText from '../../utils/getVisibleTaskText';
 // import { useSelector } from 'react-redux';
 import photoProfile from '../../assets/photo-profile.png';
+import { useMemo } from 'react';
 
-const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
+const TaskColumnCard = ({ task }) => {
   // const photoProfile = useSelector(selectPhotoProfile);
-  console.log(id);
+
+  const { title, priority } = task;
+
+  const VisibleTaskText = useMemo(() => getVisibleTaskText(title, 34), [title]);
 
   return (
     <ContainerTaskCard>
-      <TaskText>{title.length > 30 ? `${title}...` : title}</TaskText>
+      <TaskText>{VisibleTaskText}</TaskText>
       <Container>
         <ContainerPhotoProfile>
           <ContainerAvatar>
@@ -31,7 +36,7 @@ const TaskColumnCard = ({ task: { id, title, priority, category } }) => {
           </ContainerAvatar>
           <PriorityTask priority={priority}>{priority}</PriorityTask>
         </ContainerPhotoProfile>
-        <TaskToolbar id={id} category={category} />
+        <TaskToolbar task={task} />
       </Container>
     </ContainerTaskCard>
   );
