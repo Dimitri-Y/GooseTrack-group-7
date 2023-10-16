@@ -7,7 +7,7 @@ const ColumnHeadBar = ({ header }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleClick = () => {
-    console.log(`Click button add task to ${header}`);
+    console.log('Click button add task');
     setIsOpenModal(true);
   };
 
