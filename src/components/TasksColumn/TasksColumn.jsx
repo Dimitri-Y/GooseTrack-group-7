@@ -4,7 +4,6 @@ import ColumnTasksList from '../ColumnTasksList/ColumnTasksList';
 import { ContainerColum } from './TasksColumn.styled';
 
 const TasksColumn = ({ header, tasksGroup }) => {
-  
   return (
     <ContainerColum>
       <ColumnHeadBar header={header}></ColumnHeadBar>
