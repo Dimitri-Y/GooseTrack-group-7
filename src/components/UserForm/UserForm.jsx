@@ -2,7 +2,10 @@ import { useState, useRef } from 'react';
 import axios from 'axios';
 import UserPhoto from './UserPhoto'
 import { Input, Box, AccountForm, UserName, User, ButtonSubmit, InputBox, InputFile, Label } from './UserForm.styled';
-import { Formik, ErrorMessage  } from 'formik';
+import { Formik, ErrorMessage, Field  } from 'formik';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
+
 
 import * as yup from 'yup';
 
@@ -19,7 +22,7 @@ const schema = yup.object().shape({
   skype: yup.string().max(16),
 });
 
-const testAPI = 'https://65292a9855b137ddc83e4f49.mockapi.io/Test2';
+const testAPI = 'https://65292a9855b137ddc83e4f49.mockapi.io/';
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,10 +33,12 @@ const UserForm = () => {
   const initialValue = {
     name: '',
     number: '',
-    birthday: new Date(),
+    birthday: dayjs(),
     skype: '',
     email: ''
   }
+
+  
 
 
   const handleClick = () => {
@@ -57,14 +62,19 @@ const UserForm = () => {
     formData.append('skype', skype);
     formData.append('email', email);
 
-    const res = await axios.post(testAPI, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    const data = await res.data;
-console.log(data)
+    // const res = await axios.post(testAPI, formData, {
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    // });
+
+    // const data = await res.data;
+// console.log(data)
+console.log(name)
+console.log(number)
+console.log(birthday)
   };
+
   return (
     <Box>
     <Formik onSubmit={handleSubmit} initialValues={initialValue} validationSchema={schema}>
@@ -96,16 +106,24 @@ console.log(data)
         <Input  
         type="tel" 
         name="number"
-        pattern="/^(\+380\d{9})$/"
+        // pattern="/^(\+380\d{9})$/"
         />
         <ErrorMessage name='number'/>
       </Label>
+      
       <Label>
-        Birthday
-        <Input  
-        type="date" 
-        name="birthday"
-        />
+        Birthday        
+        <Field
+    component={DatePicker}
+    selected={initialValue.birthday.toDate()}
+    name="birthday"
+    type='date'
+    className='calendar'
+    defaultValue={dayjs()}
+    format="YYYY/MM/DD"
+    // onChange={change}
+    // views={['year', 'month', 'day']}
+  />
         <ErrorMessage name='birthday'/>
       </Label>
       <Label>
