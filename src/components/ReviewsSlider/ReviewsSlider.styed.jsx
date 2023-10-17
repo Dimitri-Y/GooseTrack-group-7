@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ReviewsSection = styled.div`
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   width: 335px;
   margin-left: auto;
   margin-right: auto;
@@ -22,7 +22,7 @@ export const ReviewsTitle = styled.h2`
   font-weight: 700;
   font-size: 28px;
   line-height: 1.14;
-  color: #3e85f3;
+  color: rgba(62, 133, 243, 1);
   text-align: center;
   margin: 0 auto 40px auto;
   @media screen and (min-width: 768px) {
@@ -80,7 +80,7 @@ export const ReviewSliderCard = styled.div`
   flex-direction: column;
   gap: 24px;
   border-radius: 8px;
-  border: 1px solid #e7e5e5;
+  border: 1px solid rgba(231, 229, 229,1);
   padding: 24px;
   overflow-y: auto;
 
@@ -95,14 +95,14 @@ export const ReviewContentBox = styled.div`
   position: sticky;
   top: 0px;
   display: flex;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
 `;
 
 export const AvatarWrapper = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid #616161;
+  border: 1px solid rgba(97, 97, 97,1);
   margin-right: 18px;
   overflow: hidden;
 `;
@@ -140,7 +140,7 @@ export const Name = styled.h1`
   font-weight: 700;
   font-size: 18px;
   line-height: 1;
-  color: #13151a;
+  color: rgba(19, 21, 26,1);
 `;
 
 export const Rate = styled.div`
