@@ -7,6 +7,8 @@ import {
     TextTimeSymbolStatistics,
     ContainerTimeSymbolStatistics,
     ContainerScheduleStatistics,
+    TextTaskStatistics,
+    
 } from './StatisticsPage.styled';
 
 import React, { PureComponent } from 'react';
@@ -27,33 +29,57 @@ import {
 
 
 const StatisticsPage = () => {
-    const todoByDay = 0
-    const inprogressByDay = 0
-    const doneByDay = 110
+    
+    
+    const todoByDay = 3
+    const inprogressByDay = 1
+    const doneByDay =  2
     const allTasksByDay = todoByDay + inprogressByDay + doneByDay
 
     
-    const todoByDayT= Math.floor(todoByDay/allTasksByDay *100)
-    const inprogressByDayT = Math.floor(inprogressByDay/allTasksByDay *100)
-    const doneByDayT = Math.floor(doneByDay / allTasksByDay * 100)
+    const todoByDayT = allTasksByDay !== 0 ? Math.floor((todoByDay / allTasksByDay) * 100) : 0;
+    const inprogressByDayT = allTasksByDay !== 0 ? Math.floor((inprogressByDay / allTasksByDay) * 100) : 0;
+    const doneByDayT = allTasksByDay !== 0 ? Math.floor((doneByDay / allTasksByDay) * 100) : 0;
     
-    console.log(doneByDayT)
+    const todoByMonth = 10
+    const inprogressByMonth = 4
+    const doneByMonth =  6
+    const allTasksByMonth = todoByMonth + inprogressByMonth + doneByMonth
+
+    
+    const todoByMonthT = allTasksByMonth !== 0 ? Math.floor((todoByMonth / allTasksByMonth) * 100) : 0;
+    const inprogressByMonthT = allTasksByMonth !== 0 ? Math.floor((inprogressByMonth / allTasksByMonth) * 100) : 0;
+    const doneByMonthT = allTasksByMonth !== 0 ? Math.floor((doneByMonth / allTasksByMonth) * 100) : 0;
+    
     const data = [
     {
         name: "to do",
-        uv: todoByDayT,
-        ByDay: todoByDayT
+        ByMonth: todoByMonth,
+        ByDay: todoByDay,
+        ByDayInterest: todoByDayT,
+        ByMonthInterest:  todoByMonthT,
     },{
         name: "in progress",
-        uv: inprogressByDayT,
-        ByDay: inprogressByDayT
+        ByMonth: inprogressByMonth,
+        ByDay: inprogressByDay,
+        ByDayInterest: inprogressByDayT,
+        ByMonthInterest: inprogressByMonthT,
     },{
         name: "done",
-        uv: doneByDayT,
-        ByDay: doneByDayT
+        ByMonth:doneByMonth,
+        ByDay: doneByDay,
+        ByDayInterest: doneByDayT,
+        ByMonthInterest: doneByMonthT,
     }]
-    
-    
+    console.log(todoByDayT)
+    //  console.log(todoByDay)
+    // console.log(allTasksByDay)
+
+    function renderLabel(props) {
+        console.log(props, "a")
+         console.log(data, "ByDay")
+        return `${props.value}%`;
+    }
 
     return  (<SectionStatistics>
                 
@@ -72,29 +98,47 @@ const StatisticsPage = () => {
                     </ContainerTimeSymbolStatistics>            
                 </ContainerMenuStatistics>
 
-                <ContainerScheduleStatistics>
-                    <BarChart
-                        width={270}
-                        height={320}
-                        data={data}
-                        margin={{ top: 20, right: 14, left: 0, bottom: 20 }}
-                    >
-                    
-                        <CartesianGrid  stroke="#0f0f0f" vertical={false}  />
-                        <XAxis  tickLine={false} axisLine={false} dataKey="name" tick={{ dy: 20 }}  />
-                        <YAxis domain={[0, allTasksByDay]}  tick={{ dx: -14 }} tickLine={false} axisLine={false} />
-                        <Tooltip /> //focus on colons
+        <ContainerScheduleStatistics>
+            <TextTaskStatistics>Tasks</TextTaskStatistics>
+           
+                <ResponsiveContainer width={(window.innerWidth >= 1024) ? '80%' :(window.innerWidth >= 768) ? '85%' : '90%'} height="90%">
+                        <BarChart
+
+                            data={data}
+                            margin={{ top: 20, right: 4, left: 4, bottom: 20 }}
+                        >
                         
-                        <Bar dataKey="ByDay" radius={[0, 0, 4, 4]}  barSize={22} minPointSize={2} >                       
-                            <LabelList dataKey={"ByDay"} position="top" />
-                        </Bar>
-                        <Bar dataKey={"uv"} radius={[0, 0, 4, 4]} fill="rgba(62, 133, 243, 0.5)" barSize={22}>
-                             <LabelList dataKey={"uv"} position="top" />
-                        </Bar>
-                        
+                            <CartesianGrid  stroke="#E3F3FF" vertical={false}  />
+                            <XAxis  tickLine={false} axisLine={false} dataKey="name" tick={{ dy: 20 }}  />
+                            <YAxis domain={allTasksByMonth === 0 ? [0, 100] : [0, allTasksByMonth]}  tick={{ dx: (window.innerWidth >= 1024) ? -34 : (window.innerWidth >= 768) ? -24 : -14}} tickLine={false} axisLine={false} />
+                            <Tooltip /> //focus on colons
+                                <defs>
+                                    <linearGradient id="gradientDay" x1="0" x2="0" y1="1" y2="0">
+                                        <stop offset="0%" stopColor="rgba(255, 210, 221, 1)" />
+                                        <stop offset="100%" stopColor="rgba(255, 210, 221, 0)" />
+                                    </linearGradient>
+                                </defs>
+
+                            <Bar dataKey="ByDay" radius={[0, 0, 4, 4]}  barSize={22} minPointSize={2} fill={`url(#gradientDay)`}>                       
+                                <LabelList dataKey="ByDayInterest" position="top" content="amt" />
+                                
+                            </Bar>
+                                <defs>
+                                    <linearGradient id="gradientM" x1="0" x2="0" y1="1" y2="0">
+                                        <stop offset="0%" stopColor="rgba(62, 133, 243, 1)" />
+                                        <stop offset="100%" stopColor="rgba(62, 133, 243, 0)" />
+                                    </linearGradient>
+                                </defs>
+
+                            <Bar dataKey={"ByMonth"} radius={[0, 0, 4, 4]} minPointSize={2} fill={`url(#gradientM)`} barSize={22}>
+                        <       LabelList dataKey={"ByMonthInterest"} position="top"  />
+                            </Bar>
+                            
                     </BarChart>
-                </ContainerScheduleStatistics>
-            </SectionStatistics>)
+                    </ResponsiveContainer>
+                
+            </ContainerScheduleStatistics>
+        </SectionStatistics>)
 };
 
 export default StatisticsPage;
