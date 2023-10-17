@@ -7,7 +7,7 @@ export const Container = styled.div`
   position: relative;
   min-width: 375px;
   min-height: 812px;
-  background-color: #3e85f3;
+  background-color: rgba(62, 133, 243,1);
 
   @media screen and (min-width: 768px) {
     min-width: 768px;
@@ -43,7 +43,7 @@ export const Header = styled.h1`
   margin-top: 2px;
   margin-bottom: 32px;
   text-align: center;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 1);
   font-size: 44px;
   font-weight: bold;
   line-height: 1.09;
@@ -80,7 +80,7 @@ export const LinksWrapper = styled.div`
 export const LinkSignUp = styled(Link)`
   display: block;
   font-family: 'Inter', sans-serif;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 1);
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
@@ -96,10 +96,10 @@ export const LinkLogIn = styled(Link)`
   gap: 6px;
   align-items: center;
   padding: 14px 32px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   border: none;
   border-radius: 16px;
-  color: #3e85f3;
+  color: rgba(62, 133, 243,1);
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
