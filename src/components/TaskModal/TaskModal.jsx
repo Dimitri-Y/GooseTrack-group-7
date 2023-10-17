@@ -4,14 +4,12 @@ import TaskForm from '../TaskForm/TaskForm';
 // import TaskForm from '../TaskForm/TaskForm';
 
 const TaskModal = ({ onModalClose }) => {
-
   return (
     <>
       {/* {isModalActive && ( */}
-        <Modal isModalActive onClose={onModalClose}>
-          <TaskForm>
-          </TaskForm>
-        </Modal>
+      <Modal isModalActive onClose={onModalClose}>
+        <TaskForm></TaskForm>
+      </Modal>
       {/* )} */}
     </>
   );

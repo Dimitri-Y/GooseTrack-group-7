@@ -1,31 +1,30 @@
 import { Route, Routes } from 'react-router-dom';
-// import SharedLayout from './components/SharedLayout/SharedLayout';
-import FirstPage from './pages/FirstPage/FirstPage';
-// import SecondPage from './pages/SecondPage/SecondPage';
-// import HalfPage from './pages/HalfPage/HalfPage';
-// import ErrorPage from './pages/ErrorPage/ErrorPage';
-import { AppWrapper } from './App.styled';
-// import MainPage from './pages/MainPage/MainPage';
+// import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx';
+import MainPage from './pages/MainPage/MainPage';
+import AccountPage from './pages/AccountPage/AccountPage';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
+import ChoosedDay from './components/ChoosedDay/ChoosedDay';
+import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 // const test = import.meta.env.VITE_API_TEST;
 
 function App() {
-  // console.log(test);
   return (
-    <AppWrapper>
-      <Routes>
-        {/* <Route path="/" element={<MainPage />} /> */}
-        {/* <Route path="/" element={<SharedLayout />}> */}
-        <Route path="/" element={<FirstPage/>} />
-        {/* <Route path="/first" element={ } />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
-          </Route> */}
-
-        {/* <Route path="*" element={<ErrorPage />} /> */}
-        {/* </Route> */}
-      </Routes>
-    </AppWrapper>
+    <Routes>
+      <Route path="/" element={<MainPage />} />
+      <Route path="/account" element={<AccountPage />} />
+      <Route path="/calendar" element={<CalendarPage />}>
+        {/* <Route path="month/:currentDate" element={<ChoosedMonth />} /> */}
+        <Route path="day/:currentDay" element={<ChoosedDay />} />
+      </Route>
+      <Route path="/statistics" element={<StatisticsPage />}></Route>
+      <Route path="*" element={<NotFoundPage />} />
+      {/* <Route path="/" element={<MainLayout />}> */}
+      {/* </Route> */}
+    </Routes>
   );
 }
 export default App;
+// <AppWrapper>
+// </AppWrapper>

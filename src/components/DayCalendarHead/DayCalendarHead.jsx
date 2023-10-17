@@ -1,5 +1,4 @@
-function DayCalendarHead() {
-
+const DayCalendarHead = () => {
   console.log();
   return (
     <ul>
@@ -12,5 +11,5 @@ function DayCalendarHead() {
       <li></li>
     </ul>
   );
-}
+};
 export default DayCalendarHead;

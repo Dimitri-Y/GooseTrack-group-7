@@ -1,33 +1,92 @@
 import { ReactComponent as ButtonMove } from '../Icons/move.svg';
 import { ReactComponent as ButtonEdit } from '../Icons/edit.svg';
 import { ReactComponent as ButtonDelete } from '../Icons/delete.svg';
-import { ContainerButton, ContainerTaskToolbar } from './TaskToolbar.styled';
+import {
+  ContainerContextMenuItem,
+  ContainerTaskToolbar,
+  ContextMenu,
+  ContextMenuItem,
+} from './TaskToolbar.styled';
+import { useEffect, useState } from 'react';
+import TaskModal from '../TaskModal/TaskModal';
+// import { useDispatch } from 'react-redux';
 
-function TaskToolbar() {
+const TaskToolbar = ({ task }) => {
+  const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  // const dispatch = useDispatch();
+  const { id, category } = task;
+
   const moveTask = () => {
-    console.log('move task');
+    setVisible(true);
   };
 
-  const editTask = () => {
-    console.log('edit task');
+  const editTask = (id) => {
+    console.log(`edit task ${id}`);
+    setIsOpenModal(true);
   };
 
-  const deleteTask = () => {
-    console.log('delete task');
+  const deleteTask = (id) => {
+    console.log(`delete task ${id}`);
+    // dispatch(deleteTask(id));
   };
+
+  const handleClickCategory = (event) => {
+    setVisible(false);
+    const value = event.nativeEvent.target.innerHTML;
+
+    if (value === 'To do') {
+      console.log('To do');
+      // dispatch(updateTask(id, { category: "to-do"}));
+    }
+    if (value === 'In progress') {
+      console.log('In progress');
+      // dispatch(updateTask(id, { category: 'in-progress' }));
+    }
+    if (value === 'Done') {
+      console.log('Done');
+      // dispatch(updateTask(id, { category: 'done' }));
+    }
+  };
+
+  useEffect(() => {
+    if (category === 'to-do') {
+      setVisibleContextMenuItems(['In progress', 'Done']);
+    }
+    if (category === 'in-progress') {
+      setVisibleContextMenuItems(['To do', 'Done']);
+    }
+    if (category === 'done') {
+      setVisibleContextMenuItems(['To do', 'In progress']);
+    }
+  }, [category]);
 
   return (
     <ContainerTaskToolbar>
-      <ContainerButton>
-        <ButtonMove type="button" onClick={moveTask} />
-      </ContainerButton>
-      <ContainerButton>
-        <ButtonEdit type="button" onClick={editTask} />
-      </ContainerButton>
-      <ContainerButton>
-        <ButtonDelete type="button" onClick={deleteTask} />
-      </ContainerButton>
+      <ButtonMove className="button" type="button" onClick={moveTask} />
+      <ButtonEdit
+        className="button"
+        type="button"
+        onClick={() => editTask(id)}
+      />
+      {isOpenModal && <TaskModal task={task} />}
+      <ButtonDelete
+        className="button"
+        type="button"
+        onClick={() => deleteTask(id)}
+      />
+      {visible && (
+        <ContextMenu>
+          {visibleContextMenuItems.map((item, index) => (
+            <ContainerContextMenuItem key={index} onClick={handleClickCategory}>
+              <ContextMenuItem>{item}</ContextMenuItem>
+              <ButtonMove />
+            </ContainerContextMenuItem>
+          ))}
+        </ContextMenu>
+      )}
     </ContainerTaskToolbar>
   );
-}
+};
 export default TaskToolbar;
