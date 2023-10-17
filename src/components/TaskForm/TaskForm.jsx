@@ -14,16 +14,16 @@ const schema = Yup.object().shape({
 const TaskForm = ({ task, closeModal }) => {
   console.log(task, closeModal);
 
-  const handleSubmit = (values, actions) => {
-    console.log(values, actions);
-  };
+  // const handleSubmit = (values, actions) => {
+  //   console.log(values, actions);
+  // };
 
   return (
     <FormTask>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
       >
         <Form className="form">
           <label className="label">
@@ -51,69 +51,58 @@ const TaskForm = ({ task, closeModal }) => {
           </div>
 
           <div className="radioBtn_Wrapper">
-          {/* <label for="rdo-1" className="btn-radio">
-      <input type="radio" id="rdo-1" name="radio-grp"/>
-      <svg width="20px" height="20px" viewBox="0 0 20 20">
-        <circle cx="10" cy="10" r="9"></circle>
-        <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" className="inner"></path>
-        <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" className="outer"></path>
-      </svg>
-      <span>Option One</span>
-    </label>
-    <label for="rdo-2" className="btn-radio">
-      <input type="radio" id="rdo-2" name="radio-grp"/>
-      <svg width="20px" height="20px" viewBox="0 0 20 20">
-        <circle cx="10" cy="10" r="9"></circle>
-        <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" className="inner"></path>
-        <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" className="outer"></path>
-      </svg>
-      <span>Option Two</span>
-    </label>
-    <label for="rdo-3" className="btn-radio">
-      <input type="radio" id="rdo-3" name="radio-grp"/>
-      <svg width="20px" height="20px" viewBox="0 0 20 20">
-        <circle cx="10" cy="10" r="9"></circle>
-        <path d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z" className="inner"></path>
-        <path d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z" className="outer"></path>
-      </svg>
-      <span>Option Three</span>
-    </label> */}
-            <label className="label_input">
+            <div className="radio">
+              <label className="custom-radio">
+                <input
+                  className="input_first"
+                  type="radio"
+                  name="priority"
+                  value="low"
+                />
+                
+                <span>Low</span>
+              </label>
+            </div>
+
+            <div className="radio">
+              <label className="custom-radio">
+                <input
+                  className="input_second"
+                  type="radio"
+                  name="priority"
+                  value="medium"
+                />
+                
+                <span>Medium</span>
+              </label>
+            </div>
+
+            <div className="radio">
+              <label className="custom-radio">
+                <input type="radio" name="priority" value="high" />
+                
+                <span>High</span>
+              </label>
+            </div>
+
+            {/* <label className="label_input" htmlFor="radio_3">
               <input
                 type="radio"
                 checked
+                id="radio_3"
                 name="priority"
                 value="low"
-                // onChange={handleChange}
               />
               <span className="radio_tittle">Low</span>
-
             </label>
-            <label className="label_input">
-
-              <input
-                type="radio"
-                // checked={priority === 'medium'}
-                name="priority"
-                value="medium"
-                // onChange={handleChange}
-              />
+            <label className="label_input" htmlFor="radio_3">
+              <input type="radio" id="radio_3" name="priority" value="medium" />
               <span className="radio_tittle">Medium</span>
-
             </label>
-            <label className="label_input">
-
-              <input
-                type="radio"
-                color='#F3B249'
-                // checked={priority === 'high'}
-                name="priority"
-                value="high"
-                // onChange={handleChange}
-              />
+            <label className="label_input" htmlFor="radio_3">
+              <input type="radio" id="radio_3" name="priority" value="high" />
               <span className="radio_tittle">High</span>
-
-            </label>
+            </label> */}
           </div>
 
           <Button type="submit">Add</Button>
