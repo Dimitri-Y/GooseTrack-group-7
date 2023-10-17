@@ -4,6 +4,7 @@ import {
   DescriptionWrapper,
   DescriptionSection,
   DescriptionSectionBox,
+  DescriptionSidebarBox,
   Number,
   Text,
   Title,
@@ -80,17 +81,16 @@ export const Description = () => {
         </ImageWrapper>
       </DescriptionSection>
       <DescriptionSection>
-        <DescriptionSectionBox>
+        <DescriptionSidebarBox>
           <Number>2.</Number>
-          <Title>SIDEBAR</Title>
-          <SubTitle>VIEW</SubTitle>
+          <SubTitle>SIDEBAR</SubTitle>
           <Text>
             GooseTrack offers easy access to your account settings, calendar,
             and filters. The "My Account" section allows you to manage your
             profile information and preferences, while the calendar provides a
             quick and convenient way to view your upcoming events and tasks.
           </Text>
-        </DescriptionSectionBox>
+        </DescriptionSidebarBox>
         <ImageWrapper>
           {isMobile && (
             <picture>

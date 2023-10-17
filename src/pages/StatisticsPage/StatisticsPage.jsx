@@ -1,3 +1,4 @@
+
 import {
     SectionStatistics,
     ContainerMenuStatistics,
@@ -139,6 +140,7 @@ const StatisticsPage = () => {
                 
             </ContainerScheduleStatistics>
         </SectionStatistics>)
+
 };
 
 export default StatisticsPage;

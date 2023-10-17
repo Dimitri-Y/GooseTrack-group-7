@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DescriptionWrapper = styled.div`
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   max-width: 335px;
   margin-left: auto;
   margin-right: auto;
@@ -26,7 +26,7 @@ export const DescriptionWrapper = styled.div`
 `;
 
 export const DescriptionSection = styled.section`
-display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 335px;
@@ -36,8 +36,10 @@ display: flex;
   }
 
   @media screen and (min-width: 768px) {
+    display: flex;
     width: 704px;
     max-width: 704px;
+    
   }
 
   @media screen and (min-width: 1440px) {
@@ -70,6 +72,27 @@ export const DescriptionSectionBox = styled.div`
     margin-bottom: 0;
   }
 `;
+
+export const DescriptionSidebarBox = styled.div`
+  max-width: 335px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 275px;
+    max-width: 275px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-bottom: 48px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-left: 77px;
+    margin-bottom: 0;
+  }
+`;
+
 export const Number = styled.h2`
   margin-top: 0;
   margin-bottom: 22px;
@@ -78,7 +101,7 @@ export const Number = styled.h2`
   font-size: 80px;
   line-height: 0.8;
   letter-spacing: -4px;
-  color: #3e85f3;
+  color: rgba(62, 133, 243, 1);
 
   @media screen and (min-width: 768px) {
     font-size: 104px;
@@ -94,7 +117,7 @@ export const Text = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.29;
-  color: #343434;
+  color: rgb(52, 52, 52,1);
 
   @media screen and (min-width: 768px) {
     width: 275px;
@@ -111,8 +134,8 @@ export const Title = styled.div`
   font-size: 32px;
   line-height: 1.25;
   text-align: center;
-  color: #3e85f3;
-  background-color: #dcebf7;
+  color: rgba(62, 133, 243, 1);
+  background-color: rgba(220, 235, 247,1);
   border-radius: 44px;
 
   @media screen and (min-width: 768px) {
@@ -128,7 +151,7 @@ export const SubTitle = styled.h2`
   font-weight: 700;
   font-size: 32px;
   line-height: 1.25;
-  color: #171820;
+  color: rgba(23, 24, 32,1);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;

@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
+import CalendarToolbar from 'components/CalendarToolbar/CalendarToolbar';
 
 const CalendarPage = () => {
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();
   const day = 'monday';
 
   useEffect(() => {
     navigate(`/calendar/day/${day}`);
-  }, [navigate]);
+  }, [navigate]);*/
 
   return (
     <main>
-      {/* <CalendarToolbar /> */}
+      <CalendarToolbar />
       <Outlet />
     </main>
   );
