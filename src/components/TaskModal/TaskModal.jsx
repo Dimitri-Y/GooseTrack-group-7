@@ -1,12 +1,17 @@
 import Modal from '../Modal/Modal';
 import TaskForm from '../TaskForm/TaskForm';
+// import { useState } from 'react';
+// import TaskForm from '../TaskForm/TaskForm';
 
-function TaskModal({ task, closeModal }) {
-  console.log(task);
+const TaskModal = ({ onModalClose }) => {
   return (
-    <Modal>
-      <TaskForm task={task} closeModal={closeModal}></TaskForm>
-    </Modal>
+    <>
+      {/* {isModalActive && ( */}
+      <Modal isModalActive onClose={onModalClose}>
+        <TaskForm></TaskForm>
+      </Modal>
+      {/* )} */}
+    </>
   );
-}
+};
 export default TaskModal;
