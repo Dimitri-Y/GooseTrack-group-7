@@ -17,7 +17,7 @@ const Modal = ({ isModalActive, onClose, children }) => {
             <SvgSelector id="xClose" className={css.iconWrapper} />
           </button>
         </Dialog.Title>
-        <Dialog.Description>{children}</Dialog.Description>
+        <Dialog.Description className={css.modal_body}>{children}</Dialog.Description>
 
         {/* <button onClick={() => setIsOpen(false)}>Deactivate</button>
         <button onClick={() => setIsOpen(false)}>Cancel</button> */}

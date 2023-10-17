@@ -12,7 +12,7 @@
 
 .modal_content {
   position: relative;
-  /* padding: 48px 18px; */
+  padding: 48px 0;
   width: 303px;
   min-height: 290px;
   border-radius: 8px;
@@ -54,4 +54,7 @@
   /* flex-shrink: 0; */
   cursor: pointer;
   background-color: transparent;
+}
+.css.modal_body{
+  width: 100%
 }
