@@ -84,80 +84,89 @@ export const FormTask = styled.div`
   }
   .radioBtn_Wrapper {
     display: flex;
-  fill: #F3B249}
+    gap: 16px;
+    
+  .custom-radio{
+    display: flex;
+    gap: 4px;
+    align-items: center
+  }
 
-
-  /* html body
-  {height: 100%;
-  display: grid}
-
-  body
-    {font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    color: #222}
-
-  .cntr
-  {margin: auto}
-
-
-
-  .btn-radio {
-    cursor: pointer;
-    display: inline-block;
-    float: left;
-    -webkit-user-select: none;
-    user-select: none;
-    :not(:first-child) {
-      margin-left: 20px;
+  .custom-radio>input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
     }
-    @media screen and (max-width: 480px) {
-      display: block;
-      float: none;
-      :not(:first-child) {
-        margin-left: 0;
-        margin-top: 15px;
-      }
+    .custom-radio>.input_first{
+      background: #72C2F8
     }
-    svg {
-      fill: none;
-      vertical-align: middle;
-      circle {
-        stroke-width: 2;
-        stroke: #c8ccd4;
-      }
-      path {
-        stroke: #008fff;
-        &.inner {
-          stroke-width: 6;
-          stroke-dasharray: 19;
-          stroke-dashoffset: 19;
+    
+    /* для элемента label связанного с label_input */
+    .custom-radio>span {
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+      color: #343434;
+
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: 18px; /* 128.571% */
         }
-        &.outer {
-          stroke-width: 2;
-          stroke-dasharray: 57;
-          stroke-dashoffset: 57;
-        }
-      }
-    }
-    input {
-      display: none;
-      :checked + svg path {
-        transition: all 0.4s ease;
-        .inner {
-          stroke-dashoffset: 38;
-          transition-delay: 0.3s;
-        }
-        &.outer {
-          stroke-dashoffset: 0;
-        }
-      }
-    }
-    span {
+
+    /* создание в label псевдоэлемента  before со следующими стилями */
+    .custom-radio>span::before {
+      content: '';
       display: inline-block;
-      vertical-align: middle;
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #b3d7ff;
+      border-radius: 50%;
+      margin-right: 0.5em;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 50% 50%;
+
+      
     }
-  } */
+
+    /* при наведенні курсора на радіо */
+    .custom-radio>input:not(:disabled):not(:checked)+span:hover::before {
+      border-color: #b3d7ff;
+    }
+
+    /* стили для активной радиокнопки (при нажатии на неё) */
+    .custom-radio>input:not(:disabled):active+span::before {
+      background-color: red;
+      border-color: #b3d7ff;
+    }
+
+    /* стили для радиокнопки, находящейся в фокусе */
+    .custom-radio>input:focus+span::before {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+    .custom-radio>input:focus:not(:checked)+span::before {
+      border-color: #80bdff;
+    }
+
+    /* стили для радиокнопки, находящейся в состоянии checked */
+    .custom-radio>input:checked+span::before {
+      border-color: #0b76ef;
+      background-color: #0b76ef;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+
+    /* стили для радиокнопки, находящейся в состоянии disabled */
+    .custom-radio>input:disabled+span::before {
+      background-color: #e9ecef;
+    }
+  }
+
 `;
 // export const styleForm = styled.div`
 //   /* display: flex;

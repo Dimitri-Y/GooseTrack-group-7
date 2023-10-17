@@ -5,7 +5,6 @@ export const ContainerColumsList = styled.div`
   /* justify-content: center; */
   gap: 16px;
   max-width: 100vw;
-  padding-bottom: 34px;
-  background-color: #f7f6f9;
+  background-color: transparent;
   overflow-y: scroll;
 `;
