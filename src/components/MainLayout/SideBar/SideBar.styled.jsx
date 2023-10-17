@@ -113,13 +113,17 @@ export const CloseBtn = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+
+  @media screen and (min-width: 1440px) {
+    display: none;
+  }
 `;
 
 export const CloseIcon = styled.svg`
   width: 24px;
   height: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) and (max-width:1439px) {
     width: 34px;
     height: 34px;
 `;
