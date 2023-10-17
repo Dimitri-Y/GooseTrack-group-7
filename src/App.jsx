@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 // import MainLayout from './components/MainLayout/MainLayout/MainLayout.jsx';
-// import ErrorPage from './pages/ErrorPage/ErrorPage';
 import MainPage from './pages/MainPage/MainPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
@@ -22,7 +21,6 @@ function App() {
       <Route path="/statistics" element={<StatisticsPage />}></Route>
       <Route path="*" element={<NotFoundPage />} />
       {/* <Route path="/" element={<MainLayout />}> */}
-      {/* <Route path="*" element={<ErrorPage />} /> */}
       {/* </Route> */}
     </Routes>
   );
