@@ -164,9 +164,9 @@ const ChoosedDay = () => {
   const done = useMemo(() => filter(tasks, 'category', 'done'), [tasks]);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       dispatch(fetchTasks());
-    }
+    };
     fetchData();
   }, [dispatch]);
 
