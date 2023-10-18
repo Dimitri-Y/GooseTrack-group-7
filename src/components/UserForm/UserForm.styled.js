@@ -109,6 +109,23 @@ flex-direction: column;
 align-items: flex-start;
 font-size: 14px;
 gap: 8px;
+
+.calendar {
+   width: 299px;
+}
+
+@media (min-width: 768px) {
+   .calendar {
+      width: 354px;
+   }
+  
+ }
+
+ @media (min-width: 1440px) {
+   .calendar {
+      width: 354px;
+   }
+ }
 `
 
 export const ButtonSubmit = styled.button`

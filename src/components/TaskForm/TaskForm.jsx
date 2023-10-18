@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormTask } from './TaskForm.styled';
+// import { useState } from 'react';
 
 const initialValues = { title: '', start: null, end: null, priority: '' };
 
@@ -13,6 +14,13 @@ const schema = Yup.object().shape({
 
 const TaskForm = ({ task, category }) => {
   console.log(task, category);
+// const [title, setTitle] = useState('')
+// const [start, setStart] = useState('')
+// const [end, setEnd] = useState('')
+// const [priority, setPriority] = useState('')
+
+
+
 
   // const handleSubmit = (values, actions) => {
   //   console.log(values, actions);
