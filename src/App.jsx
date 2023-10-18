@@ -68,6 +68,8 @@ const App = () => {
           <Route path=":currentDate" element={<StatisticsPage />} />
         </Route>
       </Route>
+      <Route path="/statistics" element={<StatisticsPage />}></Route>
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
