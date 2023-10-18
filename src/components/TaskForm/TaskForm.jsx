@@ -11,8 +11,8 @@ const schema = Yup.object().shape({
   priority: Yup.string().required(),
 });
 
-const TaskForm = ({ task, closeModal }) => {
-  console.log(task, closeModal);
+const TaskForm = ({ task, category }) => {
+  console.log(task, category);
 
   // const handleSubmit = (values, actions) => {
   //   console.log(values, actions);
@@ -59,7 +59,7 @@ const TaskForm = ({ task, closeModal }) => {
                   name="priority"
                   value="low"
                 />
-                
+
                 <span>Low</span>
               </label>
             </div>
@@ -72,7 +72,7 @@ const TaskForm = ({ task, closeModal }) => {
                   name="priority"
                   value="medium"
                 />
-                
+
                 <span>Medium</span>
               </label>
             </div>
@@ -80,7 +80,7 @@ const TaskForm = ({ task, closeModal }) => {
             <div className="radio">
               <label className="custom-radio">
                 <input type="radio" name="priority" value="high" />
-                
+
                 <span>High</span>
               </label>
             </div>

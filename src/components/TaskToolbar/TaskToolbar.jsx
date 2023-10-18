@@ -26,6 +26,7 @@ const TaskToolbar = ({ task }) => {
     console.log(`edit task ${id}`);
     setIsOpenModal(true);
   };
+  
   const handleModalClose = () => {
     setIsOpenModal(false);
   };
