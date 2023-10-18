@@ -1,13 +1,15 @@
 import TaskColumnCard from '../TaskColumnCard/TaskColumnCard';
+import { TasksList } from './ColumnTasksList.styled';
 
-function ColumnTasksList({ tasks }) {
-  console.log();
+const ColumnTasksList = ({ tasks }) => {
+  
   return (
-    <ul>
-      {tasks.map((task) => (
-        <TaskColumnCard task={task} key={task.id}></TaskColumnCard>
-      ))}
-    </ul>
+    <TasksList>
+      {tasks &&
+        tasks.map((task) => (
+          <TaskColumnCard task={task} key={task.id}></TaskColumnCard>
+        ))}
+    </TasksList>
   );
-}
+};
 export default ColumnTasksList;

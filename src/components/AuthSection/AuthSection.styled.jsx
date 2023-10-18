@@ -5,9 +5,18 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
-  max-width: 100%;
-  height: 100vh;
-  background-color: #3e85f3;
+  min-width: 375px;
+  min-height: 812px;
+  background-color: rgba(62, 133, 243,1);
+
+  @media screen and (min-width: 768px) {
+    min-width: 768px;
+    min-height: 1024px;
+  }
+  @media screen and (min-width: 1440px) {
+    min-width: 1440px;
+    min-height: 770px;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -34,7 +43,7 @@ export const Header = styled.h1`
   margin-top: 2px;
   margin-bottom: 32px;
   text-align: center;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 1);
   font-size: 44px;
   font-weight: bold;
   line-height: 1.09;
@@ -45,7 +54,7 @@ export const Header = styled.h1`
     margin-bottom: 40px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1440px) {
     font-size: 120px;
     line-height: 1.25;
   }
@@ -71,7 +80,7 @@ export const LinksWrapper = styled.div`
 export const LinkSignUp = styled(Link)`
   display: block;
   font-family: 'Inter', sans-serif;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 1);
   font-size: 14px;
   line-height: 1.29;
   font-weight: 600;
@@ -87,10 +96,10 @@ export const LinkLogIn = styled(Link)`
   gap: 6px;
   align-items: center;
   padding: 14px 32px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 1);
   border: none;
   border-radius: 16px;
-  color: #3e85f3;
+  color: rgba(62, 133, 243,1);
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;

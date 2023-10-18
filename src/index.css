@@ -1,5 +1,6 @@
 @import url('./assets/fonts/fonts.css');
-/* @import-normalize; */
+@import-normalize;
+
 
 body {
 
