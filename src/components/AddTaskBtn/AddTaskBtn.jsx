@@ -4,7 +4,6 @@ import { Button } from './AddTaskBtn.styled';
 
 const AddTaskBtn = ({ category }) => {
   const [isModalActive, setIsModalActive] = useState(false);
-  console.log(category);
 
   const handleModalOpen = () => {
     setIsModalActive(true);
