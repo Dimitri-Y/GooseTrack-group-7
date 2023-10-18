@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import UserPhoto from './UserPhoto';
 import {
   Input,
@@ -12,11 +12,9 @@ import {
   InputFile,
   Label,
 } from './UserForm.styled';
-// import { CalendarGlobalStyles } from './Calendar.styled';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
-// import DatePicker from 'react-datepicker';
-// import "react-datepicker/dist/react-datepicker-cssmodules.css";
+import Calendar from './Calendar/Calendar';
 
 
 const validationSchema = yup.object().shape({
@@ -37,19 +35,21 @@ const validationSchema = yup.object().shape({
   skype: yup.string().max(16),
 });
 
-const testAPI = 'https://goose-track-backend-deployment.onrender.com/';
+// const testAPI = 'https://goose-track-backend-deployment.onrender.com/';
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
-  // const [birthdayChange, setBirthdayChange] = useState(new Date());
+  const [birthdayChange, setBirthdayChange] = useState(new Date());
+
+  // console.log(birthdayChange)
 
   const filePicker = useRef(null);
 
   const initialValue = {
     name: '',
     number: '',
-    birthday: '',
+    birthday: birthdayChange,
     skype: '',
     email: '',
   };
@@ -64,14 +64,18 @@ const UserForm = () => {
     setSelectedImage(imgURL);
   };
 
+  const handleChangeDate = value => {
+    setBirthdayChange(value)
+  }
+
   const handleSubmit = async (value) => {
-    const { name, number, birthday, skype, email } = value;
+    const { name, number, skype, email } = value;
 
     const formData = new FormData();
     formData.append('avatar', uploaded);
     formData.append('name', name);
     formData.append('number', number);
-    formData.append('birthday', birthday);
+    formData.append('birthday', birthdayChange);
     formData.append('skype', skype);
     formData.append('email', email);
 
@@ -81,9 +85,8 @@ const UserForm = () => {
     //   },
     // });
 
-    const res = await axios.get(testAPI)
-    const data = await res.data;
-    console.log(data)
+    // const data = await res.data;
+    console.log(birthdayChange)
   };
 
   return (
@@ -122,14 +125,13 @@ const UserForm = () => {
 
             <Label>
               Birthday
-              <Input
+              <Field
+              component={Calendar}
                 name="birthday"
                 type="date"
                 // className="calendar"
-                // selected={birthdayChange}
-                // onChange={(date) => {
-                //   setBirthdayChange(date);
-                // }}
+                selected={birthdayChange}
+                onChange={handleChangeDate}
                 // dateFormat={'yyyy MM dd'}
                 // calendarStartDay={1}
               />
