@@ -1,5 +1,5 @@
 import {MainTitleStyled} from './MainTitle.styled.jsx';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const MainTitle = ({ title }) => {
     return (
@@ -8,7 +8,7 @@ const MainTitle = ({ title }) => {
 };
 
 MainTitle.prototype = {
-    // title: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
 }
 
 export default MainTitle;
