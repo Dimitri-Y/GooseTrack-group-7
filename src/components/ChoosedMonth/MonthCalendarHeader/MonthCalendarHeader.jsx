@@ -1,4 +1,4 @@
-import { useAdaptivePicture } from 'hooks/useAdaptivePicture';
+import { useAdaptivePicture } from '../../../hooks/useAdaptivePicture';
 import {
   WeekendHeaderItem,
   WeekHeaderList,

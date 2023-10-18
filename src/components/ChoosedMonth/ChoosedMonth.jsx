@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import { selectTasks } from 'redux/tasks/tasksSelectors';
-import { fetchTasks } from 'redux/tasks/tasksOperations';
+import { selectTasks } from '../../redux/tasks/tasksSelectors';
+import { fetchTasks } from '../../redux/tasks/tasksOperations';
 import CalendarTable from './CalendarTable/CalendarTable';
 import { MonthCalendarHeader } from './MonthCalendarHeader/MonthCalendarHeader';
 
