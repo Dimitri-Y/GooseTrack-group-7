@@ -5,7 +5,6 @@ import TaskModal from '../TaskModal/TaskModal';
 
 const ColumnHeadBar = ({ header, category }) => {
   const [isModalActive, setIsModalActive] = useState(false);
-  console.log(category);
 
   const handleModalOpen = () => {
     setIsModalActive(true);
