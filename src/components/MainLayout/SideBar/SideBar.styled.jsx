@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const Backdrop = styled.div`
-  background-color: #00000080;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  background-color: #00000080;
   z-index: 2;
-  opacity: 1;
+  opacity: ${p => (p.$isOpen ? '1' : '0')};
+  transition: opacity 0.3s ease-out;
 
   @media screen and (min-width: 1440px) {
   opacity: 0;
@@ -25,6 +28,8 @@ export const SideBarStyled = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+   transform: ${p => (p.$isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  transition: transform 0.3s ease-out;
   
   @media screen and (min-width: 768px) {
     width: 290px;
