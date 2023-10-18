@@ -8,7 +8,7 @@ const AddFeedbackModal = ({ onModalClose }) => {
   // const [isModalActive] = useState(false);
   return (
     <>
-      <Modal isModalActive onClose={onModalClose}>
+      <Modal onClose={onModalClose}>
         <FeedbackForm />
       </Modal>
     </>
