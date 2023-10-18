@@ -17,6 +17,19 @@ const TaskColumnCard = ({ task }) => {
 
   const { title, priority } = task;
 
+  const getBackgroundColorPriority = () => {
+    switch (priority) {
+      case 'Low':
+        return '#72c2f8';
+      case 'Medium':
+        return '#F3B249';
+      case 'Hight':
+        return '#EA3D65';
+      default:
+        return '#F3B249';
+    }
+  };
+
   const VisibleTaskText = useMemo(() => getVisibleTaskText(title, 34), [title]);
 
   return (
@@ -34,7 +47,9 @@ const TaskColumnCard = ({ task }) => {
               ></img>
             )}
           </ContainerAvatar>
-          <PriorityTask priority={priority}>{priority}</PriorityTask>
+          <PriorityTask $backgroundColor={() => getBackgroundColorPriority()}>
+            {priority}
+          </PriorityTask>
         </ContainerPhotoProfile>
         <TaskToolbar task={task} />
       </Container>
