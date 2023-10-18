@@ -16,7 +16,6 @@ export const StyleModal = styled.div`
   .modal_content {
     position: relative;
     /* padding: 48px 0; */
-    width: 500px;
     min-height: 290px;
     border-radius: 8px;
     border: 1px solid rgba(220, 227, 229, 0.8);
@@ -24,7 +23,6 @@ export const StyleModal = styled.div`
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
     @media screen and (min-width: 768px) {
-      /* width: 333px; */
     }
   }
   .modal_tittle {
