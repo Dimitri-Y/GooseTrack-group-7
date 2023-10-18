@@ -1,9 +1,11 @@
-import {Form} from './FeedbackForm.styled.jsx';
+import { Label } from './FeedbackForm.styled';
 const FeedbackForm = () => {
     return (
-        <Form>
+        <form>
+          <Label htmlFor="review">Review</Label>
 
-        </Form>
+<textarea id="review" name="review" ></textarea>
+        </form>
     )
 }
 
