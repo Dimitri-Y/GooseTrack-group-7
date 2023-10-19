@@ -12,15 +12,12 @@ const schema = Yup.object().shape({
   priority: Yup.string().required(),
 });
 
-const TaskForm = ({ task, category }) => {
-  console.log(task, category);
-// const [title, setTitle] = useState('')
-// const [start, setStart] = useState('')
-// const [end, setEnd] = useState('')
-// const [priority, setPriority] = useState('')
-
-
-
+const TaskForm = ({ task, closeModal }) => {
+  console.log(task, closeModal);
+  // const [title, setTitle] = useState('')
+  // const [start, setStart] = useState('')
+  // const [end, setEnd] = useState('')
+  // const [priority, setPriority] = useState('')
 
   // const handleSubmit = (values, actions) => {
   //   console.log(values, actions);

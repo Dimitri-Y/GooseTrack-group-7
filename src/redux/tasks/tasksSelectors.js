@@ -14,3 +14,13 @@ export const selectVisibleTasks = createSelector(
     return tasks.filter((task) => task.date === date);
   },
 );
+
+export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
+  const hasUnfinishedTasks = tasks.some(
+    ({ category }) => category === 'to-do' || category === 'in-progress',
+  );
+
+  return hasUnfinishedTasks
+    ? 'Let go of the past and focus on the present!'
+    : '';
+});

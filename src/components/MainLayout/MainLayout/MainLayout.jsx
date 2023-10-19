@@ -1,4 +1,4 @@
-import {useState, useCallback } from "react";
+import {useState, useRef } from "react";
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import  Header  from '../Header/Header.jsx';
@@ -8,17 +8,34 @@ import {MainLayoutStyled,
   MainContainer,
 } from './MainLayout.styled.jsx';
 
+
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [hideOrShow, setHideOrShow] = useState({});
+  const mainLayoutRef = useRef(null);
 
-  const toggleSidebar = useCallback( open => {
-    setIsSidebarOpen(open)
-  },[] );
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+     if(isSidebarOpen) {
+       setHideOrShow(() => {
+         return {}
+       })
+     } else {
+       setHideOrShow(() => {
+         return {display: "flex"}
+       })
+     }
+  }
+
   return (
-    <MainLayoutStyled>
+    <MainLayoutStyled
+      ref={mainLayoutRef}
+      tabIndex="0">
       <SideBar
         toggleSidebar={toggleSidebar}
-        isOpen={isSidebarOpen}/>
+        isOpen={isSidebarOpen}
+        mainLayoutRef={mainLayoutRef}
+        style={hideOrShow}/>
       <MainContainer>
         <Header toggleSidebar={toggleSidebar}/>
         <Suspense fallback={<Loader />}>

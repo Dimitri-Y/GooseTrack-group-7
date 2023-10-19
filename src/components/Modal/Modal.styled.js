@@ -2,21 +2,20 @@ import styled from 'styled-components';
 
 export const StyleModal = styled.div`
   /* .modal_overlay { */
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* } */
 
   .modal_content {
     position: relative;
-    padding: 48px 0;
-    width: 303px;
+    /* padding: 48px 0; */
     min-height: 290px;
     border-radius: 8px;
     border: 1px solid rgba(220, 227, 229, 0.8);
@@ -24,7 +23,6 @@ export const StyleModal = styled.div`
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
     @media screen and (min-width: 768px) {
-      width: 333px;
     }
   }
   .modal_tittle {
@@ -54,5 +52,4 @@ export const StyleModal = styled.div`
     cursor: pointer;
     background-color: transparent;
   }
-  
 `;
