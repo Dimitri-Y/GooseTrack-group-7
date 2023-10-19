@@ -1,11 +1,11 @@
-import { CalendarGlobalStyles, CustomDatePickerInput  } from './Calendar.styled';
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from 'react-datepicker';
 import { useState} from 'react';
 import { AiOutlineDown } from "react-icons/ai";
+import { CalendarGlobalStyles, CustomDatePickerInput  } from './Calendar.styled';
 
 
-const StyledInput = ({onChange}) => {
+const Calendar = ({onChange}) => {
    const [selectedDate, setSelectedDate] = useState(Date.now());
 
    const handleChange = async value => {
@@ -14,6 +14,7 @@ const StyledInput = ({onChange}) => {
    }
     return (
       <>
+      <CalendarGlobalStyles/>
       <DatePicker
         showIcon
         selected={selectedDate}
@@ -23,16 +24,10 @@ const StyledInput = ({onChange}) => {
         dateFormat={"yyyy/MM/dd"}
       calendarStartDay={1}
       customInput={<CustomDatePickerInput />}
+      maxDate={new Date()}
       />
-      <CalendarGlobalStyles/>
       </>
     );
-}
-
-const Calendar = ({onChange}) => {
-   return (
-       <StyledInput onChange={onChange}/>
-   )
 }
 
 export default Calendar;
