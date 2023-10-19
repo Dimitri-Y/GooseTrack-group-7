@@ -11,6 +11,7 @@ import getVisibleTaskText from '../../utils/getVisibleTaskText';
 // import { useSelector } from 'react-redux';
 import photoProfile from '../../assets/photo-profile.png';
 import { useMemo } from 'react';
+import getBackgroundColorPriority from '../../utils/getBackgroundColorPriority';
 
 const TaskColumnCard = ({ task }) => {
   // const photoProfile = useSelector(selectPhotoProfile);
@@ -34,7 +35,11 @@ const TaskColumnCard = ({ task }) => {
               ></img>
             )}
           </ContainerAvatar>
-          <PriorityTask priority={priority}>{priority}</PriorityTask>
+          <PriorityTask
+            $backgroundColor={() => getBackgroundColorPriority(priority)}
+          >
+            {priority}
+          </PriorityTask>
         </ContainerPhotoProfile>
         <TaskToolbar task={task} />
       </Container>

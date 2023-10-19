@@ -1,45 +1,69 @@
+import { useLocation } from 'react-router-dom';
 import AddFeedbackBtn from "../AddFeedbackBtn/AddFeedbackBtn.jsx";
 import ThemeToggler from "../ThemeToggler/ThemeToggler.jsx";
 import UserInfo from "../UserInfo/UserInfo.jsx";
+// import { useAdaptivePicture } from '../../../hooks/useAdaptivePicture.js';
 
 import {
   HeaderContainer,
+  BurgerTitleBox,
   BurgerBtn,
   IconMenu,
-  // Navigation,
-  // StyledLink,
-  // IconWrapper,
+  TitleWrap,
+  ImgGoose,
+  TextWrap,
+  Message,
+  InnerWrapper,
 } from './Header.styled.jsx';
-import icon from "../../Icons/symbol-defs.svg";
-// import sprite from '../../../assets/sprite.svg';
+import icon from '../../Icons/symbol-defs.svg';
+import logo from '../../../images/logo/goose-mentor.png';
+import MainTitle from '../../Reusable/MainTitle/MainTitle.jsx';
 
-const Header = () => {
+const getCurrentMainTitle = location => {
+  if (location.pathname.startsWith('/account')) return 'User Profile';
+  if (location.pathname.startsWith('/statistics')) return 'Statistics';
+  return 'Calendar';
+};
+
+const Header = ({ toggleSidebar }) => {
+  const location = useLocation();
+  const currentMainTitle = getCurrentMainTitle(location);
+
+  const showMessage =  true//tasksForCurrentDay
+
+  // const isDesktop = useAdaptivePicture();
+
   return (
     <HeaderContainer>
-        <BurgerBtn>
-            <IconMenu width={24} height={24}>
-                <use href={icon + "#icon-menu"}></use>
-            </IconMenu>
+      <BurgerTitleBox>
+        <BurgerBtn onClick={toggleSidebar}>
+          <IconMenu width={24} height={24}>
+            <use href={icon + '#icon-menu'}></use>
+          </IconMenu>
         </BurgerBtn>
-      <AddFeedbackBtn />
-      <ThemeToggler />
-      <UserInfo />
-
-
-      {/*<Navigation>*/}
-      {/*  <StyledLink to="/first">*/}
-      {/*    <IconWrapper>*/}
-      {/*      <use href={`${sprite}#icon-logo`} />*/}
-      {/*    </IconWrapper>*/}
-      {/*    First*/}
-      {/*  </StyledLink>*/}
-      {/*  <StyledLink to="/second">*/}
-      {/*    <IconWrapper>*/}
-      {/*      <use href={`${sprite}#icon-logo`} />*/}
-      {/*    </IconWrapper>*/}
-      {/*    Second*/}
-      {/*  </StyledLink>*/}
-      {/*</Navigation>*/}
+        {showMessage ? (
+          <TitleWrap>
+            <ImgGoose src={logo} alt="Motivation Message" />
+            <TextWrap>
+              <MainTitle title={currentMainTitle} />
+              <Message>
+                <span>Let go</span> of the past and focus on the present!
+              </Message>
+            </TextWrap>
+          </TitleWrap>
+        ) : (
+          <TitleWrap>
+            <Message>
+              <MainTitle title={currentMainTitle} />
+            </Message>
+          </TitleWrap>
+        )}
+      </BurgerTitleBox>
+      <InnerWrapper>
+        <AddFeedbackBtn />
+        <ThemeToggler />
+        <UserInfo />
+      </InnerWrapper>
     </HeaderContainer>
   );
 };

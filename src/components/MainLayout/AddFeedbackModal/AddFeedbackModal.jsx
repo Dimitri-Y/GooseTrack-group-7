@@ -1,10 +1,18 @@
-import {Overlay} from './AddFeedbackModal.styled.jsx'
-const AddFeedbackModal = () => {
-    return (
-        <Overlay>
 
-        </Overlay>
-    )
-}
+import Modal from '../../Modal/Modal';
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
+// import { useState } from 'react';
+
+
+const AddFeedbackModal = ({ onModalClose }) => {
+  // const [isModalActive] = useState(false);
+  return (
+    <>
+      <Modal isModalActive onClose={onModalClose}>
+        <FeedbackForm />
+      </Modal>
+    </>
+  );
+};
 
 export default AddFeedbackModal;

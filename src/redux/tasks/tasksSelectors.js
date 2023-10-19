@@ -6,13 +6,21 @@ export const selectIsLoading = (state) => state.tasks.isLoading;
 
 export const selectError = (state) => state.tasks.error;
 
-export const selectFilter = (state) => state.filter.filter;
+export const selectDate = (state) => state.date.date;
 
 export const selectVisibleTasks = createSelector(
-  [selectTasks, selectFilter],
-  (tasks, filter) => {
-    return tasks.filter(({ category }) =>
-      category.toLowerCase().includes(filter.toLowerCase()),
-    );
+  [selectTasks, selectDate],
+  (tasks, date) => {
+    return tasks.filter((task) => task.date === date);
   },
 );
+
+export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
+  const hasUnfinishedTasks = tasks.some(
+    ({ category }) => category === 'to-do' || category === 'in-progress',
+  );
+
+  return hasUnfinishedTasks
+    ? 'Let go of the past and focus on the present!'
+    : '';
+});

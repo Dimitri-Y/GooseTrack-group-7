@@ -31,7 +31,7 @@ export const ContainerAvatar = styled.div`
 export const TaskText = styled.p`
   padding: 0;
   margin: 0;
-  width: 272px;
+  max-width: 272px;
   height: 16px;
   font-size: 14px;
   color: #111111;
@@ -47,16 +47,5 @@ export const PriorityTask = styled.p`
   border-radius: 4px;
   font-size: 10px;
   color: #ffffff;
-  background-color: ${(props) => {
-    switch (props.priority) {
-      case 'Low':
-        return '#72c2f8';
-      case 'Medium':
-        return '#F3B249';
-      case 'Hight':
-        return '#EA3D65';
-      default:
-        return '#F3B249';
-    }
-  }};
+  background-color: ${(props) => props.$backgroundColor};
 `;
