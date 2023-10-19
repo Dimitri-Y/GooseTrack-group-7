@@ -11,7 +11,6 @@ export const HeaderContainer = styled.header`
 export const BurgerTitleBox = styled.div`
   display: flex;
   align-items: center;
-
 `;
 
 export const BurgerBtn = styled.button`
@@ -23,7 +22,6 @@ export const BurgerBtn = styled.button`
   padding: 0;
   background-color: transparent;
   border: none;
-  outline: 1px solid blue;
 
   @media screen and (min-width: 768px ) {
     width: 34px;
@@ -49,10 +47,32 @@ export const IconMenu = styled.svg`
 
 export const TitleWrap = styled.div`
   display: none;
-  @media screen and (min-width: 1140px ) {
+  
+  @media screen and (min-width: 1440px ) {
     display: flex;
     gap: 8px;
     align-items: center;
+  }
+`;
+
+export const ImgGoose = styled.img`
+  width: 64px;
+  height: 60px;
+  flex-shrink: 0;
+`;
+
+export const TextWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  //gap: 8px;
+`;
+
+export const Message = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.28;
+  span {
+    color: #3E85F3;
   }
 `;
 
@@ -66,37 +86,7 @@ export const InnerWrapper = styled.div`
   }
 `;
 
-// export const Navigation = styled.nav`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// `;
-//
-// export const StyledLink = styled(Link)`
-//   padding: 8px 16px;
-//   color: #ffffff; /* White text color */
-//   text-shadow:
-//     0 0 5px #00baff,
-//     0 0 10px #00baff,
-//     0 0 20px #00baff,
-//     0 0 40px #00baff,
-//     0 0 80px #00baff;
-//   transition:
-//     color 0.3s,
-//     text-shadow 0.3s;
-//
-//   &:hover,
-//   &:focus {
-//     color: #00baff; /* Blue text color on hover/focus */
-//     text-shadow:
-//       0 0 5px #00baff,
-//       0 0 10px #00baff,
-//       0 0 20px #00baff,
-//       0 0 40px #00baff,
-//       0 0 80px #00baff;
-//   }
-// `;
-//
+
 // export const IconWrapper = styled.svg`
 //   width: ${(props) => props.size || '12px'};
 //   height: ${(props) => props.size || '12px'};

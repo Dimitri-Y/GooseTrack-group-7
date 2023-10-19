@@ -33,44 +33,26 @@ const App = () => {
   //     dispatch(refreshUser());
   // }, [token, dispatch, isLoggedIn]);
 
-  return isRefreshing ? (
-    <Loader />
-  ) : (
-    // return (
+  return isRefreshing ? (<Loader />) : (
+  // return (
     <Routes>
-      <Route
-        path="/"
-        index
-        element={
-          <RestrictedRoute redirectTo="/calendar" component={<MainPage />} />
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />
-        }
-      />
+      <Route path="/" index element={<RestrictedRoute redirectTo="/calendar" component={<MainPage />} />} />
+      <Route path="/login" element={<RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      <Route
-        path="/"
-        element={
-          <PrivateRoute redirectTo="/login" component={<MainLayout />} />
-        }
-      >
+      <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
         <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />}>
-          {/* <Route path="month/:currentDate" element={<ChoosedMonth />} /> */}
+        <Route path="calendar" element={<CalendarPage />} >
+          {/*<Route path="month/:currentDate" element={<ChoosedMonth />} />*/}
           <Route path="day/:currentDay" element={<ChoosedDay />} />
         </Route>
-        <Route path="/statistics" element={<StatisticsPage />}>
-          <Route path=":currentDate" element={<StatisticsPage />} />
+        <Route path="/statistics" element={<StatisticsPage />} >
+            <Route path=":currentDate" element={<StatisticsPage />} />
         </Route>
-      </Route>
+       </Route>
       <Route path="/statistics" element={<StatisticsPage />}></Route>
 
-      <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
