@@ -15,9 +15,9 @@ const Modal = ({ isModalActive, onClose, children }) => {
               <SvgSelector id="xClose" className="iconWrapper" />
             </button>
           </Dialog.Title>
-          <Dialog.Description className="modal_body">
+          <div className="modal_body">
             {children}
-          </Dialog.Description>
+          </div>
         </Dialog.Panel>
       </StyleModal>
     </Dialog>,
