@@ -24,9 +24,6 @@ export const FormTask = styled.div`
     display: flex;
     flex-direction: column;
     font-family: 'Inter-500', sans-serif;
-    /* gap: 2px; */
-    /* width: 100%; */
-    padding-bottom: 15px;
     font-weight: 600;
   }
   .title {
@@ -34,16 +31,17 @@ export const FormTask = styled.div`
     font-family: 'Inter-500', sans-serif;
     font-size: 12px;
     font-style: normal;
-    /* font-weight: 500; */
     line-height: 1.17;
     margin-bottom: 8px;
   }
   .field {
+    box-sizing: border-box;
     border: none;
     font-family: 'Inter-600', sans-serif;
     /* width: 100%; */
     border-radius: 8px;
-    width: 312px;
+    width: 340px;
+    height: 46px;
     background: #f6f6f6;
     padding: 12px 14px;
 
@@ -65,7 +63,9 @@ export const FormTask = styled.div`
     justify-content: space-between;
 
     .field {
-      width: 135px;
+      box-sizing: border-box;
+      width: 163px;
+height: 46px;
     }
   }
   .label_input {
