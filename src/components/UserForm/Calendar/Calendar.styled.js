@@ -191,3 +191,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     width: 9px;
 }
 `;
+
+export const CustomDatePickerInput = styled.input`
+  display: flex;
+`;

@@ -130,5 +130,5 @@ export const CloseIcon = styled.svg`
 
   @media screen and (min-width: 768px) and (max-width:1439px) {
     width: 34px;
-    height: 34px;
+    height: 34px;}
 `;
