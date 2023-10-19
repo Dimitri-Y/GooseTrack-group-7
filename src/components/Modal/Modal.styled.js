@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 export const StyleModal = styled.div`
   /* .modal_overlay { */
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   /* } */
 
   .modal_content {
@@ -52,4 +52,5 @@ export const StyleModal = styled.div`
     cursor: pointer;
     background-color: transparent;
   }
+  
 `;
