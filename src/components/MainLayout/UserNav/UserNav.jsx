@@ -9,10 +9,9 @@ import {
 } from './UserNav.styled.jsx';
 import icon from '../../Icons/symbol-defs.svg';
 
-const UserNav = () => {
-
+const UserNav = ({toggleSidebar}) => {
     const handleNavLinkClick = () => {
-
+        toggleSidebar(false);
     }
     return (
         <Navigation>
