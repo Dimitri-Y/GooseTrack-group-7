@@ -1,23 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeTogglerStyled } from './ThemeToggler.styled.jsx';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  ThemeTogglerBtn,
+  ThemeIcon,
+  ThemeTogglerStyled,
+} from './ThemeToggler.styled.jsx';
+import icon from '../../Icons/symbol-defs.svg';
+import { toggleTheme, selectTheme } from '../../../redux/theme/themeSlice.js';
 const ThemeToggler = () => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+  const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
+  // // const [theme, setTheme] = useState('light');
+  // useEffect(() => {
+  //   const savedTheme = localStorage.getItem('theme');
+  //   if (savedTheme) {
+  //     setTheme(savedTheme);
+  //   }
+  // }, []);
+
+  // const toggleTheme = () => {
+  //   const newTheme = theme === 'light' ? 'dark' : 'light';
+  //   setTheme(newTheme);
+  //   localStorage.setItem('theme', newTheme);
+  // };
   return (
-    <ThemeTogglerStyled theme={theme} onClick={toggleTheme}>
+    <ThemeTogglerBtn onClick={handleToggleTheme}>
+      <ThemeIcon width="32" height="32">
+        {/*<use href={icon + "#icon-moon"}></use>*/}
+        <use
+          href={icon + (theme === 'light' ? '#icon-moon' : '#icon-sun')}
+        ></use>
+      </ThemeIcon>
+      {/*<svg></svg>*/}
+    </ThemeTogglerBtn>
+  );
+};
+{
+  /* <ThemeTogglerStyled theme={theme} onClick={toggleTheme}>
       {theme === 'dark' ? (
         <svg
           width="32"
@@ -46,7 +68,7 @@ const ThemeToggler = () => {
         </svg>
       )}
     </ThemeTogglerStyled>
-  );
-};
+  ); */
+}
 
 export default ThemeToggler;
