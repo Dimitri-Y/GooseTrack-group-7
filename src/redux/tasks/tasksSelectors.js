@@ -8,11 +8,12 @@ export const selectError = (state) => state.tasks.error;
 
 export const selectFilter = (state) => state.filter.filter;
 
-export const selectVisibleTasks = createSelector(
-  [selectTasks, selectFilter],
-  (tasks, filter) => {
-    return tasks.filter(({ category }) =>
-      category.toLowerCase().includes(filter.toLowerCase()),
-    );
-  },
-);
+export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
+  const hasUnfinishedTasks = tasks.some(
+    ({ category }) => category === 'to-do' || category === 'in-progress',
+  );
+
+  return hasUnfinishedTasks
+    ? 'Let go of the past and focus on the present!'
+    : '';
+});

@@ -2,20 +2,24 @@ import { useState } from 'react';
 import TaskModal from '../TaskModal/TaskModal';
 import { Button } from './AddTaskBtn.styled';
 
-const AddTaskBtn = ({ header }) => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
+const AddTaskBtn = ({ category }) => {
+  const [isModalActive, setIsModalActive] = useState(false);
 
-  const handleClick = () => {
-    console.log(`Click button add task to ${header}`);
-    setIsOpenModal(true);
+  const handleModalOpen = () => {
+    setIsModalActive(true);
+  };
+  const handleModalClose = () => {
+    setIsModalActive(false);
   };
 
   return (
     <>
-      <Button type="button" onClick={handleClick}>
+      <Button type="button" onClick={handleModalOpen}>
         Add task
       </Button>
-      {isOpenModal && <TaskModal headerCategory={header} />}
+      {isModalActive && (
+        <TaskModal category={category} onModalClose={handleModalClose} />
+      )}
     </>
   );
 };

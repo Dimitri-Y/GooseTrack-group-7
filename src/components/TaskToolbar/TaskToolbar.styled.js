@@ -20,8 +20,8 @@ export const ContainerTaskToolbar = styled.div`
 
 export const ContextMenu = styled.div`
   position: absolute;
-  top: 1px;
-  left: 25px;
+  top: 40px;
+  right: -15px;
   display: flex;
   flex-direction: column;
   align-items: start;

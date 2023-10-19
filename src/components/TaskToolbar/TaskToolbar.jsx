@@ -26,6 +26,10 @@ const TaskToolbar = ({ task }) => {
     console.log(`edit task ${id}`);
     setIsOpenModal(true);
   };
+  
+  const handleModalClose = () => {
+    setIsOpenModal(false);
+  };
 
   const deleteTask = (id) => {
     console.log(`delete task ${id}`);
@@ -70,7 +74,7 @@ const TaskToolbar = ({ task }) => {
         type="button"
         onClick={() => editTask(id)}
       />
-      {isOpenModal && <TaskModal task={task} />}
+      {isOpenModal && <TaskModal task={task} onModalClose={handleModalClose}/>}
       <ButtonDelete
         className="button"
         type="button"
