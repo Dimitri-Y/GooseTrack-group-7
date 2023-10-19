@@ -3,12 +3,12 @@ import TaskForm from '../TaskForm/TaskForm';
 // import { useState } from 'react';
 // import TaskForm from '../TaskForm/TaskForm';
 
-const TaskModal = ({ onModalClose }) => {
+const TaskModal = ({ task, category, onModalClose }) => {
   return (
     <>
       {/* {isModalActive && ( */}
       <Modal isModalActive onClose={onModalClose}>
-        <TaskForm></TaskForm>
+        <TaskForm task={task} category={category}></TaskForm>
       </Modal>
       {/* )} */}
     </>
