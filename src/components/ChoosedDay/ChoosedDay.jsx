@@ -3,6 +3,7 @@ import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 import filter from '../../utils/filter';
 import { ContainerSection } from './ChoosedDay.styled';
+// import { selectVisibleTasks } from '../../redux/tasks/tasksSelectors';
 // import { useEffect } from 'react';
 // import { useMemo } from 'react';
 // import { useSelector } from 'react-redux';
@@ -10,7 +11,7 @@ import { ContainerSection } from './ChoosedDay.styled';
 // import { selectTasks } from '../../redux/tasks/tasksSelectors';
 // import { fetchTasks } from '../../redux/tasks/tasksOperations';
 
-const tasks = [
+const visibleTasks = [
   {
     id: nanoid(),
     title: 'Brainstorm ideas for new content or products',
@@ -149,19 +150,19 @@ const tasks = [
 ];
 
 const ChoosedDay = () => {
-  // const tasks = useSelector(selectTasks);
+  // const visibleTasks = useSelector(selectVisibleTasks);
   // const dispatch = useDispatch();
 
-  const toDo = filter(tasks, 'category', 'to-do');
-  const inProgress = filter(tasks, 'category', 'in-progress');
-  const done = filter(tasks, 'category', 'done');
+  const toDo = filter(visibleTasks, 'category', 'to-do');
+  const inProgress = filter(visibleTasks, 'category', 'in-progress');
+  const done = filter(visibleTasks, 'category', 'done');
 
-  // const toDo = useMemo(() => filter(tasks, 'category', 'to-do'), [tasks]);
+  // const toDo = useMemo(() => filter(visibleTasks, 'category', 'to-do'), [visibleTasks]);
   // const inProgress = useMemo(
-  //   () => filter(tasks, 'category', 'in-progress'),
-  //   [tasks],
+  //   () => filter(visibleTasks, 'category', 'in-progress'),
+  //   [visibleTasks],
   // );
-  // const done = useMemo(() => filter(tasks, 'category', 'done'), [tasks]);
+  // const done = useMemo(() => filter(visibleTasks, 'category', 'done'), [visibleTasks]);
 
   // useEffect(() => {
   //   const fetchData = async () => {
