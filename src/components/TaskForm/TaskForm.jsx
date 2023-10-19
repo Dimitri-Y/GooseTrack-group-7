@@ -1,6 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Button, FormTask } from './TaskForm.styled';
+import {
+  ButtonCancel,
+  ButtonSummit,
+  Buttons,
+  FormTask,
+} from './TaskForm.styled';
+import { SvgSelector } from '../Icons/SvgSelector';
 // import { useState } from 'react';
 
 const initialValues = { title: '', start: null, end: null, priority: '' };
@@ -12,26 +18,23 @@ const schema = Yup.object().shape({
   priority: Yup.string().required(),
 });
 
-const TaskForm = ({ task, closeModal }) => {
-  console.log(task, closeModal);
-// const [title, setTitle] = useState('')
-// const [start, setStart] = useState('')
-// const [end, setEnd] = useState('')
-// const [priority, setPriority] = useState('')
+const TaskForm = ({ headerCategory, task, closeModal }) => {
+  console.log(task, closeModal, headerCategory);
+  // const [title, setTitle] = useState('')
+  // const [start, setStart] = useState('')
+  // const [end, setEnd] = useState('')
+  // const [priority, setPriority] = useState('')
 
-
-
-
-  // const handleSubmit = (values, actions) => {
-  //   console.log(values, actions);
-  // };
+  const handleSubmit = (values, actions) => {
+    console.log(values, actions);
+  };
 
   return (
     <FormTask>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <Form className="form">
           <label className="label">
@@ -48,12 +51,24 @@ const TaskForm = ({ task, closeModal }) => {
           <div className="setTimeWrapper">
             <label className="label">
               <span className="title">Start</span>
-              <Field className="field" type="number" name="start" title="" />
+              <Field
+                className="field"
+                type="number"
+                name="start"
+                title=""
+                placeholder="9:00"
+              />
               <ErrorMessage name="start" component="div" />
             </label>
             <label className="label">
               <span className="title">End</span>
-              <Field className="field" type="number" name="end" title="" />
+              <Field
+                className="field"
+                type="number"
+                name="end"
+                title=""
+                placeholder="14:00"
+              />
               <ErrorMessage name="end" component="div" />
             </label>
           </div>
@@ -67,7 +82,7 @@ const TaskForm = ({ task, closeModal }) => {
                   name="priority"
                   value="low"
                 />
-                
+
                 <span>Low</span>
               </label>
             </div>
@@ -80,7 +95,7 @@ const TaskForm = ({ task, closeModal }) => {
                   name="priority"
                   value="medium"
                 />
-                
+
                 <span>Medium</span>
               </label>
             </div>
@@ -88,33 +103,21 @@ const TaskForm = ({ task, closeModal }) => {
             <div className="radio">
               <label className="custom-radio">
                 <input type="radio" name="priority" value="high" />
-                
+
                 <span>High</span>
               </label>
             </div>
-
-            {/* <label className="label_input" htmlFor="radio_3">
-              <input
-                type="radio"
-                checked
-                id="radio_3"
-                name="priority"
-                value="low"
-              />
-              <span className="radio_tittle">Low</span>
-            </label>
-            <label className="label_input" htmlFor="radio_3">
-              <input type="radio" id="radio_3" name="priority" value="medium" />
-              <span className="radio_tittle">Medium</span>
-            </label>
-            <label className="label_input" htmlFor="radio_3">
-              <input type="radio" id="radio_3" name="priority" value="high" />
-              <span className="radio_tittle">High</span>
-            </label> */}
           </div>
-
-          <Button type="submit">Add</Button>
-          <Button type="button">Cancel</Button>
+          <Buttons>
+            {task ?<ButtonSummit type="submit" >
+              <SvgSelector id="plusBtnWhite" className="iconWrapper" />
+              Add
+            </ButtonSummit> : <ButtonSummit type="submit" >
+              <SvgSelector id="plusBtnWhite" className="iconWrapper" />
+              Add
+            </ButtonSummit>}
+            <ButtonCancel type="button" onClick={closeModal}>Cancel</ButtonCancel>
+          </Buttons>
         </Form>
       </Formik>
     </FormTask>

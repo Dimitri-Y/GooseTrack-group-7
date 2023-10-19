@@ -8,7 +8,7 @@ const TaskModal = ({ onModalClose }) => {
     <>
       {/* {isModalActive && ( */}
       <Modal isModalActive onClose={onModalClose}>
-        <TaskForm></TaskForm>
+        <TaskForm headerCategory closeModal={onModalClose}></TaskForm>
       </Modal>
       {/* )} */}
     </>
