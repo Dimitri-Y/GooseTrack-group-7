@@ -1,7 +1,11 @@
+// import { useSelector } from 'react-redux';
+// import { selectDate } from '../../redux/tasks/tasksSelectors';
 import { List, ListItem } from './DayCalendarHead.styled';
 
+
 const DayCalendarHead = () => {
-  
+  // const date = useSelector(selectDate);
+
   return (
     <List>
       <ListItem>

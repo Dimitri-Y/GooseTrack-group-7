@@ -33,6 +33,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     border-radius: 16px;
     color: #000;
     border: 1px solid #aeaeae;
+    z-index: 9999;
 }
 .react-datepicker__triangle {
     visibility: hidden;
