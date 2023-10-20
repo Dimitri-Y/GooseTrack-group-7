@@ -237,10 +237,10 @@ export const CustomDatePickerInput = styled.input`
   border: 1px solid rgba(17, 17, 17, 0.15);
 
   @media (min-width: 768px) {
-    width: 335px;
+    width: 354px;
   }
 
   @media (min-width: 1440px) {
-    width: 335px;
+    width: 354px;
   }
 `;
