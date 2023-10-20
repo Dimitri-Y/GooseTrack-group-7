@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import UserPhoto from './UserPhoto';
 import {
   Input,
-  Box,
   AccountForm,
   UserName,
   User,
@@ -28,10 +27,10 @@ const validationSchema = yup.object().shape({
     ];
     return allowedExtensions.includes(value.type);
   }),
-  name: yup.string().required(`Це обов'язкове поле`).max(16),
-  email: yup.string().email().required(),
+  name: yup.string().required(`Name is required`).max(16),
+  email: yup.string().email().required(`Email is required`),
   birthday: yup.date().default(() => new Date()),
-  number: yup.string().matches(/^\+380\d{9}$/, { excludeEmptyString: true }),
+  number: yup.string().matches(/^\+380\d{9}$/, 'The number should start with +380', { excludeEmptyString: true }),
   skype: yup.string().max(16),
 });
 
@@ -87,10 +86,11 @@ const UserForm = () => {
 
     // const data = await res.data;
     console.log(birthdayChange)
+
   };
 
   return (
-    <Box>
+    <>
       <Formik
         initialValues={initialValue}
         validationSchema={validationSchema}
@@ -156,7 +156,7 @@ const UserForm = () => {
           <ButtonSubmit type="submit">Save Changes</ButtonSubmit>
         </AccountForm>
       </Formik>
-    </Box>
+    </>
   );
 };
 
