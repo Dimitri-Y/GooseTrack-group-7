@@ -1,37 +1,49 @@
 import styled from '@emotion/styled';
 
 export const SectionStatistics = styled.section`
-  margin: 64px 20px 40px;
-  padding: 28px 14px 40px;
+ 
+  padding: 28px 14px 136px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
     @media (min-width: 768px) and (max-width: 1023px) {
-             margin: 64px 32px 40px;
-             padding: 40px 32px 224px;
+            
+             padding: 132px 32px 224px;
     }
     @media (min-width: 1024px) {
-            margin: 38px 32px 32px;
-            padding: 134px 114px 104px;
+            padding: 72px 114px 104px;
     }
 `;
 
 export const ContainerMenuStatistics = styled.div`
   margin-bottom: 40px;
   width: 100%;
+  
+  @media (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+    }
+
 `
 export const ContainerCalendarStatistics = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-   
+    gap: 8px;
+    @media (max-width: 768px)  {
+         margin-bottom: 20px;
+    }
+    
 `
 
 export const ContainerTimeSymbolStatistics = styled.div`
     display: flex;
     gap: 14px;
+    @media (min-width: 768px)  {
+         gap: 20px;
+    }
 `
 export const ContainerCalendarStatisticsSwitchBtn = styled.div`
     display: flex;
@@ -60,11 +72,14 @@ export const TextTimeSymbolStatistics = styled.p`
             width: 8px;
             height: 8px;
         }
+    @media (min-width: 768px) {
+          font-size: 16px;
+    }
 `
 
 export const ContainerScheduleStatistics = styled.div`
     width: 100%;
-    height: 400px;
+    height: 228px;
     border: solid;
     display: flex;
     align-items: center;
@@ -73,13 +88,14 @@ export const ContainerScheduleStatistics = styled.div`
     border-radius: 20px;
     border-width: 0.8px;
     padding: 40px 0;
-    border-color: #090909;/* #E3F3FF */
+    border-color: #E3F3FF;/* #E3F3FF */
     
     @media (min-width: 768px) and (max-width: 1023px) {
-         height: 640px;
+         height: 334px;
+         padding: 32px 0;
     }
     @media (min-width: 1024px) {
-         height: 440px;
+         height: 360px;
     }
 `
 export const ContainerScheduleResponsive = styled.div`
@@ -97,22 +113,18 @@ export const ContainerScheduleResponsive = styled.div`
     }
 `
 export const TextTaskStatistics = styled.p`
-    /* width: 100%; */
-    margin-bottom: 20px;
+    align-self: flex-start;
+    margin-left: 10%;
+    
+    margin-bottom: 8px;
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
     letter-spacing: 0em;
     color: #343434;
-;
 
-    @media (min-width: 768px) and (max-width: 1023px) {
-        margin-bottom: 24px;
-        /* margin-left: 64px; */
-
-    }
-    @media (min-width: 1024px) {
-         /* margin-left: 40px; */
+    @media (min-width: 768px)  {
+        margin-bottom: 12px;
     }
 `
