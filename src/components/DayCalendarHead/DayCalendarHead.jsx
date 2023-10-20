@@ -15,15 +15,17 @@ const DayCalendarHead = () => {
   const { currentDay } = useParams();
   const formattedDate = date.split('-').splice(2);
   const [selectedDay, setSelectedDay] = useState(formattedDate);
+  const [dayWeek, setDayWeek] = useState(currentDay);
 
   const currentWeekNumber = useMemo(
-    () => getCurrentWeekNumber(currentDay, formattedDate),
-    [currentDay, formattedDate],
+    () => getCurrentWeekNumber(dayWeek, formattedDate),
+    [dayWeek, formattedDate],
   );
 
   const handleClick = (event) => {
     const value = event.nativeEvent.target.innerHTML;
     setSelectedDay(value);
+    setDayWeek();
     const array = date.split('-').splice(0, 2);
     console.log(array);
     array.push(value);
