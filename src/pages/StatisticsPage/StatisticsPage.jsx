@@ -27,14 +27,14 @@ import {
     ResponsiveContainer
 } from 'recharts';
 
-
+import DatepickerStatistics from 'components/DatepickerStatistics/DatepickerStatistics'
 
 const StatisticsPage = () => {
     
     
-    const todoByDay = 3
+    const todoByDay = 2
     const inprogressByDay = 1
-    const doneByDay =  2
+    const doneByDay =  1
     const allTasksByDay = todoByDay + inprogressByDay + doneByDay
 
     
@@ -42,9 +42,9 @@ const StatisticsPage = () => {
     const inprogressByDayT = allTasksByDay !== 0 ? Math.floor((inprogressByDay / allTasksByDay) * 100) : 0;
     const doneByDayT = allTasksByDay !== 0 ? Math.floor((doneByDay / allTasksByDay) * 100) : 0;
     
-    const todoByMonth = 10
-    const inprogressByMonth = 4
-    const doneByMonth =  6
+    const todoByMonth = 2
+    const inprogressByMonth = 1
+    const doneByMonth =  3
     const allTasksByMonth = todoByMonth + inprogressByMonth + doneByMonth
 
     
@@ -54,40 +54,33 @@ const StatisticsPage = () => {
     
     const data = [
     {
-        name: "to do",
+        name: "To Do",
         ByMonth: todoByMonth,
         ByDay: todoByDay,
-        ByDayInterest: todoByDayT,
-        ByMonthInterest:  todoByMonthT,
+        ByDayInterest:  `${todoByDayT}%`,
+        ByMonthInterest: `${todoByMonthT}%` ,
     },{
-        name: "in progress",
+        name: "In Progress",
         ByMonth: inprogressByMonth,
         ByDay: inprogressByDay,
-        ByDayInterest: inprogressByDayT,
-        ByMonthInterest: inprogressByMonthT,
+        ByDayInterest:  `${inprogressByDayT}%`,
+        ByMonthInterest:  `${inprogressByMonthT}%`,
     },{
-        name: "done",
+        name: "Done",
         ByMonth:doneByMonth,
         ByDay: doneByDay,
-        ByDayInterest: doneByDayT,
-        ByMonthInterest: doneByMonthT,
+        ByDayInterest:  `${doneByDayT}%`,
+        ByMonthInterest:  `${doneByMonthT}%`,
     }]
-    console.log(todoByDayT)
-    //  console.log(todoByDay)
-    // console.log(allTasksByDay)
 
-    function renderLabel(props) {
-        console.log(props, "a")
-         console.log(data, "ByDay")
-        return `${props.value}%`;
-    }
 
     return  (<SectionStatistics>
                 
                 <ContainerMenuStatistics>
                     <ContainerCalendarStatistics>
-                        <BtnCalendarStatistics>19 june 2023</BtnCalendarStatistics>
-                        <ContainerCalendarStatisticsSwitchBtn>
+                         <DatepickerStatistics/>
+                <ContainerCalendarStatisticsSwitchBtn>
+                            
                             <button>a</button>
                             <button>a</button>
                         </ContainerCalendarStatisticsSwitchBtn>
@@ -104,15 +97,20 @@ const StatisticsPage = () => {
            
                 <ResponsiveContainer width={(window.innerWidth >= 1024) ? '80%' :(window.innerWidth >= 768) ? '85%' : '90%'} height="90%">
                         <BarChart
-
+                            barGap={(window.innerWidth <= 768) ? 8 : 14}
                             data={data}
-                            margin={{ top: 20, right: 4, left: 4, bottom: 20 }}
+                            margin={(window.innerWidth <= 768) ? { top: 20, right: 0, left: 4, bottom: 20 } : { top: 20, right: 0, left: 14, bottom: 20 }}
                         >
                         
                             <CartesianGrid  stroke="#E3F3FF" vertical={false}  />
-                            <XAxis  tickLine={false} axisLine={false} dataKey="name" tick={{ dy: 20 }}  />
-                            <YAxis domain={allTasksByMonth === 0 ? [0, 100] : [0, allTasksByMonth]}  tick={{ dx: (window.innerWidth >= 1024) ? -34 : (window.innerWidth >= 768) ? -24 : -14}} tickLine={false} axisLine={false} />
-                            <Tooltip /> //focus on colons
+                            <XAxis tickLine={false} axisLine={false} dataKey="name" tick={{  dy: 20, fontSize: (window.innerWidth <= 768) ? 12 : 14,
+                                                                                            fontWeight: 400,
+                                                                                            letterSpacing: 1.2,
+                                                                                            lineHeight: (window.innerWidth <= 768) ? 14 : 21,
+                                                                                            fill: '#343434',
+                                                                                            }}  />
+                            <YAxis domain={allTasksByMonth === 0 ? [0, 100] : [0, allTasksByMonth]}  tick={{ dx: (window.innerWidth >= 1024) ? -34 : (window.innerWidth >= 768) ? -24 : -14, fontSize: (window.innerWidth <= 768) ? 12 : 14, fontWeight: 400, letterSpacing: 1.2, fill: '#343434'}} tickLine={false} axisLine={false} />
+                            <Tooltip />
                                 <defs>
                                     <linearGradient id="gradientDay" x1="0" x2="0" y1="1" y2="0">
                                         <stop offset="0%" stopColor="rgba(255, 210, 221, 1)" />
@@ -120,8 +118,9 @@ const StatisticsPage = () => {
                                     </linearGradient>
                                 </defs>
 
-                            <Bar dataKey="ByDay" radius={[0, 0, 4, 4]}  barSize={22} minPointSize={2} fill={`url(#gradientDay)`}>                       
-                                <LabelList dataKey="ByDayInterest" position="top" content="amt" />
+                    <Bar dataKey="ByDay" radius={[0, 0, 4, 4]} barSize={(window.innerWidth <= 768) ? 22 : 27} minPointSize={2} fill={`url(#gradientDay)`} >    
+                                                                                   
+                        <LabelList dataKey="ByDayInterest"  position="top" fill={'#343434'} fontSize={(window.innerWidth <= 768) ? 12 : 16} fontWeight={500} lineHeight={16} />
                                 
                             </Bar>
                                 <defs>
@@ -131,8 +130,9 @@ const StatisticsPage = () => {
                                     </linearGradient>
                                 </defs>
 
-                            <Bar dataKey={"ByMonth"} radius={[0, 0, 4, 4]} minPointSize={2} fill={`url(#gradientM)`} barSize={22}>
-                        <       LabelList dataKey={"ByMonthInterest"} position="top"  />
+                            <Bar dataKey={"ByMonth"} radius={[0, 0, 4, 4]} minPointSize={2} fill={`url(#gradientM)`} barSize={(window.innerWidth <= 768) ? 22 : 27} >
+                               
+                                < LabelList dataKey={"ByMonthInterest"}  position="top" fill={'#343434'} fontSize={(window.innerWidth <= 768) ? 12 : 16} fontWeight={500} lineHeight={16} />
                             </Bar>
                             
                     </BarChart>
