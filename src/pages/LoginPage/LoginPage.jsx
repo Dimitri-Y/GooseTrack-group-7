@@ -1,7 +1,14 @@
+import LoginForm from '../../components/LoginForm/LoginForm';
+import { LoginContainer } from './LoginPage.styled';
+
 const LoginPage = () => {
-    return (
-        <><p>I am LoginPage</p></>
-    )
+  return (
+    <>
+      <LoginContainer>
+        <LoginForm />
+      </LoginContainer>
+    </>
+  );
 };
 
 export default LoginPage;
