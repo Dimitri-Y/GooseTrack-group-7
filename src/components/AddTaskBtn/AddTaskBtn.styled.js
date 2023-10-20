@@ -4,8 +4,10 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   width: 300px;
   height: 48px;
+  padding: 0;
   border: 1px dashed #3e85f3;
   border-radius: 8px;
   color: #111111;

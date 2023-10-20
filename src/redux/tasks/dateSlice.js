@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const dateInitialState = { date: '' };
+const dateInitialState = { date: '2023-10-22' };
 
 const dateSlice = createSlice({
   name: 'date',
