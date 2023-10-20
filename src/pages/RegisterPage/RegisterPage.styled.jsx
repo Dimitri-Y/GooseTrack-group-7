@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as GooseSvg } from '../../images/svg/goose_singup.svg';
 
+
 export const SingUpContainer = styled.div`
   min-height: 100vh;
   background: #dcebf7;
@@ -35,3 +36,4 @@ export const Goose = styled(GooseSvg)`
   width: 352px;
   height: 329px;
 `;
+
