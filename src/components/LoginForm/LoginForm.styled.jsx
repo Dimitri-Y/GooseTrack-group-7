@@ -1,10 +1,11 @@
-import { Form as FormikForm, Field as FormikField } from 'formik';
-
 import styled from 'styled-components';
-import { ReactComponent as LoginIcon } from '../../images/svg/singup.svg';
+import { Form as FormikForm, Field as FormikField } from 'formik';
+import { ReactComponent as LoginIcon } from '../../images/svg/login.svg';
 
 export const Form = styled(FormikForm)`
-  width: 335px;
+  box-sizing: border-box;
+  max-width: 335px;
+  width: 100%;
   height: 100%;
   z-index: 2;
 
@@ -13,13 +14,8 @@ export const Form = styled(FormikForm)`
   padding: 40px 24px;
   margin-bottom: 18px;
 
-  @media screen and (max-width: 374px) {
-    width: 90%;
-  }
-
   @media (min-width: 768px) {
-    width: 480px;
-    height: 100%;
+    max-width: 480px;
     padding: 40px;
     margin-bottom: 24px;
   }
@@ -60,9 +56,12 @@ export const FormField = styled.label`
 `;
 
 export const Field = styled(FormikField)`
+  box-sizing: border-box;
   font-family: 'InterRegular', sans-serif;
   font-weight: 400;
+  max-width: 287px;
   width: 100%;
+  height: 46px;
   display: block;
   outline: none;
   padding: 14px;
@@ -86,18 +85,17 @@ export const Field = styled(FormikField)`
 
   @media screen and (min-width: 768px) {
     padding: 18px;
+    max-width: 400px;
   }
 `;
 
-export const SubmitBtn = styled.button`
+export const Button = styled.button`
   border: transparent;
   cursor: pointer;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-family: 'InterSemiBolt', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -107,7 +105,6 @@ export const SubmitBtn = styled.button`
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
   color: #ffffff;
-
   padding: 14px;
   margin-top: 32px;
 
@@ -124,9 +121,9 @@ export const SubmitBtn = styled.button`
 `;
 
 export const IconButton = styled(LoginIcon)`
+  margin-left: 11px;
   width: 18px;
   height: 18px;
-
   @media screen and (min-width: 768px) {
     width: 20px;
     height: 20px;
