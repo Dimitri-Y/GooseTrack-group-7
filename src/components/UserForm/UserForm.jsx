@@ -38,19 +38,15 @@ const validationSchema = yup.object().shape({
 });
 
 const API = 'http://localhost:3000/api/users/current';
-const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI3MjAwNzVjZTI4NDhlNjc0YmI5YyIsImlhdCI6MTY5NzgwNDgwNSwiZXhwIjoxNjk3ODg3NjA1fQ.uE6ODYa3bFFUD3nEGktQ0X1SsMrA8l-tTDmUHSY3bMs";
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzJjZDAwZDk4YjM0YzA4OGY2MjZhOCIsImlhdCI6MTY5NzgyODExNiwiZXhwIjoxNjk3OTEwOTE2fQ.jmyr2QML4aZ6ta9sHWMJzH3b5XUznKkyZM2T6ecBZMI";
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
   const [birthdayChange, setBirthdayChange] = useState(new Date());
-  const [initialValue, setInitialValue] = useState({
-    name: "",
-    number: '',
-    birthday: birthdayChange,
-    skype: '',
-    email: '',
-  });
+  const [userDate, setUserDate] = useState();
+
+  console.log(userDate)
 
   const filePicker = useRef(null);
 
@@ -69,26 +65,20 @@ const UserForm = () => {
       },
     }).then(response => {
       const data = response.data;
-      setInitialValue({
-        name: data.userName || "",
-        number: data.phoneNumber || "",
-        birthday: data.birthday || birthdayChange,
-        skype: data.skype || "",
-        email: data.email || "",
-      });
+      setUserDate(data)
     })
     .catch(error => {
       console.error('Помилка запиту:', error);
     });
   }, [birthdayChange])
 
-  // const initialValue = {
-  //   name: "",
-  //   number: '',
-  //   birthday: birthdayChange,
-  //   skype: '',
-  //   email: '',
-  // };
+  const initialValue = {
+    name: userDate?.userName || "",
+    number: userDate?.phone || "",
+    birthday: userDate?.birthday || new Date(),
+    skype: userDate?.skype || "",
+    email: userDate?.email || "",
+  };
 
   const handleClick = () => {
     filePicker.current.click();
@@ -104,14 +94,14 @@ const UserForm = () => {
     setBirthdayChange(value)
   }
 
-  const handleSubmit = async (value) => {
-    const { name, number, skype, email } = value;
+  const handleSubmit = async (values) => {
+    const { name, number, birthday, skype, email } = values;
 
     const formData = new FormData();
     formData.append('avatar', uploaded);
     formData.append('name', name);
     formData.append('number', number);
-    formData.append('birthday', birthdayChange);
+    formData.append('birthday', birthday);
     formData.append('skype', skype);
     formData.append('email', email);
 
@@ -122,7 +112,11 @@ const UserForm = () => {
     // });
 
     // const data = await res.data;
-    console.log(birthdayChange)
+    console.log(birthday)
+    console.log(name)
+    console.log(number)
+    console.log(skype)
+    console.log(email)
 
   };
 
@@ -171,7 +165,8 @@ const UserForm = () => {
               <ErrorMessage name="birthday" />
             </Label>
             <Label>
-              Skype
+              Skype              
+              
               <Input type="text" name="skype" />
               <ErrorMessage name="skype" />
             </Label>
@@ -180,7 +175,6 @@ const UserForm = () => {
               <Input
                 type="email"
                 name="email"
-                pattern="/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/"
               />
               <ErrorMessage name="email" />
             </Label>
