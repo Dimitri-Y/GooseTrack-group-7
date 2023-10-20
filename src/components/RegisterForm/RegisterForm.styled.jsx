@@ -1,6 +1,7 @@
 import { Form as FormikForm, Field as FormikField } from 'formik';
 
 import styled from 'styled-components';
+import { ReactComponent as LoginIcon } from '../../images/svg/singup.svg';
 
 export const Form = styled(FormikForm)`
   width: 335px;
@@ -85,5 +86,49 @@ export const Field = styled(FormikField)`
 
   @media screen and (min-width: 768px) {
     padding: 18px;
+  }
+`;
+
+export const SubmitBtn = styled.button`
+  border: transparent;
+  cursor: pointer;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'InterSemiBolt', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.3;
+  background: #3e85f3;
+  box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
+  border-radius: 16px;
+  color: #ffffff;
+
+  padding: 14px;
+  margin-top: 32px;
+
+  :disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 48px;
+    font-size: 18px;
+    padding: 16px;
+  }
+`;
+
+export const IconButton = styled(LoginIcon)`
+  width: 18px;
+  height: 18px;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 `;
