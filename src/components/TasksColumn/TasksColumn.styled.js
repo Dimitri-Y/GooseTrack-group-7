@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ContainerColum = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-self: start;
