@@ -4,6 +4,7 @@ import { fetchTasks, addTask, deleteTask, updateTask } from './tasksOperations';
 
 const tasksInitialState = {
   items: [],
+  avatarURL: '',
   isLoading: false,
   error: null,
 };
@@ -30,6 +31,7 @@ const tasksSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items = action.payload;
+        state.avatarURL = action.payload.avatarURL;
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         handleRejected(state, action);
