@@ -1,5 +1,8 @@
-import { useState, useRef } from 'react';
-// import axios from 'axios';
+import { useState, useRef, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectUser } from '../../redux/auth/authSelectors';
+// import { refreshUser } from '../../redux/auth/authOperations';
+import axios from 'axios';
 import UserPhoto from './UserPhoto';
 import {
   Input,
@@ -34,24 +37,58 @@ const validationSchema = yup.object().shape({
   skype: yup.string().max(16),
 });
 
-// const testAPI = 'https://goose-track-backend-deployment.onrender.com/';
+const API = 'http://localhost:3000/api/users/current';
+const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzI3MjAwNzVjZTI4NDhlNjc0YmI5YyIsImlhdCI6MTY5NzgwNDgwNSwiZXhwIjoxNjk3ODg3NjA1fQ.uE6ODYa3bFFUD3nEGktQ0X1SsMrA8l-tTDmUHSY3bMs";
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
   const [birthdayChange, setBirthdayChange] = useState(new Date());
-
-  // console.log(birthdayChange)
-
-  const filePicker = useRef(null);
-
-  const initialValue = {
-    name: '',
+  const [initialValue, setInitialValue] = useState({
+    name: "",
     number: '',
     birthday: birthdayChange,
     skype: '',
     email: '',
-  };
+  });
+
+  const filePicker = useRef(null);
+
+  // const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
+  // console.log(user)
+  
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
+  useEffect(() => {
+    axios.get(API, {
+      headers: {
+        'Authorization': `Bearer ${TOKEN}`,
+      },
+    }).then(response => {
+      const data = response.data;
+      setInitialValue({
+        name: data.userName || "",
+        number: data.phoneNumber || "",
+        birthday: data.birthday || birthdayChange,
+        skype: data.skype || "",
+        email: data.email || "",
+      });
+    })
+    .catch(error => {
+      console.error('Помилка запиту:', error);
+    });
+  }, [birthdayChange])
+
+  // const initialValue = {
+  //   name: "",
+  //   number: '',
+  //   birthday: birthdayChange,
+  //   skype: '',
+  //   email: '',
+  // };
 
   const handleClick = () => {
     filePicker.current.click();
@@ -78,7 +115,7 @@ const UserForm = () => {
     formData.append('skype', skype);
     formData.append('email', email);
 
-    // const res = await axios.post(testAPI, formData, {
+    // const res = await axios.post(API, formData, {
     //   headers: {
     //     'Content-Type': 'multipart/form-data',
     //   },
@@ -118,7 +155,6 @@ const UserForm = () => {
               <Input
                 type="tel"
                 name="number"
-                // pattern="/^(\+380\d{9})$/"
               />
               <ErrorMessage name="number" />
             </Label>
@@ -129,13 +165,9 @@ const UserForm = () => {
               component={Calendar}
                 name="birthday"
                 type="date"
-                // className="calendar"
                 selected={birthdayChange}
                 onChange={handleChangeDate}
-                // dateFormat={'yyyy MM dd'}
-                // calendarStartDay={1}
               />
-              {/* <CalendarGlobalStyles/> */}
               <ErrorMessage name="birthday" />
             </Label>
             <Label>
@@ -148,7 +180,7 @@ const UserForm = () => {
               <Input
                 type="email"
                 name="email"
-                pattern="([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*@([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*[\.]([A-zА-я])+"
+                pattern="/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/"
               />
               <ErrorMessage name="email" />
             </Label>
