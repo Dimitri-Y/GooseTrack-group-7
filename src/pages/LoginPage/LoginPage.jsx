@@ -1,6 +1,6 @@
 const LoginPage = () => {
     return (
-        <></>
+        <><p>I am LoginPage</p></>
     )
 };
 
