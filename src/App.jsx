@@ -37,7 +37,8 @@ const App = () => {
   // return (
     <Routes>
       <Route path="/" index element={<RestrictedRoute redirectTo="/calendar" component={<MainPage />} />} />
-      <Route path="/login" element={<RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />} />
+      {/* <Route path="/login" element={<RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />} /> */}
+      <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
       <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
