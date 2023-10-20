@@ -72,7 +72,7 @@ export const Message = styled.div`
   font-weight: 600;
   line-height: 1.28;
   span {
-    color: #3E85F3;
+    color:${p => p.theme.mainAccentColor || '#3E85F3'} ;
   }
 `;
 

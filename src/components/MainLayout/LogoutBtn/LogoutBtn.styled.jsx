@@ -12,14 +12,14 @@ export const LogoutBtnStyled = styled.button`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
-  background-color: #3E85F3;
-  color: #FFFFFF;
+  background-color:${p => p.theme.mainAccentColor || '#3E85F3'};
+  color: ${p => p.theme.buttonTextColor || '#FFFFFF'};
   cursor: pointer;
   transition: all 250ms;
 
   &:hover,
   &:focus {
-   background-color: #2B78EF;
+   background-color: ${p => p.theme.mainAccentColorActive || '#2B78EF'};
    
 
     @media screen and (min-width: 768px) {

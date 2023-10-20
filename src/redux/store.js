@@ -13,6 +13,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { dateReducer } from './tasks/dateSlice';
+import { themeReducer } from './theme/themeSlice.js';
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,6 +27,8 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     tasks: tasksReducer,
     reviews: reviewsReducer,
+    date: dateReducer,
+    theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
