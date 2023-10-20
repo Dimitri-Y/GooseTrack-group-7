@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setLightTheme } from '../theme/themeSlice.js';
 
 axios.defaults.baseURL = 'https://goose-track-backend-deployment.onrender.com';
 
@@ -43,7 +42,7 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/auth/logout');
-    thunkAPI.dispatch(setLightTheme());
+
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
