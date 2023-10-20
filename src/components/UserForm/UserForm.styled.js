@@ -94,11 +94,11 @@ padding-bottom: 14px;
 padding-left: 18px;
 
 @media (min-width: 768px) {
-   width: 333px;
+   width: 354px;
  }
 
  @media (min-width: 1440px) {
-   width: 333px;
+   width: 354px;
  }
 `
 
