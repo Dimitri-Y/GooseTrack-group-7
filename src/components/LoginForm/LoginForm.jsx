@@ -3,7 +3,8 @@ import AuthNavigate from '../../components/AuthNavigate/AuthNavigate';
 import { LoginValidSchema } from './LoginValidSchema';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Form,
   TitleForm,
@@ -22,11 +23,21 @@ const LoginForm = () => {
   const initialState = { email: '', password: '' };
   const dispatch = useDispatch();
 
-  const handelSubmit = (values, { resetForm }) => {
-    // dispatch(logIn(values)).unwrap();
-    console.log(values);
-    resetForm();
+  const handelSubmit = (values) => {
+    dispatch(logIn(values))
+      .then((data) => {
+        if (data.payload?.error) {
+          throw new Error('Something went wrong');
+        }
+        if (data.payload === 'Request failed with status code 401') {
+          toast.error(`Wrong email or password`);
+        }
+      })
+      .catch((error) => {
+        toast.error(`${error}`);
+      });
   };
+
   return (
     <>
       <Formik
@@ -113,6 +124,7 @@ const LoginForm = () => {
         )}
       </Formik>
       <AuthNavigate navigateTo="/register">Sign up</AuthNavigate>
+      <ToastContainer />
     </>
   );
 };
