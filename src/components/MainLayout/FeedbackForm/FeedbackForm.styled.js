@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 
 
@@ -131,6 +131,16 @@ export const Textarea = styled(Field)`
   @media (min-width: 768px) {
     padding: 14px 18px;
   }
+`;
+
+export const ErrMessage = styled(ErrorMessage)`
+
+margin-bottom: 10px;
+  color: #DA1414;
+  max-width: 240px;
+  font-size: 14px;
+  font-weight: 400;
+
 `;
 
 export const BtnsWrapper = styled.div`
