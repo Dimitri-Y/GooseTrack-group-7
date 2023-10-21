@@ -14,7 +14,7 @@ import {
   InputFile,
   Label,
 } from './UserForm.styled';
-import { Formik, ErrorMessage, Field } from 'formik';
+import { ErrorMessage, Field, Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import Calendar from './Calendar/Calendar';
 
@@ -41,21 +41,54 @@ const validationSchema = yup.object().shape({
 });
 
 const API = 'http://localhost:3000/api/users/current';
-const API_PATCH = 'http://localhost:3000/api/users/edit';
+// const API_PATCH = 'http://localhost:3000/api/users/edit';
 
 const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MmZkMTVhODJmYTc5M2I4ZDZiNTNiMyIsImlhdCI6MTY5NzgzNTUxOSwiZXhwIjoxNjk3OTE4MzE5fQ.p4mivK7ySEng3YU-77zbNvv1OIvExBtMyOJHZrsLikQ';
-// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzJjZDAwZDk4YjM0YzA4OGY2MjZhOCIsImlhdCI6MTY5NzgyODExNiwiZXhwIjoxNjk3OTEwOTE2fQ.jmyr2QML4aZ6ta9sHWMJzH3b5XUznKkyZM2T6ecBZMI';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzM5M2UzODFiOTUzMDRkZDA5MmZkNCIsImlhdCI6MTY5Nzg3OTAyMCwiZXhwIjoxNjk3OTYxODIwfQ.vC992-g3DkIMjxzFJitEmeiV51zlFIwocQzGtLW1Dik';
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
-  const [birthdayChange, setBirthdayChange] = useState(new Date());
-  const [userDate, setUserDate] = useState();
+  // const [userDate, setUserDate] = useState();
 
-  console.log(userDate);
+  // console.log(userDate);
 
   const filePicker = useRef(null);
+
+  const handleSubmit = async (values) => {
+    const { name, number, birthday, skype, email } = values;
+
+    const formData = new FormData();
+    formData.append('avatar', uploaded);
+    formData.append('userName', name);
+    formData.append('phone', number);
+    formData.append('birthday', birthday);
+    formData.append('skype', skype);
+    formData.append('email', email);
+    // const res = await axios.patch(API_PATCH, formData, {
+    //   headers: {
+    //     Authorization: `Bearer ${TOKEN}`,
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    // });
+
+    // const data = res.data;
+    // console.log(data);
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      number: '',
+      birthday: new Date(),
+      skype: '',
+      email: '',
+    },
+    onSubmit: values => handleSubmit(values),
+    validationSchema: validationSchema,
+  });
+
+  // console.log(formik.initialValues);
 
   // const user = useSelector(selectUser);
   // const dispatch = useDispatch();
@@ -73,21 +106,13 @@ const UserForm = () => {
         },
       })
       .then((response) => {
-        const data = response.data;
-        setUserDate(data);
+        const data =  response.data
+        formik.setValues({name: data.userName});
       })
       .catch((error) => {
         console.error('Помилка запиту:', error);
       });
   }, []);
-
-  const initialValue = {
-    name: userDate?.userName || '',
-    number: userDate?.phone || '',
-    birthday: userDate?.birthday || new Date(),
-    skype: userDate?.skype || '',
-    email: userDate?.email || '',
-  };
 
   const handleClick = () => {
     filePicker.current.click();
@@ -99,90 +124,74 @@ const UserForm = () => {
     setSelectedImage(imgURL);
   };
 
-  const handleChangeDate = (value) => {
-    setBirthdayChange(value);
-  };
-
-  const handleSubmit = async (values) => {
-    const { name, number, birthday, skype, email } = values;
-
-    const formData = new FormData();
-    formData.append('avatar', uploaded);
-    formData.append('userName', name);
-    formData.append('phone', number);
-    formData.append('birthday', birthday);
-    formData.append('skype', skype);
-    formData.append('email', email);
-    const res = await axios.patch(API_PATCH, formData, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-
-    const data = res.data;
-    console.log(data);
-    // console.log(birthday);
-    // console.log(name);
-    // console.log(number);
-    // console.log(skype);
-    // console.log(email);
-  };
-
   return (
     <>
-      <Formik
-        initialValues={initialValue}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+    <Formik 
+    initialValues={formik.initialValues}
+    >
+    {(props) => (
+      <AccountForm
       >
-        <AccountForm>
-          <UserPhoto onClick={handleClick} selectedImage={selectedImage} />
-          <InputFile
-            type="file"
-            name="avatar"
-            onChange={handleChangePhoto}
-            ref={filePicker}
-            accept="image/*,.png,.ipg,.jpeg,.webp"
-          />
-          <UserName>User Name</UserName>
-          <User>User</User>
-          <InputBox>
-            <Label>
-              User Name
-              <Input type="text" name="name" maxLength="16" required />
-              <ErrorMessage name="name" />
-            </Label>
-            <Label>
-              Phone
-              <Input type="tel" name="number" />
-              <ErrorMessage name="number" />
-            </Label>
+        <UserPhoto onClick={handleClick} selectedImage={selectedImage} />
+        <InputFile
+          type="file"
+          name="avatar"
+          onChange={handleChangePhoto}
+          ref={filePicker}
+          accept="image/*,.png,.ipg,.jpeg,.webp"
+        />
+        <UserName>User Name</UserName>
+        <User>User</User>
+        <InputBox>
+          <Label>
+            User Name
+            <Input type="text" name="name" maxLength="16" required 
+            onChange={props.handleChange}
+            value={props.values.name}
+            />
+            <ErrorMessage name="name" />
+          </Label>
+          <Label>
+            Phone
+            <Input
+              type="tel"
+              name="number"
+              onChange={props.handleChange}
+            value={props.values.number}
+            />
+            <ErrorMessage name="number" />
+          </Label>
 
-            <Label>
-              Birthday
-              <Field
-                component={Calendar}
-                name="birthday"
-                type="date"
-                selected={birthdayChange}
-                onChange={handleChangeDate}
-              />
-              <ErrorMessage name="birthday" />
-            </Label>
-            <Label>
-              Skype
-              <Input type="text" name="skype" />
-              <ErrorMessage name="skype" />
-            </Label>
-            <Label>
-              Email
-              <Input type="email" name="email" />
-              <ErrorMessage name="email" />
-            </Label>
-          </InputBox>
-          <ButtonSubmit type="submit">Save Changes</ButtonSubmit>
-        </AccountForm>
+          <Label>
+            Birthday
+            <Field
+              component={Calendar}
+              name="birthday"
+              type="date"
+              onChange={(value) => {
+                props.setFieldValue('birthday', value)
+              }}
+            />
+            <ErrorMessage name="birthday" />
+          </Label>
+          <Label>
+            Skype
+            <Input type="text" name="skype" 
+            onChange={props.handleChange}
+            value={props.values.skype}/>
+            <ErrorMessage name="skype" />
+          </Label>
+          <Label>
+            Email
+            <Input type="email" name="email" 
+            onChange={props.handleChange}
+            value={props.values.email}/>
+            <ErrorMessage name="email" />
+          </Label>
+        </InputBox>
+        <ButtonSubmit type="submit">Save Changes</ButtonSubmit>
+      </AccountForm>
+      )}
       </Formik>
     </>
   );
