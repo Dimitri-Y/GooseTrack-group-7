@@ -210,7 +210,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 `;
 
 export const TitleWrapper = styled.button`
-  width: 195px;
+  width: 121px;
   color: #ffffff;
   background: #3e85f3;
   border-radius: 8px;
@@ -223,3 +223,29 @@ export const TitleWrapper = styled.button`
   justify-content: space-around;
   align-items: center;
 `;
+
+export const Container = styled.div`
+    display: flex;
+`
+
+export const ButtonL = styled.button`
+    margin-left: 8px;
+    padding: 8px 10px;
+    height: 34px;
+    width: 38px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(220, 227, 229, 0.5);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+`
+
+export const ButtonR = styled.button`
+    padding: 8px 10px;
+    height: 34px;
+    width: 38px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(220, 227, 229, 0.5);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left: none;
+`

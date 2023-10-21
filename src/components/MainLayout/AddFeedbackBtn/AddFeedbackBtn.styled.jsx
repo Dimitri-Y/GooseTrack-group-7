@@ -2,7 +2,8 @@
 import styled from 'styled-components';
 
 export const FeedbackBtn = styled.button`
-  font-family: "Inter 600", sans-serif;
+  font-family: "Inter-600", sans-serif;
+  font-weight: 600;
   font-size: 12px;
   line-height: 16px;
 
