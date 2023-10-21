@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router';
 import { ButtonM, ButtonD, PeriodTypeSelectStyles } from './PeriodTypeSelect.styled';
 import { selectParameter } from '../../redux/tasks/tasksSelectors';
 import { useSelector } from 'react-redux';
-import StyledDatepicker from '../PeriodPaginator/PeriodPaginator';
-import StyledMonthpicker from '../PeriodPaginator/PeriodPaginator';
+/* import StyledDatepicker from '../PeriodPaginator/PeriodPaginator';
+import StyledMonthpicker from '../PeriodPaginator/PeriodPaginator'; */
 
 const PeriodTypeMonth = () => {
     const navigate = useNavigate();

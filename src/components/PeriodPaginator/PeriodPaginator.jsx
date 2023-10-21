@@ -3,8 +3,8 @@ import {format} from 'date-fns';
 import DatePicker from 'react-datepicker';
 import { CalendarGlobalStyles, TitleWrapper, Container, ButtonL, ButtonR, CalendarMonthStyles } from "./PeriodPaginator.styled";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import { useDispatch } from 'react-redux';
-import { changeParameterUrl } from '../../redux/tasks/parameterUrlSlice';
+/* import { useDispatch } from 'react-redux';
+import { changeParameterUrl } from '../../redux/tasks/parameterUrlSlice'; */
 
 export const StyledDatepicker = () => {
     const [selectedDate, setSelectedDate] = useState(Date.now());
