@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 /* import { useDispatch } from 'react-redux';
 import { changeParameterUrl } from '../../redux/tasks/parameterUrlSlice'; */
 
-export const StyledDatepicker = () => {
+/* export */ const StyledDatepicker = () => {
     const [selectedDate, setSelectedDate] = useState(Date.now());
     /* const dispatch = useDispatch();
     dispatch(changeParameterUrl(selectedDate)); */
@@ -36,7 +36,7 @@ export const StyledDatepicker = () => {
     );
   };
 
-export const StyledMonthpicker = () => {
+/* export */ const StyledMonthpicker = () => {
   const [selectedMonth, setSelectedDate] = useState(Date.now());
   /* const dispatch = useDispatch();
   dispatch(changeParameterUrl(selectedMonth)); */
