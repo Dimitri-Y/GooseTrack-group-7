@@ -72,8 +72,11 @@ export const EditBtn = styled.button`
   height: 30px;
   border-radius: 50%;
 
-  background-color: ${props => { return props.isActive ? '#3E85F3' : '#E5EDFA'}}; 
+  /* background-color: ${props => { return props.isActive ? '#3E85F3' : '#E5EDFA'}};  */
   /* stroke:  ${props => { return props.isActive ? '#FFFFFF' : '#3E85F3'}} ;  */
+
+  background-color: #E5EDFA;
+  stroke: #3E85F3;
 
   border: none;
   cursor: pointer;
@@ -225,42 +228,4 @@ export const BtnCancel = styled.button`
 
 // `;
 
-// export const CloseBtnWraper = styled.button`
-//   position: absolute;
-//   top: 14px;
-//   right: 18px;
-
-//   width: 24px;
-//   height: 24px;
-//   border-radius: 50%;
-//   border: none;
-//   background-color: transparent;
-//   cursor: pointer;
-//   /* stroke:  */
-
-//   /* transition:  */
-
-//   &:hover,
-//   &:focus {
-//     /* stroke:  */
-//   }
-// `;
-
-// export const CancelBtn = styled.button`
-//   /* color:  */
-//   /* background-color:*/
-//   text-transform: none;
-//   width: 262px;
-//   height: 48px;
-//   font-weight: 600;
-//   font-size: 14px;
-//   border: none;
-//   border-radius: 16px;
-//   cursor: pointer;
-//   /* transition:  */
-//   &:hover,
-//   &:focus {
-//     /* color: */
-//   }
-// `;
 
