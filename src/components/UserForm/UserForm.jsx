@@ -137,6 +137,7 @@ const UserForm = () => {
   return (
     <>
       <AccountForm
+      onSubmit={handleSubmit}
       >
         <UserPhoto onClick={handleClick} selectedImage={selectedImage} />
         <InputFile
