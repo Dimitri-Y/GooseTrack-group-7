@@ -132,3 +132,22 @@ export const IconButton = styled(LoginIcon)`
     height: 20px;
   }
 `;
+
+export const PasswordWrap = styled.div`
+  position: relative;
+`;
+
+export const ToggleHidePassword = styled.button`
+  border: transparent;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    top: 16px;
+  }
+`;
