@@ -20,6 +20,7 @@ export const BurgerBtn = styled.button`
   width: 24px;
   height: 24px;
   padding: 0;
+  color: inherit;
   background-color: transparent;
   border: none;
 

@@ -14,7 +14,7 @@ export  const Navigation = styled.div`
 export const Panel = styled.span`
   font-size: 12px;
   font-weight: 600;
-  color: rgba(52, 52, 52, 0.50);
+  color: ${p => p.theme.sidebarPanelColor};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -36,13 +36,13 @@ export const NavItem = styled(NavLink)`
   padding: 10px 12px;
   gap: 8px;
   border-radius: 8px;
-  color: rgba(52, 52, 52, 0.50);
+  color: ${p => p.theme.sidebarTextColor};
   background-color: transparent;
 
   &:hover,
   &:focus {
-    color: #3E85F3;
-    background-color:#E3F3FF;
+    color: ${p => p.theme.sidebarMainActiveColor};
+    background-color:${p => p.theme.secondaryAccentColorActive};
   }
 `;
 

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://goose-track-backend-deployment.onrender.com';
-// axios.defaults.baseURL = 'https://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3000/api/';
+// axios.defaults.baseURL = 'https://goose-track-backend-deployment.onrender.com';
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -51,7 +51,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  'auth/refresh',
+  'users/current',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
