@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 import CalendarToolbar from 'components/CalendarToolbar/CalendarToolbar';
+import { useSelector } from 'react-redux';
+import { selectParameter } from '../../redux/tasks/tasksSelectors';
 
 const CalendarPage = () => {
-  /*const navigate = useNavigate();
-  const day = 'monday';
+  const navigate = useNavigate();
+  const day = useSelector(selectParameter);
 
   useEffect(() => {
     navigate(`/calendar/day/${day}`);
-  }, [navigate]);*/
+  }, [day, navigate]);
 
   return (
     <main>
