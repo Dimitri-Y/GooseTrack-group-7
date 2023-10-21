@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 // import { refreshUser } from '../../redux/auth/authOperations';
 import axios from 'axios';
 import UserPhoto from './UserPhoto';
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from 'react-datepicker';
+import { AiOutlineDown } from "react-icons/ai";
 import {
   Input,
   AccountForm,
@@ -13,10 +16,10 @@ import {
   InputBox,
   InputFile,
   Label,
+  CalendarGlobalStyles
 } from './UserForm.styled';
-import { ErrorMessage, Field, Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
-import Calendar from './Calendar/Calendar';
 
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
@@ -49,14 +52,12 @@ const TOKEN =
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
-  // const [userDate, setUserDate] = useState();
-
-  // console.log(userDate);
 
   const filePicker = useRef(null);
 
-  const handleSubmit = async (values) => {
-    const { name, number, birthday, skype, email } = values;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, number, birthday, skype, email } = formik.values;
 
     const formData = new FormData();
     formData.append('avatar', uploaded);
@@ -74,6 +75,10 @@ const UserForm = () => {
 
     // const data = res.data;
     // console.log(data);
+    console.log(name)
+    console.log(birthday)
+    console.log(email)
+
   }
 
   const formik = useFormik({
@@ -84,11 +89,9 @@ const UserForm = () => {
       skype: '',
       email: '',
     },
-    onSubmit: values => handleSubmit(values),
+    onSubmit: handleSubmit,
     validationSchema: validationSchema,
   });
-
-  // console.log(formik.initialValues);
 
   // const user = useSelector(selectUser);
   // const dispatch = useDispatch();
@@ -107,7 +110,12 @@ const UserForm = () => {
       })
       .then((response) => {
         const data =  response.data
-        formik.setValues({name: data.userName});
+        formik.setValues({
+          name: data.userName,
+          number: data.phone,
+          birthday: new Date(), // Припускаємо, що дата приходить у правильному форматі
+          skype: data.skype,
+          email: data.email,});
       })
       .catch((error) => {
         console.error('Помилка запиту:', error);
@@ -124,12 +132,10 @@ const UserForm = () => {
     setSelectedImage(imgURL);
   };
 
+  console.log(formik.values.birthday)
+
   return (
     <>
-    <Formik 
-    initialValues={formik.initialValues}
-    >
-    {(props) => (
       <AccountForm
       >
         <UserPhoto onClick={handleClick} selectedImage={selectedImage} />
@@ -146,53 +152,52 @@ const UserForm = () => {
           <Label>
             User Name
             <Input type="text" name="name" maxLength="16" required 
-            onChange={props.handleChange}
-            value={props.values.name}
+            onChange={formik.handleChange}
+            value={formik.values.name}
             />
-            <ErrorMessage name="name" />
           </Label>
           <Label>
             Phone
             <Input
               type="tel"
               name="number"
-              onChange={props.handleChange}
-            value={props.values.number}
+              onChange={formik.handleChange}
+            value={formik.values.number}
             />
-            <ErrorMessage name="number" />
           </Label>
 
           <Label>
             Birthday
-            <Field
-              component={Calendar}
-              name="birthday"
-              type="date"
-              onChange={(value) => {
-                props.setFieldValue('birthday', value)
-              }}
-            />
-            <ErrorMessage name="birthday" />
+            <CalendarGlobalStyles/>
+      <DatePicker
+        showIcon
+        selected={formik.values.birthday}
+        onChange={(value) => {
+          formik.setFieldValue('birthday', value)
+        }}
+        icon={<AiOutlineDown className="customDatePickerIcon"/>}
+        calendarIconClassName='calendarIcon'
+        // dateFormat={"yyyy/MM/dd"}
+      calendarStartDay={1}
+      customInput={<Input />}
+      maxDate={new Date()}
+      />
           </Label>
           <Label>
             Skype
             <Input type="text" name="skype" 
-            onChange={props.handleChange}
-            value={props.values.skype}/>
-            <ErrorMessage name="skype" />
+            onChange={formik.handleChange}
+            value={formik.values.skype}/>
           </Label>
           <Label>
             Email
             <Input type="email" name="email" 
-            onChange={props.handleChange}
-            value={props.values.email}/>
-            <ErrorMessage name="email" />
+            onChange={formik.handleChange}
+            value={formik.values.email}/>
           </Label>
         </InputBox>
         <ButtonSubmit type="submit">Save Changes</ButtonSubmit>
       </AccountForm>
-      )}
-      </Formik>
     </>
   );
 };
