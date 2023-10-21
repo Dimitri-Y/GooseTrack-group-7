@@ -20,6 +20,7 @@ export const BurgerBtn = styled.button`
   width: 24px;
   height: 24px;
   padding: 0;
+  color: inherit;
   background-color: transparent;
   border: none;
 
@@ -72,7 +73,7 @@ export const Message = styled.div`
   font-weight: 600;
   line-height: 1.28;
   span {
-    color: #3E85F3;
+    color:${p => p.theme.mainAccentColor || '#3E85F3'} ;
   }
 `;
 

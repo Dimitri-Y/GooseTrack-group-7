@@ -20,11 +20,11 @@ const AuthSection = () => {
           <Span>Goose</Span>Track
         </Header>
         <LinksWrapper>
-          <LinkLogIn>
+          <LinkLogIn to="/login">
             Log in
             <Icon />
           </LinkLogIn>
-          <LinkSignUp>Sign up</LinkSignUp>
+          <LinkSignUp to="/register">Sign up</LinkSignUp>
         </LinksWrapper>
       </Wrapper>
     </Container>

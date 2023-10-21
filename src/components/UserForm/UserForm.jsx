@@ -1,9 +1,11 @@
-import { useState, useRef } from 'react';
-// import axios from 'axios';
+import { useState, useRef, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectUser } from '../../redux/auth/authSelectors';
+// import { refreshUser } from '../../redux/auth/authOperations';
+import axios from 'axios';
 import UserPhoto from './UserPhoto';
 import {
   Input,
-  Box,
   AccountForm,
   UserName,
   User,
@@ -16,7 +18,6 @@ import { Formik, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import Calendar from './Calendar/Calendar';
 
-
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
     if (!value) return true;
@@ -28,30 +29,64 @@ const validationSchema = yup.object().shape({
     ];
     return allowedExtensions.includes(value.type);
   }),
-  name: yup.string().required(`Це обов'язкове поле`).max(16),
-  email: yup.string().email().required(),
+  name: yup.string().required(`Name is required`).max(16),
+  email: yup.string().email().required(`Email is required`),
   birthday: yup.date().default(() => new Date()),
-  number: yup.string().matches(/^\+380\d{9}$/, { excludeEmptyString: true }),
+  number: yup
+    .string()
+    .matches(/^\+380\d{9}$/, 'The number should start with +380', {
+      excludeEmptyString: true,
+    }),
   skype: yup.string().max(16),
 });
 
-// const testAPI = 'https://goose-track-backend-deployment.onrender.com/';
+const API = 'http://localhost:3000/api/users/current';
+const API_PATCH = 'http://localhost:3000/api/users/edit';
+
+const TOKEN =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MmZkMTVhODJmYTc5M2I4ZDZiNTNiMyIsImlhdCI6MTY5NzgzNTUxOSwiZXhwIjoxNjk3OTE4MzE5fQ.p4mivK7ySEng3YU-77zbNvv1OIvExBtMyOJHZrsLikQ';
+// 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzJjZDAwZDk4YjM0YzA4OGY2MjZhOCIsImlhdCI6MTY5NzgyODExNiwiZXhwIjoxNjk3OTEwOTE2fQ.jmyr2QML4aZ6ta9sHWMJzH3b5XUznKkyZM2T6ecBZMI';
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
   const [birthdayChange, setBirthdayChange] = useState(new Date());
+  const [userDate, setUserDate] = useState();
 
-  // console.log(birthdayChange)
+  console.log(userDate);
 
   const filePicker = useRef(null);
 
+  // const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
+  // console.log(user)
+
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
+
+  useEffect(() => {
+    axios
+      .get(API, {
+        headers: {
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        setUserDate(data);
+      })
+      .catch((error) => {
+        console.error('Помилка запиту:', error);
+      });
+  }, []);
+
   const initialValue = {
-    name: '',
-    number: '',
-    birthday: birthdayChange,
-    skype: '',
-    email: '',
+    name: userDate?.userName || '',
+    number: userDate?.phone || '',
+    birthday: userDate?.birthday || new Date(),
+    skype: userDate?.skype || '',
+    email: userDate?.email || '',
   };
 
   const handleClick = () => {
@@ -64,33 +99,38 @@ const UserForm = () => {
     setSelectedImage(imgURL);
   };
 
-  const handleChangeDate = value => {
-    setBirthdayChange(value)
-  }
+  const handleChangeDate = (value) => {
+    setBirthdayChange(value);
+  };
 
-  const handleSubmit = async (value) => {
-    const { name, number, skype, email } = value;
+  const handleSubmit = async (values) => {
+    const { name, number, birthday, skype, email } = values;
 
     const formData = new FormData();
     formData.append('avatar', uploaded);
-    formData.append('name', name);
-    formData.append('number', number);
-    formData.append('birthday', birthdayChange);
+    formData.append('userName', name);
+    formData.append('phone', number);
+    formData.append('birthday', birthday);
     formData.append('skype', skype);
     formData.append('email', email);
+    const res = await axios.patch(API_PATCH, formData, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-    // const res = await axios.post(testAPI, formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // });
-
-    // const data = await res.data;
-    console.log(birthdayChange)
+    const data = res.data;
+    console.log(data);
+    // console.log(birthday);
+    // console.log(name);
+    // console.log(number);
+    // console.log(skype);
+    // console.log(email);
   };
 
   return (
-    <Box>
+    <>
       <Formik
         initialValues={initialValue}
         validationSchema={validationSchema}
@@ -115,27 +155,19 @@ const UserForm = () => {
             </Label>
             <Label>
               Phone
-              <Input
-                type="tel"
-                name="number"
-                // pattern="/^(\+380\d{9})$/"
-              />
+              <Input type="tel" name="number" />
               <ErrorMessage name="number" />
             </Label>
 
             <Label>
               Birthday
               <Field
-              component={Calendar}
+                component={Calendar}
                 name="birthday"
                 type="date"
-                // className="calendar"
                 selected={birthdayChange}
                 onChange={handleChangeDate}
-                // dateFormat={'yyyy MM dd'}
-                // calendarStartDay={1}
               />
-              {/* <CalendarGlobalStyles/> */}
               <ErrorMessage name="birthday" />
             </Label>
             <Label>
@@ -145,18 +177,14 @@ const UserForm = () => {
             </Label>
             <Label>
               Email
-              <Input
-                type="email"
-                name="email"
-                pattern="([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*@([A-zА-я])+([0-9\-_\+\.])*([A-zА-я0-9\-_\+\.])*[\.]([A-zА-я])+"
-              />
+              <Input type="email" name="email" />
               <ErrorMessage name="email" />
             </Label>
           </InputBox>
           <ButtonSubmit type="submit">Save Changes</ButtonSubmit>
         </AccountForm>
       </Formik>
-    </Box>
+    </>
   );
 };
 

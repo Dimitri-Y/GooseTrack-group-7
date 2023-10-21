@@ -1,23 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 
-
-export const Box = styled.div`
-background-color: #F7F6F9;
-padding-top: 95px;
-padding-left: 20px;
-padding-right: 20px;
-padding-bottom: 20px;
-text-align: center;
-
-@media (min-width: 768px) {
-   padding-top: 64px;
-padding-left: 32px;
-padding-right: 32px;
-padding-bottom: 38px;
- }
-`
-
 export const AccountForm = styled(Form)`
 background-color: #fff;
 border-radius: 16px;
@@ -25,6 +8,10 @@ padding-bottom: 40px;
 display: flex;
 flex-direction: column;
 align-items: center;
+padding-left: 18px;
+padding-right: 18px;
+text-align: center;
+
 
 @media (min-width: 768px) {
    padding-top: 40px;
@@ -42,6 +29,8 @@ padding-right: 165px;
 export const UserName = styled.h1`
 font-family: 'Inter-Bold', sans-serif;
 font-size: 14px;
+font-weight: 700;
+line-height: 18px;
 margin-bottom: 4px;
 color: #343434;
 
@@ -54,6 +43,8 @@ margin-bottom: 8px;
 export const User = styled.p`
 font-family: 'Inter-SemiBold', sans-serif;
 font-size: 12px;
+font-weight: 600;
+line-height: 18px;
 color: #343434;
 margin-bottom: 40px;
 
@@ -70,6 +61,7 @@ export const InputBox = styled.div`
 display: flex;
 flex-direction: column;
 gap: 18px;
+margin-bottom: 40px;
 
 @media (min-width: 768px) {
    gap: 24px;
@@ -78,9 +70,9 @@ gap: 18px;
 @media (min-width: 1440px) {
    flex-direction: row;
    flex-wrap: wrap;
+   justify-content: space-between;
    row-gap: 24px;
    column-gap: 50px;
-   width: 758px;
    margin-bottom: 88px;
  }
 `
@@ -92,14 +84,21 @@ display: none;
 export const Input = styled(Field)`
 font-family: 'Inter-SemiBold', sans-serif;
 font-size: 16px;
+font-weight: 600;
+line-height: 18px;
 width: 299px;
+border-radius: 8px;
+border: 1px solid rgba(17, 17, 17, 0.15);
+padding-top: 14px;
+padding-bottom: 14px;
+padding-left: 18px;
 
 @media (min-width: 768px) {
    width: 354px;
  }
 
  @media (min-width: 1440px) {
-   width: 346px;
+   width: 354px;
  }
 `
 
@@ -108,6 +107,8 @@ display: flex;
 flex-direction: column;
 align-items: flex-start;
 font-size: 14px;
+font-weight: 400;
+line-height: 18px;
 gap: 8px;
 
 .calendar {
@@ -131,6 +132,8 @@ gap: 8px;
 export const ButtonSubmit = styled.button`
 font-family: 'Inter-SemiBold', sans-serif;
 font-size: 14px;
+font-weight: 600;
+line-height: 18px;
 border: none;
 padding: 14px 50px;
 border-radius: 16px;
