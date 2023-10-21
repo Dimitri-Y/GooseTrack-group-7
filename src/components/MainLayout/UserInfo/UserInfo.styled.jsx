@@ -10,7 +10,7 @@ export const UserName = styled.span`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
-  color: #343434;
+  color: ${p => p.theme.secondaryTextColor};
 `;
 
 export const UserAvatar = styled.div`
@@ -20,7 +20,7 @@ export const UserAvatar = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: 1.8px solid #3E85F3;
+  border: 1.8px solid ${p => p.theme.mainAccentColor};
 `;
 
 export const FirstLetterIcon = styled.span`
