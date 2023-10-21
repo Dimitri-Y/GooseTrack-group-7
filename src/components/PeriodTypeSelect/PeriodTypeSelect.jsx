@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { ButtonM, ButtonD, PeriodTypeSelectStyles } from './PeriodTypeSelect.styled';
 
 const PeriodTypeMonth = () => {
     const navigate = useNavigate();
@@ -21,10 +22,10 @@ const PeriodTypeDay = () => {
 
 const PeriodTypeSelect = () => {
     return (
-        <div>
-        <button type="button" onClick={PeriodTypeMonth()}>Month</button>
-        <button type="button" onClick={PeriodTypeDay()}>Day</button>
-        </div>
+        <PeriodTypeSelectStyles>
+                <ButtonM type="button" onClick={PeriodTypeMonth()}>Month</ButtonM>
+                <ButtonD type="button" onClick={PeriodTypeDay()}>Day</ButtonD>
+        </PeriodTypeSelectStyles>
     )
 }
 
