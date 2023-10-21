@@ -14,6 +14,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { dateReducer } from './tasks/dateSlice';
+import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -27,6 +28,7 @@ export const store = configureStore({
     tasks: tasksReducer,
     reviews: reviewsReducer,
     date: dateReducer,
+    parameter: parameterUrlReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

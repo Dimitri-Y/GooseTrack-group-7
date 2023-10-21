@@ -19,6 +19,7 @@ export const ListItem = styled.li`
   flex-direction: column;
   justify-content: center;
   gap: 3px;
+  cursor: pointer;
 `;
 
 export const Number = styled.span`
@@ -36,7 +37,7 @@ export const Number = styled.span`
   line-height: 14px;
   color: ${(props) => props.$selected && '#ffffff'};
   background-color: ${(props) => props.$selected && '#3e85f3'};
-  cursor: pointer;
+  pointer-events: none;
 `;
 
 export const DayWeek = styled.span`
@@ -44,4 +45,5 @@ export const DayWeek = styled.span`
   font-size: 16px;
   line-height: 18px;
   text-align: center;
+  pointer-events: none;
 `;
