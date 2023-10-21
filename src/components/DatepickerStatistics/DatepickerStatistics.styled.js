@@ -9,6 +9,7 @@ export const DataBtn = styled.div`
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
+
   @media screen and (min-width: 768px) {
     margin-top: 33px;
     margin-bottom: 33px;
@@ -33,6 +34,8 @@ export const CalendarGlobalStyles = createGlobalStyle`
     border-radius: 16px;
     color: #000;
     border: 1px solid #aeaeae;
+    
+    margin-top: 8px;
 }
 .react-datepicker__triangle {
     visibility: hidden;

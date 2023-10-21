@@ -45,9 +45,7 @@ export const ContainerTimeSymbolStatistics = styled.div`
          gap: 20px;
     }
 `
-export const ContainerCalendarStatisticsSwitchBtn = styled.div`
-    display: flex;
-`
+
 
 export const BtnCalendarStatistics = styled.button`
     /* margin-right: 114px; */
@@ -79,7 +77,7 @@ export const TextTimeSymbolStatistics = styled.p`
 
 export const ContainerScheduleStatistics = styled.div`
     width: 100%;
-    height: 228px;
+    height: 328px;
     border: solid;
     display: flex;
     align-items: center;
