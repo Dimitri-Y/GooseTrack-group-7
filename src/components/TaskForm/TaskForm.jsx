@@ -23,7 +23,7 @@ const schema = Yup.object().shape({
   title: Yup.string().max(250).required(),
   // start: Yup.number().required(),
   // end: Yup.number().required(),
-  // priority: Yup.string().required(),
+  priority: Yup.string().required(),
   start: Yup.string().required('start time cannot be empty'),
   end: Yup.string()
     .required('end time cannot be empty')
@@ -62,15 +62,26 @@ const TaskForm = ({
   // };
   // console.log(viewRadio())
 
-  const handleSubmit = async () => {
-    // const { title, start, end, priority } = value;
-    // const formDataTask = new FormData();
-    // formDataTask.append('title', title);
-    // formDataTask.append('start', start);
-    // formDataTask.append('end', end);
-    // formDataTask.append('priority', priority);
-    // console.log(formDataTask.get(priority));
-    // console.log(value.priority);
+  const handleSubmit = async (value, { resetForm }) => {
+    const { title, start, end, priority } = value;
+    // const task=null;
+    // task.append('title', title) 
+    // console.log('task: ', task);
+    
+    
+    
+    
+    const formDataTask = new FormData();
+    formDataTask.append('title', title);
+    formDataTask.append('start', start);
+    formDataTask.append('end', end);
+    formDataTask.append(
+      'priority',
+      document.querySelector('input[name="priority"]:checked').value,
+    );
+    console.log(formDataTask.get(title));
+    console.log(document.querySelector('input[name="priority"]:checked').value);
+    resetForm();
   };
 
   // const handleSubmit = (values, { resetForm }) => {
@@ -106,7 +117,6 @@ const TaskForm = ({
                 name="start"
                 title=""
                 placeholder="09:00"
-                
               />
               <ErrorMessage
                 name="start"
