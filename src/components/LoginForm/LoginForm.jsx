@@ -64,11 +64,9 @@ const LoginForm = () => {
                   name="email"
                   placeholder="nadiia@gmail.com"
                   style={{
-                    borderColor: touched.email
-                      ? errors.email
-                        ? '#da1414'
-                        : '#3cbc81'
-                      : 'rgba(17, 17, 17, 0.15)',
+                    borderColor:
+                      (touched.email && errors.email && '#E74A3B') ||
+                      (touched.email && !errors.email && '#3CBC81'),
                   }}
                 />
                 {touched.email && errors.email ? (
@@ -99,11 +97,9 @@ const LoginForm = () => {
                   name="password"
                   placeholder="● ● ● ● ● ● ●"
                   style={{
-                    borderColor: touched.password
-                      ? errors.password
-                        ? '#da1414'
-                        : '#3cbc81'
-                      : 'rgba(17, 17, 17, 0.15)',
+                    borderColor:
+                      (touched.password && errors.password && '#E74A3B') ||
+                      (touched.password && !errors.password && '#3CBC81'),
                   }}
                 />
                 {touched.password && errors.password ? (
