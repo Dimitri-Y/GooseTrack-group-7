@@ -126,7 +126,6 @@ export const Textarea = styled(Field)`
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   resize: none; 
-  
 
   color: ${p => p.theme.mainTextColor};
   background-color: ${p => p.theme.reviewBgColor};

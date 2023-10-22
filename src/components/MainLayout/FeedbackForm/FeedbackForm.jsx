@@ -33,7 +33,7 @@ import {
   deleteReview,
   updateReview,
 } from '../../../redux/reviews/reviewsOperations';
-import { changeRating } from '../../../redux/reviews/reviewsSlice';
+// import { changeRating } from '../../../redux/reviews/reviewsSlice';
 
 
 const ratingIcon = (
@@ -91,10 +91,10 @@ const FeedbackForm = ({ onClose }) => {
     onClose();
   };
 
-  const handleRating = (newRating) => {
-    // setRatingValue(newRating);
-    dispatch(changeRating(newRating))
-};
+//   const handleRating = (newRating) => {
+//     // setRatingValue(newRating);
+//     dispatch(changeRating(newRating))
+// };
 
   return (
     <>
@@ -120,7 +120,7 @@ const FeedbackForm = ({ onClose }) => {
                   marginBottom: '28px',
                   marginTop: '10px',
                 }}
-                onChange={handleRating}
+                // onChange={handleRating}
                 readOnly={Boolean(currentUser.rating) && !isEditActive}
               />
             </Label>
