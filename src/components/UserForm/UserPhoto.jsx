@@ -7,7 +7,7 @@ const UserPhoto = ({ selectedImage, onClick }) => {
     <>
       <BoxCircle onClick={onClick}>
         {selectedImage ? (
-          <Image alt="" src={selectedImage} />
+          <Image alt="" src={selectedImage}/>
         ) : (
           <BoxPlaceholder>
             <Human />

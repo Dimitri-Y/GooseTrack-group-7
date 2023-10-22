@@ -10,6 +10,13 @@ import {
 
 const reviewsInitialState = {
   items: [],
+  // додала рядки 14-18
+  // currentUser: {
+  //   name: '',
+  //   comment: '',
+  //   rating: '',
+  // },
+
   isLoading: false,
   error: null,
 };
@@ -26,6 +33,13 @@ const handleRejected = (state, action) => {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: reviewsInitialState,
+
+  // // додала рядки 38-42
+  // reducers: {
+  //   changeRating(state, action){
+  //     state.currentUser.rating = action.payload;
+
+  // }},
 
   extraReducers: (builder) => {
     builder
@@ -94,3 +108,5 @@ const reviewsSlice = createSlice({
 });
 
 export const reviewsReducer = reviewsSlice.reducer;
+// // додала рядок 112
+// export const {changeRating}=reviewsSlice.actions;
