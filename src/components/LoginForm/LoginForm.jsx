@@ -36,7 +36,6 @@ const LoginForm = () => {
   const handelSubmit = (values) => {
     dispatch(logIn(values))
       .then((data) => {
-        console.log(data.payload);
         switch (data.payload) {
           case 'Request failed with status code 401':
             toast.error(`Wrong email or password`);
