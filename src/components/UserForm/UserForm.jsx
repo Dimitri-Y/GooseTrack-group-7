@@ -44,10 +44,10 @@ const validationSchema = yup.object().shape({
 });
 
 const API = 'http://localhost:3000/api/users/current';
-// const API_PATCH = 'http://localhost:3000/api/users/edit';
+const API_PATCH = 'http://localhost:3000/api/users/edit';
 
 const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzM5M2UzODFiOTUzMDRkZDA5MmZkNCIsImlhdCI6MTY5Nzg3OTAyMCwiZXhwIjoxNjk3OTYxODIwfQ.vC992-g3DkIMjxzFJitEmeiV51zlFIwocQzGtLW1Dik';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzM5M2UzODFiOTUzMDRkZDA5MmZkNCIsImlhdCI6MTY5Nzk3NDk0MiwiZXhwIjoxNjk4MDU3NzQyfQ.LkO-yla8jfg5PW2_uO0yv2rb-rKM1bNswnviSx038F8';
 
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -60,29 +60,31 @@ const UserForm = () => {
     const { name, number, birthday, skype, email } = formik.values;
 
     const formData = new FormData();
-    formData.append('avatar', uploaded);
+    formData.append('avatarURL', uploaded);
     formData.append('userName', name);
     formData.append('phone', number);
     formData.append('birthday', birthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    // const res = await axios.patch(API_PATCH, formData, {
-    //   headers: {
-    //     Authorization: `Bearer ${TOKEN}`,
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // });
+    
+    const res = await axios.patch(API_PATCH, formData, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-    // const data = res.data;
-    // console.log(data);
-    console.log(name)
-    console.log(birthday)
-    console.log(email)
+    const data = res.data;
+    console.log(data);
+    // console.log(name)
+    // console.log(birthday)
+    // console.log(email)
 
   }
 
   const formik = useFormik({
     initialValues: {
+      avatar: '',
       name: '',
       number: '',
       birthday: new Date(),
@@ -110,12 +112,16 @@ const UserForm = () => {
       })
       .then((response) => {
         const data =  response.data
+        console.log(data)
         formik.setValues({
+          avatar: data.avatarURL,
           name: data.userName,
           number: data.phone,
           birthday: new Date(), // Припускаємо, що дата приходить у правильному форматі
           skype: data.skype,
           email: data.email,});
+      setSelectedImage(`http://localhost:3000/${data.avatarURL}`)
+
       })
       .catch((error) => {
         console.error('Помилка запиту:', error);
@@ -131,8 +137,6 @@ const UserForm = () => {
     const imgURL = URL.createObjectURL(e.target.files[0]);
     setSelectedImage(imgURL);
   };
-
-  console.log(formik.values.birthday)
 
   return (
     <>
@@ -178,7 +182,7 @@ const UserForm = () => {
         }}
         icon={<AiOutlineDown className="customDatePickerIcon"/>}
         calendarIconClassName='calendarIcon'
-        // dateFormat={"yyyy/MM/dd"}
+        dateFormat={"yyyy-MM-dd"}
       calendarStartDay={1}
       customInput={<Input />}
       maxDate={new Date()}
