@@ -10,14 +10,14 @@ import {
 import { SvgSelector } from '../Icons/SvgSelector';
 //  { useState } from 'react';
 
-const initialValues = {
-  title: '',
-  start: '09:30',
-  end: '18:30',
-  priority: 'Low',
-  date: '2023-10-24',
-  category: 'done',
-};
+// const initialValues = {
+//   title: '',
+//   start: '09:30',
+//   end: '18:30',
+//   priority: 'Low',
+//   date: '2023-10-24',
+//   category: 'done',
+// };
 
 const schema = Yup.object().shape({
   title: Yup.string().max(250).required(),
@@ -36,11 +36,28 @@ const schema = Yup.object().shape({
 });
 
 const TaskForm = ({
-  // headerCategory,
-  // task,
+  headerCategory,
+  task,
   closeModal,
 }) => {
-  // console.log(task, closeModal, headerCategory);
+  const initialValues = {
+    title: task?.title||'',
+    start: task?.start||'09:30',
+    end: task?.end||'18:30',
+    priority: task?.priority||'Low',
+    date: task?.date||'2023-10-24',
+    category: task?.category||'done',
+  };
+  // const initialValuesEditTask = {
+  //   title: task.title,
+  //   start: task.start,
+  //   end: task.end,
+  //   priority: task.priority,
+  //   date: task.date,
+  //   category: task.category,
+  // };
+
+  console.log(task);
   // const [title, setTitle] = useState('')
   // const [start, setStart] = useState('')
   // const [end, setEnd] = useState('')
@@ -63,31 +80,19 @@ const TaskForm = ({
   // console.log(viewRadio())
 
   const handleSubmit = async (value, { resetForm }) => {
-    const { title, start, end, priority } = value;
-    // const task=null;
-    // task.append('title', title) 
-    // console.log('task: ', task);
+    const { title, start, end } = value;
+    console.log('value: ', value);
+    const priority = document.querySelector('input[name="priority"]:checked').value
+   
+    const newTask = {'title': title,'start': start,'end': end, 'priority': priority, date: new Date, category:headerCategory}
+    console.log('newTask: ', newTask);
     
+      
     
-    
-    
-    const formDataTask = new FormData();
-    formDataTask.append('title', title);
-    formDataTask.append('start', start);
-    formDataTask.append('end', end);
-    formDataTask.append(
-      'priority',
-      document.querySelector('input[name="priority"]:checked').value,
-    );
-    console.log(formDataTask.get(title));
-    console.log(document.querySelector('input[name="priority"]:checked').value);
     resetForm();
   };
 
-  // const handleSubmit = (values, { resetForm }) => {
-  //   onAddTask(values);
-  //   resetForm();
-  // };
+  
   return (
     <FormTask>
       <Formik
@@ -145,6 +150,7 @@ const TaskForm = ({
                   name="priority"
                   value="low"
                   className="real-radio "
+                  // {task.priority =="low" && "checked"}
                 />
                 <span className="custom-radio"></span>
                 Low
@@ -176,17 +182,17 @@ const TaskForm = ({
             </div>
           </div>
           <Buttons>
-            {/* {task ? ( */}
+            {task ==undefined ? (
             <ButtonSummit type="submit">
               <SvgSelector id="plusBtnWhite" className="iconWrapper" />
               Add
             </ButtonSummit>
-            {/* ) : (
+            ) : (
               <ButtonSummit type="submit">
-                <SvgSelector id="plusBtnWhite" className="iconWrapper" />
-                Add
+                <SvgSelector id="editBtn" className="iconWrapper" />
+                Edit
               </ButtonSummit>
-            )} */}
+            )}
             <ButtonCancel type="button" onClick={closeModal}>
               Cancel
             </ButtonCancel>
