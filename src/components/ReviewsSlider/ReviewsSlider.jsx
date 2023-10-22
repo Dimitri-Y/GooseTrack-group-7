@@ -64,7 +64,6 @@ const ReviewsSlider = () => {
   }
 
   const slides = reviews;
-  console.log(slides[0])
 
   return (
     <ReviewsSection>
@@ -95,6 +94,7 @@ const ReviewsSlider = () => {
             },
           }}
         >
+          
           {slides.map((slide, index) => (
             <SwiperSlide key={index} virtualIndex={index}>
               <ReviewSliderCard>
@@ -129,70 +129,6 @@ const ReviewsSlider = () => {
               </ReviewSliderCard>
             </SwiperSlide>
           ))}
-          {/* <SwiperSlide key={1} virtualIndex={1}>
-            <ReviewSliderCard>
-              <ReviewContentBox>
-                <AvatarWrapper>
-                  {true ? (
-                    <AvatarImg src="" alt="UserPicture" />
-                  ) : (
-                    <BackgroundName className="initials">
-                      <UserNameIcon>Olena</UserNameIcon>
-                    </BackgroundName>
-                  )}
-                </AvatarWrapper>
-                <div>
-                  <Name>Olena Doe </Name>
-                  <Rate>
-                    <Rating
-                      value={4}
-                      itemStyles={rateStyled}
-                      style={{ maxWidth: 110, gap: 4 }}
-                      readOnly
-                    />
-                  </Rate>
-                </div>
-              </ReviewContentBox>
-              <ReviewText>
-                GooseTrack is impressive, the calendar view and filter options
-                make it easy to stay organized and focused. Highly recommended.
-              </ReviewText>
-            </ReviewSliderCard>
-          </SwiperSlide>
-          <SwiperSlide key={2} virtualIndex={2}>
-            <ReviewSliderCard>
-              <ReviewContentBox>
-                <AvatarWrapper>
-                  {true ? (
-                    <AvatarImg
-                      src=""
-                      alt="UserPicture"
-                    />
-                  ) : (
-                    <BackgroundName className="initials">
-                      <UserNameIcon>Alexander</UserNameIcon>
-                    </BackgroundName>
-                  )}
-                </AvatarWrapper>
-                <div>
-                  <Name>Alexander Hubbard</Name>
-                  <Rate>
-                    <Rating
-                      value={3}
-                      itemStyles={rateStyled}
-                      style={{ maxWidth: 110, gap: 4 }}
-                      readOnly
-                    />
-                  </Rate>
-                </div>
-              </ReviewContentBox>
-              <ReviewText>
-                GooseTrack is incredibly helpful, the sidebar with account
-                management, calendar, and filter options make navigation
-                seamless. Great for staying organized.
-              </ReviewText>
-            </ReviewSliderCard>
-          </SwiperSlide> */}
         </Swiper>
       </SliderWrapper>
       <SwiperNavBox>

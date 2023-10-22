@@ -40,7 +40,7 @@ const RegisterForm = () => {
 
   const handelSubmit = (values) => {
     dispatch(register(values))
-      .then((data) => {
+    .then((data) => {
         switch (data.payload) {
           case 'Request failed with status code 401':
             toast.error(`Name or email is already exist`);
@@ -48,8 +48,12 @@ const RegisterForm = () => {
           case 'Request failed with status code 409':
             toast.error(`Name or email is already exist`);
             break;
+          default:
+            toast.success(
+              `We have sent you a verification message to your email.`,
+            );
         }
-        navigate('/', { replace: true });
+    
       })
       .catch((error) => {
         toast.error(`${error}`);
