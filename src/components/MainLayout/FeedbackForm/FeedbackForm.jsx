@@ -128,7 +128,7 @@ const FeedbackForm = ({ onClose }) => {
             <ReviewWrapper>
               <Label htmlFor="reviewId">Review</Label>
 
-              {/* {Boolean(currentUser.comment) && ( */}
+              {Boolean(currentUser.comment) && (
                 <EditWrapper>
                   <EditBtn
                     type="button"
@@ -147,7 +147,7 @@ const FeedbackForm = ({ onClose }) => {
                     <IconBin />
                   </DeleteBtn>
                 </EditWrapper>
-              {/* )} */}
+              )}
             </ReviewWrapper>
 
             <Textarea
