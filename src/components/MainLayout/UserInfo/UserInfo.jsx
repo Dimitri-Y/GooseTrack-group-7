@@ -8,7 +8,6 @@ import {refreshUser} from "../../../redux/auth/authOperations.js";
 const UserInfo = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  const name = "darina";
 
 
   useEffect(() => {
