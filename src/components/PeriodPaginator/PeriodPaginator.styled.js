@@ -207,19 +207,69 @@ export const CalendarGlobalStyles = createGlobalStyle`
     top: 6px;
     width: 9px;
 }
+.react-datepicker__month-container {
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+.react-datepicker__month-wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+.react-datepicker__month-text{
+    cursor: pointer;
+}
 `;
 
+export const CalendarMonthStyles = createGlobalStyle`
+.react-datepicker {
+    height: 180px;
+}
+`
+
 export const TitleWrapper = styled.button`
-  width: 195px;
-  color: #ffffff;
-  background: #3e85f3;
-  border-radius: 8px;
-  font-weight: 700;
-  line-height: 18px;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 8px 12px;
-  font-size: 16px;
-  justify-content: space-around;
-  align-items: center;
+    width: 121px;
+    color: #ffffff;
+    background: #3e85f3;
+    border-radius: 8px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    font-size: 16px;
+    justify-content: space-around;
+    align-items: center;
 `;
+
+export const Container = styled.div`
+    display: flex;
+`
+
+export const ButtonL = styled.button`
+    margin-left: 8px;
+    padding: 8px 10px;
+    height: 34px;
+    width: 38px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(220, 227, 229, 0.5);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+`
+
+export const ButtonR = styled.button`
+    padding: 8px 10px;
+    height: 34px;
+    width: 38px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(220, 227, 229, 0.5);
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left: none;
+`

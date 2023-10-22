@@ -20,6 +20,11 @@ export const lightTheme = {
   borderTasks: '1px solid #dce3e5',
   daysBGColor: '#f7f6f9',
   colorHeaderCalendar: '#343434',
+  reviewBgColor: '#F6F6F6',
+  reviewFormColor: '#FFFFFF',
+  cancelBtnColor: '#E5EDFA',
+  labelsColor: '#111111',
+  editBtnColor: '#E3F3FF',
 };
 
 export const darkTheme = {
@@ -43,4 +48,9 @@ export const darkTheme = {
   borderContextMenu: '1px solid rgba(255,255,255,0.2)',
   borderTasks: '1px solid rgba(255,255,255,0.2)',
   colorHeaderCalendar: 'rgba(250,250,250,0.3)',
+  reviewBgColor: '#171820',
+  reviewFormColor: '#171820',
+  cancelBtnColor: '#21222C',
+  labelsColor: 'rgba(250, 250, 250, 0.3)',
+  editBtnColor: '#353647',
 };

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Form as FormikForm, Field as FormikField } from 'formik';
 import { ReactComponent as LoginIcon } from '../../images/svg/login.svg';
+import { ReactComponent as ErrorIcon } from '../../images/svg/valid-error.svg';
+import { ReactComponent as CorrectIcon } from '../../images/svg/valid-correct.svg';
 
 export const Form = styled(FormikForm)`
   box-sizing: border-box;
@@ -43,8 +45,6 @@ export const FormField = styled.label`
   font-size: 12px;
   line-height: 1.25;
   position: relative;
-
-  color: #111111;
   margin-top: 24px;
   margin-bottom: 8px;
 
@@ -65,14 +65,13 @@ export const Field = styled(FormikField)`
   display: block;
   outline: none;
   padding: 14px;
-  color: #111111;
   border: 1px solid rgba(17, 17, 17, 0.15);
   border-radius: 8px;
   margin-top: 10px;
 
   :hover,
   :focus {
-    border-color: #290b78;
+    border: 1px solid #111;
   }
 
   ::placeholder {
@@ -128,4 +127,47 @@ export const IconButton = styled(LoginIcon)`
     width: 20px;
     height: 20px;
   }
+`;
+
+export const CorrectValidate = styled.p`
+  color: #3cbc81;
+  font-family: 'InterRegular', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  margin-top: 8px;
+  margin-left: 18px;
+`;
+
+export const InvalidValidate = styled.p`
+  color: #da1414;
+  font-family: 'InterRegular', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  margin-top: 8px;
+  margin-left: 18px;
+`;
+
+export const FormFieldWrap = styled.span`
+  display: block;
+  position: relative;
+`;
+
+export const ValidErrorIcon = styled(ErrorIcon)`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 11px;
+  right: 18px;
+`;
+
+export const ValidCorrectIcon = styled(CorrectIcon)`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 11px;
+  right: 18px;
 `;
