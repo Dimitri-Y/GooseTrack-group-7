@@ -5,13 +5,13 @@ export const List = styled.ul`
   justify-content: space-between;
   padding: 14px 18px;
   margin-bottom: 16px;
-  border: 1px solid #dce3e5;
+  border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
-  color: #343434;
-  background-color: #ffffff;
+  color: ${(p) => p.theme.colorHeaderCalendar};
+  background-color: ${(p) => p.theme.secondaryBgColor};
 `;
 
 export const ListItem = styled.li`
@@ -35,7 +35,8 @@ export const Number = styled.span`
   font-weight: 900;
   font-size: 12px;
   line-height: 14px;
-  color: ${(props) => props.$selected && '#ffffff'};
+  color: ${(props) =>
+    props.theme.mainTextColor || (props.$selected && '#FFFFFF')};
   background-color: ${(props) => props.$selected && '#3e85f3'};
   pointer-events: none;
 `;

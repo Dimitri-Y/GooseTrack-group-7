@@ -13,7 +13,7 @@ export const selectParameter = (state) => state.parameter.parameter;
 export const selectVisibleTasks = createSelector(
   [selectTasks, selectDate],
   (tasks, date) => {
-    return Object.entries(tasks).filter((task) => task.date === date);
+    return tasks.filter((task) => task.date === date);
   },
 );
 
@@ -26,3 +26,10 @@ export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
     ? 'Let go of the past and focus on the present!'
     : '';
 });
+
+// export const selectVisibleTasks = createSelector(
+//   [selectTasks, selectDate],
+//   (tasks, date) => {
+//     return Object.entries(tasks).filter((task) => task.date === date);
+//   },
+// );
