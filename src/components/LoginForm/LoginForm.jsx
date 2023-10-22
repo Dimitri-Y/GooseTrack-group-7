@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Form,
   TitleForm,
@@ -17,20 +19,34 @@ import {
   FormFieldWrap,
   ValidErrorIcon,
   ValidCorrectIcon,
+  ToggleHidePassword,
 } from './LoginForm.styled';
+
+import { ReactComponent as ShowIcon } from '../../images/svg/show.svg';
+import { ReactComponent as HideIcon } from '../../images/svg/hide.svg';
 
 const LoginForm = () => {
   const initialState = { email: '', password: '' };
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handelSubmit = (values) => {
     dispatch(logIn(values))
       .then((data) => {
-        if (data.payload?.error) {
-          throw new Error('Something went wrong');
-        }
-        if (data.payload === 'Request failed with status code 401') {
-          toast.error(`Wrong email or password`);
+        switch (data.payload) {
+          case 'Request failed with status code 401':
+            toast.error(`Wrong email or password`);
+            break;
+          case 'Request failed with status code 409':
+            toast.error(`Verify your account`);
+            break;
+          default:
+            navigate('/calendar', { replace: true });
         }
       })
       .catch((error) => {
@@ -93,7 +109,7 @@ const LoginForm = () => {
               Password
               <FormFieldWrap>
                 <Field
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="● ● ● ● ● ● ●"
                   style={{
@@ -102,11 +118,13 @@ const LoginForm = () => {
                       (touched.password && !errors.password && '#3CBC81'),
                   }}
                 />
-                {touched.password && errors.password ? (
-                  <ValidErrorIcon />
-                ) : touched.password ? (
-                  <ValidCorrectIcon />
-                ) : null}
+                <ToggleHidePassword type="button" onClick={handleShowPassword}>
+                  {showPassword ? (
+                    <ShowIcon style={{ marginLeft: '10px' }} />
+                  ) : (
+                    <HideIcon style={{ marginLeft: '10px' }} />
+                  )}
+                </ToggleHidePassword>
               </FormFieldWrap>
               {touched.password && errors.password && (
                 <InvalidValidate>{errors.password}</InvalidValidate>

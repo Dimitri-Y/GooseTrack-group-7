@@ -171,3 +171,15 @@ export const ValidCorrectIcon = styled(CorrectIcon)`
   top: 11px;
   right: 18px;
 `;
+
+export const ToggleHidePassword = styled.button`
+  border: transparent;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  top: 11px;
+  right: 18px;
+  right: 10px;
+  cursor: pointer;
+`;
