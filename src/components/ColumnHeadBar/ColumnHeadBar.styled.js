@@ -6,7 +6,15 @@ export const ContainerHeadBar = styled.div`
   padding-bottom: 35px;
 
   .button {
+    width: 22px;
+    height: 22px;
+    stroke: ${(p) => p.theme.mainTextColor};
     cursor: pointer;
+
+    @media (min-width: 375px) {
+      width: 24px;
+      height: 24px;
+    }
   }
 `;
 
