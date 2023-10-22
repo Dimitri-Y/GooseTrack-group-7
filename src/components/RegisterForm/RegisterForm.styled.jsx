@@ -2,6 +2,9 @@ import { Form as FormikForm, Field as FormikField } from 'formik';
 
 import styled from 'styled-components';
 import { ReactComponent as LoginIcon } from '../../images/svg/singup.svg';
+import { ReactComponent as IconError } from '../../images/svg/error-icon.svg';
+import { ReactComponent as IconCorrect } from '../../images/svg/done-icon.svg';
+
 
 export const Form = styled(FormikForm)`
   width: 335px;
@@ -71,9 +74,9 @@ export const Field = styled(FormikField)`
   border-radius: 8px;
   margin-top: 10px;
 
-  :hover,
-  :focus {
-    border-color: #290b78;
+  &:hover,
+  &:focus {
+    border-color: rgba(17, 17, 17, 1);
   }
 
   ::placeholder {
@@ -143,11 +146,52 @@ export const ToggleHidePassword = styled.button`
   background-color: transparent;
   padding: 0;
   position: absolute;
-  right: 12px;
-  top: 12px;
+  top: 30px;
+  bottom: 0;
+  right: 10px;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    top: 16px;
+    top: 32px;
   }
+`;
+
+export const IconContainer = styled.div`
+  position: relative;
+`;
+
+export const ErrorIcon = styled(IconError)`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export const CorrectIcon = styled(IconCorrect)`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+export const ErrorTag = styled.div`
+  color: #e74a3b;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
+`;
+
+export const CorrectTag = styled.div`
+  color: #3cbc81;
+  margin-top: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.17;
 `;
