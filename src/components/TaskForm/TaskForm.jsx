@@ -10,15 +10,6 @@ import {
 import { SvgSelector } from '../Icons/SvgSelector';
 //  { useState } from 'react';
 
-// const initialValues = {
-//   title: '',
-//   start: '09:30',
-//   end: '18:30',
-//   priority: 'Low',
-//   date: '2023-10-24',
-//   category: 'done',
-// };
-
 const schema = Yup.object().shape({
   title: Yup.string().max(250).required(),
   // start: Yup.number().required(),
@@ -35,27 +26,15 @@ const schema = Yup.object().shape({
   category: Yup.string(),
 });
 
-const TaskForm = ({
-  headerCategory,
-  task,
-  closeModal,
-}) => {
+const TaskForm = ({ headerCategory, task, closeModal }) => {
   const initialValues = {
-    title: task?.title||'',
-    start: task?.start||'09:30',
-    end: task?.end||'18:30',
-    priority: task?.priority||'Low',
-    date: task?.date||'2023-10-24',
-    category: task?.category||'done',
+    title: task?.title || '',
+    start: task?.start || '09:30',
+    end: task?.end || '18:30',
+    priority: task?.priority || 'Low',
+    date: task?.date || '2023-10-24',
+    category: task?.category || 'done',
   };
-  // const initialValuesEditTask = {
-  //   title: task.title,
-  //   start: task.start,
-  //   end: task.end,
-  //   priority: task.priority,
-  //   date: task.date,
-  //   category: task.category,
-  // };
 
   console.log(task);
   // const [title, setTitle] = useState('')
@@ -82,17 +61,23 @@ const TaskForm = ({
   const handleSubmit = async (value, { resetForm }) => {
     const { title, start, end } = value;
     console.log('value: ', value);
-    const priority = document.querySelector('input[name="priority"]:checked').value
-   
-    const newTask = {'title': title,'start': start,'end': end, 'priority': priority, date: new Date, category:headerCategory}
+    const priority = document.querySelector(
+      'input[name="priority"]:checked',
+    ).value;
+
+    const newTask = {
+      title: title,
+      start: start,
+      end: end,
+      priority: priority,
+      date: new Date(),
+      category: headerCategory,
+    };
     console.log('newTask: ', newTask);
-    
-      
-    
+
     resetForm();
   };
 
-  
   return (
     <FormTask>
       <Formik
@@ -182,11 +167,11 @@ const TaskForm = ({
             </div>
           </div>
           <Buttons>
-            {task ==undefined ? (
-            <ButtonSummit type="submit">
-              <SvgSelector id="plusBtnWhite" className="iconWrapper" />
-              Add
-            </ButtonSummit>
+            {task == undefined ? (
+              <ButtonSummit type="submit">
+                <SvgSelector id="plusBtnWhite" className="iconWrapper" />
+                Add
+              </ButtonSummit>
             ) : (
               <ButtonSummit type="submit">
                 <SvgSelector id="editBtn" className="iconWrapper" />
