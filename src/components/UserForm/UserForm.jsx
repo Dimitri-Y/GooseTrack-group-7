@@ -37,7 +37,7 @@ const validationSchema = yup.object().shape({
   birthday: yup.date().default(() => new Date()),
   number: yup
     .string()
-    .matches(/^\+380\d{9}$/, 'The number should start with +380', {
+    .matches(/^\+380\d{9}$/, 'The number should start with +380 and 9 number', {
       excludeEmptyString: true,
     }),
   skype: yup.string().max(16),
@@ -57,27 +57,26 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, number, birthday, skype, email } = formik.values;
-
+    const birthdayMonth =
+      birthday.getMonth() < 10
+        ? `0${birthday.getMonth() + 1}`
+        : `${birthday.getMonth() + 1}`;
+    const updateBirthday = `${birthday.getFullYear()}-${birthdayMonth}-${birthday.getDate()}`;
     const formData = new FormData();
     formData.append('avatarURL', uploaded);
     formData.append('userName', name);
     formData.append('phone', number);
-    formData.append('birthday', birthday);
+    formData.append('birthday', updateBirthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    console.log(formData);
     const res = await axios.patch(API_PATCH, formData, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
         'Content-Type': 'multipart/form-data',
       },
     });
-
     const data = res.data;
     console.log(data);
-    // console.log(name)
-    // console.log(birthday)
-    // console.log(email)
   };
 
   const formik = useFormik({
@@ -115,7 +114,7 @@ const UserForm = () => {
           avatar: data.avatarURL,
           name: data.userName,
           number: data.phone,
-          birthday: new Date(), // Припускаємо, що дата приходить у правильному форматі
+          birthday: new Date(data.birthday),
           skype: data.skype,
           email: data.email,
         });
