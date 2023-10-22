@@ -28,6 +28,7 @@ export const ReviewForm = styled(Form)`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.16;
+  background-color: ${p => p.theme.reviewFormColor};
 
   box-shadow:
     rgba(17, 17, 26, 0.1) 0px 1px 0px,
@@ -48,6 +49,8 @@ export const ReviewForm = styled(Form)`
 
 export const Label = styled.label`
 margin-bottom: 8px;
+font-weight: 500;
+color: ${p => p.theme.labelsColor};
 `
 export const ReviewWrapper = styled.div`
   display: flex;
@@ -72,11 +75,10 @@ export const EditBtn = styled.button`
   height: 30px;
   border-radius: 50%;
 
-  /* background-color: ${props => { return props.isActive ? '#3E85F3' : '#E5EDFA'}};  */
+  background-color: ${p => p.theme.editBtnColor}; 
   /* stroke:  ${props => { return props.isActive ? '#FFFFFF' : '#3E85F3'}} ;  */
+  stroke: #3e85f3;
 
-  background-color: #E5EDFA;
-  stroke: #3E85F3;
 
   border: none;
   cursor: pointer;
@@ -125,12 +127,16 @@ export const Textarea = styled(Field)`
   border: 1px solid rgba(255, 255, 255, 0.15);
   resize: none; 
 
-  color: #343434;
-  background-color: #F6F6F6;
+  color: ${p => p.theme.mainTextColor};
+  background-color: ${p => p.theme.reviewBgColor};
     &:focus-visible {
     outline: none;
   } 
-
+  &::placeholder {
+    color: ${p => p.theme.mainTextColor}; 
+    font-family: "Inter-600", sans-serif;
+    font-size: 14px;
+  }
   @media (min-width: 768px) {
     padding: 14px 18px;
   }
@@ -187,8 +193,8 @@ export const Btn = styled.button`
 
 export const BtnCancel = styled.button`
   box-sizing: border-box;
-  color: #2a2a2a;
-  background-color: #E5EDFA;
+  color: ${p => p.theme.mainTextColor};
+  background-color: ${p => p.theme.cancelBtnColor};
   text-transform: none;
   width: 144px; 
   height: 42px; 
@@ -227,5 +233,7 @@ export const BtnCancel = styled.button`
 //   margin-bottom: 14px;
 
 // `;
+
+// ${p => p.theme.secondaryAccentColorActive};
 
 
