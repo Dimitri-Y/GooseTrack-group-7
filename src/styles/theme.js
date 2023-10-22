@@ -14,6 +14,12 @@ export const lightTheme = {
     sidebarLogoTextColor: '#3E85F3',
     sidebarPanelColor: '#34343450',
     buttonTextColor: '#FFFFFF',
+    reviewBgColor: '#F6F6F6',
+    reviewFormColor: '#FFFFFF',
+    cancelBtnColor: '#E5EDFA',
+    labelsColor: '#111111',
+    editBtnColor: '#E3F3FF',
+
 };
 
 export const darkTheme = {
@@ -32,4 +38,9 @@ export const darkTheme = {
     sidebarLogoTextColor: '#E3F3FF',
     sidebarPanelColor: '#FAFAFA4D',
     buttonTextColor: '#FFFFFF',
+    reviewBgColor: '#171820',
+    reviewFormColor: '#171820',
+    cancelBtnColor: '#21222C',
+    labelsColor: 'rgba(250, 250, 250, 0.3)',
+    editBtnColor: '#353647',
 };
