@@ -134,7 +134,7 @@ const ReviewsSlider = () => {
               <ReviewContentBox>
                 <AvatarWrapper>
                   {true ? (
-                    <AvatarImg src="./avatar1.png" alt="UserPicture" />
+                    <AvatarImg src="" alt="UserPicture" />
                   ) : (
                     <BackgroundName className="initials">
                       <UserNameIcon>Olena</UserNameIcon>
@@ -165,7 +165,7 @@ const ReviewsSlider = () => {
                 <AvatarWrapper>
                   {true ? (
                     <AvatarImg
-                      src="../../images/mainPage/avatar1.png"
+                      src=""
                       alt="UserPicture"
                     />
                   ) : (
