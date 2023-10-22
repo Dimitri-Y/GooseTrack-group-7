@@ -6,6 +6,7 @@ import { logIn } from '../../redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Form,
   TitleForm,
@@ -28,6 +29,7 @@ const LoginForm = () => {
   const initialState = { email: '', password: '' };
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -45,7 +47,7 @@ const LoginForm = () => {
             toast.error(`Verify your account`);
             break;
           default:
-            toast.success(`Welcome in Goose Track`);
+            navigate('/calendar', { replace: true });
         }
       })
       .catch((error) => {
