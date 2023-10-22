@@ -1,23 +1,29 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ButtonM, ButtonD, PeriodTypeSelectStyles } from './PeriodTypeSelect.styled';
+import { selectParameter } from '../../redux/tasks/tasksSelectors';
+import { useSelector } from 'react-redux';
+/* import StyledDatepicker from '../PeriodPaginator/PeriodPaginator';
+import StyledMonthpicker from '../PeriodPaginator/PeriodPaginator'; */
 
 const PeriodTypeMonth = () => {
     const navigate = useNavigate();
-    const month = 'january';
+    const month = useSelector(selectParameter);
 
     useEffect(() => {
         navigate(`/calendar/month/${month}`);
     }, [navigate]);
+    /* StyledMonthpicker(); */
 }
 
 const PeriodTypeDay = () => {
     const navigate = useNavigate();
-    const day = 'monday';
+    const day = useSelector(selectParameter);
 
     useEffect(() => {
         navigate(`/calendar/day/${day}`);
     }, [navigate]);
+    /* StyledDatepicker(); */
 }
 
 const PeriodTypeSelect = () => {
