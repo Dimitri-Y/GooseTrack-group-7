@@ -114,8 +114,7 @@ export const CloseBtn = styled.button`
   justify-content: center;
   height: 100%;
   padding: 0;
-  color: ${p => p.theme.secondaryTextColor ||'#343434'}
-  stroke: currentColor;
+  color: ${p => p.theme.secondaryTextColor};
   background: none;
   border: none;
   cursor: pointer;
@@ -128,6 +127,8 @@ export const CloseBtn = styled.button`
 export const CloseIcon = styled.svg`
   width: 24px;
   height: 24px;
+  stroke: currentColor;
+  fill: none;
 
   @media screen and (min-width: 768px) and (max-width:1439px) {
     width: 34px;

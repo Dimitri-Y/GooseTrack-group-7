@@ -8,10 +8,12 @@ export const selectError = (state) => state.tasks.error;
 
 export const selectDate = (state) => state.date.date;
 
+export const selectParameter = (state) => state.parameter.parameter;
+
 export const selectVisibleTasks = createSelector(
   [selectTasks, selectDate],
   (tasks, date) => {
-    return tasks.filter((task) => task.date === date);
+    return Object.entries(tasks).filter((task) => task.date === date);
   },
 );
 
