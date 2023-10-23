@@ -24,7 +24,7 @@ const UserInfo = () => {
 
   const displayAvatar = (avatarURL) => {
     if (avatarURL) {
-      return <img src={user.avatarURL} alt="User Avatar" />
+      return <img src={avatarURL} alt="User Avatar" />
     } else {
       return  <FirstLetterIcon>{getFirstLetterInUpperCase(name)}</FirstLetterIcon>
     }
@@ -33,7 +33,7 @@ const UserInfo = () => {
   return (
     <UserInfoStyled>
       <UserName>{user.name || 'UserName'}</UserName>
-      <UserAvatar>{displayAvatar}</UserAvatar>
+      <UserAvatar>{displayAvatar(user.avatarURL)}</UserAvatar>
     </UserInfoStyled>
   );
 }
