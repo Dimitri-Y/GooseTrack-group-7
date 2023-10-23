@@ -13,13 +13,13 @@ export const selectParameter = (state) => state.parameter.parameter;
 export const selectVisibleTasks = createSelector(
   [selectTasks, selectDate],
   (tasks, date) => {
-    return tasks.filter((task) => task.date === date);
+    return Object.entries(tasks).filter((task) => task.date === date);
   },
 );
 
 export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
-  const hasUnfinishedTasks = tasks.some(
-    ({ category }) => category === 'to-do' || category === 'in-progress',
+  const hasUnfinishedTasks = Object.entries(tasks).some(
+    (task) => task.category === 'to-do' || task.category === 'in-progress',
   );
 
   return hasUnfinishedTasks

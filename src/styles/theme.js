@@ -25,6 +25,7 @@ export const lightTheme = {
   cancelBtnColor: '#E5EDFA',
   labelsColor: '#111111',
   editBtnColor: '#E3F3FF',
+  borderContainerStatisticsColor: '#E3F3FF',
 };
 
 export const darkTheme = {
@@ -53,4 +54,5 @@ export const darkTheme = {
   cancelBtnColor: '#21222C',
   labelsColor: 'rgba(250, 250, 250, 0.3)',
   editBtnColor: '#353647',
+  borderContainerStatisticsColor: 'rgb(227, 243, 255, 0.2)',
 };

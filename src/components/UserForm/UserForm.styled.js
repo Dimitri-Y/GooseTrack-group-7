@@ -1,5 +1,4 @@
 import { createGlobalStyle, styled } from 'styled-components';
-// import { Form, Field } from 'formik';
 
 export const AccountForm = styled.form`
 background-color: #fff;
@@ -93,6 +92,12 @@ padding-top: 14px;
 padding-bottom: 14px;
 padding-left: 18px;
 
+${(props) =>
+    props.hasError &&
+    `
+      border: 2px solid red; 
+    `}
+
 @media (min-width: 768px) {
    width: 354px;
  }
@@ -102,6 +107,8 @@ padding-left: 18px;
  }
 `
 
+Input.shouldForwardProp = (prop) => prop !== 'hasError';
+
 export const Label = styled.label`
 display: flex;
 flex-direction: column;
@@ -110,6 +117,12 @@ font-size: 14px;
 font-weight: 400;
 line-height: 18px;
 gap: 8px;
+
+${(props) =>
+    props.hasError &&
+    `
+      color: red; 
+    `}
 
 .calendar {
    width: 299px;
@@ -129,6 +142,8 @@ gap: 8px;
  }
 `
 
+Label.shouldForwardProp = (prop) => prop !== 'hasError';
+
 export const ButtonSubmit = styled.button`
 font-family: 'Inter-SemiBold', sans-serif;
 font-size: 14px;
@@ -144,6 +159,9 @@ color: #FFF;
    padding: 15px 83px;
  }
 
+ &:disabled {
+    background-color: rgba(62, 133, 243, 0.5);
+ }
  
 `
 
@@ -237,6 +255,27 @@ export const CalendarGlobalStyles = createGlobalStyle`
     padding: 8px 0;
     position: relative;
 }
+
+.react-datepicker__input-container {
+    position: relative;
+    
+  }
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+    position: absolute;
+    top: 17px;
+    left: 275px;
+
+    @media (min-width: 768px) {
+        left: 325px;
+      }
+     
+      @media (min-width: 1440px) {
+        left: 325px;
+      }
+
+  }
+
 .react-datepicker__current-month {
     font-family: Inter;
     font-size: 20px;
@@ -370,5 +409,10 @@ export const CalendarGlobalStyles = createGlobalStyle`
     position: absolute;
     top: 6px;
     width: 9px;
+
+    .react-datepicker__calendar-icon {
+        position: absolute;
+        left: 100px;
+    }
 }
 `;
