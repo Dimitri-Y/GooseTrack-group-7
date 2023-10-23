@@ -50,7 +50,7 @@ const API = 'http://localhost:3000/api/users/current';
 const API_PATCH = 'http://localhost:3000/api/users/edit';
 
 const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzY0ZGEyM2NkMDE4ODEzMmVlMjg3MCIsImlhdCI6MTY5ODA1ODAwNywiZXhwIjoxNjk4MTQwODA3fQ.4agSL8r5bNOrSR5SSve6Z9Fh8GjWcwOebs_cEYitlMw';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzU3MzJmMWE2ZTZjYjRmNWUyMmIzZiIsImlhdCI6MTY5ODA4Njk0MiwiZXhwIjoxNjk4MTY5NzQyfQ.uOoK_aC8byhJOA9Ri8m_CMULFHLX36bbI-cFo7MHyOM';
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
@@ -60,9 +60,9 @@ const UserForm = () => {
     birthday: '',
     skype: '',
     email: '',
-    avatarURL: ''
-  })
-  const [changePhoto, setChangePhoto] = useState(false)
+    avatarURL: '',
+  });
+  const [changePhoto, setChangePhoto] = useState(false);
 
   const filePicker = useRef(null);
 
@@ -91,8 +91,8 @@ const UserForm = () => {
       },
     });
     const data = res.data;
-    setUserData(data.user)
-    setChangePhoto(false)
+    setUserData(data.user);
+    setChangePhoto(false);
     console.log(data);
   };
 
@@ -126,7 +126,7 @@ const UserForm = () => {
       .then((response) => {
         const data = response.data;
         console.log(data);
-        setUserData(data)
+        setUserData(data);
         formik.setValues({
           name: data.userName,
           number: data.phone,
@@ -134,33 +134,29 @@ const UserForm = () => {
           skype: data.skype,
           email: data.email,
         });
-        setSelectedImage(`http://localhost:3000/${data.avatarURL}`);
-
+        setSelectedImage(`${data.avatarURL}`);
       })
       .catch((error) => {
         console.error('Помилка запиту:', error);
-
       });
   }, []);
 
-
-const disabledFunc = () => {
-  const birthdayMonth = formatWithLeadingZeros(formik.values.birthday.getMonth() + 1);
+  const disabledFunc = () => {
+    const birthdayMonth = formatWithLeadingZeros(
+      formik.values.birthday.getMonth() + 1,
+    );
     const dayOfMonth = formatWithLeadingZeros(formik.values.birthday.getDate());
     const updateBirthday = `${formik.values.birthday.getFullYear()}-${birthdayMonth}-${dayOfMonth}`;
 
-    const disabled = 
-    userData.userName === formik.values.name &&
-    userData.phone === formik.values.number &&
-    userData.birthday === updateBirthday &&
-    userData.skype === formik.values.skype &&
-    userData.email === formik.values.email;
+    const disabled =
+      userData.userName === formik.values.name &&
+      userData.phone === formik.values.number &&
+      userData.birthday === updateBirthday &&
+      userData.skype === formik.values.skype &&
+      userData.email === formik.values.email;
 
-
-    return (disabled);
-}
-
-  
+    return disabled;
+  };
 
   const handleClick = () => {
     filePicker.current.click();
@@ -170,8 +166,7 @@ const disabledFunc = () => {
     setUploaded(e.target.files[0]);
     const imgURL = URL.createObjectURL(e.target.files[0]);
     setSelectedImage(imgURL);
-    setChangePhoto(true)
-
+    setChangePhoto(true);
   };
 
   return (
@@ -252,16 +247,12 @@ const disabledFunc = () => {
             {formik.errors.email && <div>{formik.errors.email}</div>}
           </Label>
         </InputBox>
-        <ButtonSubmit type="submit" 
-        disabled={disabledFunc() && !changePhoto}
-          >
+        <ButtonSubmit type="submit" disabled={disabledFunc() && !changePhoto}>
           Save Changes
         </ButtonSubmit>
       </AccountForm>
     </>
   );
-
-  
 };
 
 export default UserForm;
