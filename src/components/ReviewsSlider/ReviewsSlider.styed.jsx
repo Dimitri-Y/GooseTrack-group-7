@@ -2,16 +2,23 @@ import styled from 'styled-components';
 
 export const ReviewsSection = styled.div`
   background-color: rgba(255, 255, 255, 1);
-  width: 335px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 375px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 64px;
   @media screen and (min-width: 768px) {
-    width: 704px;
+    min-width: 768px;
+    max-width: 768px;
+    padding-left: 94px;
+    padding-right: 94px;
     margin-bottom: 100px;
   }
   @media screen and (min-width: 1440px) {
-    width: 1157px;
+    min-width: 1440px;
+    max-width: 1440px;
+    padding-left: 128px;
+    padding-right: 128px;
     margin-bottom: 118px;
   }
 `;
