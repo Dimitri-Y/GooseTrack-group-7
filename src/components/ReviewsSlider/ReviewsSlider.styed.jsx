@@ -2,21 +2,17 @@ import styled from 'styled-components';
 
 export const ReviewsSection = styled.div`
   background-color: rgba(255, 255, 255, 1);
-  max-width: 375px;
-  width: 100%;
+  max-width: 100%;
+  /* width: 100%; */
   padding-left: 20px;
   padding-right: 20px;
   margin-bottom: 64px;
   @media screen and (min-width: 768px) {
-    min-width: 768px;
-    max-width: 768px;
     padding-left: 94px;
     padding-right: 94px;
     margin-bottom: 100px;
   }
   @media screen and (min-width: 1440px) {
-    min-width: 1440px;
-    max-width: 1440px;
     padding-left: 128px;
     padding-right: 128px;
     margin-bottom: 118px;
