@@ -34,15 +34,13 @@ const Header = ({ toggleSidebar }) => {
   const onChoosedDayPage = location.pathname.startsWith('/calendar/day');
   const tasks = useSelector(selectTasks);
 
-  const getTasksForToday = () => {
-    const tasksToday = tasks.filter((task) => task.date === currentDay);
-    if (tasksToday.length > 0) {
-      return tasksToday.find(
-        (task) => task.category !== 'done',
-      )
-    }
+  const hasUndoneTasksForToday = () => {
+    const tasksToday = tasks
+      .filter((task) => task.date === currentDay)
+      .filter((task) => task.category !== 'done')
+    return tasksToday.length > 0
   }
-  const showMessage = onChoosedDayPage && getTasksForToday || true;
+  const showMessage = onChoosedDayPage && hasUndoneTasksForToday;
 
   return (
     <HeaderContainer>

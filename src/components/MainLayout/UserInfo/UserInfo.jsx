@@ -15,7 +15,7 @@ const UserInfo = () => {
   }, [dispatch]);
 
   const getFirstLetterInUpperCase = (name) => {
-    if (name.length > 0) {
+    if (name?.length > 0) {
       return name[0].toUpperCase();
     } else {
       return '';
