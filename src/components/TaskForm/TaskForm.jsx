@@ -72,30 +72,11 @@ const TaskForm = ({ task, closeModal }) => {
     end: task?.end || getCurrentTime(30),
     priority: task?.priority || 'Low',
     date: task?.date || '2023-10-24',
-    category: task?.category || 'done',
+    category: task?.category || 'to do',
   };
 
-  console.log(task);
-  // const [title, setTitle] = useState('')
-  // const [start, setStart] = useState('')
-  // const [end, setEnd] = useState('')
-  // const [priority, setPriority] = useState('')
-
-  // const handleSubmit = (values, actions) => {
-  //   console.log(values, actions);
-  // };
-
-  // const onAddTask = () => {};
-  // const viewRadio = () => {
-  //   // let priority = "";
-  //   const priorities = document.querySelectorAll('input[name="radio"]');
-  //   for (const p of priorities) {
-  //     if (p.checked) {
-  //       return p.value;
-  //     }
-  //   }
-  // };
-  // console.log(viewRadio())
+  // console.log(task);
+  
 
   const handleSubmit = async (values) => {
     const { title, start, end, category } = values;
@@ -135,16 +116,21 @@ const TaskForm = ({ task, closeModal }) => {
       end,
       priority,
       category,
-      date: currentDay,
-      
+      date: currentDay,     
       
     };
-    console.log('newTask: ', taskData);
+
+    const addTaskData = {
+      id: nanoid(),
+      ...taskData,       
+      
+    };
+    console.log('newTask: ', addTaskData);
     if (task?.id) {
-      dispatch(updateTask({ id: task.id, task: taskData }));
+      dispatch(updateTask({id: task.id, taskData}));
     } else {
-      dispatch(addTask({id: nanoid, taskData}));
-      // showToast('Successfully! Task added', false);
+      dispatch(addTask(addTaskData));
+      showToast('Successfully! Task added', false);
     }
     closeModal();
   };
