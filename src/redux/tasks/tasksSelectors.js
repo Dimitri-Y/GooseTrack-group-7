@@ -19,7 +19,7 @@ export const selectVisibleTasks = createSelector(
 
 export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
   const hasUnfinishedTasks = Object.entries(tasks).some(
-    ({ category }) => category === 'to-do' || category === 'in-progress',
+    (task) => task.category === 'to-do' || task.category === 'in-progress',
   );
 
   return hasUnfinishedTasks
@@ -27,9 +27,3 @@ export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
     : '';
 });
 
-// export const selectVisibleTasks = createSelector(
-//   [selectTasks, selectDate],
-//   (tasks, date) => {
-//     return Object.entries(tasks).filter((task) => task.date === date);
-//   },
-// );

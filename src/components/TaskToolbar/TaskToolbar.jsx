@@ -12,11 +12,17 @@ import TaskModal from '../TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
 import { updateTask } from '../../redux/tasks/tasksOperations';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { selectError } from '../../redux/tasks/tasksSelectors';
+import { useSelector } from 'react-redux';
+
 const TaskToolbar = ({ task }) => {
   const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
   const [visible, setVisible] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
   const { id, category } = task;
 
   const moveTask = () => {
@@ -35,6 +41,8 @@ const TaskToolbar = ({ task }) => {
   const deleteTask = (id) => {
     console.log(`delete task ${id}`);
     dispatch(deleteTask(id));
+
+    if (error) toast.error(error);
   };
 
   const handleClickCategory = (event) => {
@@ -44,14 +52,20 @@ const TaskToolbar = ({ task }) => {
     if (value === 'To do') {
       console.log('To do');
       dispatch(updateTask(id, { category: 'to-do' }));
+
+      if (error) toast.error(error);
     }
     if (value === 'In progress') {
       console.log('In progress');
       dispatch(updateTask(id, { category: 'in-progress' }));
+
+      if (error) toast.error(error);
     }
     if (value === 'Done') {
       console.log('Done');
       dispatch(updateTask(id, { category: 'done' }));
+
+      if (error) toast.error(error);
     }
   };
 
@@ -91,6 +105,7 @@ const TaskToolbar = ({ task }) => {
           ))}
         </ContextMenu>
       )}
+      <ToastContainer />
     </ContainerTaskToolbar>
   );
 };
