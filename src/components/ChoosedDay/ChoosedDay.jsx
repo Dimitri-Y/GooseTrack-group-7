@@ -2,15 +2,22 @@ import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 import filter from '../../utils/filter';
 import { ContainerSection } from './ChoosedDay.styled';
-import { selectVisibleTasks } from '../../redux/tasks/tasksSelectors';
+import {
+  selectError,
+  selectVisibleTasks,
+} from '../../redux/tasks/tasksSelectors';
 import { useEffect } from 'react';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { fetchTasks } from '../../redux/tasks/tasksOperations';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ChoosedDay = () => {
   const visibleTasks = useSelector(selectVisibleTasks);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   const toDo = useMemo(
@@ -29,9 +36,11 @@ const ChoosedDay = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(fetchTasks());
+
+      if (error) toast.error(error);
     };
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <ContainerSection>
@@ -41,6 +50,7 @@ const ChoosedDay = () => {
         inProgress={inProgress}
         done={done}
       ></TasksColumnsList>
+      <ToastContainer />
     </ContainerSection>
   );
 };

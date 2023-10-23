@@ -42,14 +42,16 @@ const App = () => {
         <Route path="/sendemail" element={<RestrictedRoute redirectTo="/calendar" component={<SendEmailPage />} />} />
         <Route path="/sendemail/:verificationToken" element={<RestrictedRoute redirectTo="/calendar" component={<SendEmailPage />} />} />
 
-        <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
-          <Route path="account" element={<AccountPage />} />
-          <Route path="calendar" element={<CalendarPage />} >
-            {/*<Route path="month/:currentDate" element={<ChoosedMonth />} />*/}
-            <Route path="day/:currentDay" element={<ChoosedDay />} />
-          </Route>
-          <Route path="/statistics" element={<StatisticsPage />}></Route>
-         </Route>
+      <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
+        <Route path="account" element={<AccountPage />} />
+        <Route path="calendar" element={<CalendarPage />} >
+          {/*<Route path="month/:currentDate" element={<ChoosedMonth />} />*/}
+          <Route path="day/:currentDay" element={<ChoosedDay />} />
+        </Route>
+        <Route path="/statistics" element={<StatisticsPage />} >
+            <Route path=":currentDate" element={<StatisticsPage />} />
+        </Route>
+       </Route>
 
           <Route path="*" element={<NotFoundPage />} />
       </Routes>

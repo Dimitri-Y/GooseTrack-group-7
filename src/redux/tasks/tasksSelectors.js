@@ -27,9 +27,3 @@ export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
     : '';
 });
 
-// export const selectVisibleTasks = createSelector(
-//   [selectTasks, selectDate],
-//   (tasks, date) => {
-//     return Object.entries(tasks).filter((task) => task.date === date);
-//   },
-// );
