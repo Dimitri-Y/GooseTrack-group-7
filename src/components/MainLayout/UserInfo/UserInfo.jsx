@@ -1,4 +1,4 @@
-import {UserInfoStyled, UserName, UserAvatar, FirstLetterIcon} from "./UserInfo.styled.jsx";
+import {UserInfoStyled, UserName, UserAvatar, FirstLetterIcon, UserAvatarBox} from "./UserInfo.styled.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { selectUser } from "../../../redux/auth/authSelectors.js";
@@ -22,18 +22,18 @@ const UserInfo = () => {
     }
   };
 
-  const displayAvatar = (avatarURL) => {
-    if (avatarURL) {
-      return <img src={user.avatarURL} alt="User Avatar" />
+  const displayAvatar = (user) => {
+    if (user.avatarURL) {
+      return <UserAvatar src={user.avatarURL} alt="User Avatar" />
     } else {
-      return  <FirstLetterIcon>{getFirstLetterInUpperCase(name)}</FirstLetterIcon>
+      return  <FirstLetterIcon>{getFirstLetterInUpperCase(user.userName)}</FirstLetterIcon>
     }
   };
 
   return (
     <UserInfoStyled>
-      <UserName>{user.name || 'UserName'}</UserName>
-      <UserAvatar>{displayAvatar}</UserAvatar>
+      <UserName>{user.userName }</UserName>
+      <UserAvatarBox>{displayAvatar(user)}</UserAvatarBox>
     </UserInfoStyled>
   );
 }

@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams  } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import AddFeedbackBtn from "../AddFeedbackBtn/AddFeedbackBtn.jsx";
 import ThemeToggler from "../ThemeToggler/ThemeToggler.jsx";
 import UserInfo from "../UserInfo/UserInfo.jsx";
@@ -17,8 +18,8 @@ import {
 import icon from '../../Icons/symbol-defs.svg';
 import { motivator } from '../../../images/motivator';
 import MainTitle from '../../Reusable/MainTitle/MainTitle.jsx';
-import {selectVisibleMessage} from '../../../redux/tasks/tasksSelectors.js'
-import { useSelector } from "react-redux";
+// import {selectVisibleMessage} from '../../../redux/tasks/tasksSelectors.js'
+import {selectTasks} from '../../../redux/tasks/tasksSelectors.js';
 
 const getCurrentMainTitle = location => {
   if (location.pathname.startsWith('/account')) return 'User Profile';
@@ -29,9 +30,19 @@ const getCurrentMainTitle = location => {
 const Header = ({ toggleSidebar }) => {
   const location = useLocation();
   const currentMainTitle = getCurrentMainTitle(location);
+  const currentDay  = useParams();
+  const onChoosedDayPage = location.pathname.startsWith('/calendar/day');
+  const tasks = useSelector(selectTasks);
 
-  const hasUnfinishedTasks = useSelector(selectVisibleMessage);
-  const showMessage =  hasUnfinishedTasks || true;
+  const getTasksForToday = () => {
+    const tasksToday = tasks.filter((task) => task.date === currentDay);
+    if (tasksToday.length > 0) {
+      return tasksToday.find(
+        (task) => task.category !== 'done',
+      )
+    }
+  }
+  const showMessage = onChoosedDayPage && getTasksForToday || true;
 
   return (
     <HeaderContainer>
