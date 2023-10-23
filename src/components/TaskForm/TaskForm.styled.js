@@ -178,7 +178,7 @@ export const FormTask = styled.div`
     .real-radio:checked + .custom-radio::before {
       transform: translate(-50%, -50%) scale(1);
     }
-}
+  }
 `;
 export const Buttons = styled.div`
   display: flex;
@@ -208,6 +208,10 @@ export const ButtonSummit = styled.button`
   line-height: 1.29;
 
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 48px;
+  }
 `;
 export const ButtonCancel = styled.button`
   box-sizing: border-box;
@@ -233,4 +237,8 @@ export const ButtonCancel = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 1.29; /* 128.571% */
+  @media screen and (min-width: 768px) {
+    width: 144px;
+    height: 48px;
+  }
 `;
