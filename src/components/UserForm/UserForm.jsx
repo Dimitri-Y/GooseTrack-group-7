@@ -20,6 +20,7 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { parseISO } from 'date-fns';
+import { selectToken } from '../../redux/auth/authSelectors';
 
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
@@ -48,9 +49,8 @@ const validationSchema = yup.object().shape({
 
 const API = 'http://localhost:3000/api/users/current';
 const API_PATCH = 'http://localhost:3000/api/users/edit';
+const TOKEN = selectToken();
 
-const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzU3MzJmMWE2ZTZjYjRmNWUyMmIzZiIsImlhdCI6MTY5ODA4Njk0MiwiZXhwIjoxNjk4MTY5NzQyfQ.uOoK_aC8byhJOA9Ri8m_CMULFHLX36bbI-cFo7MHyOM';
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
