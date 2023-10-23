@@ -69,9 +69,9 @@ export const Field = styled(FormikField)`
   border-radius: 8px;
   margin-top: 10px;
 
-  :hover,
-  :focus {
-    border: 1px solid #111;
+  &:hover,
+  &:focus {
+    border-color: rgba(17, 17, 17, 1);
   }
 
   ::placeholder {
@@ -170,4 +170,16 @@ export const ValidCorrectIcon = styled(CorrectIcon)`
   position: absolute;
   top: 11px;
   right: 18px;
+`;
+
+export const ToggleHidePassword = styled.button`
+  border: transparent;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+  position: absolute;
+  top: 11px;
+  right: 18px;
+  right: 10px;
+  cursor: pointer;
 `;
