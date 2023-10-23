@@ -1,19 +1,22 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+
 
 export const SectionStatistics = styled.section`
- 
+
+  background-color: ${p => p.theme.secondaryBgColor || '#21222C'};
+  border-radius: 16px;
   padding: 28px 14px 136px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-    @media (min-width: 768px) and (max-width: 1023px) {
+    @media (min-width: 768px)  {
             
              padding: 132px 32px 224px;
     }
     @media (min-width: 1024px) {
-            padding: 72px 114px 104px;
+            padding: 134px 114px 104px;
     }
 `;
 
@@ -31,6 +34,7 @@ export const ContainerMenuStatistics = styled.div`
 export const ContainerCalendarStatistics = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 8px;
     @media (max-width: 768px)  {
          margin-bottom: 20px;
@@ -60,8 +64,8 @@ export const TextTimeSymbolStatistics = styled.p`
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-    color: #343434;
-    ::before {
+    color:  ${p => p.theme.secondaryTextColor || '#fff'};
+    &:before {
             content: '';
             border-radius: 50%;
             display: inline-block;
@@ -86,7 +90,7 @@ export const ContainerScheduleStatistics = styled.div`
     border-radius: 20px;
     border-width: 0.8px;
     padding: 40px 0;
-    border-color: #E3F3FF;/* #E3F3FF */
+    border-color:  ${p => p.theme.borderContainerStatisticsColor || 'rgb(227, 243, 255, 0.2)'};
     
     @media (min-width: 768px) and (max-width: 1023px) {
          height: 334px;
@@ -120,9 +124,10 @@ export const TextTaskStatistics = styled.p`
     font-weight: 600;
     line-height: 21px;
     letter-spacing: 0em;
-    color: #343434;
+    color: ${p =>  p.theme.secondaryTextColor || '#fff'};
 
     @media (min-width: 768px)  {
         margin-bottom: 12px;
     }
 `
+

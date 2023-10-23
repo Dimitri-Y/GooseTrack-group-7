@@ -14,6 +14,7 @@ export const lightTheme = {
     sidebarLogoTextColor: '#3E85F3',
     sidebarPanelColor: '#34343450',
     buttonTextColor: '#FFFFFF',
+    borderContainerStatisticsColor: '#E3F3FF',
 };
 
 export const darkTheme = {
@@ -32,4 +33,5 @@ export const darkTheme = {
     sidebarLogoTextColor: '#E3F3FF',
     sidebarPanelColor: '#FAFAFA4D',
     buttonTextColor: '#FFFFFF',
+    borderContainerStatisticsColor: 'rgb(227, 243, 255, 0.2)',
 };
