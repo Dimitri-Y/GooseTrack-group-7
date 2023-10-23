@@ -23,13 +23,25 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const parameterPersistConfig = {
+  key: 'parameter',
+  storage,
+  whitelist: ['parameter'],
+};
+
+const datePersistConfig = {
+  key: 'date',
+  storage,
+  whitelist: ['date'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     tasks: tasksReducer,
     reviews: reviewsReducer,
-    date: dateReducer,
-    parameter: parameterUrlReducer,
+    date: persistReducer(datePersistConfig, dateReducer),
+    parameter: persistReducer(parameterPersistConfig, parameterUrlReducer),
     theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>

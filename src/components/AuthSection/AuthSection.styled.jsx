@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
-  min-width: 375px;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
   min-height: 812px;
-  background-color: rgba(62, 133, 243,1);
+  background-color: rgba(62, 133, 243, 1);
 
   @media screen and (min-width: 768px) {
-    min-width: 768px;
     min-height: 1024px;
   }
   @media screen and (min-width: 1440px) {
-    min-width: 1440px;
     min-height: 770px;
   }
 `;

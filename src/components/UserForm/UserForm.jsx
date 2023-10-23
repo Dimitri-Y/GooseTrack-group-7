@@ -4,9 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 // import { refreshUser } from '../../redux/auth/authOperations';
 import axios from 'axios';
 import UserPhoto from './UserPhoto';
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown } from 'react-icons/ai';
 import {
   Input,
   AccountForm,
@@ -16,7 +16,7 @@ import {
   InputBox,
   InputFile,
   Label,
-  CalendarGlobalStyles
+  CalendarGlobalStyles,
 } from './UserForm.styled';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -37,18 +37,17 @@ const validationSchema = yup.object().shape({
   birthday: yup.date().default(() => new Date()),
   number: yup
     .string()
-    .matches(/^\+380\d{9}$/, 'The number should start with +380', {
+    .matches(/^\+380\d{9}$/, 'The number should start with +380 and 9 number', {
       excludeEmptyString: true,
     }),
   skype: yup.string().max(16),
 });
 
 const API = 'http://localhost:3000/api/users/current';
-// const API_PATCH = 'http://localhost:3000/api/users/edit';
+const API_PATCH = 'http://localhost:3000/api/users/edit';
 
 const TOKEN =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzM5M2UzODFiOTUzMDRkZDA5MmZkNCIsImlhdCI6MTY5Nzg3OTAyMCwiZXhwIjoxNjk3OTYxODIwfQ.vC992-g3DkIMjxzFJitEmeiV51zlFIwocQzGtLW1Dik';
-
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzUyN2M5M2I1ZDU5Y2QwYjk4MjRkMCIsImlhdCI6MTY5Nzk4NDMwOCwiZXhwIjoxNjk4MDY3MTA4fQ.yD4G2mmG2Za1nmcgNvg-2nD_n3Dz5Pn548zJ1nDUnh4';
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
@@ -58,31 +57,31 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, number, birthday, skype, email } = formik.values;
-
+    const birthdayMonth =
+      birthday.getMonth() < 10
+        ? `0${birthday.getMonth() + 1}`
+        : `${birthday.getMonth() + 1}`;
+    const updateBirthday = `${birthday.getFullYear()}-${birthdayMonth}-${birthday.getDate()}`;
     const formData = new FormData();
-    formData.append('avatar', uploaded);
+    formData.append('avatarURL', uploaded);
     formData.append('userName', name);
     formData.append('phone', number);
-    formData.append('birthday', birthday);
+    formData.append('birthday', updateBirthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    // const res = await axios.patch(API_PATCH, formData, {
-    //   headers: {
-    //     Authorization: `Bearer ${TOKEN}`,
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // });
-
-    // const data = res.data;
-    // console.log(data);
-    console.log(name)
-    console.log(birthday)
-    console.log(email)
-
-  }
+    const res = await axios.patch(API_PATCH, formData, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    const data = res.data;
+    console.log(data);
+  };
 
   const formik = useFormik({
     initialValues: {
+      avatar: '',
       name: '',
       number: '',
       birthday: new Date(),
@@ -109,13 +108,17 @@ const UserForm = () => {
         },
       })
       .then((response) => {
-        const data =  response.data
+        const data = response.data;
+        console.log(data);
         formik.setValues({
+          avatar: data.avatarURL,
           name: data.userName,
           number: data.phone,
-          birthday: new Date(), // Припускаємо, що дата приходить у правильному форматі
+          birthday: new Date(data.birthday),
           skype: data.skype,
-          email: data.email,});
+          email: data.email,
+        });
+        setSelectedImage(`http://localhost:3000/${data.avatarURL}`);
       })
       .catch((error) => {
         console.error('Помилка запиту:', error);
@@ -132,13 +135,9 @@ const UserForm = () => {
     setSelectedImage(imgURL);
   };
 
-  console.log(formik.values.birthday)
-
   return (
     <>
-      <AccountForm
-      onSubmit={handleSubmit}
-      >
+      <AccountForm onSubmit={handleSubmit}>
         <UserPhoto onClick={handleClick} selectedImage={selectedImage} />
         <InputFile
           type="file"
@@ -152,9 +151,13 @@ const UserForm = () => {
         <InputBox>
           <Label>
             User Name
-            <Input type="text" name="name" maxLength="16" required 
-            onChange={formik.handleChange}
-            value={formik.values.name}
+            <Input
+              type="text"
+              name="name"
+              maxLength="16"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.name}
             />
           </Label>
           <Label>
@@ -163,38 +166,44 @@ const UserForm = () => {
               type="tel"
               name="number"
               onChange={formik.handleChange}
-            value={formik.values.number}
+              value={formik.values.number}
             />
           </Label>
 
           <Label>
             Birthday
-            <CalendarGlobalStyles/>
-      <DatePicker
-        showIcon
-        selected={formik.values.birthday}
-        onChange={(value) => {
-          formik.setFieldValue('birthday', value)
-        }}
-        icon={<AiOutlineDown className="customDatePickerIcon"/>}
-        calendarIconClassName='calendarIcon'
-        // dateFormat={"yyyy/MM/dd"}
-      calendarStartDay={1}
-      customInput={<Input />}
-      maxDate={new Date()}
-      />
+            <CalendarGlobalStyles />
+            <DatePicker
+              showIcon
+              selected={formik.values.birthday}
+              onChange={(value) => {
+                formik.setFieldValue('birthday', value);
+              }}
+              icon={<AiOutlineDown className="customDatePickerIcon" />}
+              calendarIconClassName="calendarIcon"
+              dateFormat={'yyyy-MM-dd'}
+              calendarStartDay={1}
+              customInput={<Input />}
+              maxDate={new Date()}
+            />
           </Label>
           <Label>
             Skype
-            <Input type="text" name="skype" 
-            onChange={formik.handleChange}
-            value={formik.values.skype}/>
+            <Input
+              type="text"
+              name="skype"
+              onChange={formik.handleChange}
+              value={formik.values.skype}
+            />
           </Label>
           <Label>
             Email
-            <Input type="email" name="email" 
-            onChange={formik.handleChange}
-            value={formik.values.email}/>
+            <Input
+              type="email"
+              name="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
           </Label>
         </InputBox>
         <ButtonSubmit type="submit">Save Changes</ButtonSubmit>

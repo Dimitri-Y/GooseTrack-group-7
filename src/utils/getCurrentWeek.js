@@ -76,3 +76,13 @@ const getCurrentWeek = (day, date) => {
 };
 
 export default getCurrentWeek;
+
+// return [
+//   date,
+//   isLastDay ? `1` : `${Number(date) + 1}`,
+//   isLastDay ? `${1 + 1}` : `${Number(date) + 1}`,
+//   isLastDay ? `${1 + 2}` : `${Number(date) + 1}`,
+//   isLastDay ? `${1 + 3}` : `${Number(date) + 1}`,
+//   isLastDay ? `${1 + 4}` : `${Number(date) + 1}`,
+//   isLastDay ? `${1 + 5}` : `${Number(date) + 1}`,
+// ];

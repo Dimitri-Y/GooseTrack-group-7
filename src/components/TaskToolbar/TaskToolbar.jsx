@@ -9,13 +9,20 @@ import {
 } from './TaskToolbar.styled';
 import { useEffect, useState } from 'react';
 import TaskModal from '../TaskModal/TaskModal';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateTask } from '../../redux/tasks/tasksOperations';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { selectError } from '../../redux/tasks/tasksSelectors';
+import { useSelector } from 'react-redux';
 
 const TaskToolbar = ({ task }) => {
   const [visibleContextMenuItems, setVisibleContextMenuItems] = useState([]);
   const [visible, setVisible] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
   const { id, category } = task;
 
   const moveTask = () => {
@@ -26,14 +33,16 @@ const TaskToolbar = ({ task }) => {
     console.log(`edit task ${id}`);
     setIsOpenModal(true);
   };
-  
+
   const handleModalClose = () => {
     setIsOpenModal(false);
   };
 
   const deleteTask = (id) => {
     console.log(`delete task ${id}`);
-    // dispatch(deleteTask(id));
+    dispatch(deleteTask(id));
+
+    if (error) toast.error(error);
   };
 
   const handleClickCategory = (event) => {
@@ -42,15 +51,21 @@ const TaskToolbar = ({ task }) => {
 
     if (value === 'To do') {
       console.log('To do');
-      // dispatch(updateTask(id, { category: "to-do"}));
+      dispatch(updateTask(id, { category: 'to-do' }));
+
+      if (error) toast.error(error);
     }
     if (value === 'In progress') {
       console.log('In progress');
-      // dispatch(updateTask(id, { category: 'in-progress' }));
+      dispatch(updateTask(id, { category: 'in-progress' }));
+
+      if (error) toast.error(error);
     }
     if (value === 'Done') {
       console.log('Done');
-      // dispatch(updateTask(id, { category: 'done' }));
+      dispatch(updateTask(id, { category: 'done' }));
+
+      if (error) toast.error(error);
     }
   };
 
@@ -74,7 +89,7 @@ const TaskToolbar = ({ task }) => {
         type="button"
         onClick={() => editTask(id)}
       />
-      {isOpenModal && <TaskModal task={task} onModalClose={handleModalClose}/>}
+      {isOpenModal && <TaskModal task={task} onModalClose={handleModalClose} />}
       <ButtonDelete
         className="button"
         type="button"
@@ -85,11 +100,12 @@ const TaskToolbar = ({ task }) => {
           {visibleContextMenuItems.map((item, index) => (
             <ContainerContextMenuItem key={index} onClick={handleClickCategory}>
               <ContextMenuItem>{item}</ContextMenuItem>
-              <ButtonMove />
+              <ButtonMove className="button" type="button" />
             </ContainerContextMenuItem>
           ))}
         </ContextMenu>
       )}
+      <ToastContainer />
     </ContainerTaskToolbar>
   );
 };
