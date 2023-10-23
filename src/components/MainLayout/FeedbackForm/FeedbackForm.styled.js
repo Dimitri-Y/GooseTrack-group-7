@@ -139,6 +139,8 @@ export const Textarea = styled(Field)`
   }
   @media (min-width: 768px) {
     padding: 14px 18px;
+    font-family: "Inter-600", sans-serif;
+    font-size: 14px;
   }
 `;
 
@@ -234,6 +236,5 @@ export const BtnCancel = styled.button`
 
 // `;
 
-// ${p => p.theme.secondaryAccentColorActive};
 
 

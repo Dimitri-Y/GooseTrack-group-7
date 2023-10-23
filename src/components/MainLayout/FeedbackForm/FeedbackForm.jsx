@@ -22,7 +22,6 @@ import {
   Btn,
   BtnCancel,
 } from './FeedbackForm.styled';
-// import { useParams } from "@reduxjs/toolkit"
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,9 +54,9 @@ const FeedbackForm = ({ onClose }) => {
   const [isEditActive, setIsEditActive] = useState(false);
 
   const initialValues = {
-    name: currentUser.name || '',
+    // name: currentUser.name || '',
     comment: currentUser.comment || '',
-    rating: currentUser.rating || '',
+    // rating: currentUser.rating || '4',
   };
 
   const feedbackSchema = Yup.object().shape({
@@ -66,24 +65,35 @@ const FeedbackForm = ({ onClose }) => {
       .min(15, 'Must be 15 characters or more')
       .max(300, 'Must be 300 characters or less')
       .required('Please write your review'),
+    
   });
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = ( values ) => {
     console.log(values);
-    values.rating = Number(currentUser.rating);
+    // values.rating = Number(currentUser.rating);
 
-    const newReview = { name: user.userName, comment: values.comment, owner: user._id };
+    const newReview = { 
+      name: user.userName, 
+      comment: values.comment };
+
+    console.log('currentUser :>> ', currentUser);
+    console.log('newReview :>> ', newReview);
+   
+
     if (isEditActive) {
       dispatch(updateReview(newReview));
+      
     } else {
-      dispatch(addReview(values));
+      dispatch(addReview(newReview));
+      
+      console.log('currentUser.comment :>> ', currentUser.comment);
     }
-    resetForm();
-    setSubmitting(false);
+
+    // setSubmitting(false);
   };
 
   const handleEdit = () => {
-    setIsEditActive(!isEditActive);
+    setIsEditActive(true);
   };
 
   const handleDelete = () => {
@@ -102,9 +112,9 @@ const FeedbackForm = ({ onClose }) => {
         initialValues={initialValues}
         validationSchema={feedbackSchema}
         onSubmit={handleSubmit}
-        // validateOnChange={false}
+        validateOnChange={false}
       >
-        {({ isSubmitting }) => (
+    
           <ReviewForm>
             <Label>
               Rating
@@ -121,14 +131,14 @@ const FeedbackForm = ({ onClose }) => {
                   marginTop: '10px',
                 }}
                 // onChange={handleRating}
-                readOnly={Boolean(currentUser.rating) && !isEditActive}
+                // readOnly={Boolean(currentUser.rating) && !isEditActive}
               />
             </Label>
             {/* <InputWrapper> */}
             <ReviewWrapper>
               <Label htmlFor="reviewId">Review</Label>
 
-              {Boolean(currentUser.comment) && (
+              {isEditActive && (
                 <EditWrapper>
                   <EditBtn
                     type="button"
@@ -165,7 +175,9 @@ const FeedbackForm = ({ onClose }) => {
 
             {(!currentUser.comment || isEditActive) && (
               <BtnsWrapper>
-                <Btn type="submit" disabled={isSubmitting}>
+                <Btn type="submit" 
+                // disabled={isSubmitting}
+                >
                   {isEditActive ? 'Edit' : 'Save'}
                 </Btn>
                 <BtnCancel type="button" onClick={onClose}>
@@ -174,7 +186,7 @@ const FeedbackForm = ({ onClose }) => {
               </BtnsWrapper>
             )}
           </ReviewForm>
-        )}
+
       </Formik>
     </>
   );
