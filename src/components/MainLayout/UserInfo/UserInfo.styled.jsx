@@ -13,11 +13,11 @@ export const UserName = styled.span`
   color: ${p => p.theme.secondaryTextColor};
 `;
 
-export const UserAvatar = styled.div`
+export const UserAvatar = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
+  width: 32px; 
   height: 32px;
   border-radius: 32px;
   border: 1.8px solid ${p => p.theme.mainAccentColor};
@@ -28,4 +28,14 @@ export const FirstLetterIcon = styled.span`
   font-weight: 700;
   line-height: 1.3;
   color: ${p => p.theme.mainTextColor};
+`;
+
+export const UserAvatarBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  border: 1.8px solid ${p => p.theme.mainAccentColor};
 `;

@@ -76,7 +76,7 @@ const SideBar = ({toggleSidebar,  isOpen  }) => {
             </CloseIcon>
           </CloseBtn>
         </LogoBox>
-        <UserNav></UserNav>
+        <UserNav toggleSidebar={toggleSidebar}/>
       </InnerWrapper>
       <LogoutBtn />
     </SideBarStyled>
