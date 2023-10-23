@@ -235,7 +235,7 @@ export const TitleWrapper = styled.button`
 `;
 
 export const ContainerBtn = styled.div`
-    border:  ${p => p.themeColors === 'dark' ? 'solid #FFFFFF26 1px' : "solid #DCE3E580 1px"}; 
+    border:  ${p => p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : "solid #DCE3E580 1px"}; 
     border-radius: 8px;
     display: flex; 
     align-items: center; 
@@ -250,7 +250,7 @@ export const ContainerBtn = styled.div`
     }
 `
 export const Path = styled.path`
-  stroke: ${p => p.themeColors === 'dark' ? '#fff' : " #343434"} ; 
+  stroke: ${p => p.themecolors === 'dark' ? '#fff' : " #343434"} ; 
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;

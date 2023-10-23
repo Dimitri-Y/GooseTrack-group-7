@@ -42,7 +42,7 @@ const StatisticsPage = () => {
         lightText: '#343434',
     };
 
-    
+
     const setDate = (date) =>  {
         console.log(date)
     }
@@ -94,12 +94,12 @@ const StatisticsPage = () => {
                 
                 <ContainerMenuStatistics >
                     <ContainerCalendarStatistics>
-                <DatepickerStatistics setDate={setDate} themeColors={theme } />
+                <DatepickerStatistics setDate={setDate} themeColor={theme} />
                     </ContainerCalendarStatistics>
             
                     <ContainerTimeSymbolStatistics>
-                        <TextTimeSymbolStatistics colorListStyle={'#FFD2DD'}>By Day</TextTimeSymbolStatistics>
-                        <TextTimeSymbolStatistics colorListStyle={'#3E85F3'}>By Month</TextTimeSymbolStatistics> 
+                        <TextTimeSymbolStatistics colorliststyle={'#FFD2DD'}>By Day</TextTimeSymbolStatistics>
+                        <TextTimeSymbolStatistics colorliststyle={'#3E85F3'}>By Month</TextTimeSymbolStatistics> 
                     </ContainerTimeSymbolStatistics>            
                 </ContainerMenuStatistics>
 
@@ -145,14 +145,14 @@ const StatisticsPage = () => {
                             </Bar>
                     <Tooltip contentStyle={{
                                                 background: theme === 'dark' ? themeColors.lightText : themeColors.darkText,
-                                                    border: '1px solid #ccc',
-                                                    padding: '10px',
-                                                    borderRadius: '5px',
-                                                    boxShadow: '2px 2px 6px rgba(0, 0, 0, 0.3)',
+                                                border: '1px solid #ccc',
+                                                padding: '10px',
+                                                borderRadius: '5px',
+                                                boxShadow: '2px 2px 6px rgba(0, 0, 0, 0.3)',
                                                 }}
                                         isAnimationActive={false}
                                         cursor={false}
-                                        position={(window.innerWidth >= 1024) ? { y: 320, x: 650 } : (window.innerWidth >= 768) ? { y: 360, x: 220 } : { y: 300, x: 150 }} />
+                                        position={(window.innerWidth >= 1024) ? { y: 350, x: 750 } : (window.innerWidth >= 768) ? { y: 360, x: 220 } : { y: 300, x: 150 }} />
                     </BarChart>
                     </ResponsiveContainer>
                 

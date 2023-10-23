@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import { CalendarGlobalStyles, TitleWrapper,ContainerBtn, BtnSwitch, SvgIcon, Path } from "./DatepickerStatistics.styled";
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
 
-const DatepickerStatistics = ({setDate, themeColors}) => {
+const DatepickerStatistics = ({setDate, themeColor}) => {
   const [selectedDate, setSelectedDate] = useState(Date.now());
 
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
@@ -46,15 +46,15 @@ const DatepickerStatistics = ({setDate, themeColors}) => {
         
     
 
-        <ContainerBtn themeColors={themeColors}>
-          <BtnSwitch onClick={handlePrevDay} themeColors={themeColors} style={themeColors === 'dark' ? { borderRight: "solid #FFFFFF26 1px"} : { borderRight: "solid #DCE3E580 1px"}}>
+        <ContainerBtn themecolors={themeColor}>
+          <BtnSwitch onClick={handlePrevDay} themecolors={themeColor} style={themeColor === 'dark' ? { borderRight: "solid #FFFFFF26 1px"} : { borderRight: "solid #DCE3E580 1px"}}>
             <SvgIcon  width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <Path themeColors={themeColors} d="M11.25 13.5L6.75 9L11.25 4.5" />
+              <Path themecolors={themeColor} d="M11.25 13.5L6.75 9L11.25 4.5" />
             </SvgIcon>
           </BtnSwitch>
-          <BtnSwitch themeColors={themeColors} onClick={handleNextDay} >
+          <BtnSwitch themecolors={themeColor} onClick={handleNextDay} >
             <SvgIcon width="18" height="18" viewBox="0 0 18 18" fill="none" >
-              <Path themeColors={themeColors} d="M6.75 13.5L11.25 9L6.75 4.5" />
+              <Path themecolors={themeColor} d="M6.75 13.5L11.25 9L6.75 4.5" />
             </SvgIcon>
           </BtnSwitch>
         </ContainerBtn>

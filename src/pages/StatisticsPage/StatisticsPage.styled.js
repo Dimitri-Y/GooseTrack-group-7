@@ -1,3 +1,4 @@
+import { blue } from '@mui/material/colors';
 import styled from 'styled-components';
 
 
@@ -64,12 +65,12 @@ export const TextTimeSymbolStatistics = styled.p`
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-    color:  ${p => p.theme.secondaryTextColor || '#fff'};
+    color:  ${(p) => p.theme.secondaryTextColor || '#fff'};
     &:before {
             content: '';
             border-radius: 50%;
             display: inline-block;
-            background-color: ${props => props.colorListStyle};
+            background-color: ${(props) => props.colorliststyle};
             margin-right: 8px;
             width: 8px;
             height: 8px;
