@@ -8,6 +8,12 @@ import {
   FormTask,
 } from './TaskForm.styled';
 import { SvgSelector } from '../Icons/SvgSelector';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { format } from 'date-fns';
+import { addTask, updateTask } from '../../redux/tasks/tasksOperations';
+import { toast } from 'react-toastify';
+import { nanoid } from 'nanoid';
 //  { useState } from 'react';
 
 const schema = Yup.object().shape({
@@ -25,12 +31,45 @@ const schema = Yup.object().shape({
 
   category: Yup.string(),
 });
+const showToast = (message, isError = true) => {
+  toast(message, {
+    style: {
+      background: isError ? 'orange' : 'green',
+      overflow: 'hidden',
+    },
+    icon: isError ? '❗' : '✅',
+    iconTheme: {
+      primary: '#fff',
+      secondary: isError ? 'orange' : 'green',
+    },
+  });
+};
 
-const TaskForm = ({ headerCategory, task, closeModal }) => {
+const TaskForm = ({ task, closeModal }) => {
+  console.log('task: ', task);
+  const params = useParams();
+  const date = new Date(params.currentDay);
+  const validDate =
+    Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)
+      ? date
+      : new Date();
+  const currentDay = format(validDate, 'yyyy-MM-dd');
+  const dispatch = useDispatch();
+
+  const getCurrentTime = (additionalMinutes = 0) => {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + additionalMinutes);
+
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    return `${hours}:${minutes}`;
+  };
+
   const initialValues = {
     title: task?.title || '',
-    start: task?.start || '09:30',
-    end: task?.end || '18:30',
+    start: task?.start || getCurrentTime(),
+    end: task?.end || getCurrentTime(30),
     priority: task?.priority || 'Low',
     date: task?.date || '2023-10-24',
     category: task?.category || 'done',
@@ -58,24 +97,56 @@ const TaskForm = ({ headerCategory, task, closeModal }) => {
   // };
   // console.log(viewRadio())
 
-  const handleSubmit = async (value, { resetForm }) => {
-    const { title, start, end } = value;
-    console.log('value: ', value);
+  const handleSubmit = async (values) => {
+    const { title, start, end, category } = values;
+    const [startHour, startMinute] = start.split(':').map(Number);
+    const [endHour, endMinute] = end.split(':').map(Number);
+    console.log('value: ', values);
     const priority = document.querySelector(
       'input[name="priority"]:checked',
     ).value;
 
-    const newTask = {
-      title: title,
-      start: start,
-      end: end,
-      priority: priority,
-      date: new Date(),
-      category: headerCategory,
-    };
-    console.log('newTask: ', newTask);
+    if (
+      startHour > endHour ||
+      (startHour === endHour && startMinute >= endMinute)
+    ) {
+      showToast('The start time must be earlier than the end time');
+      return;
+    }
 
-    resetForm();
+    if (!title.trim() || !start.trim() || !end.trim()) {
+      showToast('All fields must be filled');
+      return;
+    }
+
+    if (
+      title === initialValues.title &&
+      start === initialValues.start &&
+      end === initialValues.end &&
+      priority === initialValues.priority
+    ) {
+      showToast('Change at least one field');
+      return;
+    }
+
+    const taskData = {
+      title,
+      start,
+      end,
+      priority,
+      category,
+      date: currentDay,
+      
+      
+    };
+    console.log('newTask: ', taskData);
+    if (task?.id) {
+      dispatch(updateTask({ id: task.id, task: taskData }));
+    } else {
+      dispatch(addTask({id: nanoid, taskData}));
+      // showToast('Successfully! Task added', false);
+    }
+    closeModal();
   };
 
   return (
@@ -107,6 +178,7 @@ const TaskForm = ({ headerCategory, task, closeModal }) => {
                 name="start"
                 title=""
                 placeholder="09:00"
+                step="900"
               />
               <ErrorMessage
                 name="start"
@@ -122,6 +194,7 @@ const TaskForm = ({ headerCategory, task, closeModal }) => {
                 name="end"
                 title=""
                 placeholder="14:00"
+                step="900"
               />
               <ErrorMessage name="end" component="div" className="errorField" />
             </label>
