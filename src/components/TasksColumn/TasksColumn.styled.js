@@ -5,14 +5,10 @@ export const ContainerColum = styled.div`
   flex-direction: column;
   align-self: start;
   box-sizing: border-box;
-  padding: 18px 18px 20px;
-  border: 1px solid #dce3e5;
+  padding: 18px 18px 10px;
+  border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
-  background-color: #ffffff;
-
-  @media (min-width: 375px) {
-    padding: 20px 20px 28px;
-  }
+  background-color: ${(p) => p.theme.secondaryBgColor};
 
   @media (min-width: 375px) {
     padding: 20px 20px 28px;

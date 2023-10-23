@@ -9,6 +9,7 @@ export const ContainerTaskToolbar = styled.div`
   .button {
     width: 14px;
     height: 14px;
+    stroke: ${(p) => p.theme.mainTextColor};
     cursor: pointer;
 
     @media (min-width: 375px) {
@@ -29,8 +30,9 @@ export const ContextMenu = styled.div`
   box-sizing: border-box;
   width: 115px;
   padding: 14px;
+  border: ${(p) => p.theme.borderContextMenu};
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: ${(p) => p.theme.contexMenuBGColor};
   box-shadow:
     rgba(17, 17, 26, 0.1) 0px 1px 0px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px,
@@ -43,6 +45,17 @@ export const ContainerContextMenuItem = styled.div`
   align-items: center;
   width: 100%;
   cursor: pointer;
+
+  .button {
+    width: 14px;
+    height: 14px;
+    stroke: ${(p) => p.theme.mainTextColor};
+
+    @media (min-width: 375px) {
+      width: 16px;
+      height: 16px;
+    }
+  }
 `;
 
 export const ContextMenuItem = styled.div`
@@ -50,5 +63,5 @@ export const ContextMenuItem = styled.div`
   align-items: start;
   padding: 5px;
   font-size: 12px;
-  color: #343434;
+  color: ${(p) => p.theme.secondaryTextColor};
 `;

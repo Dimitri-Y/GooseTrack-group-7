@@ -6,9 +6,9 @@ export const ContainerTaskCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 15px 15px 18px;
-  border: 1px solid #dce3e5;
+  border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
-  background-color: #f7f6f9;
+  background-color: ${(p) => p.theme.taskCardBGColor};
 `;
 
 export const Container = styled.div`
@@ -34,18 +34,19 @@ export const TaskText = styled.p`
   max-width: 272px;
   height: 16px;
   font-size: 14px;
-  color: #111111;
+  color: ${(p) => p.theme.mainTextColor};
 `;
 
 export const PriorityTask = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 12px;
+  height: 20px;
+  width: 63px;
   padding: 4px 12px;
   margin: 0;
   border-radius: 4px;
   font-size: 10px;
-  color: #ffffff;
+  color: #F7F6F9;
   background-color: ${(props) => props.$backgroundColor};
 `;

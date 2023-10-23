@@ -1,30 +1,25 @@
 import styled from 'styled-components';
 
 export const FormTask = styled.div`
-  margin-top: 40px;
+  margin-top: 48px;
   display: block;
-  padding: 18px;
+  padding: 0 18px;
 
-  /* box-shadow:
-    rgba(17, 17, 26, 0.1) 0px 1px 0px,
-    rgba(17, 17, 26, 0.1) 0px 8px 24px,
-    rgba(17, 17, 26, 0.1) 0px 16px 48px; */
+  @media screen and (min-width: 768px) {
+    margin-top: 40px;
+    padding: 0 28px;
+  }
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 0cm;
-    padding-bottom: 15px;
-    font-weight: 600;
     margin: 0;
     background-color: transparent;
   }
   .label {
     display: flex;
     flex-direction: column;
-    font-family: 'Inter-500', sans-serif;
-    font-weight: 600;
+    /* font-family: 'Inter-500', sans-serif; */
   }
   .title {
     color: rgba(52, 52, 52, 0.8);
@@ -38,157 +33,169 @@ export const FormTask = styled.div`
     box-sizing: border-box;
     border: none;
     font-family: 'Inter-600', sans-serif;
-    /* width: 100%; */
     border-radius: 8px;
-    width: 340px;
+    width: 267px;
     height: 46px;
     background: #f6f6f6;
     padding: 12px 14px;
 
     ::placeholder {
       color: #343434;
-
       font-family: 'Inter-600', sans-serif;
       font-size: 14px;
-      /* font-style: normal; */
       font-weight: 600;
-      line-height: 18px; /* 128.571% */
+      line-height: 1.29;
+    }
+    @media screen and (min-width: 768px) {
+      width: 340px;
     }
   }
 
   .setTimeWrapper {
-    width: 267px;
+    width: 256px;
     display: flex;
     gap: 15px;
     justify-content: space-between;
+    margin-bottom: 28px;
+    margin-top: 16px;
 
+    @media screen and (min-width: 768px) {
+      margin-top: 18px;
+    }
     .field {
       box-sizing: border-box;
-      width: 163px;
-height: 46px;
+      width: 126px;
+      height: 46px;
+      margin: 0;
+      @media screen and (min-width: 768px) {
+        width: 163px;
+      }
     }
   }
   .label_input {
     display: flex;
     gap: 4px;
-    /* width: 100%; */
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     font-weight: 600;
     align-items: end;
   }
-  .radio_tittle {
-    color: #343434;
-
+  .errorField {
     font-family: 'Inter-600', sans-serif;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
-    line-height: 14px; /* 116.667% */
+    line-height: 14px;
+    color: #ff0000;
+  }
+
+  .form-group {
+    color: #343434;
+    font-family: 'Inter-600', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.17;
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+      line-height: 1.29;
+    }
   }
   .radioBtn_Wrapper {
     display: flex;
     gap: 16px;
+    margin-bottom: 32px;
 
-    /* .custom-radio {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    }
-
-    .custom-radio > input {
+    .real-radio {
+      width: 0;
+      height: 0;
       position: absolute;
-      z-index: -1;
       opacity: 0;
+      z-index: -1;
     }
-    .custom-radio > .input_first {
-      background: #72c2f8;
-    } */
 
-    /* для элемента label связанного с label_input */
-    /* .custom-radio > span {
-      display: inline-flex;
-      align-items: center;
-      user-select: none;
-      color: #343434;
-
-      font-family: 'Inter-600', sans-serif;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 18px; /* 128.571% */
-    /* } */
-
-    /* создание в label псевдоэлемента  before со следующими стилями */
-    /* .custom-radio > span::before {
-      content: '';
+    .custom-radio {
+      position: relative;
       display: inline-block;
       width: 10px;
       height: 10px;
-      flex-shrink: 0;
-      flex-grow: 0;
-      border: 1px solid #b3d7ff;
       border-radius: 50%;
-      margin-right: 0.5em;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: 50% 50%;
-    } */
+      vertical-align: text-center;
+      margin-right: 4px;
+    }
+    .radioBtn-first {
+      .custom-radio {
+        background: #72c2f8;
+      }
+      .custom-radio::before {
+        border: 1.3px solid rgba(114, 194, 248, 0.5);
+      }
+      .real-radio:focus + .custom-radio {
+        box-shadow: 0px 0px 10px #7e9bbd;
+      }
+    }
+    .radioBtn-second {
+      .custom-radio {
+        background: #f3b249;
+      }
+      .custom-radio::before {
+        border: 1.3px solid rgba(243, 178, 73, 0.5);
+      }
+      .real-radio:focus + .custom-radio {
+        box-shadow: 0px 0px 10px #c28f3e;
+      }
+    }
+    .radioBtn-third {
+      .custom-radio {
+        background: #ea3d65;
+      }
+      .custom-radio::before {
+        border: 1.3px solid rgba(234, 61, 101, 0.5);
+      }
+      .real-radio:focus + .custom-radio {
+        box-shadow: 0px 0px 10px #b5314f;
+      }
+    }
 
-    /* при наведенні курсора на радіо */
-    /* .custom-radio > input:not(:disabled):not(:checked) + span:hover::before {
-      border-color: #b3d7ff;
-    } */
+    .custom-radio::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
 
-    /* стили для активной радиокнопки (при нажатии на неё) */
-    /* .custom-radio > input:not(:disabled):active + span::before {
-      background-color: red;
-      border-color: #b3d7ff;
-    } */
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
 
-    /* стили для радиокнопки, находящейся в фокусе */
-    /* .custom-radio > input:focus + span::before {
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    } */
+      transition: 0.2s ease-in;
+    }
 
-    /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
-    /* .custom-radio > input:focus:not(:checked) + span::before {
-      border-color: #80bdff;
-    } */
-
-    /* стили для радиокнопки, находящейся в состоянии checked */
-    /* .custom-radio > input:checked + span::before {
-      border-color: #0b76ef;
-      background-color: #0b76ef;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-    } */
-
-    /* стили для радиокнопки, находящейся в состоянии disabled */
-    /* .custom-radio > input:disabled + span::before {
-      background-color: #e9ecef;
-    } */
+    .real-radio:checked + .custom-radio {
+      width: 8px;
+      height: 8px;
+    }
+    .real-radio:checked + .custom-radio::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 `;
 export const Buttons = styled.div`
   display: flex;
   gap: 14px;
-  /* display: block;
-
-  padding: 10px;
-  border: none;
-
-  color: #fff;
-
-  background-color: #7e57c2;
-  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
-  /* cursor: pointer; */
+  margin-bottom: 40px;
 `;
 
 export const ButtonSummit = styled.button`
+  box-sizing: border-box;
+
   display: flex;
-  width: 182px;
-  height: 48px;
+  width: 135px;
+  height: 42px;
   justify-content: center;
   align-items: center;
+  gap: 8px;
+
   border-radius: 8px;
   background: #3e85f3;
   color: #fff;
@@ -198,17 +205,25 @@ export const ButtonSummit = styled.button`
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
-  line-height: 1.29; /* 128.571% */
+  line-height: 1.29;
 
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    width: 182px;
+    height: 48px;
+  }
 `;
 export const ButtonCancel = styled.button`
+  box-sizing: border-box;
+
   display: flex;
-  width: 144px;
-  height: 48px;
+  width: 118px;
+  height: 42px;
+
   justify-content: center;
   align-items: center;
   gap: 10px;
+
   border-radius: 8px;
   background: #efefef;
   display: block;
@@ -222,4 +237,8 @@ export const ButtonCancel = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 1.29; /* 128.571% */
+  @media screen and (min-width: 768px) {
+    width: 144px;
+    height: 48px;
+  }
 `;

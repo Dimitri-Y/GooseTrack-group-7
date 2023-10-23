@@ -7,27 +7,23 @@ import getCurrentWeek from '../../utils/getCurrentWeek';
 import { useDispatch } from 'react-redux';
 import { changeDate } from '../../redux/tasks/dateSlice';
 import { changeParameterUrl } from '../../redux/tasks/parameterUrlSlice';
+// import getDaysInMonth from '../../utils/getDaysInMonth';
+import { useAdaptivePicture } from '../../hooks/useAdaptivePicture';
 
 const DayCalendarHead = () => {
-  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const mediaResponse = useAdaptivePicture();
+  const isMobile = mediaResponse.isMobile;
 
-  function getCurrentDimension() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-  }
   const dispatch = useDispatch();
   const date = useSelector(selectDate);
   const { currentDay } = useParams();
-  const formattedDate = date.split('-').splice(2).join('');
+  const formattedDate = date.split('-').slice(2).join('');
   const [selectedDay, setSelectedDay] = useState(formattedDate);
   const [currentWeek, setCurrentWeek] = useState([]);
 
-  useEffect(
-    () => setCurrentWeek(getCurrentWeek(currentDay, formattedDate)),
-    [currentDay, formattedDate],
-  );
+  // const daysInMonth = useMemo(() => getDaysInMonth(date), [date]);
+
+  // console.log(currentWeek);
 
   const getFormattedDate = (event) => {
     const number = event.nativeEvent.target.lastElementChild.innerHTML;
@@ -38,16 +34,10 @@ const DayCalendarHead = () => {
     dispatch(changeDate(newDate));
   };
 
-  useEffect(() => {
-    const updateDimension = () => {
-      setScreenSize(getCurrentDimension());
-    };
-    window.addEventListener('resize', updateDimension);
-
-    return () => {
-      window.removeEventListener('resize', updateDimension);
-    };
-  }, [screenSize]);
+  useEffect(
+    () => setCurrentWeek(getCurrentWeek(currentDay, formattedDate)),
+    [currentDay, formattedDate],
+  );
 
   return (
     <List>
@@ -58,7 +48,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'M' : 'MON'}
+          {isMobile ? 'M' : 'MON'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[0]}
@@ -74,7 +64,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'T' : 'TUE'}
+          {isMobile ? 'T' : 'TUE'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[1]}
@@ -90,7 +80,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'W' : 'WED'}
+          {isMobile ? 'W' : 'WED'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[2]}
@@ -106,7 +96,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'T' : 'THU'}
+          {isMobile ? 'T' : 'THU'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[3]}
@@ -122,7 +112,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'F' : 'FRI'}
+          {isMobile ? 'F' : 'FRI'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[4]}
@@ -138,7 +128,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'S' : 'SAT'}
+          {isMobile ? 'S' : 'SAT'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[5]}
@@ -154,7 +144,7 @@ const DayCalendarHead = () => {
         }}
       >
         <DayWeek onClick={(event) => event.stopPropagation()}>
-          {screenSize.width < 375 ? 'S' : 'SUN'}
+          {isMobile ? 'S' : 'SUN'}
         </DayWeek>
         <Number
           $selected={selectedDay === currentWeek[6]}
