@@ -2,25 +2,21 @@ import styled from 'styled-components';
 
 export const DescriptionWrapper = styled.div`
   background-color: rgba(255, 255, 255, 1);
-  max-width: 335px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 64px;
   padding-bottom: 64px;
 
-  @media screen and (max-width: 345px) {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
   @media screen and (min-width: 768px) {
-    width: 704px;
-    max-width: 704px;
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1184px;
-    max-width: 1184px;
+    max-width: 100%;
+    padding-left: 128px;
+    padding-right: 128px;
     padding-bottom: 100px;
   }
 `;
