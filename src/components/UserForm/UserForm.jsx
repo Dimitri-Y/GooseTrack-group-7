@@ -19,8 +19,6 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { parseISO } from 'date-fns';
-import { selectToken } from '../../redux/auth/authSelectors';
-import { useSelector } from 'react-redux';
 
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
@@ -47,10 +45,7 @@ const validationSchema = yup.object().shape({
   skype: yup.string().max(16, 'It must be no more than 16 characters'),
 });
 
-const API = 'http://localhost:3000/api/users/current';
-const API_PATCH = 'http://localhost:3000/api/users/edit';
 const UserForm = () => {
-  const TOKEN = useSelector(selectToken);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
   const [changePhoto, setChangePhoto] = useState(false);
@@ -99,9 +94,6 @@ const UserForm = () => {
       setSelectedImage(user.avatarURL);
     }
   }, [user]);
-
-  console.log(formik.values.name);
-  console.log(user);
 
   const disabledFunc = () => {
     const birthdayMonth = formatWithLeadingZeros(
