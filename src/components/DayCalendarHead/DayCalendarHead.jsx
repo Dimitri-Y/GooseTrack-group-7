@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectDate } from '../../redux/tasks/tasksSelectors';
+import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
 // import { useParams } from 'react-router-dom';
 import { DayWeek, List, ListItem, Number } from './DayCalendarHead.styled';
 import { useDispatch } from 'react-redux';
@@ -9,58 +9,44 @@ import { useAdaptivePicture } from '../../hooks/useAdaptivePicture';
 
 import { endOfWeek, eachDayOfInterval, startOfWeek } from 'date-fns';
 import { useState } from 'react';
+import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
 
-const DayCalendarHead = ({ dateCalendar = Date.now(), weekStartDay = 1 }) => {
+const days = [
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+];
+
+const DayCalendarHead = ({ weekStartDay = 1 }) => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
-
-  const dispatch = useDispatch();
+  const dateCalendarSelected = useSelector(selectDateCalendar);
   // const date = useSelector(selectDate);
-  // const { currentDay } = useParams();
+  const dispatch = useDispatch();
+  const [selectedDay, setSelectedDay] = useState('');
 
-  // const formattedDate = date.split('-').slice(2).join('');
-  const [selectedDay, setSelectedDay] = useState(dateCalendar.getDate());
-  // const [currentWeek, setCurrentWeek] = useState([]);
-
-  const weekStart = startOfWeek(dateCalendar, { weekStartsOn: weekStartDay });
-  const weekEnd = endOfWeek(dateCalendar, { weekStartsOn: weekStartDay });
+  const weekStart = startOfWeek(dateCalendarSelected, {
+    weekStartsOn: weekStartDay,
+  });
+  const weekEnd = endOfWeek(dateCalendarSelected, {
+    weekStartsOn: weekStartDay,
+  });
   const weekDays = eachDayOfInterval({ start: weekStart, end: weekEnd });
 
-  // const getFormattedDate = (event) => {
-  //   const number = event.nativeEvent.target.lastElementChild.innerHTML;
-  //   setSelectedDay(number);
-  //   const array = date.split('-').splice(0, 2);
-  //   array.push(number);
-  //   const newDate = array.join('-');
-  //   dispatch(changeDate(newDate));
-  // };
-
-  const getFormattedDate = (day) => {
-    console.log(day.getDate());
+  const updateDate = (day) => {
+    console.log(day);
+    const newDate = day.toISOString().slice(0, 10);
+    dispatch(changeDate(newDate));
+    dispatch(changeDateCalendar(day));
   };
 
   const updateParameterUrl = (day) => {
-    if (day.getUTCDay() === 0) {
-      dispatch(changeParameterUrl('monday'));
-    }
-    if (day.getUTCDay() === 1) {
-      dispatch(changeParameterUrl('tuesday'));
-    }
-    if (day.getUTCDay() === 2) {
-      dispatch(changeParameterUrl('wednesday'));
-    }
-    if (day.getUTCDay() === 3) {
-      dispatch(changeParameterUrl('thursday'));
-    }
-    if (day.getUTCDay() === 4) {
-      dispatch(changeParameterUrl('friday'));
-    }
-    if (day.getUTCDay() === 5) {
-      dispatch(changeParameterUrl('saturday'));
-    }
-    if (day.getUTCDay() === 6) {
-      dispatch(changeParameterUrl('sunday'));
-    }
+    const newDay = days[day.getDay()];
+    dispatch(changeParameterUrl(newDay));
   };
 
   return (
@@ -70,9 +56,9 @@ const DayCalendarHead = ({ dateCalendar = Date.now(), weekStartDay = 1 }) => {
           <ListItem
             key={day.toISOString()}
             onClick={() => {
-              getFormattedDate(day);
+              updateDate(day);
               updateParameterUrl(day);
-              setSelectedDay(day.getDate());
+              setSelectedDay(day.getDate().toString());
             }}
           >
             <DayWeek onClick={(event) => event.stopPropagation()}>
@@ -85,7 +71,7 @@ const DayCalendarHead = ({ dateCalendar = Date.now(), weekStartDay = 1 }) => {
                     .toUpperCase()}
             </DayWeek>
             <Number
-              $selected={selectedDay === day.getDate()}
+              $selected={selectedDay === day.getDate().toString()}
               onClick={(event) => event.stopPropagation()}
             >
               {day.getDate()}
