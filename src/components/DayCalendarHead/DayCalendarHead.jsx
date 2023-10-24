@@ -10,29 +10,33 @@ import { useAdaptivePicture } from '../../hooks/useAdaptivePicture';
 import { endOfWeek, eachDayOfInterval, startOfWeek } from 'date-fns';
 import { useState } from 'react';
 
-const DayCalendarHead = ({ selectedDate = Date.now(), weekStartDay = 1 }) => {
+const DayCalendarHead = ({ dateCalendar = Date.now(), weekStartDay = 1 }) => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
 
   const dispatch = useDispatch();
-  const date = useSelector(selectDate);
+  // const date = useSelector(selectDate);
   // const { currentDay } = useParams();
 
-  const formattedDate = date.split('-').slice(2).join('');
-  const [selectedDay, setSelectedDay] = useState(formattedDate);
+  // const formattedDate = date.split('-').slice(2).join('');
+  const [selectedDay, setSelectedDay] = useState(dateCalendar.getDate());
   // const [currentWeek, setCurrentWeek] = useState([]);
 
-  const weekStart = startOfWeek(selectedDate, { weekStartsOn: weekStartDay });
-  const weekEnd = endOfWeek(selectedDate, { weekStartsOn: weekStartDay });
+  const weekStart = startOfWeek(dateCalendar, { weekStartsOn: weekStartDay });
+  const weekEnd = endOfWeek(dateCalendar, { weekStartsOn: weekStartDay });
   const weekDays = eachDayOfInterval({ start: weekStart, end: weekEnd });
 
-  const getFormattedDate = (event) => {
-    const number = event.nativeEvent.target.lastElementChild.innerHTML;
-    setSelectedDay(number);
-    const array = date.split('-').splice(0, 2);
-    array.push(number);
-    const newDate = array.join('-');
-    dispatch(changeDate(newDate));
+  // const getFormattedDate = (event) => {
+  //   const number = event.nativeEvent.target.lastElementChild.innerHTML;
+  //   setSelectedDay(number);
+  //   const array = date.split('-').splice(0, 2);
+  //   array.push(number);
+  //   const newDate = array.join('-');
+  //   dispatch(changeDate(newDate));
+  // };
+
+  const getFormattedDate = (day) => {
+    console.log(day.getDate());
   };
 
   const updateParameterUrl = (day) => {
@@ -59,20 +63,16 @@ const DayCalendarHead = ({ selectedDate = Date.now(), weekStartDay = 1 }) => {
     }
   };
 
-  //   useEffect(
-  //     () => setCurrentWeek()),
-  //     [currentDay, formattedDate],
-  //   );
-
   return (
     <List>
       {weekDays.map((day) => {
         return (
           <ListItem
             key={day.toISOString()}
-            onClick={(event) => {
-              getFormattedDate(event);
+            onClick={() => {
+              getFormattedDate(day);
               updateParameterUrl(day);
+              setSelectedDay(day.getDate());
             }}
           >
             <DayWeek onClick={(event) => event.stopPropagation()}>
