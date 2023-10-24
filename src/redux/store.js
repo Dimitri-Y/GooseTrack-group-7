@@ -16,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 import { dateReducer } from './tasks/dateSlice';
 import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 import { themeReducer } from './theme/themeSlice.js';
+import {StatisticsReducer} from './statistics/statisticsSlice.js'
 
 const authPersistConfig = {
   key: 'auth',
@@ -43,6 +44,7 @@ export const store = configureStore({
     date: persistReducer(datePersistConfig, dateReducer),
     parameter: persistReducer(parameterPersistConfig, parameterUrlReducer),
     theme: themeReducer,
+    statistics: StatisticsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
