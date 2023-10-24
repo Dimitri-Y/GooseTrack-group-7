@@ -143,7 +143,6 @@ const UserForm = () => {
               type="text"
               name="name"
               maxLength="16"
-              required
               onChange={formik.handleChange}
               value={formik.values.name}
               hasError={formik.errors.name}
