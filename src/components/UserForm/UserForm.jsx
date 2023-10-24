@@ -19,6 +19,8 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { parseISO } from 'date-fns';
+import { selectToken } from '../../redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
@@ -45,15 +47,16 @@ const validationSchema = yup.object().shape({
   skype: yup.string().max(16, 'It must be no more than 16 characters'),
 });
 
-
+const API = 'http://localhost:3000/api/users/current';
+const API_PATCH = 'http://localhost:3000/api/users/edit';
 const UserForm = () => {
+  const TOKEN = useSelector(selectToken);
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
   const [changePhoto, setChangePhoto] = useState(false);
 
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
 
   const filePicker = useRef(null);
 
@@ -75,17 +78,17 @@ const UserForm = () => {
     formData.append('birthday', updateBirthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    dispatch(editUser(formData))
+    dispatch(editUser(formData));
     setChangePhoto(false);
   };
 
   const formik = useFormik({
     initialValues: {
       name: user?.userName || '',
-    number: user?.phone || '',
-    birthday: user?.birthday ? parseISO(user.birthday) : new Date(),
-    skype: user?.skype || '',
-    email: user?.email || '',
+      number: user?.phone || '',
+      birthday: user?.birthday ? parseISO(user.birthday) : new Date(),
+      skype: user?.skype || '',
+      email: user?.email || '',
     },
     onSubmit: handleSubmit,
     validationSchema: validationSchema,
@@ -94,12 +97,11 @@ const UserForm = () => {
   useEffect(() => {
     if (user) {
       setSelectedImage(user.avatarURL);
-    }  
-      
+    }
   }, [user]);
-    
-  console.log(formik.values.name)
-console.log(user)
+
+  console.log(formik.values.name);
+  console.log(user);
 
   const disabledFunc = () => {
     const birthdayMonth = formatWithLeadingZeros(
