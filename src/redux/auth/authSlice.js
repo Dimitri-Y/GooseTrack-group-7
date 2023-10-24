@@ -5,12 +5,16 @@ import {
   logOut,
   refreshUser,
   editUser,
+  verificationEmail,
 } from './authOperations';
 
 const initialState = {
   user: {
     name: null,
     email: null,
+    birthday: null,
+    phone: null,
+    skype: null,
     avatarURL: null,
   },
   token: null,
@@ -40,7 +44,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isLoggedIn =  false; // need to submit the VerifyToken in email
       })
       .addCase(register.rejected, (state, action) => {
         handleRejected(state, action);
@@ -60,7 +64,7 @@ const authSlice = createSlice({
         handlePending(state);
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.user = { name: null, email: null };
+        state.user = null;
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -92,7 +96,18 @@ const authSlice = createSlice({
       .addCase(editUser.rejected, (state, action) => {
         state.isRefreshing = false;
         handleRejected(state, action);
+      })
+      .addCase(verificationEmail.pending, state => {
+        handlePending(state);
+      })
+      .addCase(verificationEmail.fulfilled, state => {
+        state.user.verify = true;
+        state.user.verificationToken = "Verify";
+      })
+      .addCase(verificationEmail.rejected, (state, action) => {
+        handleRejected(state, action);
       });
+
   },
 });
 

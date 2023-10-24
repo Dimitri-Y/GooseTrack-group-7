@@ -19,7 +19,7 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', credentials);
 
-      setAuthHeader(res.data.token);
+      // setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -88,4 +88,29 @@ export const editUser = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   },
+);
+
+export const verificationEmail = createAsyncThunk(
+  'auth/verificationEmail',
+  async (email, thunkAPI) => {
+    try {
+      const res = await axios.post('/auth/verify', email);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const verify = createAsyncThunk(
+  'auth/verify',
+  async (verificationToken, thunkAPI) => {
+    try {
+      const res = await axios.get(`auth/verify/${verificationToken}`);
+      setAuthHeader(res.data.token);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
 );
