@@ -8,7 +8,6 @@ cursor: pointer;
 top: -30px;
 text-align: center;
 
-
 @media (min-width: 768px) {
    width: 124px;
 height: 124px;
@@ -56,9 +55,14 @@ height: 124px;
 
 export const Image = styled.img`
 position: absolute;
-max-width: 100%;
-    max-height: 100%;
+width: 72px;
+height: 72px;
 border-radius: 50%;
 border: 2px solid #3E85F3;
 object-fit: cover;
+
+@media (min-width: 768px) {
+   width: 124px;
+height: 124px;
+ }
 `
