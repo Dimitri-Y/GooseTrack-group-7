@@ -1,21 +1,22 @@
-import { forwardRef, useState } from 'react';
-import { format } from 'date-fns';
-import DatePicker from 'react-datepicker';
-import {
-  CalendarGlobalStyles,
-  TitleWrapper,
-  Container,
-  ButtonL,
-  ButtonR,
-  CalendarMonthStyles,
-} from './PeriodPaginator.styled';
+// import { forwardRef, useState } from 'react';
+// import { format } from 'date-fns';
+// import DatePicker from 'react-datepicker';
+// import {
+//   CalendarGlobalStyles,
+//   TitleWrapper,
+//   Container,
+//   ButtonL,
+//   ButtonR,
+//   CalendarMonthStyles,
+// } from './PeriodPaginator.styled';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import { useDispatch } from 'react-redux';
-import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
-import { changeDate } from '../../redux/tasks/dateSlice';
-import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
-import { useSelector } from 'react-redux';
-import DatepickerStatistics from 'components/DatepickerStatistics/DatepickerStatistics';
+// import { useDispatch } from 'react-redux';
+// import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
+// import { changeDate } from '../../redux/tasks/dateSlice';
+// import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
+// import { useSelector } from 'react-redux';
+import DatepickerTasks from '../DatepickerTasks/DatepickerTasks';
+import { Container } from './PeriodPaginator.styled';
 
 // export const StyledDatepicker = () => {
 //   const dateCalendar = useSelector(selectDateCalendar);
@@ -49,9 +50,6 @@ import DatepickerStatistics from 'components/DatepickerStatistics/DatepickerStat
 //   );
 // };
 
-
-
-
 // export const StyledMonthpicker = () => {
 //   const [selectedMonth, setSelectedDate] = useState(Date.now());
 
@@ -80,19 +78,14 @@ import DatepickerStatistics from 'components/DatepickerStatistics/DatepickerStat
 //   );
 // };
 
-
-
-
-
 const PeriodPaginator = () => {
-
   const setDate = (date) => {
     console.log(date);
   };
 
   return (
     <Container>
-      <DatepickerStatistics setDate={setDate} />
+      <DatepickerTasks setDate={setDate} />
       {/* <StyledDatepicker />
       <StyledMonthpicker /> */}
       {/* <ButtonL type="button">L</ButtonL>
