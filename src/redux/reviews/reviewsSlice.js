@@ -7,7 +7,9 @@ import {
   deleteReview,
   updateReview,
 } from './reviewsOperations';
-
+const reviewInitialState = {
+  items: [],
+};
 const reviewsInitialState = {
   items: [],
   // додала рядки 14-18
@@ -33,7 +35,6 @@ const handleRejected = (state, action) => {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: reviewsInitialState,
-
   // // додала рядки 38-42
   // reducers: {
   //   changeRating(state, action){
@@ -53,7 +54,21 @@ const reviewsSlice = createSlice({
       })
       .addCase(fetchReviews.rejected, (state, action) => {
         handleRejected(state, action);
-      })
+      });
+  },
+});
+const reviewSlice = createSlice({
+  name: 'review',
+  initialState: reviewInitialState,
+  // // додала рядки 38-42
+  // reducers: {
+  //   changeRating(state, action){
+  //     state.currentUser.rating = action.payload;
+
+  // }},
+
+  extraReducers: (builder) => {
+    builder
       .addCase(fetchReviewsOwn.pending, (state) => {
         handlePending(state);
       })
@@ -106,7 +121,8 @@ const reviewsSlice = createSlice({
       });
   },
 });
-
 export const reviewsReducer = reviewsSlice.reducer;
+export const reviewReducer = reviewSlice.reducer;
+
 // // додала рядок 112
 // export const {changeRating}=reviewsSlice.actions;

@@ -26,4 +26,3 @@ export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
     ? 'Let go of the past and focus on the present!'
     : '';
 });
-
