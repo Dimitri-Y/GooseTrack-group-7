@@ -76,10 +76,14 @@ export const editUser = createAsyncThunk(
 
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.patch('/users/edit', credentials);
+      const res = await axios.patch('/users/edit', credentials, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        }
+      });
 
       setAuthHeader(res.data.token);
-      return res.data;
+      return res.data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
