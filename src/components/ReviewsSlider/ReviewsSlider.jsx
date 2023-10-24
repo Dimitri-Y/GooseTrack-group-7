@@ -47,7 +47,7 @@ const ReviewsSlider = () => {
   SwiperCore.use([Autoplay]);
 
  useEffect(() => {
-   dispatch(fetchReviews({ page: 1, limit: 8 }));
+   dispatch(fetchReviews());
  }, [dispatch]);
   
   function getInitials(name) {
@@ -64,7 +64,8 @@ const ReviewsSlider = () => {
   }
 
   const slides = reviews;
-
+  // console.log(slides)
+  console.log(slides);
   return (
     <ReviewsSection>
       <ReviewsTitle>REVIEWS</ReviewsTitle>
@@ -100,9 +101,9 @@ const ReviewsSlider = () => {
               <ReviewSliderCard>
                 <ReviewContentBox>
                   <AvatarWrapper>
-                    {true ? (
+                    {true ? ( 
                       <AvatarImg
-                        src=""
+                        src="//www.gravatar.com/avatar/df29a1dcfb362830ceb3a444beb9fec0"
                         alt="UserPicture"
                       />
                     ) : (
