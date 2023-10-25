@@ -25,20 +25,16 @@ import {
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectReview,
-  selectReviews,
-} from '../../../redux/reviews/reviewsSelectors';
-import {  selectUser } from '../../../redux/auth/authSelectors';
-import { selectToken } from '../../../redux/auth/authSelectors';
+import { selectReview } from '../../../redux/reviews/reviewsSelectors';
+import { selectUser } from '../../../redux/auth/authSelectors';
 
 import {
   addReview,
   deleteReview,
+  fetchReviewsOwn,
   updateReview,
 } from '../../../redux/reviews/reviewsOperations';
 import { changeRating } from '../../../redux/reviews/reviewsSlice';
-import axios from 'axios';
 import { useEffect } from 'react';
 
 const ratingIcon = (
@@ -58,17 +54,14 @@ const styledRating = {
 const FeedbackForm = ({ onClose }) => {
   const dispatch = useDispatch();
 
-  const currentUser = useSelector(selectReviews);
   const user = useSelector(selectUser);
-  // const error = useSelector(selectError);
-  const review = useSelector(selectReview);
-  console.log(`review:${typeof review}`);
+  const reviews = useSelector(selectReview);
+
   const [isEditActive, setIsEditActive] = useState(false);
 
   const initialValues = {
-  
-    comment: currentUser.comment || '',
-    rating: currentUser.rating || 4,
+    comment: reviews[0].comment || '',
+    rating: reviews[0].rating || 5,
   };
 
   const feedbackSchema = Yup.object().shape({
@@ -78,42 +71,20 @@ const FeedbackForm = ({ onClose }) => {
       .max(300, 'Must be 300 characters or less')
       .required('Please write your review'),
   });
-  const API =
-    'https://goose-track-backend-deployment-q70i.onrender.com/api/reviews/own';
-  // const API_PATCH = 'http://localhost:3000/api/users/edit';'
-  // const TOKEN =
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzY4MWVhNTA0OGZiNTFjYzRhOTM2YiIsImlhdCI6MTY5ODA4MjU0OCwiZXhwIjoxNjk4MTY1MzQ4fQ.ga4vNMb6N4zaiFzOfYKqVthhoMkhFKXYx2prdKUdTMk';
-  
-  const TOKEN = useSelector(selectToken);
-
-    useEffect(() => {
-    axios
-      .get(API, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Помилка запиту:', error);
-      });
-  }, []);
+  useEffect(() => {
+    dispatch(fetchReviewsOwn());
+  }, [dispatch]);
 
   const handleSubmit = (values, { setSubmitting }) => {
     const newReview = {
       comment: values.comment,
       rating: values.rating,
-
     };
     if (isEditActive) {
       dispatch(updateReview(newReview));
     } else {
       dispatch(addReview(newReview));
     }
-    // resetForm();
     setSubmitting(false);
   };
 
@@ -126,9 +97,8 @@ const FeedbackForm = ({ onClose }) => {
     onClose();
   };
 
-    const handleRating = (newRating) => {
-      // setRatingValue(newRating);
-      dispatch(changeRating(newRating))
+  const handleRating = (newRating) => {
+    dispatch(changeRating(newRating));
   };
 
   return (
@@ -140,76 +110,74 @@ const FeedbackForm = ({ onClose }) => {
         // validateOnChange={false}
       >
         {/* {({ isSubmitting }) => ( */}
-          <ReviewForm>
-            <Label>
-              Rating
-              <Rating
-                name="rating"
-                component="div"
-                value={Number(currentUser.rating)}
-                itemStyles={styledRating}
-                style={{
-                  maxWidth: 128,
-                  maxHeight: 24,
-                  gap: 2,
-                  marginBottom: '28px',
-                  marginTop: '10px',
-                }}
-                onChange={handleRating}
-                readOnly={Boolean(currentUser.rating) && !isEditActive}
-              />
-            </Label>
-            {/* <InputWrapper> */}
-            <ReviewWrapper>
-              <Label htmlFor="reviewId">Review</Label>
-
-              {Boolean(currentUser.comment) && (
-                <EditWrapper>
-                  <EditBtn
-                    type="button"
-                    onClick={handleEdit}
-                    isActive={isEditActive}
-                    aria-label="Edit review"
-                  >
-                    <IconEdit />
-                  </EditBtn>
-
-                  <DeleteBtn
-                    type="button"
-                    onClick={handleDelete}
-                    aria-label="Delete review"
-                  >
-                    <IconBin />
-                  </DeleteBtn>
-                </EditWrapper>
-              )}
-            </ReviewWrapper>
-
-            <Textarea
-              id="reviewId"
-              name="comment"
-              rows={6}
-              cols={40}
-              component="textarea"
-              placeholder="Enter your feedback"
-              disabled={!isEditActive && Boolean(currentUser.comment)}
-              // value={Number(currentUser.comment)}
+        <ReviewForm>
+          <Label>
+            Rating
+            <Rating
+              name="rating"
+              component="div"
+              value={reviews[0].rating}
+              itemStyles={styledRating}
+              style={{
+                maxWidth: 128,
+                maxHeight: 24,
+                gap: 2,
+                marginBottom: '28px',
+                marginTop: '10px',
+              }}
+              onChange={handleRating}
+              readOnly={Boolean(reviews[0].rating) && !isEditActive}
             />
-            <ErrMessage name="comment" component="div" />
+          </Label>
+          {/* <InputWrapper> */}
+          <ReviewWrapper>
+            <Label htmlFor="reviewId">Review</Label>
 
-            {/* </InputWrapper> */}
+            {Boolean(reviews[0].comment) && (
+              <EditWrapper>
+                <EditBtn
+                  type="button"
+                  onClick={handleEdit}
+                  isActive={isEditActive}
+                  aria-label="Edit review"
+                >
+                  <IconEdit />
+                </EditBtn>
 
-            {(!currentUser.comment || isEditActive) && (
-              <BtnsWrapper>
-                <Btn type="submit">
-                  {isEditActive ? 'Edit' : 'Save'}
-                </Btn>
-                <BtnCancel type="button" onClick={onClose}>
-                  Cancel
-                </BtnCancel>
-              </BtnsWrapper>
+                <DeleteBtn
+                  type="button"
+                  onClick={handleDelete}
+                  aria-label="Delete review"
+                >
+                  <IconBin />
+                </DeleteBtn>
+              </EditWrapper>
             )}
-          </ReviewForm>
+          </ReviewWrapper>
+
+          <Textarea
+            id="reviewId"
+            name="comment"
+            rows={6}
+            cols={40}
+            component="textarea"
+            placeholder="Enter your feedback"
+            disabled={!isEditActive && true}
+            value={reviews[0].comment}
+          />
+          <ErrMessage name="comment" component="div" />
+
+          {/* </InputWrapper> */}
+
+          {(!reviews[0].comment || isEditActive) && (
+            <BtnsWrapper>
+              <Btn type="submit">{isEditActive ? 'Edit' : 'Save'}</Btn>
+              <BtnCancel type="button" onClick={onClose}>
+                Cancel
+              </BtnCancel>
+            </BtnsWrapper>
+          )}
+        </ReviewForm>
         {/* )} */}
       </Formik>
     </>

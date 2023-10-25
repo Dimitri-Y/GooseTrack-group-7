@@ -1,13 +1,9 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { selectToken } from '../auth/authSelectors';
-// axios.defaults.baseURL = 'http://localhost:3000/api/';
-axios.defaults.baseURL =
-  'https://goose-track-backend-deployment-q70i.onrender.com/api/';
+axios.defaults.baseURL = 'http://localhost:3000/api/';
+// axios.defaults.baseURL =
+// 'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 
-const setAuthHeader = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
 export const fetchReviews = createAsyncThunk(
   'reviews/fetchAll',
   async (_, thunkAPI) => {
@@ -24,14 +20,8 @@ export const fetchReviewsOwn = createAsyncThunk(
   'reviews/fetchReviewsOwn',
   async (_, thunkAPI) => {
     try {
-      // const state = thunkAPI.getState();
-      const persistedToken = selectToken();
-      console.log(selectToken());
-      if (persistedToken === null) {
-        return thunkAPI.rejectWithValue('Unable to fetch user');
-      }
-      setAuthHeader(persistedToken);
       const response = await axios.get('/reviews/own');
+      // console.log(response.data[0]);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -44,7 +34,6 @@ export const addReview = createAsyncThunk(
   async (review, thunkAPI) => {
     try {
       const response = await axios.post('/reviews/own', review);
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -68,10 +57,7 @@ export const updateReview = createAsyncThunk(
   'reviews/updateReview',
   async (data, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        `/reviews/own/${data.reviewId}`,
-        data.update,
-      );
+      const response = await axios.patch(`/reviews/own`, data.update);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
