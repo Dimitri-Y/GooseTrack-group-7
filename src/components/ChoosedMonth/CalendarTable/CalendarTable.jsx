@@ -11,19 +11,21 @@ import {
   CalendarTableMoreBtn,
   TaskItem,
 } from './CalendarTable.styled';
-import { MonthTaskDay } from './MonthTaskDay/MonthTaskDay';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTasks } from 'redux/tasks/tasksSelectors';
 import { useEffect } from 'react';
-import { fetchTasks } from 'redux/tasks/tasksOperations';
-import { selectDate } from 'redux/tasks/tasksSelectors';
+import { fetchTasks } from '../../../redux/tasks/tasksOperations';
+import { MonthTaskDay } from '../MonthTaskDay/MonthTaskDay';
+import {
+  selectDateCalendar,
+  selectTasks,
+} from '../../../redux/tasks/tasksSelectors';
 
 const TOTAL_CELLS = 42;
 
 const CalendarTable = ({ startDay }) => {
   const navigate = useNavigate();
-  const date = useSelector(selectDate);
-
+  const dateCalendar = useSelector(selectDateCalendar);
+  const date = dateCalendar.toISOString().slice(0, 10);
   const day = startDay.clone().subtract(1, 'day');
   const dayCellsInCalendar = [...Array(TOTAL_CELLS)]?.map(() =>
     day.add(1, 'day').clone(),
