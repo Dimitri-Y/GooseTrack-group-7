@@ -95,22 +95,19 @@ const ReviewsSlider = () => {
             },
           }}
         >
-          
           {slides.map((slide, index) => (
             <SwiperSlide key={index} virtualIndex={index}>
               <ReviewSliderCard>
                 <ReviewContentBox>
                   <AvatarWrapper>
-                    {true ? ( 
+                    {slide.owner?.avatarURL ? (
                       <AvatarImg
-                        src="//www.gravatar.com/avatar/df29a1dcfb362830ceb3a444beb9fec0"
+                        src={slide.owner.avatarURL}
                         alt="UserPicture"
                       />
                     ) : (
                       <BackgroundName className="initials">
-                        <UserNameIcon>
-                          {getInitials(slide.name)}
-                        </UserNameIcon>
+                        <UserNameIcon>{getInitials(slide.name)}</UserNameIcon>
                       </BackgroundName>
                     )}
                   </AvatarWrapper>
