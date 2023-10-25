@@ -234,6 +234,11 @@ export const TitleWrapper = styled.button`
   }
 `;
 
+export const ContainerDatePicker = styled.div`
+display: flex;
+justify-content: space-between;
+`
+
 export const ContainerBtn = styled.div`
   border: ${(p) =>
     p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : 'solid #DCE3E580 1px'};
@@ -243,11 +248,15 @@ export const ContainerBtn = styled.div`
   justify-content: center;
   width: 76px;
   height: 30px;
+  margin-left: auto;
+
   @media (min-width: 768px) and (max-width: 1023px) {
     height: 34px;
+    margin-left: 8px;
   }
   @media (min-width: 1024px) {
     height: 36px;
+    margin-left: 8px;
   }
 `;
 export const Path = styled.path`

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { TaskItem } from './CalendarTable.styled';
+import { TaskItem } from '../CalendarTable/CalendarTable.styled';
 
 export const MonthTaskDay = ({ task }) => {
   const navigate = useNavigate();
