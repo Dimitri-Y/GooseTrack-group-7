@@ -28,11 +28,7 @@ const handleRejected = (state, action) => {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: reviewsInitialState,
-  reducers: {
-    changeRating(state, action) {
-      state.items = action.payload;
-    },
-  },
+ 
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -109,11 +105,15 @@ const reviewSlice = createSlice({
   name: 'review',
   initialState: reviewInitialState,
  
-  reducers: {
-    changeRating(state, action) {
-      state.items = action.payload;
-    },
-  },
+  // reducers: {
+  //   changeRating(action) {
+  //     state.items[0].rating = action.payload;
+  //     console.log(state);
+  //     // console.log(action);
+  //     console.log(state.items);
+  //     console.log(action.payload);
+  //   },
+  // },
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -162,11 +162,10 @@ const reviewSlice = createSlice({
       .addCase(deleteReview.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
-        // const index = state.items.findIndex(
-        //   (review) => review.id === action.payload.id,
-        // );
-        // state.items.splice(index, 1);
+      
+        state.items.splice(0, 1);
         state.items.push({"comment": "", "rating": 5})
+        console.log(state.items);
       })
       .addCase(deleteReview.rejected, (state, action) => {
         handleRejected(state, action);
@@ -177,9 +176,7 @@ const reviewSlice = createSlice({
       .addCase(updateReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // const index = state.items.findIndex(
-          // (review) => review.id === action.payload.id,
-        // );
+       
         state.items[0] = action.payload;
       })
       .addCase(updateReview.rejected, (state, action) => {
@@ -191,4 +188,4 @@ export const reviewsReducer = reviewsSlice.reducer;
 export const reviewReducer = reviewSlice.reducer;
 
 
-export const { changeRating } = reviewSlice.actions;
+// export const { changeRating } = reviewSlice.actions;

@@ -1,8 +1,6 @@
 import { ReactComponent as IconEdit } from '../../Icons/edit.svg';
 import { ReactComponent as IconBin } from '../../Icons/delete.svg';
 
-// import icon from '../../Icons/symbol-defs.svg';
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Rating } from '@smastrom/react-rating';
@@ -10,7 +8,6 @@ import '@smastrom/react-rating/style.css';
 
 import {
   ReviewForm,
-  //  InputWrapper,
   ReviewWrapper,
   Label,
   EditWrapper,
@@ -27,7 +24,6 @@ import { useState, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectReview } from '../../../redux/reviews/reviewsSelectors';
-// import { selectUser } from '../../../redux/auth/authSelectors';
 
 import {
   addReview,
@@ -35,7 +31,7 @@ import {
   fetchReviewsOwn,
   updateReview,
 } from '../../../redux/reviews/reviewsOperations';
-// import { changeRating } from '../../../redux/reviews/reviewsSlice';
+
 import { useEffect } from 'react';
 
 const ratingIcon = (
@@ -54,10 +50,8 @@ const styledRating = {
 
 const FeedbackForm = ({ onClose }) => {
   const dispatch = useDispatch();
-  // const dispatchRev = useDispatch();
   const formikRef = useRef();
 
-  // const user = useSelector(selectUser);
   const reviews = useSelector(selectReview);
 
   const [isEditActive, setIsEditActive] = useState(false);
@@ -76,8 +70,6 @@ console.log(initialValues);
   });
   useEffect(() => {
     dispatch(fetchReviewsOwn());
-
-    // changeFormik(reviews[0].comment, reviews[0].rating);
   
   }, [dispatch]);
 
@@ -89,7 +81,7 @@ console.log(initialValues);
   const handleSubmit = (values) => {
     const newReview = {
       comment: values.comment,
-      rating: values.rating,
+      rating: values.rating || 5 ,
     };
 console.log(newReview);
 
@@ -100,7 +92,7 @@ console.log(newReview);
       dispatch(addReview(newReview));
       console.log(newReview);
     }
-    // setSubmitting(false);
+    
   };
 
   const handleEdit = () => {
@@ -109,12 +101,12 @@ console.log(newReview);
 
   const handleDelete = () => {
     dispatch(deleteReview());
-    // onClose();
+  
   };
 
-  // const handleRating = (newRating) => {
-  //   dispatch(changeRating(newRating));
-  // };
+  const handleRating = (newRating) => {
+    formikRef.current.setFieldValue('rating', newRating);
+  };
 
   const changeFormik = (comment, rating) => {
     formikRef.current.setFieldValue('comment', comment);
@@ -130,14 +122,13 @@ console.log(newReview);
         innerRef={formikRef}
         // validateOnChange={false}
       >
-        {/* {({ isSubmitting }) => ( */}
           <ReviewForm>
             <Label>
               Rating
               <Rating
                 name="rating"
                 component="div"
-                // value={reviews[0].rating}
+                value={initialValues.rating}
                 itemStyles={styledRating}
                 style={{
                   maxWidth: 128,
@@ -146,8 +137,8 @@ console.log(newReview);
                   marginBottom: '28px',
                   marginTop: '10px',
                 }}
-                // onChange={handleRating}
-                readOnly={Boolean(reviews[0]?.rating) && !isEditActive}
+                onChange={handleRating}
+                // readOnly={Boolean(reviews[0]?.rating) && !isEditActive}
               />
             </Label>
 
@@ -184,7 +175,6 @@ console.log(newReview);
               component="textarea"
               placeholder="Enter your feedback"
               disabled={!isEditActive && false}
-              // value={reviews[0].comment}
             />
             <ErrMessage name="comment" component="div" />
 
@@ -199,7 +189,6 @@ console.log(newReview);
               </BtnsWrapper>
             )}
           </ReviewForm>
-        {/* )} */}
       </Formik>
     </>
   );
