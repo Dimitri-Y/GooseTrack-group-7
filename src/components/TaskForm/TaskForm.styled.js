@@ -40,15 +40,15 @@ export const FormTask = styled.div`
     background: ${(p) => p.theme.reviewBgColor};
     padding: 12px 14px;
     color: ${(p) => p.theme.taskModalInputPlaceholderColor};
-
-
     ::placeholder {
-      color: ${(p) => p.theme.taskModalInputPlaceholderColor};
-      font-family: 'Inter-600', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.29;
-    }
+        color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
+        font-family: 'Inter-600', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.29; /* 128.571% */
+      }
     @media screen and (min-width: 768px) {
       width: 340px;
     }
@@ -66,11 +66,11 @@ export const FormTask = styled.div`
       margin-top: 18px;
     }
     .field {
-      box-sizing: border-box;
+      /* box-sizing: border-box; */
       width: 126px;
-      height: 46px;
+      /* height: 46px; */
       margin: 0;
-      color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+      /* color: ${(p) => p.theme.taskModalInputPlaceholderColor}; */
 
       @media screen and (min-width: 768px) {
         width: 163px;
