@@ -48,6 +48,7 @@ export const store = configureStore({
     theme: themeReducer,
     statistics: StatisticsReducer,
     dateCalendar: dateCalendarReducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
