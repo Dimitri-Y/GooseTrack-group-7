@@ -20,7 +20,7 @@ import { themeReducer } from './theme/themeSlice.js';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'email'],
 };
 
 const parameterPersistConfig = {
