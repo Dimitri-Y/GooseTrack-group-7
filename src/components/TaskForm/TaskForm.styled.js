@@ -34,15 +34,16 @@ export const FormTask = styled.div`
     border: none;
     font-family: 'Inter-600', sans-serif;
     border-radius: 8px;
+    border: 1px solid ${(p) => p.theme.taskModalBorderInputColor};
     width: 267px;
     height: 46px;
     background: ${(p) => p.theme.reviewBgColor};
-    /* #f6f6f6;
-    #171820; */
     padding: 12px 14px;
+    color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
 
     ::placeholder {
-      color: #343434;
+      color: ${(p) => p.theme.taskModalInputPlaceholderColor};
       font-family: 'Inter-600', sans-serif;
       font-size: 14px;
       font-weight: 600;
@@ -69,8 +70,19 @@ export const FormTask = styled.div`
       width: 126px;
       height: 46px;
       margin: 0;
+      color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
       @media screen and (min-width: 768px) {
         width: 163px;
+      }
+      ::placeholder {
+        color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
+        font-family: 'Inter-600', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.29; /* 128.571% */
       }
     }
   }
@@ -91,7 +103,7 @@ export const FormTask = styled.div`
   }
 
   .form-group {
-    color: #343434;
+    color: ${(p) => p.theme.taskModalInputPlaceholderColor};
     font-family: 'Inter-600', sans-serif;
     font-size: 12px;
     font-style: normal;

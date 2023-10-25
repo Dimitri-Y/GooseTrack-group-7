@@ -24,7 +24,7 @@ export const StyleModal = styled.div`
     min-height: 290px;
     border-radius: 8px;
     border: 1px solid rgba(220, 227, 229, 0.8);
-    background: #ffffff;
+    background: ${(p) => p.theme.modalBGColor};
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
     @media screen and (min-width: 768px) {

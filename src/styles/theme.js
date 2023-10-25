@@ -27,7 +27,10 @@ export const lightTheme = {
   editBtnColor: '#E3F3FF',
   borderContainerStatisticsColor: '#E3F3FF',
   taskTitleColor: 'rgba(52, 52, 52, 0.8)',
-  taskModalBoxShadowColor: 'rgba(17, 17, 17, 0.10)',
+  modalBGColor: '#ffffff',
+  taskModalBorderInputColor: 'rgba(255, 255, 255, 0.15)',
+  taskModalInputPlaceholderColor: '#343434',
+
   
 };
 
@@ -59,5 +62,7 @@ export const darkTheme = {
   editBtnColor: '#353647',
   borderContainerStatisticsColor: 'rgb(227, 243, 255, 0.2)',
   taskTitleColor: 'rgba(250, 250, 250, 0.30)',
-  taskModalBoxShadowColor: 'rgba(17, 17, 17, 0.10)',
+  modalBGColor: '#171820',
+  taskModalBorderInputColor: 'rgba(255, 255, 255, 0.15)',
+  taskModalInputPlaceholderColor: '#FFFFFF',
 };
