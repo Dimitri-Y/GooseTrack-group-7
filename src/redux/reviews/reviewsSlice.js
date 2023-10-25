@@ -108,7 +108,7 @@ const reviewsSlice = createSlice({
 const reviewSlice = createSlice({
   name: 'review',
   initialState: reviewInitialState,
-  // // додала рядки 38-42
+ 
   reducers: {
     changeRating(state, action) {
       state.items = action.payload;
@@ -159,13 +159,14 @@ const reviewSlice = createSlice({
       .addCase(deleteReview.pending, (state) => {
         handlePending(state);
       })
-      .addCase(deleteReview.fulfilled, (state, action) => {
+      .addCase(deleteReview.fulfilled, (state) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          (review) => review.id === action.payload.id,
-        );
-        state.items.splice(index, 1);
+        // const index = state.items.findIndex(
+        //   (review) => review.id === action.payload.id,
+        // );
+        // state.items.splice(index, 1);
+        state.items.push({"comment": "", "rating": 5})
       })
       .addCase(deleteReview.rejected, (state, action) => {
         handleRejected(state, action);
@@ -176,10 +177,10 @@ const reviewSlice = createSlice({
       .addCase(updateReview.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          (review) => review.id === action.payload.id,
-        );
-        state.items[index] = action.payload;
+        // const index = state.items.findIndex(
+          // (review) => review.id === action.payload.id,
+        // );
+        state.items[0] = action.payload;
       })
       .addCase(updateReview.rejected, (state, action) => {
         handleRejected(state, action);
@@ -189,5 +190,5 @@ const reviewSlice = createSlice({
 export const reviewsReducer = reviewsSlice.reducer;
 export const reviewReducer = reviewSlice.reducer;
 
-// додала рядок 115
+
 export const { changeRating } = reviewSlice.actions;
