@@ -1,4 +1,4 @@
-import { useEffect} from 'react';
+// import { useEffect} from 'react';
 import {
     SideBarStyled,
     // Backdrop,
@@ -15,20 +15,20 @@ import LogoutBtn from '../LogoutBtn/LogoutBtn.jsx';
 import icon from '../../Icons/symbol-defs.svg';
 import { logo } from '../../../images/logo';
 
-const disableScrolling = disable => {
-  if (disable) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = 'auto';
-  }
-};
+// const disableScrolling = disable => {
+//   if (disable) {
+//     document.body.style.overflow = 'hidden';
+//   } else {
+//     document.body.style.overflow = 'auto';
+//   }
+// };
 const SideBar = ({toggleSidebar,  isOpen  }) => {
-  useEffect(() => {
-    disableScrolling(isOpen);
-    return () => {
-      disableScrolling(false);
-    };
-  }, [isOpen]);
+  // useEffect(() => {
+  //   disableScrolling(isOpen);
+  //   return () => {
+  //     disableScrolling(false);
+  //   };
+  // }, [isOpen]);
 
   return (
     // <Backdrop $isOpen={isOpen } onClick={toggleSidebar}>
@@ -38,31 +38,31 @@ const SideBar = ({toggleSidebar,  isOpen  }) => {
           <picture>
             {/*Webp*/}
             <source
-              srcSet={`${ logo.desk1xWebp }1x, ${logo.desk2xWebp}2x`}
+              srcSet={`${ logo.desk1xWebp }1x, ${logo.desk2xWebp}2x, ${logo.desk3xWebp}3x`}
               type="image/webp"
               media={"min-width: 1440px"}
             />
             <source
-              srcSet={`${ logo.tab1xWebp }1x, ${logo.tab2xWebp}2x`}
+              srcSet={`${ logo.tab1xWebp }1x, ${logo.tab2xWebp}2x, ${logo.tab3xWebp}3x`}
               type="image/webp"
               media={"min-width: 768px"}
             />
             <source
-              srcSet={`${ logo.mob1xWebp }1x, ${logo.mob2xWebp}2x`}
+              srcSet={`${ logo.mob1xWebp }1x, ${logo.mob2xWebp}2x, ${logo.mob3xWebp}3x`}
               type="image/webp"
               media={"min-width: 280px"}
             />
             {/*Png*/}
             <source
-              srcSet={`${logo.desk1xPng}1x, ${logo.desk2xPng}2x`}
+              srcSet={`${logo.desk1xPng}1x, ${logo.desk2xPng}2x,  ${logo.desk3xPng}3x`}
               media={"min-width: 1440px"}
             />
             <source
-              srcSet={`${logo.tab1xPng}1x, ${logo.tab2xPng}2x`}
+              srcSet={`${logo.tab1xPng}1x, ${logo.tab2xPng}2x, ${logo.tab3xPng}3x`}
               media={"min-width: 768px"}
             />
             <source
-              srcSet={`${logo.mob1xPng}1x, ${logo.mob2xPng}2x`}
+              srcSet={`${logo.mob1xPng}1x, ${logo.mob2xPng}2x, ${logo.mob3xPng}3x`}
               media={"min-width: 280px"}
             />
             <Logo src={logo.desk1xPng} alt="Logo" />
@@ -76,7 +76,7 @@ const SideBar = ({toggleSidebar,  isOpen  }) => {
             </CloseIcon>
           </CloseBtn>
         </LogoBox>
-        <UserNav></UserNav>
+        <UserNav toggleSidebar={toggleSidebar}/>
       </InnerWrapper>
       <LogoutBtn />
     </SideBarStyled>

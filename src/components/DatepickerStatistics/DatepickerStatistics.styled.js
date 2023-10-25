@@ -9,6 +9,7 @@ export const DataBtn = styled.div`
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
+
   @media screen and (min-width: 768px) {
     margin-top: 33px;
     margin-bottom: 33px;
@@ -33,6 +34,8 @@ export const CalendarGlobalStyles = createGlobalStyle`
     border-radius: 16px;
     color: #000;
     border: 1px solid #aeaeae;
+    
+    margin-top: 8px;
 }
 .react-datepicker__triangle {
     visibility: hidden;
@@ -209,7 +212,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 `;
 
 export const TitleWrapper = styled.button`
-  width: 195px;
+  width: 122px;
   color: #ffffff;
   background: #3e85f3;
   border-radius: 8px;
@@ -221,4 +224,59 @@ export const TitleWrapper = styled.button`
   font-size: 16px;
   justify-content: space-around;
   align-items: center;
+  height: 30px;
+    @media (min-width: 768px) {
+        height: 34px;
+        width: 134px;
+    }
+    @media (min-width: 1024px) {
+        height: 36px;
+    }
+`;
+
+export const ContainerBtn = styled.div`
+    border:  ${p => p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : "solid #DCE3E580 1px"}; 
+    border-radius: 8px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 76px;
+    height: 30px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+        height: 34px;
+    }
+    @media (min-width: 1024px) {
+        height: 36px;
+    }
+`
+export const Path = styled.path`
+  stroke: ${p => p.themecolors === 'dark' ? '#fff' : " #343434"} ; 
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+`;
+
+export const BtnSwitch = styled.button`
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    &:hover ${Path}{
+       stroke: #3E85F3;
+         
+    }
+     &:focus ${Path}{
+      stroke: #3E85F3;
+    }
+`
+
+export const SvgIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  transition: 0.3s; 
+    @media (min-width: 768px) {
+        width: 18px;
+        height: 18px;   
+    }
 `;

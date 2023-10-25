@@ -1,5 +1,4 @@
 import { createGlobalStyle, styled } from 'styled-components';
-// import { Form, Field } from 'formik';
 
 export const AccountForm = styled.form`
 background-color: #fff;
@@ -11,6 +10,7 @@ align-items: center;
 padding-left: 18px;
 padding-right: 18px;
 text-align: center;
+background-color: ${p => p.theme.secondaryBgColor};
 
 
 @media (min-width: 768px) {
@@ -32,7 +32,8 @@ font-size: 14px;
 font-weight: 700;
 line-height: 18px;
 margin-bottom: 4px;
-color: #343434;
+color: ${p => p.theme.secondaryTextColor};
+
 
 @media (min-width: 768px) {
    font-size: 18px;
@@ -45,8 +46,10 @@ font-family: 'Inter-SemiBold', sans-serif;
 font-size: 12px;
 font-weight: 600;
 line-height: 18px;
-color: #343434;
+color: ${p => p.theme.colorHeaderCalendar};
+
 margin-bottom: 40px;
+
 
 @media (min-width: 768px) {
    font-size: 14px;
@@ -88,10 +91,18 @@ font-weight: 600;
 line-height: 18px;
 width: 299px;
 border-radius: 8px;
-border: 1px solid rgba(17, 17, 17, 0.15);
+border: 1px solid ${p => p.theme.borderInputForm};
 padding-top: 14px;
 padding-bottom: 14px;
 padding-left: 18px;
+background-color: ${p => p.theme.secondaryBgColor};
+color: ${p => p.theme.mainTextColor};
+
+${(props) =>
+    props.hasError &&
+    `
+      border: 2px solid red; 
+    `}
 
 @media (min-width: 768px) {
    width: 354px;
@@ -102,6 +113,8 @@ padding-left: 18px;
  }
 `
 
+Input.shouldForwardProp = (prop) => prop !== 'hasError';
+
 export const Label = styled.label`
 display: flex;
 flex-direction: column;
@@ -110,6 +123,14 @@ font-size: 14px;
 font-weight: 400;
 line-height: 18px;
 gap: 8px;
+color: ${p => p.theme.labelsColor};
+
+
+${(props) =>
+    props.hasError &&
+    `
+      color: red; 
+    `}
 
 .calendar {
    width: 299px;
@@ -129,6 +150,8 @@ gap: 8px;
  }
 `
 
+Label.shouldForwardProp = (prop) => prop !== 'hasError';
+
 export const ButtonSubmit = styled.button`
 font-family: 'Inter-SemiBold', sans-serif;
 font-size: 14px;
@@ -144,6 +167,9 @@ color: #FFF;
    padding: 15px 83px;
  }
 
+ &:disabled {
+    background-color: rgba(62, 133, 243, 0.5);
+ }
  
 `
 
@@ -237,6 +263,27 @@ export const CalendarGlobalStyles = createGlobalStyle`
     padding: 8px 0;
     position: relative;
 }
+
+.react-datepicker__input-container {
+    position: relative;
+    
+  }
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+    position: absolute;
+    top: 17px;
+    left: 275px;
+
+    @media (min-width: 768px) {
+        left: 325px;
+      }
+     
+      @media (min-width: 1440px) {
+        left: 325px;
+      }
+
+  }
+
 .react-datepicker__current-month {
     font-family: Inter;
     font-size: 20px;
@@ -370,5 +417,10 @@ export const CalendarGlobalStyles = createGlobalStyle`
     position: absolute;
     top: 6px;
     width: 9px;
+
+    .react-datepicker__calendar-icon {
+        position: absolute;
+        left: 100px;
+    }
 }
 `;
