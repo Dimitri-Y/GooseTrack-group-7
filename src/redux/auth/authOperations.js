@@ -81,7 +81,7 @@ export const editUser = createAsyncThunk(
         },
       });
 
-      setAuthHeader(res.data.token);
+      setAuthHeader(res.data.user.token);
       return res.data.user;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

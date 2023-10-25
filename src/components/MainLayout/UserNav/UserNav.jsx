@@ -8,8 +8,10 @@ import {
     NavItemName,
 } from './UserNav.styled.jsx';
 import icon from '../../Icons/symbol-defs.svg';
+import { useLocation } from 'react-router-dom';
 
 const UserNav = ({toggleSidebar}) => {
+    const location = useLocation();
     const handleNavLinkClick = () => {
         toggleSidebar(false);
     }
@@ -19,7 +21,9 @@ const UserNav = ({toggleSidebar}) => {
             <NavList>
                 <NavItem
                     to="/account"
-                    onClick={handleNavLinkClick}>
+                    onClick={handleNavLinkClick}
+                    $isActive={location.pathname.startsWith('/account')}
+                >
                     <NavItemIcon>
                         <use href={icon + "#icon-user"}></use>
                     </NavItemIcon>
@@ -27,7 +31,9 @@ const UserNav = ({toggleSidebar}) => {
                 </NavItem>
                 <NavItem
                     to="/calendar"
-                    onClick={handleNavLinkClick}>
+                    onClick={handleNavLinkClick}
+                    $isActive={location.pathname.startsWith('/calendar')}
+                >
                     <NavItemIcon>
                         <use href={icon + "#icon-calendar"}></use>
                     </NavItemIcon>
@@ -35,7 +41,9 @@ const UserNav = ({toggleSidebar}) => {
                 </NavItem>
                 <NavItem
                     to="/statistics"
-                    onClick={handleNavLinkClick}>
+                    onClick={handleNavLinkClick}
+                    $isActive={location.pathname.startsWith('/statistics')}
+                >
                     <NavItemIconFill>
                         <use href={icon + "#icon-chart"}></use>
                     </NavItemIconFill>

@@ -16,6 +16,7 @@ import ResendEmailPage from './pages/ResendEmailPage/ResendEmailPage';
 const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
 const CalendarPage = lazy(() => import('./pages/CalendarPage/CalendarPage'));
 import ChoosedDay from './components/ChoosedDay/ChoosedDay';
+import ChoosedMonth from './components/ChoosedMonth/ChoosedMonth';
 // import ChoosedMonth from './components/ChoosedMonth/ChoosedMonth';
 const StatisticsPage = lazy(() =>
   import('./pages/StatisticsPage/StatisticsPage'),
@@ -47,7 +48,7 @@ const App = () => {
       <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
         <Route path="account" element={<AccountPage />} />
         <Route path="calendar" element={<CalendarPage />} >
-          {/*<Route path="month/:currentDate" element={<ChoosedMonth />} />*/}
+          <Route path="month/:currentDate" element={<ChoosedMonth />} />
           <Route path="day/:currentDay" element={<ChoosedDay />} />
         </Route>
         <Route path="/statistics" element={<StatisticsPage />} >

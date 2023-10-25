@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import {
@@ -8,12 +8,14 @@ import {
   BtnSwitch,
   SvgIcon,
   Path,
-} from './DatepickerStatistics.styled';
+} from './DatepickerTasks.styled';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import { ContainerDatePicker } from '../DatepickerTasks/DatepickerTasks.styled';
+import { useDispatch } from 'react-redux';
+import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
 
-const DatepickerStatistics = ({ setDate, themeColor }) => {
-  const [selectedDate, setSelectedDate] = useState(Date.now());
+const DatepickerTasks = ({ setDate, themeColor }) => {
+  const dispatch = useDispatch();
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
@@ -38,21 +40,21 @@ const DatepickerStatistics = ({ setDate, themeColor }) => {
   };
 
   useEffect(() => {
-    setDate(selectedDate);
-  }, [selectedDate, setDate]);
+    dispatch(changeDateCalendar(selectedDate));
+  }, [dispatch, selectedDate]);
 
   return (
-    <ContainerDatePicker>
+    <>
       <DatePicker
         selected={selectedDate}
         onChange={(date) => {
-          setDate(date);
+          setDate(selectedDate);
           setSelectedDate(date);
         }}
         customInput={<CustomInput />}
         dateFormat={'dd MM yyyy'}
         calendarStartDay={1}
-        formatWeekDay={(day) => day.substr(0, 1)}
+        formatWeekDay={(day) => day.substring(0, 1)}
       />
 
       <ContainerBtn themecolors={themeColor}>
@@ -76,8 +78,36 @@ const DatepickerStatistics = ({ setDate, themeColor }) => {
         </BtnSwitch>
       </ContainerBtn>
       <CalendarGlobalStyles />
-    </ContainerDatePicker>
+    </>
   );
 };
 
-export default DatepickerStatistics;
+export default DatepickerTasks;
+
+// export const StyledMonthpicker = () => {
+//   const [selectedMonth, setSelectedDate] = useState(Date.now());
+
+//   const CustomInput = forwardRef(({ value, onClick }, ref) => {
+//     return (
+//       <TitleWrapper onClick={onClick} ref={ref}>
+//         {format(selectedMonth, 'MMM yyyy')}
+//       </TitleWrapper>
+//     );
+//   });
+
+//   return (
+//     <>
+//       <DatePicker
+//         selected={selectedMonth}
+//         onChange={(date) => {
+//           setSelectedDate(date);
+//         }}
+//         customInput={<CustomInput />}
+//         dateFormat={'MM yyyy'}
+//         showMonthYearPicker
+//       />
+//       <CalendarGlobalStyles />
+//       <CalendarMonthStyles />
+//     </>
+//   );
+// };

@@ -6,24 +6,11 @@ export const selectIsLoading = (state) => state.tasks.isLoading;
 
 export const selectError = (state) => state.tasks.error;
 
-export const selectDate = (state) => state.date.date;
-
-export const selectParameter = (state) => state.parameter.parameter;
+export const selectDateCalendar = (state) => state.dateCalendar.dateCalendar;
 
 export const selectVisibleTasks = createSelector(
-  [selectTasks, selectDate],
+  [selectTasks, selectDateCalendar],
   (tasks, date) => {
-    return Object.entries(tasks).filter((task) => task.date === date);
+    tasks?.filter((task) => task.date === date.toISOString().slice(0, 10));
   },
 );
-
-export const selectVisibleMessage = createSelector([selectTasks], (tasks) => {
-  const hasUnfinishedTasks = Object.entries(tasks).some(
-    (task) => task.category === 'to-do' || task.category === 'in-progress',
-  );
-
-  return hasUnfinishedTasks
-    ? 'Let go of the past and focus on the present!'
-    : '';
-});
-

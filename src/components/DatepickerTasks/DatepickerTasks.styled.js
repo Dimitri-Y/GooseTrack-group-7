@@ -1,178 +1,22 @@
 import { createGlobalStyle, styled } from 'styled-components';
+export const DataBtn = styled.div`
+  padding: 6px 12px;
+  color: #ffffff;
+  background: #3e85f3;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
 
-export const AccountForm = styled.form`
-background-color: #fff;
-border-radius: 16px;
-padding-bottom: 40px;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding-left: 18px;
-padding-right: 18px;
-text-align: center;
-background-color: ${p => p.theme.secondaryBgColor};
-
-
-@media (min-width: 768px) {
-   padding-top: 40px;
-padding-bottom: 40px;
- }
-
- @media (min-width: 1440px) {
-   padding-top: 60px;
-padding-bottom: 60px;
-padding-left: 164px;
-padding-right: 165px;
- }
-`
-
-export const UserName = styled.h1`
-font-family: 'Inter-Bold', sans-serif;
-font-size: 14px;
-font-weight: 700;
-line-height: 18px;
-margin-bottom: 4px;
-color: ${p => p.theme.secondaryTextColor};
-
-
-@media (min-width: 768px) {
-   font-size: 18px;
-margin-bottom: 8px;
- }
-`
-
-export const User = styled.p`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 12px;
-font-weight: 600;
-line-height: 18px;
-color: ${p => p.theme.colorHeaderCalendar};
-
-margin-bottom: 40px;
-
-
-@media (min-width: 768px) {
-   font-size: 14px;
- }
-
- @media (min-width: 1440px) {
-   margin-bottom: 44px;
- }
-`
-
-export const InputBox = styled.div`
-display: flex;
-flex-direction: column;
-gap: 18px;
-margin-bottom: 40px;
-
-@media (min-width: 768px) {
-   gap: 24px;
- }
-
-@media (min-width: 1440px) {
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   row-gap: 24px;
-   column-gap: 50px;
-   margin-bottom: 88px;
- }
-`
-
-export const InputFile = styled.input`
-display: none;
-`
-
-export const Input = styled.input`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 16px;
-font-weight: 600;
-line-height: 18px;
-width: 299px;
-border-radius: 8px;
-border: 1px solid ${p => p.theme.borderInputForm};
-padding-top: 14px;
-padding-bottom: 14px;
-padding-left: 18px;
-background-color: ${p => p.theme.secondaryBgColor};
-color: ${p => p.theme.mainTextColor};
-
-${(props) =>
-    props.hasError &&
-    `
-      border: 2px solid red; 
-    `}
-
-@media (min-width: 768px) {
-   width: 354px;
- }
-
- @media (min-width: 1440px) {
-   width: 354px;
- }
-`
-
-Input.shouldForwardProp = (prop) => prop !== 'hasError';
-
-export const Label = styled.label`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-font-size: 14px;
-font-weight: 400;
-line-height: 18px;
-gap: 8px;
-color: ${p => p.theme.labelsColor};
-
-
-${(props) =>
-    props.hasError &&
-    `
-      color: red; 
-    `}
-
-.calendar {
-   width: 299px;
-}
-
-@media (min-width: 768px) {
-   .calendar {
-      width: 354px;
-   }
-  
- }
-
- @media (min-width: 1440px) {
-   .calendar {
-      width: 354px;
-   }
- }
-`
-
-Label.shouldForwardProp = (prop) => prop !== 'hasError';
-
-export const ButtonSubmit = styled.button`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 14px;
-font-weight: 600;
-line-height: 18px;
-border: none;
-padding: 14px 50px;
-border-radius: 16px;
-background: #3E85F3;
-color: #FFF;
-
-@media (min-width: 768px) {
-   padding: 15px 83px;
- }
-
- &:disabled {
-    background-color: rgba(62, 133, 243, 0.5);
- }
- 
-`
-
+  @media screen and (min-width: 768px) {
+    margin-top: 33px;
+    margin-bottom: 33px;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+`;
 export const CalendarGlobalStyles = createGlobalStyle`
 .react-datepicker {
     position: absolute;
@@ -182,13 +26,16 @@ export const CalendarGlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 280px;
+    height: 354px;
     padding: 9px 18px;
     background-color: rgb(62, 133, 243);
     font-family: Inter;
     border-radius: 16px;
     color: #000;
     border: 1px solid #aeaeae;
-
+    
+    margin-top: 8px;
 }
 .react-datepicker__triangle {
     visibility: hidden;
@@ -263,27 +110,6 @@ export const CalendarGlobalStyles = createGlobalStyle`
     padding: 8px 0;
     position: relative;
 }
-
-.react-datepicker__input-container {
-    position: relative;
-    
-  }
-
-.react-datepicker__input-container .react-datepicker__calendar-icon {
-    position: absolute;
-    top: 17px;
-    left: 275px;
-
-    @media (min-width: 768px) {
-        left: 325px;
-      }
-     
-      @media (min-width: 1440px) {
-        left: 325px;
-      }
-
-  }
-
 .react-datepicker__current-month {
     font-family: Inter;
     font-size: 20px;
@@ -292,14 +118,6 @@ export const CalendarGlobalStyles = createGlobalStyle`
     line-height: 24px;
     text-align: center;
     color: white;
-
-    @media (min-width: 768px) {
-        font-size: 24px;
-      }
-     
-     @media (min-width: 1440px) {
-        font-size: 24px;
-      }
 }
 .react-datepicker__day-names {
     display: flex;
@@ -320,17 +138,10 @@ export const CalendarGlobalStyles = createGlobalStyle`
     line-height: 18px;
     text-align: center;
     color: white;
-
-    @media (min-width: 768px) {
-        font-size: 18px;
-      }
-     
-     @media (min-width: 1440px) {
-        font-size: 18px;
-      }
 }
 .react-datepicker__month {
     display: flex;
+    gap: 7px;
     flex-direction: column;
     justify-content: space-between;
     padding-top: 16px;
@@ -351,6 +162,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 8px;
     flex-shrink: 0;
     margin: 0px;
     width: 32px;
@@ -364,32 +176,11 @@ export const CalendarGlobalStyles = createGlobalStyle`
     line-height: 18px;
     text-align: center;
     cursor: pointer;
-
-    @media (min-width: 768px) {
-        font-size: 18px;
-        width: 48px;
-    height: 48px;
-      }
-     
-     @media (min-width: 1440px) {
-        font-size: 18px;
-        width: 48px;
-    height: 48px;
-      }
 }
 .react-datepicker__day--selected {
     background-color: white;
     color: rgb(62, 133, 243);
     font-size: 14px;
-    border-radius: 24px;
-
-    @media (min-width: 768px) {
-        font-size: 18px;
-      }
-     
-     @media (min-width: 1440px) {
-        font-size: 18px;
-      }
 }
 .react-datepicker__day--weekend {
     opacity: 0.5;
@@ -417,10 +208,84 @@ export const CalendarGlobalStyles = createGlobalStyle`
     position: absolute;
     top: 6px;
     width: 9px;
-
-    .react-datepicker__calendar-icon {
-        position: absolute;
-        left: 100px;
-    }
 }
+`;
+
+export const TitleWrapper = styled.button`
+  width: 122px;
+  color: #ffffff;
+  background: #3e85f3;
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  font-size: 16px;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+  @media (min-width: 768px) {
+    height: 34px;
+    width: 134px;
+  }
+  @media (min-width: 1024px) {
+    height: 36px;
+  }
+`;
+
+export const ContainerDatePicker = styled.div`
+display: flex;
+justify-content: space-between;
+`
+
+export const ContainerBtn = styled.div`
+  border: ${(p) =>
+    p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : 'solid #DCE3E580 1px'};
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 30px;
+  margin-left: auto;
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 34px;
+    margin-left: 8px;
+  }
+  @media (min-width: 1024px) {
+    height: 36px;
+    margin-left: 8px;
+  }
+`;
+export const Path = styled.path`
+  stroke: ${(p) => (p.themecolors === 'dark' ? '#fff' : ' #343434')};
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+`;
+
+export const BtnSwitch = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  &:hover ${Path} {
+    stroke: #3e85f3;
+  }
+  &:focus ${Path} {
+    stroke: #3e85f3;
+  }
+`;
+
+export const SvgIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  transition: 0.3s;
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 `;

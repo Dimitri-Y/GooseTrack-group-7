@@ -4,6 +4,7 @@ import { Button } from './AddTaskBtn.styled';
 import { ReactComponent as Plus } from '../Icons/plus-add-task.svg';
 
 const AddTaskBtn = ({ category }) => {
+
   const [isModalActive, setIsModalActive] = useState(false);
 
   const handleModalOpen = () => {
@@ -20,7 +21,7 @@ const AddTaskBtn = ({ category }) => {
         <span>Add task</span>
       </Button>
       {isModalActive && (
-        <TaskModal category={category} onModalClose={handleModalClose} />
+        <TaskModal currentCategory={category} onModalClose={handleModalClose} />
       )}
     </>
   );

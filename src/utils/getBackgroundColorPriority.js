@@ -1,10 +1,10 @@
 const getBackgroundColorPriority = (priority) => {
-  switch (priority) {
-    case 'Low':
+  switch (priority.toLowerCase()) {
+    case 'low':
       return '#72c2f8';
-    case 'Medium':
+    case 'medium':
       return '#F3B249';
-    case 'Hight':
+    case 'high':
       return '#EA3D65';
     default:
       return '#F3B249';

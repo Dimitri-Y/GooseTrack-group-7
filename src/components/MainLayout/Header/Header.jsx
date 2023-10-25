@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useParams  } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import AddFeedbackBtn from "../AddFeedbackBtn/AddFeedbackBtn.jsx";
@@ -18,7 +19,6 @@ import {
 import icon from '../../Icons/symbol-defs.svg';
 import { motivator } from '../../../images/motivator';
 import MainTitle from '../../Reusable/MainTitle/MainTitle.jsx';
-// import {selectVisibleMessage} from '../../../redux/tasks/tasksSelectors.js'
 import {selectTasks} from '../../../redux/tasks/tasksSelectors.js';
 
 const getCurrentMainTitle = location => {
@@ -27,12 +27,20 @@ const getCurrentMainTitle = location => {
   return 'Calendar';
 };
 
-const Header = ({ toggleSidebar }) => {
+const Header = ({ toggleSidebar, isOpen}) => {
   const location = useLocation();
   const currentMainTitle = getCurrentMainTitle(location);
   const currentDay  = useParams();
   const onChoosedDayPage = location.pathname.startsWith('/calendar/day');
   const tasks = useSelector(selectTasks);
+
+  useEffect(() => {
+    if(isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  },  [isOpen]);
 
   const hasUndoneTasksForToday = () => {
     const tasksToday = tasks
@@ -54,12 +62,12 @@ const Header = ({ toggleSidebar }) => {
           <TitleWrap>
             <picture>
               <source
-                srcSet={`${motivator.desk1xWebp}1x, ${motivator.desk2xWebp}2x`}
+                srcSet={`${motivator.desk1xWebp}1x, ${motivator.desk2xWebp}2x, ${motivator.desk3xWebp}3x`}
                 type="image/webp"
                 media={"min-width: 1440px"}
               />
               <source
-                srcSet={`${motivator.desk1xPng}1x, ${motivator.desk2xPng}2x`}
+                srcSet={`${motivator.desk1xPng}1x, ${motivator.desk2xPng}2x, ${motivator.desk3xPng}3x`}
                 media={"min-width: 1440px"}
               />
               <ImgGoose src={motivator.desk1xPng} alt="Motivation Message" />
