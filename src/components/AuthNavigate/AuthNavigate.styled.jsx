@@ -11,6 +11,7 @@ export const Link = styled(RouterLink)`
   line-height: 14px;
   transition: transform 0.3s ease-in-out;
   color: #3e85f3;
+  margin-top: 18px;
 
   &:before {
     position: absolute;
@@ -30,5 +31,6 @@ export const Link = styled(RouterLink)`
   @media (min-width: 768px) {
     font-size: 18px;
     line-height: 24px;
+    margin-top: 24px;
   }
 `;

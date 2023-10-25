@@ -18,7 +18,6 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/auth/register', credentials);
-
       // setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -79,7 +78,7 @@ export const editUser = createAsyncThunk(
       const res = await axios.patch('/users/edit', credentials, {
         headers: {
           'Content-Type': 'multipart/form-data',
-        }
+        },
       });
 
       setAuthHeader(res.data.user.token);
@@ -94,12 +93,12 @@ export const verificationEmail = createAsyncThunk(
   'auth/verificationEmail',
   async (email, thunkAPI) => {
     try {
-      const res = await axios.post('/auth/verify', email);
+      const res = await axios.post('users/verify', email);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  }
+  },
 );
 
 export const verify = createAsyncThunk(
@@ -112,5 +111,5 @@ export const verify = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  }
+  },
 );

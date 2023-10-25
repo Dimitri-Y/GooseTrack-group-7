@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import DatePicker from 'react-datepicker';
 import {
@@ -10,19 +10,12 @@ import {
   Path,
 } from './DatepickerTasks.styled';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
-import { changeDate } from '../../redux/tasks/dateSlice';
-import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
 
 const DatepickerTasks = ({ setDate, themeColor }) => {
-  // const [selectedDate, setSelectedDate] = useState(Date.now());
-  const dateCalendar = useSelector(selectDateCalendar);
-  const [selectedDate, setSelectedDate] = useState(dateCalendar);
   const dispatch = useDispatch();
-  dispatch(changeDateCalendar(selectedDate));
-  dispatch(changeDate(selectedDate.toISOString().slice(0, 10)));
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const CustomInput = forwardRef(({ value, onClick }, ref) => {
     return (
@@ -46,6 +39,10 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
     setDate(newDate);
   };
 
+  useEffect(() => {
+    dispatch(changeDateCalendar(selectedDate));
+  }, [dispatch, selectedDate]);
+
   return (
     <>
       <DatePicker
@@ -57,7 +54,7 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
         customInput={<CustomInput />}
         dateFormat={'dd MM yyyy'}
         calendarStartDay={1}
-        formatWeekDay={(day) => day.substr(0, 1)}
+        formatWeekDay={(day) => day.substring(0, 1)}
       />
 
       <ContainerBtn themecolors={themeColor}>
@@ -86,3 +83,31 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
 };
 
 export default DatepickerTasks;
+
+// export const StyledMonthpicker = () => {
+//   const [selectedMonth, setSelectedDate] = useState(Date.now());
+
+//   const CustomInput = forwardRef(({ value, onClick }, ref) => {
+//     return (
+//       <TitleWrapper onClick={onClick} ref={ref}>
+//         {format(selectedMonth, 'MMM yyyy')}
+//       </TitleWrapper>
+//     );
+//   });
+
+//   return (
+//     <>
+//       <DatePicker
+//         selected={selectedMonth}
+//         onChange={(date) => {
+//           setSelectedDate(date);
+//         }}
+//         customInput={<CustomInput />}
+//         dateFormat={'MM yyyy'}
+//         showMonthYearPicker
+//       />
+//       <CalendarGlobalStyles />
+//       <CalendarMonthStyles />
+//     </>
+//   );
+// };

@@ -14,12 +14,12 @@ export const Form = styled(FormikForm)`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 40px 24px;
-  margin-bottom: 18px;
+  
 
   @media (min-width: 768px) {
     max-width: 480px;
     padding: 40px;
-    margin-bottom: 24px;
+    
   }
 `;
 
