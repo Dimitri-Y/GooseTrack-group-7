@@ -20,7 +20,7 @@ import { dateCalendarReducer } from './tasks/dateCalendarSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'email'],
 };
 
 export const store = configureStore({

@@ -12,6 +12,7 @@ import MainPage from './pages/MainPage/MainPage.jsx';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage/RegisterPage.jsx';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import ResendEmailPage from './pages/ResendEmailPage/ResendEmailPage';
 const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
 const CalendarPage = lazy(() => import('./pages/CalendarPage/CalendarPage'));
 import ChoosedDay from './components/ChoosedDay/ChoosedDay';
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/login" element={<RestrictedRoute redirectTo="/calendar" component={<LoginPage />} />} />
         <Route path="/sendemail" element={<RestrictedRoute redirectTo="/calendar" component={<SendEmailPage />} />} />
         <Route path="/sendemail/:verificationToken" element={<RestrictedRoute redirectTo="/calendar" component={<SendEmailPage />} />} />
+        <Route path="/resendemail" element={<ResendEmailPage />} />
 
       <Route path="/" element={<PrivateRoute redirectTo="/login" component={<MainLayout />} />} >
         <Route path="account" element={<AccountPage />} />
