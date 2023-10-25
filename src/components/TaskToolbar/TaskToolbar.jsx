@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from 'react';
 import TaskModal from '../TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
-import { updateTask } from '../../redux/tasks/tasksOperations';
+import { deleteTask, updateTask } from '../../redux/tasks/tasksOperations';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -38,7 +38,7 @@ const TaskToolbar = ({ task }) => {
     setIsOpenModal(false);
   };
 
-  const deleteTask = (id) => {
+  const deleteTask1 = (id) => {
     console.log(`delete task ${id}`);
     dispatch(deleteTask(id));
 
@@ -93,7 +93,7 @@ const TaskToolbar = ({ task }) => {
       <ButtonDelete
         className="button"
         type="button"
-        onClick={() => deleteTask(id)}
+        onClick={() => deleteTask1(id)}
       />
       {visible && (
         <ContextMenu>

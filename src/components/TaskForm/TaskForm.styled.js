@@ -22,7 +22,7 @@ export const FormTask = styled.div`
     /* font-family: 'Inter-500', sans-serif; */
   }
   .title {
-    color: rgba(52, 52, 52, 0.8);
+    color: ${(p) => p.theme.taskTitleColor};
     font-family: 'Inter-500', sans-serif;
     font-size: 12px;
     font-style: normal;
@@ -36,7 +36,9 @@ export const FormTask = styled.div`
     border-radius: 8px;
     width: 267px;
     height: 46px;
-    background: #f6f6f6;
+    background: ${(p) => p.theme.reviewBgColor};
+    /* #f6f6f6;
+    #171820; */
     padding: 12px 14px;
 
     ::placeholder {
