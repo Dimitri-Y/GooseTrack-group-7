@@ -17,7 +17,6 @@ const AccountPage = lazy(() => import('./pages/AccountPage/AccountPage'));
 const CalendarPage = lazy(() => import('./pages/CalendarPage/CalendarPage'));
 import ChoosedDay from './components/ChoosedDay/ChoosedDay';
 import ChoosedMonth from './components/ChoosedMonth/ChoosedMonth';
-// import ChoosedMonth from './components/ChoosedMonth/ChoosedMonth';
 const StatisticsPage = lazy(() =>
   import('./pages/StatisticsPage/StatisticsPage'),
 );
