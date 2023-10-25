@@ -35,19 +35,19 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
-      // serializableCheck: {
-      //   ignoredActions: [
-      //     'payload',
-      //     FLUSH,
-      //     REHYDRATE,
-      //     PAUSE,
-      //     PERSIST,
-      //     PURGE,
-      //     REGISTER,
-      //   ],
-      //   ignoredPaths: [`dateCalendar.dateCalendar`],
-      // },
+      // serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [
+          'payload',
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+        ],
+        ignoredPaths: [`dateCalendar.dateCalendar`],
+      },
     }),
   // devTools: process.env.NODE_ENV === 'development',
 });
