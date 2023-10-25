@@ -13,8 +13,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { dateReducer } from './tasks/dateSlice';
-import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 import { themeReducer } from './theme/themeSlice.js';
 import { dateCalendarReducer } from './tasks/dateCalendarSlice';
 
@@ -24,25 +22,11 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-// const parameterPersistConfig = {
-//   key: 'parameter',
-//   storage,
-//   whitelist: ['parameter'],
-// };
-
-// const datePersistConfig = {
-//   key: 'date',
-//   storage,
-//   whitelist: ['date'],
-// };
-
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     tasks: tasksReducer,
     reviews: reviewsReducer,
-    date: dateReducer,
-    parameter: parameterUrlReducer,
     theme: themeReducer,
     dateCalendar: dateCalendarReducer,
   },

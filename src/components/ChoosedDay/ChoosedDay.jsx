@@ -10,7 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   selectError,
-  selectTasks,
   selectVisibleTasks,
 } from '../../redux/tasks/tasksSelectors';
 
@@ -18,9 +17,6 @@ const ChoosedDay = () => {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   const visibleTasks = useSelector(selectVisibleTasks);
-  const tasks = useSelector(selectTasks);
-
-  console.log(tasks);
 
   const toDo = useMemo(
     () => visibleTasks && filter(visibleTasks, 'category', 'to-do'),
