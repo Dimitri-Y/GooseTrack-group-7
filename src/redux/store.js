@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
 import { tasksReducer } from './tasks/tasksSlice';
-import { reviewsReducer } from './reviews/reviewsSlice';
+import { reviewReducer, reviewsReducer } from './reviews/reviewsSlice';
 import {
   persistStore,
   persistReducer,
@@ -16,9 +16,8 @@ import storage from 'redux-persist/lib/storage';
 import { dateReducer } from './tasks/dateSlice';
 import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 import { themeReducer } from './theme/themeSlice.js';
-import {StatisticsReducer} from './statistics/statisticsSlice.js'
+import { StatisticsReducer } from './statistics/statisticsSlice.js';
 import { dateCalendarReducer } from './tasks/dateCalendarSlice';
-
 
 const authPersistConfig = {
   key: 'auth',
@@ -48,7 +47,7 @@ export const store = configureStore({
     theme: themeReducer,
     statistics: StatisticsReducer,
     dateCalendar: dateCalendarReducer,
-
+    review: reviewReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
