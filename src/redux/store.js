@@ -16,9 +16,8 @@ import storage from 'redux-persist/lib/storage';
 import { dateReducer } from './tasks/dateSlice';
 import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 import { themeReducer } from './theme/themeSlice.js';
-import {StatisticsReducer} from './statistics/statisticsSlice.js'
+import { StatisticsReducer } from './statistics/statisticsSlice.js';
 import { dateCalendarReducer } from './tasks/dateCalendarSlice';
-
 
 const authPersistConfig = {
   key: 'auth',
