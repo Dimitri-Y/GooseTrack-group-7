@@ -4,7 +4,7 @@ const getBackgroundColorPriority = (priority) => {
       return '#72c2f8';
     case 'medium':
       return '#F3B249';
-    case 'hight':
+    case 'high':
       return '#EA3D65';
     default:
       return '#F3B249';
