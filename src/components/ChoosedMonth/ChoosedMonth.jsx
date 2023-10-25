@@ -5,7 +5,7 @@ import moment from 'moment';
 import { selectTasks } from '../../redux/tasks/tasksSelectors';
 import { fetchTasks } from '../../redux/tasks/tasksOperations';
 import CalendarTable from './CalendarTable/CalendarTable';
-import { MonthCalendarHeader } from './MonthCalendarHeader/MonthCalendarHeader';
+import MonthCalendarHeader from './MonthCalendarHeader/MonthCalendarHeader';
 
 const ChoosedMonth = () => {
   const dispatch = useDispatch();

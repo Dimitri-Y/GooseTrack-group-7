@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
+import MonthTaskDay from '../MonthTaskDay/MonthTaskDay';
 import {
   GridWrapper,
   CellWrapper,
@@ -7,56 +8,35 @@ import {
   ShowDayWrapper,
   DayWrapper,
   CurrentDay,
-  TaskListWrapper,
-  CalendarTableMoreBtn,
-  TaskItem,
+  TaskWrapper,
+  CalendarTableBtn,
 } from './CalendarTable.styled';
-import { MonthTaskDay } from './MonthTaskDay/MonthTaskDay';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectTasks } from 'redux/tasks/tasksSelectors';
-import { useEffect } from 'react';
-import { fetchTasks } from 'redux/tasks/tasksOperations';
-import { selectDate } from 'redux/tasks/tasksSelectors';
 
-const TOTAL_CELLS = 42;
-
-const CalendarTable = ({ startDay }) => {
+const CalendarTable = ({ startDay, today, tasks }) => {
   const navigate = useNavigate();
-  const date = useSelector(selectDate);
+  const totalDays = 42;
 
   const day = startDay.clone().subtract(1, 'day');
-  const dayCellsInCalendar = [...Array(TOTAL_CELLS)]?.map(() =>
-    day.add(1, 'day').clone(),
-  );
+
+  const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
   const isCurrentDay = (day) => moment().isSame(day, 'day');
-  const isSelectedMonth = (day) => moment(date).isSame(day, 'month');
+  const isSelectedMonth = (day) => today.isSame(day, 'month');
 
-  const tasks = useSelector(selectTasks);
-
-  const setDayTask = (dayItem) => {
-    return tasks
-      ?.filter(
-        (task) =>
-          task?.date >= dayItem.format('YYYY-MM-DD') &&
-          task?.date <= dayItem.clone().endOf('day').format('YYYY-MM-DD'),
-      )
-      .map((task) => (
-        <li key={task._id}>
-          <TaskItem $priority={task.priority}>{task.title}</TaskItem>
-        </li>
-      ));
+  const filterTask = (calendarDay) => {
+    if (!tasks || tasks.length === 0) {
+      return [];
+    }
+    let dayTasksFiltered = [
+      ...tasks.filter((task) => task.date === calendarDay.format('YYYY-MM-DD')),
+    ];
+    return dayTasksFiltered;
   };
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
   return (
     <GridWrapper>
-      {dayCellsInCalendar?.((dayItem) => {
-        const dayTasks = setDayTask(dayItem);
+      {daysMap.map((dayItem) => {
+        const dayTasks = filterTask(dayItem);
         return (
           <CellWrapper
             style={{
@@ -85,7 +65,7 @@ const CalendarTable = ({ startDay }) => {
                   )}
                 </DayWrapper>
               </ShowDayWrapper>
-              <TaskListWrapper>
+              <TaskWrapper>
                 {dayTasks.slice(0, 2).map((task) => (
                   <li key={task._id}>
                     <MonthTaskDay task={task} />
@@ -95,16 +75,16 @@ const CalendarTable = ({ startDay }) => {
                   .map((tasks) => tasks.tasks)
                   .reduce((t1, t2) => t1.concat(t2), []).length > 2 && (
                   <li key="more">
-                    <CalendarTableMoreBtn type="button">
+                    <CalendarTableBtn type="button">
                       +{' '}
-                      {setDayTask(dayItem)
+                      {filterTask(dayItem)
                         .map((tasks) => tasks.tasks)
                         .reduce((t1, t2) => t1.concat(t2), []).length - 2}{' '}
                       tasks...
-                    </CalendarTableMoreBtn>
+                    </CalendarTableBtn>
                   </li>
                 )}
-              </TaskListWrapper>
+              </TaskWrapper>
             </RowInCell>
           </CellWrapper>
         );
