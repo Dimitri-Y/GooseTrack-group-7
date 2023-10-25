@@ -2,34 +2,36 @@ import DayCalendarHead from '../DayCalendarHead/DayCalendarHead';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 import filter from '../../utils/filter';
 import { ContainerSection } from './ChoosedDay.styled';
-import {
-  selectError,
-  selectVisibleTasks,
-} from '../../redux/tasks/tasksSelectors';
-import { useEffect } from 'react';
-import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useEffect, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchTasks } from '../../redux/tasks/tasksOperations';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {
+  selectError,
+  selectTasks,
+  selectVisibleTasks,
+} from '../../redux/tasks/tasksSelectors';
 
 const ChoosedDay = () => {
-  const visibleTasks = useSelector(selectVisibleTasks);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
+  const visibleTasks = useSelector(selectVisibleTasks);
+  const tasks = useSelector(selectTasks);
+
+  console.log(tasks);
 
   const toDo = useMemo(
-    () => filter(visibleTasks, 'category', 'to-do'),
+    () => visibleTasks && filter(visibleTasks, 'category', 'to-do'),
     [visibleTasks],
   );
   const inProgress = useMemo(
-    () => filter(visibleTasks, 'category', 'in-progress'),
+    () => visibleTasks && filter(visibleTasks, 'category', 'in-progress'),
     [visibleTasks],
   );
   const done = useMemo(
-    () => filter(visibleTasks, 'category', 'done'),
+    () => visibleTasks && filter(visibleTasks, 'category', 'done'),
     [visibleTasks],
   );
 

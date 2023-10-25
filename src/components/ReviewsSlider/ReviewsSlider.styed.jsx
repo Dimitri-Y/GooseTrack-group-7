@@ -78,7 +78,7 @@ export const SliderWrapper = styled.div`
 `;
 
 export const ReviewSliderCard = styled.div`
-  min-height: 160px;
+  min-height: 210px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -90,7 +90,6 @@ export const ReviewSliderCard = styled.div`
   @media screen and (min-width: 768px) {
     padding: 32px 32px 32px 32px;
     gap: 18px;
-    min-height: 150px;
   }
 `;
 

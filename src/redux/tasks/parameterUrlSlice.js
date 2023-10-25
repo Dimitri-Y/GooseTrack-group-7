@@ -1,6 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const parameterUrlInitialState = { parameter: 'monday' };
+const days = [
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday',
+];
+
+const index = new Date().getDay();
+
+const parameterUrlInitialState = { parameter: days[index] };
 
 const parameterUrlSlice = createSlice({
   name: 'parameter',
