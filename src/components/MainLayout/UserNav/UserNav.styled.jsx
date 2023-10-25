@@ -36,8 +36,13 @@ export const NavItem = styled(NavLink)`
   padding: 10px 12px;
   gap: 8px;
   border-radius: 8px;
-  color: ${p => p.theme.sidebarTextColor};
-  background-color: transparent;
+ 
+  background-color: ${p =>
+          p.$isActive ? p.theme.secondaryAccentColorActive : 'transparent'};
+  color: ${p =>
+          p.$isActive ? p.theme.sidebarMainActiveColor : p.theme.sidebarTextColor};
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {

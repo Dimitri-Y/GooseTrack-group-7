@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectUser } from '../../redux/auth/authSelectors';
-// import { refreshUser } from '../../redux/auth/authOperations';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/authSelectors';
+import { editUser } from '../../redux/auth/authOperations';
 import UserPhoto from './UserPhoto';
 import DatePicker from 'react-datepicker';
 import { AiOutlineDown } from 'react-icons/ai';
@@ -20,7 +19,6 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { parseISO } from 'date-fns';
-import { selectToken } from '../../redux/auth/authSelectors';
 
 const validationSchema = yup.object().shape({
   avatar: yup.mixed().test('fileType', (value) => {
@@ -38,7 +36,7 @@ const validationSchema = yup.object().shape({
     .string()
     .email('Please enter a valid email')
     .required(`Email is required`),
-  birthday: yup.date().default(() => new Date()),
+  birthday: yup.date(),
   number: yup
     .string()
     .matches(/^\+380\d{9}$/, 'The number should start with +380 and 9 number', {
@@ -47,22 +45,13 @@ const validationSchema = yup.object().shape({
   skype: yup.string().max(16, 'It must be no more than 16 characters'),
 });
 
-const API = 'http://localhost:3000/api/users/current';
-const API_PATCH = 'http://localhost:3000/api/users/edit';
-const TOKEN = selectToken();
-
 const UserForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploaded, setUploaded] = useState();
-  const [userData, setUserData] = useState({
-    userName: '',
-    phone: '',
-    birthday: '',
-    skype: '',
-    email: '',
-    avatarURL: '',
-  });
   const [changePhoto, setChangePhoto] = useState(false);
+
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const filePicker = useRef(null);
 
@@ -84,62 +73,27 @@ const UserForm = () => {
     formData.append('birthday', updateBirthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    const res = await axios.patch(API_PATCH, formData, {
-      headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    const data = res.data;
-    setUserData(data.user);
+    dispatch(editUser(formData));
     setChangePhoto(false);
-    console.log(data);
   };
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      number: '',
-      birthday: new Date(),
-      skype: '',
-      email: '',
+      name: user?.userName || '',
+      number: user?.phone || '',
+      birthday: user?.birthday ? parseISO(user.birthday) : new Date(),
+      skype: user?.skype || '',
+      email: user?.email || '',
     },
     onSubmit: handleSubmit,
     validationSchema: validationSchema,
   });
 
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
-  // console.log(user)
-
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-
   useEffect(() => {
-    axios
-      .get(API, {
-        headers: {
-          Authorization: `Bearer ${TOKEN}`,
-        },
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        setUserData(data);
-        formik.setValues({
-          name: data.userName,
-          number: data.phone,
-          birthday: parseISO(data.birthday) || new Date(),
-          skype: data.skype,
-          email: data.email,
-        });
-        setSelectedImage(`${data.avatarURL}`);
-      })
-      .catch((error) => {
-        console.error('Помилка запиту:', error);
-      });
-  }, []);
+    if (user) {
+      setSelectedImage(user.avatarURL);
+    }
+  }, [user]);
 
   const disabledFunc = () => {
     const birthdayMonth = formatWithLeadingZeros(
@@ -149,11 +103,11 @@ const UserForm = () => {
     const updateBirthday = `${formik.values.birthday.getFullYear()}-${birthdayMonth}-${dayOfMonth}`;
 
     const disabled =
-      userData.userName === formik.values.name &&
-      userData.phone === formik.values.number &&
-      userData.birthday === updateBirthday &&
-      userData.skype === formik.values.skype &&
-      userData.email === formik.values.email;
+      user.userName === formik.values.name &&
+      user.phone === formik.values.number &&
+      user.birthday === updateBirthday &&
+      user.skype === formik.values.skype &&
+      user.email === formik.values.email;
 
     return disabled;
   };
@@ -180,7 +134,7 @@ const UserForm = () => {
           ref={filePicker}
           accept="image/*,.png,.ipg,.jpeg,.webp"
         />
-        <UserName>{formik.values.name || 'User Name'}</UserName>
+        <UserName>{user.userName || 'User Name'}</UserName>
         <User>User</User>
         <InputBox>
           <Label hasError={formik.errors.name}>
@@ -189,7 +143,6 @@ const UserForm = () => {
               type="text"
               name="name"
               maxLength="16"
-              required
               onChange={formik.handleChange}
               value={formik.values.name}
               hasError={formik.errors.name}
@@ -216,6 +169,7 @@ const UserForm = () => {
               onChange={(value) => {
                 formik.setFieldValue('birthday', value);
               }}
+              default={new Date()}
               icon={<AiOutlineDown />}
               dateFormat={'yyyy-MM-dd'}
               calendarStartDay={1}

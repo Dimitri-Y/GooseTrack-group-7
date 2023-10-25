@@ -1,4 +1,4 @@
-import {useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import  Header  from '../Header/Header.jsx';
@@ -27,6 +27,14 @@ const MainLayout = () => {
      }
   }
 
+  useEffect(() => {
+    if(isSidebarOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  },  [isSidebarOpen])
+
   return (
     <MainLayoutStyled
       ref={mainLayoutRef}
@@ -37,7 +45,9 @@ const MainLayout = () => {
         mainLayoutRef={mainLayoutRef}
         style={hideOrShow}/>
       <MainContainer>
-        <Header toggleSidebar={toggleSidebar}/>
+        <Header
+          toggleSidebar={toggleSidebar}
+          isOpen={isSidebarOpen}/>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

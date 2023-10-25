@@ -16,6 +16,9 @@ import storage from 'redux-persist/lib/storage';
 import { dateReducer } from './tasks/dateSlice';
 import { parameterUrlReducer } from './tasks/parameterUrlSlice';
 import { themeReducer } from './theme/themeSlice.js';
+import {StatisticsReducer} from './statistics/statisticsSlice.js'
+import { dateCalendarReducer } from './tasks/dateCalendarSlice';
+
 
 const authPersistConfig = {
   key: 'auth',
@@ -23,32 +26,35 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const parameterPersistConfig = {
-  key: 'parameter',
-  storage,
-  whitelist: ['parameter'],
-};
+// const parameterPersistConfig = {
+//   key: 'parameter',
+//   storage,
+//   whitelist: ['parameter'],
+// };
 
-const datePersistConfig = {
-  key: 'date',
-  storage,
-  whitelist: ['date'],
-};
+// const datePersistConfig = {
+//   key: 'date',
+//   storage,
+//   whitelist: ['date'],
+// };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     tasks: tasksReducer,
     reviews: reviewsReducer,
-    date: persistReducer(datePersistConfig, dateReducer),
-    parameter: persistReducer(parameterPersistConfig, parameterUrlReducer),
+    date: dateReducer,
+    parameter: parameterUrlReducer,
     theme: themeReducer,
+    statistics: StatisticsReducer,
+    dateCalendar: dateCalendarReducer,
     review: reviewReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredPaths: [`dateCalendar.dateCalendar`],
       },
     }),
   // devTools: process.env.NODE_ENV === 'development',

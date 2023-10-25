@@ -47,7 +47,7 @@ const ReviewsSlider = () => {
   SwiperCore.use([Autoplay]);
 
  useEffect(() => {
-   dispatch(fetchReviews({ page: 1, limit: 8 }));
+   dispatch(fetchReviews());
  }, [dispatch]);
   
   function getInitials(name) {
@@ -64,7 +64,8 @@ const ReviewsSlider = () => {
   }
 
   const slides = reviews;
-
+  // console.log(slides)
+  console.log(slides);
   return (
     <ReviewsSection>
       <ReviewsTitle>REVIEWS</ReviewsTitle>
@@ -94,22 +95,19 @@ const ReviewsSlider = () => {
             },
           }}
         >
-          
           {slides.map((slide, index) => (
             <SwiperSlide key={index} virtualIndex={index}>
               <ReviewSliderCard>
                 <ReviewContentBox>
                   <AvatarWrapper>
-                    {true ? (
+                    {slide.owner?.avatarURL ? (
                       <AvatarImg
-                        src=""
+                        src={slide.owner.avatarURL}
                         alt="UserPicture"
                       />
                     ) : (
                       <BackgroundName className="initials">
-                        <UserNameIcon>
-                          {getInitials(slide.name)}
-                        </UserNameIcon>
+                        <UserNameIcon>{getInitials(slide.name)}</UserNameIcon>
                       </BackgroundName>
                     )}
                   </AvatarWrapper>

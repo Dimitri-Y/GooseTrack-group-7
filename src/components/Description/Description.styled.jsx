@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const DescriptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: rgba(255, 255, 255, 1);
   max-width: 100%;
   padding-left: 20px;
