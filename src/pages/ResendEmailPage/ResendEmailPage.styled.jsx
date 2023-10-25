@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-// import { ReactComponent as UserCheckSvg } from '../../components/Icons/user.svg';
-// import { ReactComponent as IconError } from '../../images/svg/error-icon.svg';
-import { ReactComponent as IconCorrect } from '../../images/svg/done-icon.svg';
+import { ReactComponent as QuestionMark } from '../../images/svg/question_mark.svg';
 
-export const SendEmailContainer = styled.div`
+export const ResendEmailContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  flex-direction: column;
   min-height: 100vh;
   background-color: ${(p) => p.theme.secondaryAccentColor};
 `;
@@ -33,12 +31,12 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const CheckBtn = styled.div`
+export const CheckBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 132px;
+
   padding: 14px;
   border: none;
   border-radius: 16px;
@@ -56,7 +54,7 @@ export const CheckBtn = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    width: 140px;
+
     font-size: 18px;
     padding: 16px;
     gap: 12px;
@@ -64,6 +62,7 @@ export const CheckBtn = styled.div`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   font-size: 24px;
   font-weight: 500;
   color: ${(p) => p.theme.mainTextColor || '#111111'};
@@ -82,9 +81,11 @@ export const Title = styled.h1`
 
 export const Text = styled.p`
   font-size: inherit;
+  text-align: center;
 `;
 
-export const CheckIcon = styled(IconCorrect)`
+export const CheckIcon = styled(QuestionMark)`
+  fill: #3cbc81;
   width: 32px;
   height: 32px;
   @media screen and (min-width: 768px) {

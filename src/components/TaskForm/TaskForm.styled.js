@@ -22,7 +22,7 @@ export const FormTask = styled.div`
     /* font-family: 'Inter-500', sans-serif; */
   }
   .title {
-    color: rgba(52, 52, 52, 0.8);
+    color: ${(p) => p.theme.taskTitleColor};
     font-family: 'Inter-500', sans-serif;
     font-size: 12px;
     font-style: normal;
@@ -34,18 +34,21 @@ export const FormTask = styled.div`
     border: none;
     font-family: 'Inter-600', sans-serif;
     border-radius: 8px;
+    border: 1px solid ${(p) => p.theme.taskModalBorderInputColor};
     width: 267px;
     height: 46px;
-    background: #f6f6f6;
+    background: ${(p) => p.theme.reviewBgColor};
     padding: 12px 14px;
-
+    color: ${(p) => p.theme.taskModalInputPlaceholderColor};
     ::placeholder {
-      color: #343434;
-      font-family: 'Inter-600', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.29;
-    }
+        color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
+        font-family: 'Inter-600', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.29; /* 128.571% */
+      }
     @media screen and (min-width: 768px) {
       width: 340px;
     }
@@ -63,12 +66,23 @@ export const FormTask = styled.div`
       margin-top: 18px;
     }
     .field {
-      box-sizing: border-box;
+      /* box-sizing: border-box; */
       width: 126px;
-      height: 46px;
+      /* height: 46px; */
       margin: 0;
+      /* color: ${(p) => p.theme.taskModalInputPlaceholderColor}; */
+
       @media screen and (min-width: 768px) {
         width: 163px;
+      }
+      ::placeholder {
+        color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+
+        font-family: 'Inter-600', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.29; /* 128.571% */
       }
     }
   }
@@ -89,7 +103,7 @@ export const FormTask = styled.div`
   }
 
   .form-group {
-    color: #343434;
+    color: ${(p) => p.theme.taskModalInputPlaceholderColor};
     font-family: 'Inter-600', sans-serif;
     font-size: 12px;
     font-style: normal;

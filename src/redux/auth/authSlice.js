@@ -17,6 +17,7 @@ const initialState = {
     skype: null,
     avatarURL: null,
   },
+  email: null,
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -42,9 +43,10 @@ const authSlice = createSlice({
         handlePending(state);
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
+        console.log(action.payload);
         state.token = action.payload.token;
-        state.isLoggedIn =  false; // need to submit the VerifyToken in email
+        state.isLoggedIn = false; // need to submit the VerifyToken in email
+        state.email = action.payload.email;
       })
       .addCase(register.rejected, (state, action) => {
         handleRejected(state, action);
@@ -56,6 +58,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.email = '';
       })
       .addCase(logIn.rejected, (state, action) => {
         handleRejected(state, action);
@@ -97,17 +100,16 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         handleRejected(state, action);
       })
-      .addCase(verificationEmail.pending, state => {
+      .addCase(verificationEmail.pending, (state) => {
         handlePending(state);
       })
-      .addCase(verificationEmail.fulfilled, state => {
-        state.user.verify = true;
-        state.user.verificationToken = "Verify";
+      .addCase(verificationEmail.fulfilled, (state) => {
+        // state.user.verify = true;
+        // state.user.verificationToken = 'Verify';
       })
       .addCase(verificationEmail.rejected, (state, action) => {
         handleRejected(state, action);
       });
-
   },
 });
 
