@@ -26,6 +26,7 @@ export const lightTheme = {
   labelsColor: '#111111',
   editBtnColor: '#E3F3FF',
   borderContainerStatisticsColor: '#E3F3FF',
+  borderInputForm: 'rgba(17, 17, 17, 0.15)',
 };
 
 export const darkTheme = {
@@ -55,4 +56,5 @@ export const darkTheme = {
   labelsColor: 'rgba(250, 250, 250, 0.3)',
   editBtnColor: '#353647',
   borderContainerStatisticsColor: 'rgb(227, 243, 255, 0.2)',
+  borderInputForm: 'rgba(255, 255, 255, 0.15)',
 };

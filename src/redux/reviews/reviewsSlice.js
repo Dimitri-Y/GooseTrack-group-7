@@ -7,18 +7,13 @@ import {
   deleteReview,
   updateReview,
 } from './reviewsOperations';
-
-const reviewsInitialState = {
-  items: [],
-  // додала рядки 14-18
-  // currentUser: {
-  //   name: '',
-  //   comment: '',
-  //   rating: '',
-  // },
-
+const reviewInitialState = {
+  items: [{ rating: 5, comment: '' }],
   isLoading: false,
   error: null,
+};
+const reviewsInitialState = {
+  items: [],
 };
 
 const handlePending = (state) => {
@@ -33,14 +28,11 @@ const handleRejected = (state, action) => {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: reviewsInitialState,
-
-  // // додала рядки 38-42
-  // reducers: {
-  //   changeRating(state, action){
-  //     state.currentUser.rating = action.payload;
-
-  // }},
-
+  reducers: {
+    changeRating(state, action) {
+      state.items = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -60,7 +52,14 @@ const reviewsSlice = createSlice({
       .addCase(fetchReviewsOwn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload;
+        if (action.payload) {
+          state.items = action.payload;
+        } else {
+          state.items[0] = {
+            rating: 5,
+            comment: '',
+          };
+        }
       })
       .addCase(fetchReviewsOwn.rejected, (state, action) => {
         handleRejected(state, action);
@@ -106,7 +105,89 @@ const reviewsSlice = createSlice({
       });
   },
 });
-
+const reviewSlice = createSlice({
+  name: 'review',
+  initialState: reviewInitialState,
+  // // додала рядки 38-42
+  reducers: {
+    changeRating(state, action) {
+      state.items = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchReviews.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(fetchReviews.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = action.payload;
+      })
+      .addCase(fetchReviews.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(fetchReviewsOwn.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(fetchReviewsOwn.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        if (action.payload) {
+          state.items = action.payload;
+        } else {
+          state.items[0] = {
+            rating: 5,
+            comment: '',
+          };
+        }
+      })
+      .addCase(fetchReviewsOwn.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(addReview.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(action.payload);
+      })
+      .addCase(addReview.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(deleteReview.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(deleteReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (review) => review.id === action.payload.id,
+        );
+        state.items.splice(index, 1);
+      })
+      .addCase(deleteReview.rejected, (state, action) => {
+        handleRejected(state, action);
+      })
+      .addCase(updateReview.pending, (state) => {
+        handlePending(state);
+      })
+      .addCase(updateReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (review) => review.id === action.payload.id,
+        );
+        state.items[index] = action.payload;
+      })
+      .addCase(updateReview.rejected, (state, action) => {
+        handleRejected(state, action);
+      });
+  },
+});
 export const reviewsReducer = reviewsSlice.reducer;
-// // додала рядок 112
-// export const {changeRating}=reviewsSlice.actions;
+export const reviewReducer = reviewSlice.reducer;
+
+// додала рядок 115
+export const { changeRating } = reviewSlice.actions;

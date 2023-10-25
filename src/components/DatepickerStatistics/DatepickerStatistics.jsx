@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import { CalendarGlobalStyles, TitleWrapper,ContainerBtn, BtnSwitch, SvgIcon, Path } from "./DatepickerStatistics.styled";
@@ -28,14 +28,18 @@ const DatepickerStatistics = ({setDate, themeColor}) => {
     setSelectedDate(newDate);
     setDate(newDate); 
   };
-
+       
+  useEffect(() => {
+    setDate(selectedDate);
+  }, []);
+  
     return (
       <>
         
         <DatePicker
           selected={selectedDate}
           onChange={(date) => {
-            setDate(selectedDate)
+            setDate(date)
             setSelectedDate(date);
           }}
           customInput={<CustomInput />}
