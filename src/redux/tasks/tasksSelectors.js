@@ -12,7 +12,8 @@ export const selectDateCalendar = (state) => state.dateCalendar.dateCalendar;
 export const selectVisibleTasks = createSelector(
   [selectTasks, selectDateCalendar],
   (tasks, date) => {
-    const data = format(date, 'yyyy-MM-dd');
-    return tasks?.filter((task) => task.date === data);
+    return tasks?.filter(
+      (task) => task.date === date.toISOString().slice(0, 10),
+    );
   },
 );
