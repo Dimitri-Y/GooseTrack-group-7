@@ -20,13 +20,13 @@ const CalendarTable = ({ startDay, today, tasks }) => {
 
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
 
-  const isCurrentDay = day => moment().isSame(day, 'day');
-  const isSelectedMonth = day => today.isSame(day, 'month');
+  const isCurrentDay = (day) => moment().isSame(day, 'day');
+  const isSelectedMonth = (day) => today.isSame(day, 'month');
 
   return (
     <>
       <GridWrapper>
-        {daysMap.map(dayItem => (
+        {daysMap.map((dayItem) => (
           <CellWrapper
             isWeekday={dayItem.day() === 6 || dayItem.day() === 0}
             key={dayItem.unix()}
@@ -34,7 +34,7 @@ const CalendarTable = ({ startDay, today, tasks }) => {
             type="button"
             onClick={() =>
               isSelectedMonth(dayItem) &&
-              navigate(`/main/calendar/day/${dayItem.format('YYYY-MM-DD')}`)
+              navigate(`/calendar/day/${dayItem.format('YYYY-MM-DD')}`)
             }
           >
             <RowInCell justifyContent={'flex-end'}>
@@ -49,27 +49,27 @@ const CalendarTable = ({ startDay, today, tasks }) => {
               </ShowDayWrapper>
               <TaskListWrapper>
                 {tasks
-                  .filter(task => task.date === dayItem.format('YYYY-MM-DD'))
-                  .map(tasks => tasks.tasks)
+                  .filter((task) => task.date === dayItem.format('YYYY-MM-DD'))
+                  .map((tasks) => tasks)
                   .reduce((t1, t2) => t1.concat(t2), [])
                   .slice(0, 2)
-                  .map(task => (
+                  .map((task) => (
                     <li key={task._id}>
                       <MonthTaskDay task={task} />
                     </li>
                   ))}
                 {tasks
-                  .filter(task => task.date === dayItem.format('YYYY-MM-DD'))
-                  .map(tasks => tasks.tasks)
+                  .filter((task) => task.date === dayItem.format('YYYY-MM-DD'))
+                  .map((tasks) => tasks)
                   .reduce((t1, t2) => t1.concat(t2), []).length > 2 && (
                   <li key="more">
                     <CalendarTableMoreBtn type="button">
                       +{' '}
                       {tasks
                         .filter(
-                          task => task.date === dayItem.format('YYYY-MM-DD')
+                          (task) => task.date === dayItem.format('YYYY-MM-DD'),
                         )
-                        .map(tasks => tasks.tasks)
+                        .map((tasks) => tasks)
                         .reduce((t1, t2) => t1.concat(t2), []).length - 2}{' '}
                       tasks...
                     </CalendarTableMoreBtn>
