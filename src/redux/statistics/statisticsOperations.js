@@ -5,7 +5,6 @@ axios.defaults.baseURL =
   'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 
 
-
 export const fetchStatisticsDataThunk = createAsyncThunk(
   'statistics/fetchAll',
   async (dateFetchData, thunkAPI) => {

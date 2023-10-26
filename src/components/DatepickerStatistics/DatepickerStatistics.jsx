@@ -39,7 +39,7 @@ const DatepickerStatistics = ({ setDate, themeColor }) => {
 
   useEffect(() => {
     setDate(selectedDate);
-  }, [selectedDate, setDate]);
+  }, []);
 
   return (
     <ContainerDatePicker>

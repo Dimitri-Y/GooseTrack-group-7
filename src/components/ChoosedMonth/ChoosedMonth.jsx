@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
-import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
+import { selectTasks } from '../../redux/tasks/tasksSelectors';
 import CalendarTable from './CalendarTable/CalendarTable';
 import { MonthCalendarHeader } from './MonthCalendarHeader/MonthCalendarHeader';
 
 const ChoosedMonth = () => {
-  const tasks = useSelector(selectDateCalendar);
+  const tasks = useSelector(selectTasks);
 
   moment.updateLocale('en', { week: { dow: 1 } });
 
