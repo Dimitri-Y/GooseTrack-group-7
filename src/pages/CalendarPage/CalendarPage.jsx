@@ -6,18 +6,13 @@ import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
 
 const CalendarPage = () => {
   const navigate = useNavigate();
+
   const dateCalendar = useSelector(selectDateCalendar);
-  // const month = dateCalendar.toISOString().slice(0, 7);
-
-  // useEffect(() => {
-  //   navigate(`/calendar/month/${month}`);
-  // }, [month, navigate]);
-
-  const day = dateCalendar.toISOString().slice(0, 10);
+  const month = dateCalendar.toISOString().slice(0, 7);
 
   useEffect(() => {
-    navigate(`/calendar/day/${day}`);
-  }, [day, navigate]);
+    navigate(`/calendar/month/${month}`);
+  }, []);
 
   return (
     <main>

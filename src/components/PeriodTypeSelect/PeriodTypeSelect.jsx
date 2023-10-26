@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import {
   ButtonM,
@@ -21,14 +20,6 @@ const PeriodTypeSelect = () => {
   const handleClickDay = () => {
     navigate(`/calendar/day/${day}`);
   };
-
-  //   useEffect(() => {
-  //     navigate(`/calendar/month/${month}`);
-  //   }, [month, navigate]);
-
-  useEffect(() => {
-    navigate(`/calendar/day/${day}`);
-  }, [day, navigate]);
 
   return (
     <PeriodTypeSelectStyles>

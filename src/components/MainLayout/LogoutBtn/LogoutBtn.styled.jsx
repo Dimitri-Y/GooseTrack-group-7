@@ -19,14 +19,17 @@ export const LogoutBtnStyled = styled.button`
 
   &:hover,
   &:focus {
-   background-color: ${p => p.theme.mainAccentColorActive || '#2B78EF'};
-   
+    background-color: ${p => p.theme.mainAccentColorActive || '#2B78EF'};
+  }
 
     @media screen and (min-width: 768px) {
       width: 140px;
       font-size: 18px;
       padding: 16px;
       gap: 12px;
+    }
+    @media screen and (max-width: 768px) {
+    margin-bottom: 24px;
     }
 `;
 

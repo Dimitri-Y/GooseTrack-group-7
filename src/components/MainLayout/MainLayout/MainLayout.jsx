@@ -7,9 +7,10 @@ import Loader from "../../Loader/index.js";
 import {MainLayoutStyled,
   MainContainer,
 } from './MainLayout.styled.jsx';
-
+import { useAdaptivePicture } from "../../../hooks/useAdaptivePicture.js";
 
 const MainLayout = () => {
+  const { isDesktop } = useAdaptivePicture();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [hideOrShow, setHideOrShow] = useState({});
   const mainLayoutRef = useRef(null);
@@ -28,26 +29,33 @@ const MainLayout = () => {
   }
 
   useEffect(() => {
-    if(isSidebarOpen) {
+    if(isDesktop) {
+      document.body.style.overflow = 'auto';
+    } else if (isSidebarOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  },  [isSidebarOpen])
+  },  [isSidebarOpen, isDesktop]);
+
 
   return (
     <MainLayoutStyled
       ref={mainLayoutRef}
       tabIndex="0">
+      {(isDesktop || isSidebarOpen) && (
       <SideBar
         toggleSidebar={toggleSidebar}
         isOpen={isSidebarOpen}
         mainLayoutRef={mainLayoutRef}
-        style={hideOrShow}/>
+        style={hideOrShow}
+      />
+      )}
       <MainContainer>
         <Header
           toggleSidebar={toggleSidebar}
-          isOpen={isSidebarOpen}/>
+          isOpen={isSidebarOpen}
+        />
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
