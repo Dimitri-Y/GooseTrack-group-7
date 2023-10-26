@@ -29,15 +29,14 @@ const MainLayout = () => {
   }
 
   useEffect(() => {
-    // if(isDesktop) {
-    //   document.body.style.overflow = 'auto';
-    // }
-    if(isSidebarOpen) {
+    if(isDesktop) {
+      document.body.style.overflow = 'auto';
+    } else if (isSidebarOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
-  },  [isSidebarOpen]);
+  },  [isSidebarOpen, isDesktop]);
 
 
   return (
