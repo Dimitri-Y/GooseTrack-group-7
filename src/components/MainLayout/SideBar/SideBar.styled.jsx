@@ -30,6 +30,8 @@ export const SideBarStyled = styled.aside`
   justify-content: space-between;
    transform: ${p => (p.$isOpen ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-out;
+
+  overflow-y: auto;
   
   @media screen and (min-width: 768px) {
     width: 290px;
