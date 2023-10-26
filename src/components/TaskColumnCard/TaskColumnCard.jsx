@@ -8,27 +8,22 @@ import {
   TaskText,
 } from './TaskColumnCard.styled';
 import getVisibleTaskText from '../../utils/getVisibleTaskText';
-// import { useSelector } from 'react-redux';
-import photoProfile from '../../assets/photo-profile.png';
 import { useMemo } from 'react';
 import getBackgroundColorPriority from '../../utils/getBackgroundColorPriority';
 
 const TaskColumnCard = ({ task }) => {
-  // const photoProfile = useSelector(selectPhotoProfile);
-
-  const { title, priority } = task;
+  const { title, priority, owner } = task;
 
   const VisibleTaskText = useMemo(() => getVisibleTaskText(title, 34), [title]);
-
   return (
     <ContainerTaskCard>
       <TaskText>{VisibleTaskText}</TaskText>
       <Container>
         <ContainerPhotoProfile>
           <ContainerAvatar>
-            {photoProfile && (
+            {owner.avatarURL && (
               <img
-                src={photoProfile}
+                src={owner.avatarURL}
                 alt="photo profile"
                 width="32"
                 height="32"
