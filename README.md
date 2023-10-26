@@ -15,7 +15,7 @@ GooseTrack is an all-in-one productivity tool that helps you stay on top
 of your tasks, events, and deadlines. Say goodbye to scattered to-do lists 
 and hello to streamlined productivity with GooseTrack.
 
-![](./src/images/mainPage/desktop/desktop_calendar@1x.png)![img.png](img.png)
+![](./src/images/mainPage/desktop/desktop_calendar@1x.png)!
 
 ## Deploy
 
