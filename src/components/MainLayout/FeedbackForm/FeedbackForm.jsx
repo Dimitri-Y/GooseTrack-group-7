@@ -58,7 +58,6 @@ const FeedbackForm = ({ onClose }) => {
     comment: reviews[0]?.comment || '',
     rating: reviews[0]?.rating || 5,
   };
-console.log(initialValues);
   const feedbackSchema = Yup.object().shape({
     rating: Yup.number().min(1).max(5),
     comment: Yup.string()
@@ -68,30 +67,24 @@ console.log(initialValues);
   });
   useEffect(() => {
     dispatch(fetchReviewsOwn());
-  
   }, [dispatch]);
 
   useEffect(() => {
     changeFormik(reviews[0]?.comment, reviews[0]?.rating);
-  
   }, [reviews]);
 
   const handleSubmit = (values) => {
     const newReview = {
       comment: values.comment,
-      rating: values.rating || 5 ,
+      rating: values.rating || 5,
     };
-console.log(newReview);
 
     if (isEditActive) {
       dispatch(updateReview(newReview));
-      console.log(newReview);
-      setIsEditActive(false)
+      setIsEditActive(false);
     } else {
       dispatch(addReview(newReview));
-      console.log(newReview);
     }
-    
   };
 
   const handleEdit = () => {
@@ -100,7 +93,6 @@ console.log(newReview);
 
   const handleDelete = () => {
     dispatch(deleteReview());
-  
   };
 
   const handleRating = (newRating) => {
@@ -110,7 +102,7 @@ console.log(newReview);
   const changeFormik = (comment, rating) => {
     formikRef.current.setFieldValue('comment', comment);
     formikRef.current.setFieldValue('rating', rating);
-  }
+  };
 
   return (
     <>
@@ -121,7 +113,7 @@ console.log(newReview);
         innerRef={formikRef}
         // validateOnChange={false}
       >
-      {({ values }) => (
+        {({ values }) => (
           <ReviewForm>
             <Label>
               Rating
@@ -180,16 +172,14 @@ console.log(newReview);
 
             {(!reviews[0]?.comment || isEditActive) && (
               <BtnsWrapper>
-                <Btn type="submit">
-                  {isEditActive ? 'Edit' : 'Save'}
-                </Btn>
+                <Btn type="submit">{isEditActive ? 'Edit' : 'Save'}</Btn>
                 <BtnCancel type="button" onClick={onClose}>
                   Cancel
                 </BtnCancel>
               </BtnsWrapper>
             )}
           </ReviewForm>
-          )}
+        )}
       </Formik>
     </>
   );

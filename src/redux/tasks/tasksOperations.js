@@ -20,8 +20,6 @@ export const fetchTasks = createAsyncThunk(
 export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
-    console.log('task: ', task);
-
     try {
       const response = await axios.post('/tasks', task);
       return response.data;
@@ -46,8 +44,6 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (data, thunkAPI) => {
-    console.log('data: ', data);
-
     try {
       const update = Object.keys(data)
         .filter((key) => key !== 'taskId')
@@ -56,8 +52,6 @@ export const updateTask = createAsyncThunk(
           return res;
         }, {});
       const response = await axios.put(`/tasks/${data.taskId}`, update);
-      console.log(update);
-      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
