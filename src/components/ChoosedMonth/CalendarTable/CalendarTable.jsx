@@ -34,7 +34,7 @@ const CalendarTable = ({ startDay, today, tasks }) => {
             type="button"
             onClick={() =>
               isSelectedMonth(dayItem) &&
-              navigate(`/main/calendar/day/${dayItem.format('YYYY-MM-DD')}`)
+              navigate(`/calendar/day/${dayItem.format('YYYY-MM-DD')}`)
             }
           >
             <RowInCell justifyContent={'flex-end'}>
