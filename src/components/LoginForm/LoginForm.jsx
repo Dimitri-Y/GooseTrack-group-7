@@ -7,6 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectUserEmail } from '../../redux/auth/authSelectors';
 import {
   Form,
   TitleForm,
@@ -30,6 +32,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const emailLocal = useSelector(selectUserEmail);
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -138,6 +141,9 @@ const LoginForm = () => {
         )}
       </Formik>
       <AuthNavigate navigateTo="/register">Sign up</AuthNavigate>
+      {emailLocal && (
+        <AuthNavigate navigateTo="/resendemail">Resend email</AuthNavigate>
+      )}
       <ToastContainer />
     </>
   );

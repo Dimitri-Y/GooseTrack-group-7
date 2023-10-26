@@ -14,7 +14,6 @@ export const Form = styled(FormikForm)`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 40px 24px;
-  margin-bottom: 18px;
 
   @media screen and (max-width: 374px) {
     width: 90%;
@@ -24,7 +23,6 @@ export const Form = styled(FormikForm)`
     width: 480px;
     height: 100%;
     padding: 40px;
-    margin-bottom: 24px;
   }
 `;
 

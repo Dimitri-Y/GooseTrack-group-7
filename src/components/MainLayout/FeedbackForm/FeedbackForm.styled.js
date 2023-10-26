@@ -59,10 +59,8 @@ export const EditBtn = styled.button`
   height: 30px;
   border-radius: 50%;
 
-  background-color: ${p => p.theme.editBtnColor}; 
-  /* stroke:  ${props => { return props.isActive ? '#FFFFFF' : '#3E85F3'}} ;  */
-  stroke: #3e85f3;
-
+  background-color: ${p =>  {return p.isActive ?  '#3E85F3' : p.theme.editBtnColor}}; 
+   stroke:  ${p => { return p.isActive ? '#FFFFFF' : '#3E85F3'}} ;
 
   border: none;
   cursor: pointer;
@@ -100,6 +98,7 @@ export const Textarea = styled(Field)`
   box-sizing: border-box;
   margin-bottom: 20px;
 
+  font-family: "Inter-600", sans-serif;
   font-size: 12px;
   line-height: 1.285;
 
@@ -123,7 +122,6 @@ export const Textarea = styled(Field)`
   }
   @media (min-width: 768px) {
     padding: 14px 18px;
-    font-family: "Inter-600", sans-serif;
     font-size: 14px;
   }
 `;
