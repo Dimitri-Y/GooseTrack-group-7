@@ -39,15 +39,14 @@ const StatisticsPage = () => {
     const isLoading = useSelector(state => state.statistics.isLoading)  
     const error = useSelector(state => state.statistics.error)  
     const theme = useSelector(state => state.theme)   
-    
+
     const themeColors = {
         darkGrid:  'rgb(227, 243, 255, 0.2)',
         lightGrid: '#E3F3FF',
         darkText:  "#fff",
         lightText: '#343434',
     };
-
-
+    
     const setDate = (selectedDate) =>  {      
         const date = new Date(selectedDate);
         let day = date.getDate(); 
@@ -149,7 +148,7 @@ const StatisticsPage = () => {
                 
                 <ContainerMenuStatistics >
                     <ContainerCalendarStatistics>
-                <DatepickerStatistics setDate={setDate} themeColor={theme} />
+                        <DatepickerStatistics setDate={setDate} themeColor={theme} />
                     </ContainerCalendarStatistics>
             
                     <ContainerTimeSymbolStatistics>
