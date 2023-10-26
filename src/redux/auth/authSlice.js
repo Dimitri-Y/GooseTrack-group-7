@@ -103,7 +103,7 @@ const authSlice = createSlice({
       .addCase(verificationEmail.pending, (state) => {
         handlePending(state);
       })
-      .addCase(verificationEmail.fulfilled, (state) => {
+      .addCase(verificationEmail.fulfilled, () => {
         // state.user.verify = true;
         // state.user.verificationToken = 'Verify';
       })

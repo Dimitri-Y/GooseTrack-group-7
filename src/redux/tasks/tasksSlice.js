@@ -54,7 +54,7 @@ const tasksSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(
-          (task) => task.id === action.payload.id,
+          (task) => task._id === action.payload._id,
         );
         state.items.splice(index, 1);
       })

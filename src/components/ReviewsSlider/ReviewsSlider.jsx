@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AvatarImg,
@@ -64,8 +64,6 @@ const ReviewsSlider = () => {
   }
 
   const slides = reviews;
-  // console.log(slides)
-  console.log(slides);
   return (
     <ReviewsSection>
       <ReviewsTitle>REVIEWS</ReviewsTitle>

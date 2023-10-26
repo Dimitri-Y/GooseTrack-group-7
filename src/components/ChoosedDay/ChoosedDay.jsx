@@ -39,9 +39,6 @@ const ChoosedDay = () => {
     if (error) toast.error(error);
   }, [dispatch, error]);
 
-  // console.log(toDo);
-  console.log(inProgress);
-  // console.log(done);
   return (
     <ContainerSection>
       <DayCalendarHead></DayCalendarHead>

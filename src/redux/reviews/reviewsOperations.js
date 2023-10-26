@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 // axios.defaults.baseURL = 'http://localhost:3000/api/';
 axios.defaults.baseURL =
-'https://goose-track-backend-deployment-q70i.onrender.com/api/';
+  'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 
 export const fetchReviews = createAsyncThunk(
   'reviews/fetchAll',
@@ -21,7 +21,6 @@ export const fetchReviewsOwn = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/reviews/own');
-      // console.log(response.data[0]);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
