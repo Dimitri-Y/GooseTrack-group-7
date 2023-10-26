@@ -1,4 +1,4 @@
-import{s as e,a as r}from"./index-4c059089.js";e.div`
+import{s as e,a as r}from"./index-be2bc895.js";e.div`
   padding: 6px 12px;
   color: #ffffff;
   background: #3e85f3;
