@@ -132,3 +132,23 @@ export const TextTaskStatistics = styled.p`
     }
 `
 
+export const ImgError = styled.svg`
+  display: inline-block;
+  /* width: 1em;
+  height: 1em; */
+  margin-top: 30px;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  width: 100px;
+    height: 100px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+       width: 160px;
+    height: 160px;
+
+    }
+    @media (min-width: 1024px) {
+        width: 200px;
+        height: 300px;
+    }
+`
