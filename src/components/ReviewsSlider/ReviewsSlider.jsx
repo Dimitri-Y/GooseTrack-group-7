@@ -46,10 +46,10 @@ const ReviewsSlider = () => {
   const swiperRef = useRef(null);
   SwiperCore.use([Autoplay]);
 
- useEffect(() => {
-   dispatch(fetchReviews());
- }, [dispatch]);
-  
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
+
   function getInitials(name) {
     if (name) {
       const initials = name
@@ -112,7 +112,7 @@ const ReviewsSlider = () => {
                     )}
                   </AvatarWrapper>
                   <div>
-                    <Name>{slide.name}</Name>
+                    <Name>{slide.owner?.userName}</Name>
                     <Rate>
                       <Rating
                         value={slide.rating}

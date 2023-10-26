@@ -38,12 +38,13 @@ const TaskToolbar = ({ task }) => {
     setIsOpenModal(false);
   };
 
-  const deleteTaskCard = (idTask) => {
-    dispatch(deleteTask(idTask));
+  const onDeleteTask = (id) => {
+    console.log(`delete task ${id}`);
+    dispatch(deleteTask(id));
 
     if (error) toast.error(error);
 
-    console.log(`deleted task ${idTask}`);
+    console.log(`deleted task ${id}`);
   };
 
   const handleClickCategory = (event) => {
@@ -94,7 +95,7 @@ const TaskToolbar = ({ task }) => {
       <ButtonDelete
         className="button"
         type="button"
-        onClick={() => deleteTaskCard(id)}
+        onClick={() => onDeleteTask(id)}
       />
       {visible && (
         <ContextMenu>

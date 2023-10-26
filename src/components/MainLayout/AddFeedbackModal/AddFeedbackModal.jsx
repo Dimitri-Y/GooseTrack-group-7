@@ -5,11 +5,10 @@ import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
 
 const AddFeedbackModal = ({ onModalClose }) => {
-  // const [isModalActive] = useState(false);
   return (
     <>
       <Modal isModalActive onClose={onModalClose}>
-        <FeedbackForm />
+        <FeedbackForm onClose={onModalClose}/>
       </Modal>
     </>
   );

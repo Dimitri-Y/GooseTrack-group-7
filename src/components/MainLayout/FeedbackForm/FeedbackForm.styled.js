@@ -3,22 +3,6 @@ import { Form, Field, ErrorMessage } from 'formik';
 
 
 
-// export const Wrap = styled.div`
-//   position: relative;
-//   /* box-sizing: border-box; */
-//   text-align: left;
-//   padding: 28px 20px;
-//   border-radius: 16px;
-//   width: 295px;
-//   /* background: */
-//   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
-
-//   @media (min-width: 768px) {
-//     width: 404px;
-//     padding: 32px;
-//   }
-// `;
-
 export const ReviewForm = styled(Form)`
   display: block;
   box-sizing: border-box;
@@ -75,10 +59,8 @@ export const EditBtn = styled.button`
   height: 30px;
   border-radius: 50%;
 
-  background-color: ${p => p.theme.editBtnColor}; 
-  /* stroke:  ${props => { return props.isActive ? '#FFFFFF' : '#3E85F3'}} ;  */
-  stroke: #3e85f3;
-
+  background-color: ${p =>  {return p.isActive ?  '#3E85F3' : p.theme.editBtnColor}}; 
+   stroke:  ${p => { return p.isActive ? '#FFFFFF' : '#3E85F3'}} ;
 
   border: none;
   cursor: pointer;
@@ -116,6 +98,7 @@ export const Textarea = styled(Field)`
   box-sizing: border-box;
   margin-bottom: 20px;
 
+  font-family: "Inter-600", sans-serif;
   font-size: 12px;
   line-height: 1.285;
 
@@ -139,6 +122,7 @@ export const Textarea = styled(Field)`
   }
   @media (min-width: 768px) {
     padding: 14px 18px;
+    font-size: 14px;
   }
 `;
 
@@ -234,6 +218,5 @@ export const BtnCancel = styled.button`
 
 // `;
 
-// ${p => p.theme.secondaryAccentColorActive};
 
 
