@@ -10,7 +10,7 @@ export const fetchStatisticsDataThunk = createAsyncThunk(
   async (dateFetchData, thunkAPI) => {
 
     try {
-      const response = await axios.get(`/statistics/${dateFetchData}`);y
+      const response = await axios.get(`/statistics/${dateFetchData}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
