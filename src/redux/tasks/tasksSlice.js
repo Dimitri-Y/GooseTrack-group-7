@@ -69,7 +69,8 @@ const tasksSlice = createSlice({
         state.error = null;
         const index = state.items.findIndex(
           (task) => task.id === action.payload.id,
-        );
+          );
+          console.log( index);
         state.items[index] = action.payload;
       })
       .addCase(updateTask.rejected, (state, action) => {

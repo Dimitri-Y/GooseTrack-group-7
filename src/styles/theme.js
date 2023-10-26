@@ -29,9 +29,7 @@ export const lightTheme = {
   taskTitleColor: 'rgba(52, 52, 52, 0.8)',
   modalBGColor: '#ffffff',
   taskModalBorderInputColor: 'rgba(255, 255, 255, 0.15)',
-  taskModalInputPlaceholderColor: '#343434',
-
-  
+  taskModalInputPlaceholderColor: '#343434',  
 };
 
 export const darkTheme = {

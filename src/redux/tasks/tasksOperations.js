@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// axios.defaults.baseURL = 'http://localhost:3000/api/';
-axios.defaults.baseURL =
-  'https://goose-track-backend-deployment-q70i.onrender.com/api/';
+axios.defaults.baseURL = 'http://localhost:3000/api/';
+// axios.defaults.baseURL =
+//   'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 const defaultFilter = '?filteredFrom=1980-01-01&filteredTo=3000-01-04';
 
 export const fetchTasks = createAsyncThunk(
@@ -10,7 +10,6 @@ export const fetchTasks = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/tasks/${defaultFilter}`);
-      console.log(response.data.data.result.data);
       return response.data.data.result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -21,6 +20,8 @@ export const fetchTasks = createAsyncThunk(
 export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
+    console.log('task: ', task);
+
     try {
       const response = await axios.post('/tasks', task);
 
@@ -35,7 +36,6 @@ export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (taskId, thunkAPI) => {
     try {
-      console.log(taskId);
       const response = await axios.delete(`/tasks/${taskId}`);
       return response.data;
     } catch (error) {
@@ -47,17 +47,18 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (data, thunkAPI) => {
+    console.log('data: ', data);
+
     try {
-      console.log(data.category);
-      console.log(data.title);
       const update = Object.keys(data)
-        .filter((key) => key !== 'taskId')
-        .reduce((res, key) => {
-          res[key] = data[key];
-          return res;
-        }, {});
-      console.log(update);
+      .filter((key) => key !== 'taskId')
+      .reduce((res, key) => {
+        res[key] = data[key];
+        return res;
+      }, {});
       const response = await axios.put(`/tasks/${data.taskId}`, update);
+      console.log(update);
+      console.log(response);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

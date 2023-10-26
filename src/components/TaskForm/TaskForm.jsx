@@ -11,16 +11,13 @@ import { SvgSelector } from '../Icons/SvgSelector';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
-import { addTask, updateTask } from '../../redux/tasks/tasksOperations';
+import { addTask,  updateTask } from '../../redux/tasks/tasksOperations';
 import { selectUser } from '../../redux/auth/authSelectors';
-// import { toast } from 'react-toastify';
 // import { nanoid } from 'nanoid';
 //  { useState } from 'react';
 
 const schema = Yup.object().shape({
   title: Yup.string().max(250).required(),
-  // start: Yup.number().required(),
-  // end: Yup.number().required(),
   priority: Yup.string().required(),
   start: Yup.string().required('start time cannot be empty'),
   end: Yup.string()
@@ -32,23 +29,9 @@ const schema = Yup.object().shape({
 
   category: Yup.string(),
 });
-// const showToast = (message, isError = true) => {
-//   toast(message, {
-//     style: {
-//       background: isError ? 'orange' : 'green',
-//       overflow: 'hidden',
-//     },
-//     icon: isError ? '❗' : '✅',
-//     iconTheme: {
-//       primary: '#fff',
-//       secondary: isError ? 'orange' : 'green',
-//     },
-//   });
-// };
+
 
 const TaskForm = ({ task, closeModal, headerCategory }) => {
-  console.log('category: ', headerCategory);
-  console.log('task: ', task);
   const params = useParams();
   const user = useSelector(selectUser);
   const date = new Date(params.currentDay);
@@ -68,7 +51,7 @@ const TaskForm = ({ task, closeModal, headerCategory }) => {
 
     return `${hours}:${minutes}`;
   };
-
+  
   const initialValues = {
     title: task?.title || '',
     start: task?.start || getCurrentTime(),
@@ -78,29 +61,15 @@ const TaskForm = ({ task, closeModal, headerCategory }) => {
     category: task?.category || headerCategory,
   };
 
-  // console.log(task);
 
   const handleSubmit = async (values) => {
     const { title, start, end } = values;
-    // const [startHour, startMinute] = start.split(':').map(Number);
-    // const [endHour, endMinute] = end.split(':').map(Number);
-    console.log('value: ', values);
+   
     const priority = document.querySelector(
       'input[name="priority"]:checked',
     ).value;
+  
 
-    // if (
-    //   startHour > endHour ||
-    //   (startHour === endHour && startMinute >= endMinute)
-    // ) {
-    //   showToast('The start time must be earlier than the end time');
-    //   return;
-    // }
-
-    // if (!title.trim() || !start.trim() || !end.trim()) {
-    //   showToast('All fields must be filled');
-    //   return;
-    // }
 
     if (
       title === initialValues.title &&
@@ -121,16 +90,20 @@ const TaskForm = ({ task, closeModal, headerCategory }) => {
       date: currentDay,
       owner: user._id,
     };
-
-    const addTaskData = {
-      // _id: nanoid(),
-      ...taskData,
-    };
-    console.log('newTask: ', addTaskData);
-    if (task?.id) {
-      dispatch(updateTask({ id: task.id, taskData }));
+    
+    if (task != undefined) {
+      dispatch(updateTask({
+        title: title,
+        start: start,
+        end: end,
+        priority: priority,
+        category: task.category,
+        date: task.date,
+        taskId: task._id
+      }));
+      
     } else {
-      dispatch(addTask(addTaskData));
+      dispatch(addTask(taskData));
       // showToast('Successfully! Task added', false);
     }
     closeModal();
