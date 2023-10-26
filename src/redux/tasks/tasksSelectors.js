@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { format } from 'date-fns';
 
 export const selectTasks = (state) => state.tasks.items;
 
@@ -11,6 +12,7 @@ export const selectDateCalendar = (state) => state.dateCalendar.dateCalendar;
 export const selectVisibleTasks = createSelector(
   [selectTasks, selectDateCalendar],
   (tasks, date) => {
-    tasks?.filter((task) => task.date === date.toISOString().slice(0, 10));
+    const data = format(date, 'yyyy-MM-dd');
+    return tasks?.filter((task) => task.date === data);
   },
 );
