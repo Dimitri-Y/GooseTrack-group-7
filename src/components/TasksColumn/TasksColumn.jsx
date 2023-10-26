@@ -5,7 +5,7 @@ import { ContainerColum } from './TasksColumn.styled';
 
 const TasksColumn = ({ header, tasksGroup }) => {
   const categoryTask = header.toLowerCase().split(' ').join('-');
-
+  console.log(tasksGroup);
   return (
     <ContainerColum>
       <ColumnHeadBar header={header} category={categoryTask}></ColumnHeadBar>

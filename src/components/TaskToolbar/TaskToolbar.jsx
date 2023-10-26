@@ -10,7 +10,11 @@ import {
 import { useEffect, useState } from 'react';
 import TaskModal from '../TaskModal/TaskModal';
 import { useDispatch } from 'react-redux';
-import { deleteTask, updateTask } from '../../redux/tasks/tasksOperations';
+import {
+  deleteTask,
+  fetchTasks,
+  updateTask,
+} from '../../redux/tasks/tasksOperations';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,14 +27,14 @@ const TaskToolbar = ({ task }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-  const { id, category } = task;
+  const { _id, category, title } = task;
 
   const moveTask = () => {
     setVisible(true);
   };
 
-  const editTask = (id) => {
-    console.log(`edit task ${id}`);
+  const editTask = (_id) => {
+    console.log(`edit task ${_id}`);
     setIsOpenModal(true);
   };
 
@@ -38,38 +42,47 @@ const TaskToolbar = ({ task }) => {
     setIsOpenModal(false);
   };
 
-  const onDeleteTask = (id) => {
-    console.log(`delete task ${id}`);
-    dispatch(deleteTask(id));
+  const onDeleteTask = (_id) => {
+    console.log(`delete task ${_id}`);
+    dispatch(deleteTask(_id));
 
     if (error) toast.error(error);
 
-    console.log(`deleted task ${id}`);
+    console.log(`deleted task ${_id}`);
   };
 
   const handleClickCategory = (event) => {
     setVisible(false);
     const value = event.nativeEvent.target.innerHTML;
-
     if (value === 'To do') {
       console.log('To do');
-      dispatch(updateTask(id, { category: 'to-do' }));
+      dispatch(updateTask({ taskId: _id, category: 'to-do', title: title }));
 
       if (error) toast.error(error);
     }
     if (value === 'In progress') {
       console.log('In progress');
-      dispatch(updateTask(id, { category: 'in-progress' }));
+      dispatch(
+        updateTask({ taskId: _id, category: 'in-progress', title: title }),
+      );
 
       if (error) toast.error(error);
     }
     if (value === 'Done') {
       console.log('Done');
-      dispatch(updateTask(id, { category: 'done' }));
+      dispatch(updateTask({ taskId: _id, category: 'done', title: title }));
 
       if (error) toast.error(error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(fetchTasks());
+    };
+    fetchData();
+    if (error) toast.error(error);
+  }, [dispatch, error]);
 
   useEffect(() => {
     if (category === 'to-do') {
@@ -89,13 +102,13 @@ const TaskToolbar = ({ task }) => {
       <ButtonEdit
         className="button"
         type="button"
-        onClick={() => editTask(id)}
+        onClick={() => editTask(_id)}
       />
       {isOpenModal && <TaskModal task={task} onModalClose={handleModalClose} />}
       <ButtonDelete
         className="button"
         type="button"
-        onClick={() => onDeleteTask(id)}
+        onClick={() => onDeleteTask(_id)}
       />
       {visible && (
         <ContextMenu>
