@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-axios.defaults.baseURL = 'http://localhost:3000/api/';
-// axios.defaults.baseURL =
-//   'https://goose-track-backend-deployment-q70i.onrender.com/api/';
+// axios.defaults.baseURL = 'http://localhost:3000/api/';
+axios.defaults.baseURL =
+  'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 const defaultFilter = '?filteredFrom=1980-01-01&filteredTo=3000-01-04';
 
 export const fetchTasks = createAsyncThunk(
@@ -50,11 +50,11 @@ export const updateTask = createAsyncThunk(
 
     try {
       const update = Object.keys(data)
-      .filter((key) => key !== 'taskId')
-      .reduce((res, key) => {
-        res[key] = data[key];
-        return res;
-      }, {});
+        .filter((key) => key !== 'taskId')
+        .reduce((res, key) => {
+          res[key] = data[key];
+          return res;
+        }, {});
       const response = await axios.put(`/tasks/${data.taskId}`, update);
       console.log(update);
       console.log(response);
