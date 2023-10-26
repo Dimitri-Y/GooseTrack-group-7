@@ -1,4 +1,4 @@
-// import { useEffect} from 'react';
+import { useEffect} from 'react';
 import {
     SideBarStyled,
     // Backdrop,
@@ -15,20 +15,20 @@ import LogoutBtn from '../LogoutBtn/LogoutBtn.jsx';
 import icon from '../../Icons/symbol-defs.svg';
 import { logo } from '../../../images/logo';
 
-// const disableScrolling = disable => {
-//   if (disable) {
-//     document.body.style.overflow = 'hidden';
-//   } else {
-//     document.body.style.overflow = 'auto';
-//   }
-// };
+const disableScrolling = disable => {
+  if (disable) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+};
 const SideBar = ({toggleSidebar,  isOpen  }) => {
-  // useEffect(() => {
-  //   disableScrolling(isOpen);
-  //   return () => {
-  //     disableScrolling(false);
-  //   };
-  // }, [isOpen]);
+  useEffect(() => {
+    disableScrolling(isOpen);
+    return () => {
+      disableScrolling(false);
+    };
+  }, [isOpen]);
 
   return (
     // <Backdrop $isOpen={isOpen } onClick={toggleSidebar}>
