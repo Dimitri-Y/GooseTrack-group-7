@@ -8,11 +8,13 @@ import {
   FormTask,
 } from './TaskForm.styled';
 import { SvgSelector } from '../Icons/SvgSelector';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { addTask, updateTask } from '../../redux/tasks/tasksOperations';
 import { selectUser } from '../../redux/auth/authSelectors';
+import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
+
 // import { toast } from 'react-toastify';
 // import { nanoid } from 'nanoid';
 //  { useState } from 'react';
@@ -47,16 +49,22 @@ const schema = Yup.object().shape({
 // };
 
 const TaskForm = ({ task, closeModal, headerCategory }) => {
-  console.log('category: ', headerCategory);
-  console.log('task: ', task);
-  const params = useParams();
+  // console.log('category: ', headerCategory);
+  console.log('task: ', task?._id);
+  // const params = useParams();
   const user = useSelector(selectUser);
-  const date = new Date(params.currentDay);
-  const validDate =
-    Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)
-      ? date
-      : new Date();
-  const currentDay = format(validDate, 'yyyy-MM-dd');
+  const dateCalendarSelected = useSelector(selectDateCalendar);
+  // console.log('dateCalendarSelected: ', dateCalendarSelected);
+  // const date = new Date(params.currentDay);
+  // console.log('date: ', date);
+  // console.log('params: ', params);
+  // console.log('selectDateCalendar: ', selectDateCalendar);
+  // const validDate =
+  //   Object.prototype.toString.call(date) === '[object Date]' && !isNaN(date)
+  //     ? date
+  //     : new Date();
+  const currentDay = format(dateCalendarSelected, 'yyyy-MM-dd');
+  // console.log('currentDay: ', currentDay);
   const dispatch = useDispatch();
 
   const getCurrentTime = (additionalMinutes = 0) => {
@@ -121,16 +129,24 @@ const TaskForm = ({ task, closeModal, headerCategory }) => {
       date: currentDay,
       owner: user._id,
     };
-
+    // const task = useSelector(selectTasks);
     const addTaskData = {
-      // _id: nanoid(),
-      ...taskData,
+      title: values.title,
+      start: values.start,
+      end: values.end,
+      priority,
+      category: values.category,
+      date: currentDay,
+      owner: user._id,
+      // _id: task._id
     };
     console.log('newTask: ', addTaskData);
-    if (task?.id) {
-      dispatch(updateTask({ id: task.id, taskData }));
+    console.log('task?.id: ', task?.id);
+    
+    if (task) {
+      dispatch(updateTask(addTaskData));
     } else {
-      dispatch(addTask(addTaskData));
+      dispatch(addTask(taskData));
       // showToast('Successfully! Task added', false);
     }
     closeModal();
@@ -199,6 +215,11 @@ const TaskForm = ({ task, closeModal, headerCategory }) => {
                 />
                 <span className="custom-radio"></span>
                 Low
+                <ErrorMessage
+                  name="priority"
+                  component="div"
+                  className="errorField"
+                />
               </label>
             </div>
             <div className="form-group">
