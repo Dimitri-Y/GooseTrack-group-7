@@ -53,12 +53,13 @@ const FeedbackForm = ({ onClose }) => {
   const reviews = useSelector(selectReview);
 
   const [isEditActive, setIsEditActive] = useState(false);
+  const [isRatingReadOnly, setIsRatingReadOnly] = useState(false);
 
   const initialValues = {
     comment: reviews[0]?.comment || '',
     rating: reviews[0]?.rating || 5,
   };
-console.log(initialValues);
+
   const feedbackSchema = Yup.object().shape({
     rating: Yup.number().min(1).max(5),
     comment: Yup.string()
@@ -68,39 +69,38 @@ console.log(initialValues);
   });
   useEffect(() => {
     dispatch(fetchReviewsOwn());
-  
   }, [dispatch]);
 
   useEffect(() => {
     changeFormik(reviews[0]?.comment, reviews[0]?.rating);
-  
   }, [reviews]);
 
   const handleSubmit = (values) => {
+    setIsRatingReadOnly(false);
+
     const newReview = {
       comment: values.comment,
-      rating: values.rating || 5 ,
+      rating: values.rating || 5,
     };
-console.log(newReview);
 
     if (isEditActive) {
       dispatch(updateReview(newReview));
-      console.log(newReview);
-      setIsEditActive(false)
     } else {
       dispatch(addReview(newReview));
-      console.log(newReview);
     }
-    
+    setIsEditActive(false);
+    setIsRatingReadOnly(true);
   };
 
   const handleEdit = () => {
-    setIsEditActive(!isEditActive);
+    setIsEditActive(true);
+    setIsRatingReadOnly(false);
   };
 
   const handleDelete = () => {
     dispatch(deleteReview());
-  
+    setIsRatingReadOnly(false);
+    setIsEditActive(false);
   };
 
   const handleRating = (newRating) => {
@@ -110,7 +110,7 @@ console.log(newReview);
   const changeFormik = (comment, rating) => {
     formikRef.current.setFieldValue('comment', comment);
     formikRef.current.setFieldValue('rating', rating);
-  }
+  };
 
   return (
     <>
@@ -121,14 +121,14 @@ console.log(newReview);
         innerRef={formikRef}
         // validateOnChange={false}
       >
-      {({ values }) => (
+        {({ values }) => (
           <ReviewForm>
             <Label>
               Rating
               <Rating
                 name="rating"
                 component="div"
-                value={values.rating}
+                value={values.rating || 5}
                 itemStyles={styledRating}
                 style={{
                   maxWidth: 128,
@@ -138,7 +138,7 @@ console.log(newReview);
                   marginTop: '10px',
                 }}
                 onChange={handleRating}
-                readOnly={Boolean(reviews[0]?.rating) && !isEditActive}
+                readOnly={isRatingReadOnly}
               />
             </Label>
 
@@ -174,22 +174,20 @@ console.log(newReview);
               cols={40}
               component="textarea"
               placeholder="Enter your feedback"
-              disabled={!isEditActive && false}
+              disabled={Boolean(reviews[0]?.comment) && !isEditActive}
             />
             <ErrMessage name="comment" component="div" />
 
             {(!reviews[0]?.comment || isEditActive) && (
               <BtnsWrapper>
-                <Btn type="submit">
-                  {isEditActive ? 'Edit' : 'Save'}
-                </Btn>
+                <Btn type="submit">{isEditActive ? 'Edit' : 'Save'}</Btn>
                 <BtnCancel type="button" onClick={onClose}>
                   Cancel
                 </BtnCancel>
               </BtnsWrapper>
             )}
           </ReviewForm>
-          )}
+        )}
       </Formik>
     </>
   );
