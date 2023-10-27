@@ -15,7 +15,7 @@ GooseTrack is an all-in-one productivity tool that helps you stay on top
 of your tasks, events, and deadlines. Say goodbye to scattered to-do lists 
 and hello to streamlined productivity with GooseTrack.
 
-![](./src/images/mainPage/desktop/desktop_calendar@1x.png)!
+![](./src/images/mainPage/desktop/desktop_all@2x.png)!
 
 ## Deploy
 
@@ -43,12 +43,13 @@ The frontend part of the web-app is deployed on gh-pages.
 
 1. [Dmytro Bondarenko](https://github.com/Dimitri-Y)
 2. [Ludmila Kurochkina](https://github.com/ludmilka-k)
-3. Kateryna - Silchenko
-4. Vitalii Borysenko 
-5. Serhii Prozhyvarov 
-6. Diana Smilian
-7. Katerina Nikitina
-8. Denis Belousov
-9. Alla Pohrebniak
-10. Taras Mysiura
-11. Max Gerasimenko
+3. [Kateryna - Silchenko](https://github.com/Kateryna1706)
+4. [Taras Mysiura](https://github.com/TarasMysiura)
+5. [Serhii Prozhyvarov](https://github.com/prozhyvarov)
+6. [Diana Smilian](https://github.com/diankasmilian)
+7. [Katerina Nikitina](https://github.com/KaterynaNikitina)
+8. [Denis Belousov](https://github.com/denis-bw)
+9. [Vitalii Borysenko](https://github.com/Senriv)
+10. [Alla Pohrebniak](https://github.com/9Alla9)
+11. [Olexander Klymuk](https://github.com/swcAlexander)
+12. [Max Gerasimenko](https://github.com/MaksoN03)
