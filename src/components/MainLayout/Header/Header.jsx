@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AddFeedbackBtn from '../AddFeedbackBtn/AddFeedbackBtn.jsx';
 import ThemeToggler from '../ThemeToggler/ThemeToggler.jsx';
@@ -89,7 +89,9 @@ const Header = ({ toggleSidebar, isOpen }) => {
       <InnerWrapper>
         <AddFeedbackBtn />
         <ThemeToggler />
-        <UserInfo />
+        <Link to="/account">
+          <UserInfo />
+        </Link>
       </InnerWrapper>
     </HeaderContainer>
   );
