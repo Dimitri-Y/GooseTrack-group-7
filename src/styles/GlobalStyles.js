@@ -84,6 +84,9 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.4;
     background-color: ${({ theme }) => theme.mainBGColor};
     color: ${({ theme }) => theme.mainTextColor};
+    transition: 
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1), color 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
 
