@@ -4,6 +4,11 @@ export const FormTask = styled.div`
   margin-top: 48px;
   display: block;
   padding: 0 18px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     margin-top: 40px;
@@ -22,6 +27,10 @@ export const FormTask = styled.div`
     /* font-family: 'Inter-500', sans-serif; */
   }
   .title {
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
     color: ${(p) => p.theme.taskTitleColor};
     font-family: 'Inter-500', sans-serif;
     font-size: 12px;
@@ -34,6 +43,14 @@ export const FormTask = styled.div`
     border: none;
     font-family: 'Inter-600', sans-serif;
     border-radius: 8px;
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      border 1s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
     border: 1px solid ${(p) => p.theme.taskModalBorderInputColor};
     width: 267px;
     height: 46px;
@@ -41,14 +58,14 @@ export const FormTask = styled.div`
     padding: 12px 14px;
     color: ${(p) => p.theme.taskModalInputPlaceholderColor};
     ::placeholder {
-        color: ${(p) => p.theme.taskModalInputPlaceholderColor};
+      color: ${(p) => p.theme.taskModalInputPlaceholderColor};
 
-        font-family: 'Inter-600', sans-serif;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 1.29; /* 128.571% */
-      }
+      font-family: 'Inter-600', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.29; /* 128.571% */
+    }
     @media screen and (min-width: 768px) {
       width: 340px;
     }
@@ -76,6 +93,9 @@ export const FormTask = styled.div`
         width: 163px;
       }
       ::placeholder {
+        transition:
+          transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+          color 1s cubic-bezier(0.4, 0, 0.2, 1);
         color: ${(p) => p.theme.taskModalInputPlaceholderColor};
 
         font-family: 'Inter-600', sans-serif;
@@ -103,6 +123,9 @@ export const FormTask = styled.div`
   }
 
   .form-group {
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 1s cubic-bezier(0.4, 0, 0.2, 1);
     color: ${(p) => p.theme.taskModalInputPlaceholderColor};
     font-family: 'Inter-600', sans-serif;
     font-size: 12px;

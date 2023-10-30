@@ -72,6 +72,9 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: 
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1), color 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   *, *::before, *::after {
@@ -82,11 +85,16 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     line-height: 1.4;
+    // transition:
+    // transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    // background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    // transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    // border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    // transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    // color 1s cubic-bezier(0.4, 0, 0.2, 1);
+    
     background-color: ${({ theme }) => theme.mainBGColor};
     color: ${({ theme }) => theme.mainTextColor};
-    transition: 
-            transform 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
-            transform 250ms cubic-bezier(0.4, 0, 0.2, 1), color 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
 

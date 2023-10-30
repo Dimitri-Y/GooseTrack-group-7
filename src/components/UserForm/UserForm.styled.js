@@ -1,177 +1,194 @@
 import { createGlobalStyle, styled } from 'styled-components';
 
 export const AccountForm = styled.form`
-background-color: #fff;
-border-radius: 16px;
-padding-bottom: 40px;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding-left: 18px;
-padding-right: 18px;
-text-align: center;
-background-color: ${p => p.theme.secondaryBgColor};
+  background-color: #fff;
+  border-radius: 16px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 18px;
+  padding-right: 18px;
+  text-align: center;
+  background-color: ${(p) => p.theme.secondaryBgColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media (min-width: 768px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 
-@media (min-width: 768px) {
-   padding-top: 40px;
-padding-bottom: 40px;
- }
-
- @media (min-width: 1440px) {
-   padding-top: 60px;
-padding-bottom: 60px;
-padding-left: 164px;
-padding-right: 165px;
- }
-`
+  @media (min-width: 1440px) {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 164px;
+    padding-right: 165px;
+  }
+`;
 
 export const UserName = styled.h1`
-font-family: 'Inter-Bold', sans-serif;
-font-size: 14px;
-font-weight: 700;
-line-height: 18px;
-margin-bottom: 4px;
-color: ${p => p.theme.secondaryTextColor};
+  font-family: 'Inter-Bold', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 4px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
+  color: ${(p) => p.theme.secondaryTextColor};
 
-@media (min-width: 768px) {
-   font-size: 18px;
-margin-bottom: 8px;
- }
-`
+  @media (min-width: 768px) {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+`;
 
 export const User = styled.p`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 12px;
-font-weight: 600;
-line-height: 18px;
-color: ${p => p.theme.colorHeaderCalendar};
+  font-family: 'Inter-SemiBold', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: ${(p) => p.theme.colorHeaderCalendar};
 
-margin-bottom: 40px;
+  margin-bottom: 40px;
 
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 
-@media (min-width: 768px) {
-   font-size: 14px;
- }
-
- @media (min-width: 1440px) {
-   margin-bottom: 44px;
- }
-`
+  @media (min-width: 1440px) {
+    margin-bottom: 44px;
+  }
+`;
 
 export const InputBox = styled.div`
-display: flex;
-flex-direction: column;
-gap: 18px;
-margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 40px;
 
-@media (min-width: 768px) {
-   gap: 24px;
- }
+  @media (min-width: 768px) {
+    gap: 24px;
+  }
 
-@media (min-width: 1440px) {
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   row-gap: 24px;
-   column-gap: 50px;
-   margin-bottom: 88px;
- }
-`
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 24px;
+    column-gap: 50px;
+    margin-bottom: 88px;
+  }
+`;
 
 export const InputFile = styled.input`
-display: none;
-`
+  display: none;
+`;
 
 export const Input = styled.input`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 16px;
-font-weight: 600;
-line-height: 18px;
-width: 299px;
-border-radius: 8px;
-border: 1px solid ${p => p.theme.borderInputForm};
-padding-top: 14px;
-padding-bottom: 14px;
-padding-left: 18px;
-background-color: ${p => p.theme.secondaryBgColor};
-color: ${p => p.theme.mainTextColor};
+  font-family: 'Inter-SemiBold', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+  width: 299px;
+  border-radius: 8px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-${(props) =>
+  border: 1px solid ${(p) => p.theme.borderInputForm};
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 18px;
+  background-color: ${(p) => p.theme.secondaryBgColor};
+  color: ${(p) => p.theme.mainTextColor};
+
+  ${(props) =>
     props.hasError &&
     `
       border: 2px solid red; 
     `}
 
-@media (min-width: 768px) {
-   width: 354px;
- }
+  @media (min-width: 768px) {
+    width: 354px;
+  }
 
- @media (min-width: 1440px) {
-   width: 354px;
- }
-`
+  @media (min-width: 1440px) {
+    width: 354px;
+  }
+`;
 
 Input.shouldForwardProp = (prop) => prop !== 'hasError';
 
 export const Label = styled.label`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-font-size: 14px;
-font-weight: 400;
-line-height: 18px;
-gap: 8px;
-color: ${p => p.theme.labelsColor};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  gap: 8px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
+  color: ${(p) => p.theme.labelsColor};
 
-${(props) =>
+  ${(props) =>
     props.hasError &&
     `
       color: red; 
     `}
 
-.calendar {
-   width: 299px;
-}
+  .calendar {
+    width: 299px;
+  }
 
-@media (min-width: 768px) {
-   .calendar {
+  @media (min-width: 768px) {
+    .calendar {
       width: 354px;
-   }
-  
- }
+    }
+  }
 
- @media (min-width: 1440px) {
-   .calendar {
+  @media (min-width: 1440px) {
+    .calendar {
       width: 354px;
-   }
- }
-`
+    }
+  }
+`;
 
 Label.shouldForwardProp = (prop) => prop !== 'hasError';
 
 export const ButtonSubmit = styled.button`
-font-family: 'Inter-SemiBold', sans-serif;
-font-size: 14px;
-font-weight: 600;
-line-height: 18px;
-border: none;
-padding: 14px 50px;
-border-radius: 16px;
-background: #3E85F3;
-color: #FFF;
+  font-family: 'Inter-SemiBold', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  border: none;
+  padding: 14px 50px;
+  border-radius: 16px;
+  background: #3e85f3;
+  color: #fff;
 
-@media (min-width: 768px) {
-   padding: 15px 83px;
- }
+  @media (min-width: 768px) {
+    padding: 15px 83px;
+  }
 
- &:disabled {
+  &:disabled {
     background-color: rgba(62, 133, 243, 0.5);
- }
- 
-`
+  }
+`;
 
 export const CalendarGlobalStyles = createGlobalStyle`
 .react-datepicker {

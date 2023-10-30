@@ -6,6 +6,11 @@ export const HeaderContainer = styled.header`
   width: 100%;
   align-items: flex-start;
   justify-content: space-between;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const BurgerTitleBox = styled.div`
@@ -24,12 +29,12 @@ export const BurgerBtn = styled.button`
   background-color: transparent;
   border: none;
 
-  @media screen and (min-width: 768px ) {
+  @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
   }
 
-  @media screen and (min-width: 1440px ) {
+  @media screen and (min-width: 1440px) {
     display: none;
   }
 `;
@@ -40,7 +45,7 @@ export const IconMenu = styled.svg`
   stroke: currentColor;
   fill: none;
 
-  @media screen and (min-width: 768px ) {
+  @media screen and (min-width: 768px) {
     width: 34px;
     height: 34px;
   }
@@ -48,8 +53,8 @@ export const IconMenu = styled.svg`
 
 export const TitleWrap = styled.div`
   display: none;
-  
-  @media screen and (min-width: 1440px ) {
+
+  @media screen and (min-width: 1440px) {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -72,8 +77,18 @@ export const Message = styled.div`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
+  // transition:
+  //   transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  //   background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+  //   transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  //   color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   span {
-    color:${p => p.theme.mainAccentColor || '#3E85F3'} ;
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+    color: ${(p) => p.theme.mainAccentColor || '#3E85F3'};
   }
 `;
 
@@ -82,11 +97,10 @@ export const InnerWrapper = styled.div`
   align-items: center;
   gap: 18px;
 
-  @media screen and (min-width: 768px ) {
+  @media screen and (min-width: 768px) {
     gap: 24px;
   }
 `;
-
 
 // export const IconWrapper = styled.svg`
 //   width: ${(props) => props.size || '12px'};

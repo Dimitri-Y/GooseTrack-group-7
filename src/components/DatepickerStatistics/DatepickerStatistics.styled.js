@@ -1,4 +1,4 @@
-import { createGlobalStyle, styled } from "styled-components";
+import { createGlobalStyle, styled } from 'styled-components';
 export const DataBtn = styled.div`
   padding: 6px 12px;
   color: #ffffff;
@@ -225,58 +225,61 @@ export const TitleWrapper = styled.button`
   justify-content: space-around;
   align-items: center;
   height: 30px;
-    @media (min-width: 768px) {
-        height: 34px;
-        width: 134px;
-    }
-    @media (min-width: 1024px) {
-        height: 36px;
-    }
+  @media (min-width: 768px) {
+    height: 34px;
+    width: 134px;
+  }
+  @media (min-width: 1024px) {
+    height: 36px;
+  }
 `;
 
 export const ContainerBtn = styled.div`
-    border:  ${p => p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : "solid #DCE3E580 1px"}; 
-    border-radius: 8px;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    width: 76px;
-    height: 30px;
-    @media (min-width: 768px) and (max-width: 1023px) {
-        height: 34px;
-    }
-    @media (min-width: 1024px) {
-        height: 36px;
-    }
-`
+  border: ${(p) =>
+    p.themecolors === 'dark' ? 'solid #FFFFFF26 1px' : 'solid #DCE3E580 1px'};
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 30px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 34px;
+  }
+  @media (min-width: 1024px) {
+    height: 36px;
+  }
+`;
 export const Path = styled.path`
-  stroke: ${p => p.themecolors === 'dark' ? '#fff' : " #343434"} ; 
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke: ${(p) => (p.themecolors === 'dark' ? '#fff' : ' #343434')};
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 `;
 
 export const BtnSwitch = styled.button`
-    display: flex;
-    align-items:center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    &:hover ${Path}{
-       stroke: #3E85F3;
-         
-    }
-     &:focus ${Path}{
-      stroke: #3E85F3;
-    }
-`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  &:hover ${Path} {
+    stroke: #3e85f3;
+  }
+  &:focus ${Path} {
+    stroke: #3e85f3;
+  }
+`;
 
 export const SvgIcon = styled.svg`
   width: 16px;
   height: 16px;
-  transition: 0.3s; 
-    @media (min-width: 768px) {
-        width: 18px;
-        height: 18px;   
-    }
+  transition: 0.3s;
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
 `;

@@ -6,6 +6,14 @@ export const ContainerTaskCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 15px 15px 18px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
   background-color: ${(p) => p.theme.taskCardBGColor};
@@ -34,6 +42,12 @@ export const TaskText = styled.p`
   max-width: 272px;
   height: 16px;
   font-size: 14px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   color: ${(p) => p.theme.mainTextColor};
 `;
 
@@ -47,6 +61,6 @@ export const PriorityTask = styled.p`
   margin: 0;
   border-radius: 4px;
   font-size: 10px;
-  color: #F7F6F9;
+  color: #f7f6f9;
   background-color: ${(props) => props.$backgroundColor};
 `;

@@ -9,6 +9,10 @@ export const ContainerTaskToolbar = styled.div`
   .button {
     width: 14px;
     height: 14px;
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
+
     stroke: ${(p) => p.theme.mainTextColor};
     cursor: pointer;
 
@@ -30,6 +34,14 @@ export const ContextMenu = styled.div`
   box-sizing: border-box;
   width: 115px;
   padding: 14px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   border: ${(p) => p.theme.borderContextMenu};
   border-radius: 8px;
   background-color: ${(p) => p.theme.contexMenuBGColor};
@@ -49,6 +61,10 @@ export const ContainerContextMenuItem = styled.div`
   .button {
     width: 14px;
     height: 14px;
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
+
     stroke: ${(p) => p.theme.mainTextColor};
 
     @media (min-width: 375px) {
@@ -63,5 +79,11 @@ export const ContextMenuItem = styled.div`
   align-items: start;
   padding: 5px;
   font-size: 12px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   color: ${(p) => p.theme.secondaryTextColor};
 `;

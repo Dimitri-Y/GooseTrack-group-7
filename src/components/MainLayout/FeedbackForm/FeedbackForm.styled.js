@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 
-
-
 export const ReviewForm = styled(Form)`
   display: block;
   box-sizing: border-box;
@@ -12,7 +10,15 @@ export const ReviewForm = styled(Form)`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.16;
-  background-color: ${p => p.theme.reviewFormColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  background-color: ${(p) => p.theme.reviewFormColor};
 
   box-shadow:
     rgba(17, 17, 26, 0.1) 0px 1px 0px,
@@ -27,15 +33,23 @@ export const ReviewForm = styled(Form)`
     width: 468px;
     padding: 32px;
     font-size: 14px;
-  line-height: 1.28;
+    line-height: 1.28;
   }
 `;
 
 export const Label = styled.label`
-margin-bottom: 8px;
-font-weight: 500;
-color: ${p => p.theme.labelsColor};
-`
+  margin-bottom: 8px;
+  font-weight: 500;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${(p) => p.theme.labelsColor};
+`;
 export const ReviewWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -47,7 +61,6 @@ export const ReviewWrapper = styled.div`
 export const EditWrapper = styled.div`
   display: flex;
   gap: 8px;
- 
 `;
 
 export const EditBtn = styled.button`
@@ -58,9 +71,20 @@ export const EditBtn = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  background-color: ${p =>  {return p.isActive ?  '#3E85F3' : p.theme.editBtnColor}}; 
-   stroke:  ${p => { return p.isActive ? '#FFFFFF' : '#3E85F3'}} ;
+  background-color: ${(p) => {
+    return p.isActive ? '#3E85F3' : p.theme.editBtnColor;
+  }};
+  stroke: ${(p) => {
+    return p.isActive ? '#FFFFFF' : '#3E85F3';
+  }};
 
   border: none;
   cursor: pointer;
@@ -98,7 +122,7 @@ export const Textarea = styled(Field)`
   box-sizing: border-box;
   margin-bottom: 20px;
 
-  font-family: "Inter-600", sans-serif;
+  font-family: 'Inter-600', sans-serif;
   font-size: 12px;
   line-height: 1.285;
 
@@ -108,16 +132,23 @@ export const Textarea = styled(Field)`
   border: none;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  resize: none; 
+  resize: none;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  color: ${p => p.theme.mainTextColor};
-  background-color: ${p => p.theme.reviewBgColor};
-    &:focus-visible {
+  color: ${(p) => p.theme.mainTextColor};
+  background-color: ${(p) => p.theme.reviewBgColor};
+  &:focus-visible {
     outline: none;
-  } 
+  }
   &::placeholder {
-    color: ${p => p.theme.mainTextColor}; 
-    font-family: "Inter-600", sans-serif;
+    color: ${(p) => p.theme.mainTextColor};
+    font-family: 'Inter-600', sans-serif;
     font-size: 14px;
   }
   @media (min-width: 768px) {
@@ -127,20 +158,17 @@ export const Textarea = styled(Field)`
 `;
 
 export const ErrMessage = styled(ErrorMessage)`
-
-margin-bottom: 10px;
-  color: #DA1414;
+  margin-bottom: 10px;
+  color: #da1414;
   max-width: 240px;
   font-size: 14px;
   font-weight: 400;
-
 `;
 
 export const BtnsWrapper = styled.div`
   display: flex;
   gap: 10px;
   margin: 0;
-  
 `;
 
 export const Btn = styled.button`
@@ -148,9 +176,9 @@ export const Btn = styled.button`
   color: #fff;
   background-color: #3e85f3;
   text-transform: none;
-  width: 144px; 
-  height: 42px; 
-  font-family: "Inter-600", sans-serif;
+  width: 144px;
+  height: 42px;
+  font-family: 'Inter-600', sans-serif;
   padding: 0;
   margin: 0;
   font-weight: 600;
@@ -177,12 +205,18 @@ export const Btn = styled.button`
 
 export const BtnCancel = styled.button`
   box-sizing: border-box;
-  color: ${p => p.theme.mainTextColor};
-  background-color: ${p => p.theme.cancelBtnColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${(p) => p.theme.mainTextColor};
+  background-color: ${(p) => p.theme.cancelBtnColor};
   text-transform: none;
-  width: 144px; 
-  height: 42px; 
-  font-family: "Inter-600", sans-serif;
+  width: 144px;
+  height: 42px;
+  font-family: 'Inter-600', sans-serif;
   font-weight: 600;
   padding: 0;
   margin: 0;
@@ -208,8 +242,6 @@ export const BtnCancel = styled.button`
   }
 `;
 
-
-
 // голубой - #E5EDFA
 // синий -  #3E85F3
 
@@ -217,6 +249,3 @@ export const BtnCancel = styled.button`
 //   margin-bottom: 14px;
 
 // `;
-
-
-

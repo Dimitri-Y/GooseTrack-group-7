@@ -13,12 +13,17 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 64px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (min-width: 768px ) {
+  @media screen and (min-width: 768px) {
     padding: 24px 32px 18px;
   }
 
-  @media screen and (min-width: 1440px ) {
+  @media screen and (min-width: 1440px) {
     padding: 40px 32px 32px;
     gap: 32px;
   }

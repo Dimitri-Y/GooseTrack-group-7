@@ -6,14 +6,20 @@ export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background-color:  ${p => p.theme.backdropColor || '#00000080'};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  background-color: ${(p) => p.theme.backdropColor || '#00000080'};
   z-index: 2;
-  opacity: ${p => (p.$isOpen ? '1' : '0')};
+  opacity: ${(p) => (p.$isOpen ? '1' : '0')};
   transition: opacity 0.3s ease-out;
 
   @media screen and (min-width: 1440px) {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
   }
 `;
 export const SideBarStyled = styled.aside`
@@ -24,15 +30,20 @@ export const SideBarStyled = styled.aside`
   width: 225px;
   height: 100vh;
   padding: 24px 20px;
-  background-color: ${p => p.theme.sidebarBGColor ||'#FFFFFF'};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: ${(p) => p.theme.sidebarBGColor || '#FFFFFF'};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-   transform: ${p => (p.$isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  transform: ${(p) => (p.$isOpen ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-out;
 
   overflow-y: auto;
-  
+
   @media screen and (min-width: 768px) {
     width: 290px;
     padding: 24px 32px;
@@ -57,7 +68,6 @@ export const InnerWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     gap: 32px;
   }
-
 `;
 
 export const LogoBox = styled.div`
@@ -85,7 +95,6 @@ export const Logo = styled.img`
     font-size: 24px;
     width: 71px;
     height: 68px;
-   
   }
 `;
 
@@ -93,7 +102,13 @@ export const LogoTitle = styled.span`
   font-size: 16px;
   font-weight: 700;
   line-height: 1.38;
-  color: ${p => p.theme.sidebarLogoTextColor ||'#3E85F3'};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${(p) => p.theme.sidebarLogoTextColor || '#3E85F3'};
 
   @media screen and (min-width: 1440px) {
     font-size: 24px;
@@ -116,7 +131,13 @@ export const CloseBtn = styled.button`
   justify-content: center;
   height: 100%;
   padding: 0;
-  color: ${p => p.theme.secondaryTextColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${(p) => p.theme.secondaryTextColor};
   background: none;
   border: none;
   cursor: pointer;
@@ -132,7 +153,8 @@ export const CloseIcon = styled.svg`
   stroke: currentColor;
   fill: none;
 
-  @media screen and (min-width: 768px) and (max-width:1439px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     width: 34px;
-    height: 34px;}
+    height: 34px;
+  }
 `;

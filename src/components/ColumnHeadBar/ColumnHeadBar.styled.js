@@ -8,6 +8,10 @@ export const ContainerHeadBar = styled.div`
   .button {
     width: 22px;
     height: 22px;
+    transition:
+      transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
+
     stroke: ${(p) => p.theme.mainTextColor};
     cursor: pointer;
 

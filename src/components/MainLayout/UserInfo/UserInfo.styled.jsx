@@ -10,24 +10,35 @@ export const UserName = styled.span`
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
-  color: ${p => p.theme.secondaryTextColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+  color: ${(p) => p.theme.secondaryTextColor};
 `;
 
 export const UserAvatar = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px; 
+  width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: 1.8px solid ${p => p.theme.mainAccentColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  border: 1.8px solid ${(p) => p.theme.mainAccentColor};
 `;
 
 export const FirstLetterIcon = styled.span`
   font-size: 18px;
   font-weight: 700;
   line-height: 1.3;
-  color: ${p => p.theme.mainTextColor};
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+  color: ${(p) => p.theme.mainTextColor};
 `;
 
 export const UserAvatarBox = styled.div`
@@ -37,5 +48,5 @@ export const UserAvatarBox = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 32px;
-  border: 1.8px solid ${p => p.theme.mainAccentColor};
+  border: 1.8px solid ${(p) => p.theme.mainAccentColor};
 `;

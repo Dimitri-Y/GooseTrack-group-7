@@ -4,6 +4,12 @@ export const ThemeTogglerBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   color: ${(p) => p.theme.mainAccentColor || '#3E85F3'};
   border: none;
   background-color: transparent;
@@ -22,7 +28,7 @@ export const ThemeIcon = styled.svg`
 `;
 
 export const ThemeTogglerStyled = styled.button`
-  fill: #3E85F3;
+  fill: #3e85f3;
   border: none;
   display: flex;
   justify-content: center;

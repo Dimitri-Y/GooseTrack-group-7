@@ -235,9 +235,9 @@ export const TitleWrapper = styled.button`
 `;
 
 export const ContainerDatePicker = styled.div`
-display: flex;
-justify-content: space-between;
-`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const ContainerBtn = styled.div`
   border: ${(p) =>
@@ -260,6 +260,9 @@ export const ContainerBtn = styled.div`
   }
 `;
 export const Path = styled.path`
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 1s cubic-bezier(0.4, 0, 0.2, 1);
   stroke: ${(p) => (p.themecolors === 'dark' ? '#fff' : ' #343434')};
   stroke-width: 1.5;
   stroke-linecap: round;

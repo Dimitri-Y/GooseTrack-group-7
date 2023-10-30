@@ -5,11 +5,20 @@ export const List = styled.ul`
   justify-content: space-between;
   padding: 14px 18px;
   margin-bottom: 16px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
+
   border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
+
   color: ${(p) => p.theme.colorHeaderCalendar};
   background-color: ${(p) => p.theme.secondaryBgColor};
 `;
@@ -35,6 +44,13 @@ export const Number = styled.span`
   font-weight: 900;
   font-size: 12px;
   line-height: 14px;
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 1s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 1s cubic-bezier(0.4, 0, 0.2, 1);
   color: ${(props) =>
     props.theme.mainTextColor || (props.$selected && '#FFFFFF')};
   background-color: ${(props) => props.$selected && '#3e85f3'};
