@@ -41,7 +41,7 @@ const ChoosedDay = () => {
 
   return (
     <ContainerSection>
-      <DayCalendarHead></DayCalendarHead>
+      <DayCalendarHead />
       <TasksColumnsList
         toDo={toDo}
         inProgress={inProgress}

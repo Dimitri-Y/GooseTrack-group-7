@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import {
   GridWrapper,
@@ -6,21 +5,23 @@ import {
   RowInCell,
   ShowDayWrapper,
   DayWrapper,
-  CurrentDay,
   TaskListWrapper,
   CalendarTableMoreBtn,
 } from './CalendarTable.styled';
 import { MonthTaskDay } from '../MonthTaskDay/MonthTaskDay';
+import { useDispatch } from 'react-redux';
+import { changeDateCalendar } from '../../../redux/tasks/dateCalendarSlice';
+import { useSelector } from 'react-redux';
+import { selectDateCalendar } from '../../../redux/tasks/tasksSelectors';
 
 const CalendarTable = ({ startDay, today, tasks }) => {
   const navigate = useNavigate();
   const totalDays = 42;
-
+  const dispatch = useDispatch();
   const day = startDay.clone().subtract(1, 'day');
+  const dateCalendarSelected = useSelector(selectDateCalendar);
 
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone());
-
-  const isCurrentDay = (day) => moment().isSame(day, 'day');
   const isSelectedMonth = (day) => today.isSame(day, 'month');
 
   return (
@@ -28,23 +29,24 @@ const CalendarTable = ({ startDay, today, tasks }) => {
       <GridWrapper>
         {daysMap.map((dayItem) => (
           <CellWrapper
-            isWeekday={dayItem.day() === 6 || dayItem.day() === 0}
+            $isWeekday={dayItem.day() === 6 || dayItem.day() === 0}
             key={dayItem.unix()}
-            isSelectedMonth={isSelectedMonth(dayItem)}
+            $isSelectedMonth={isSelectedMonth(dayItem)}
             type="button"
-            onClick={() =>
+            onClick={() => {
+              dispatch(changeDateCalendar(dayItem.format('YYYY-MM-DD')));
               isSelectedMonth(dayItem) &&
-              navigate(`/calendar/day/${dayItem.format('YYYY-MM-DD')}`)
-            }
+                navigate(`/calendar/day/${dayItem.format('YYYY-MM-DD')}`);
+            }}
           >
-            <RowInCell justifyContent={'flex-end'}>
+            <RowInCell $justifyContent={'flex-end'}>
               <ShowDayWrapper>
-                <DayWrapper>
-                  {isCurrentDay(dayItem) ? (
-                    <CurrentDay>{dayItem.format('D')}</CurrentDay>
-                  ) : (
-                    dayItem.format('D')
-                  )}
+                <DayWrapper
+                  $selected={
+                    dateCalendarSelected === dayItem.format('YYYY-MM-DD')
+                  }
+                >
+                  {dayItem.format('D')}
                 </DayWrapper>
               </ShowDayWrapper>
               <TaskListWrapper>

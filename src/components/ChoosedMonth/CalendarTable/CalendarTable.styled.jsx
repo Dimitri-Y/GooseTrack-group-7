@@ -10,20 +10,6 @@ export const GridWrapper = styled.div`
   background-color: #ffffff;
 `;
 
-export const CurrentDay = styled.div`
-  padding: 4px 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #3e85f3;
-  border-radius: 8px;
-  color: #ffffff;
-  margin-bottom: 3px;
-
-  @media screen and (min-width: 768px) {
-    padding: 4px 8px;
-  }
-`;
 export const DayWrapper = styled.div`
   height: 25px;
   width: 25px;
@@ -33,6 +19,16 @@ export const DayWrapper = styled.div`
   font-weight: 700;
   font-size: 12px;
   line-height: 1.25;
+  background-color: ${(props) => props.$selected && '#3e85f3'};
+
+  padding: ${(props) => props.$selected && '4px 6px'};
+  border-radius: ${(props) => props.$selected && '8px'};
+  color: ${(props) => props.$selected && '#ffffff'};
+  margin-bottom: ${(props) => props.$selected && '3px'};
+
+  @media screen and (min-width: 768px) {
+    padding: ${(props) => props.$selected && '4px 8px'};
+  }
 
   @media screen and (min-width: 1440px) {
     font-size: 16px;
@@ -48,7 +44,7 @@ export const CellWrapper = styled.div`
   &:nth-child(7n) {
     border-right: none;
   }
-  cursor: ${(props) => (props.isSelectedMonth ? 'pointer' : 'auto')};
+  cursor: ${(props) => (props.$isSelectedMonth ? 'pointer' : 'auto')};
   transition: box-shadow 300ms linear;
   &:hover,
   &:focus {
