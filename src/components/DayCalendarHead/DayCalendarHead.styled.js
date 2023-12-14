@@ -36,7 +36,7 @@ export const Number = styled.span`
   font-size: 12px;
   line-height: 14px;
   color: ${(props) =>
-    props.theme.mainTextColor || (props.$selected && '#FFFFFF')};
+    props.$selected ? '#FFFFFF' : props.theme.mainTextColor};
   background-color: ${(props) => props.$selected && '#3e85f3'};
   pointer-events: none;
 `;

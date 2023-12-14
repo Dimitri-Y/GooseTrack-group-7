@@ -4,28 +4,24 @@ import { DayWeek, List, ListItem, Number } from './DayCalendarHead.styled';
 import { useDispatch } from 'react-redux';
 import { useAdaptivePicture } from '../../hooks/useAdaptivePicture';
 import { endOfWeek, eachDayOfInterval, startOfWeek } from 'date-fns';
-import { useMemo } from 'react';
 import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
+import { useNavigate } from 'react-router';
 
 const DayCalendarHead = ({ weekStartDay = 1 }) => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dateCalendarSelected = useSelector(selectDateCalendar);
 
-  const weekStart = startOfWeek(dateCalendarSelected, {
+  const weekStart = startOfWeek(new Date(dateCalendarSelected), {
     weekStartsOn: weekStartDay,
   });
-  const weekEnd = endOfWeek(dateCalendarSelected, {
+  const weekEnd = endOfWeek(new Date(dateCalendarSelected), {
     weekStartsOn: weekStartDay,
   });
   const weekDays = eachDayOfInterval({ start: weekStart, end: weekEnd });
-
-  const selectedDay = useMemo(
-    () => dateCalendarSelected.getDate().toString(),
-    [dateCalendarSelected],
-  );
 
   return (
     <List>
@@ -33,7 +29,20 @@ const DayCalendarHead = ({ weekStartDay = 1 }) => {
         return (
           <ListItem
             key={day.toISOString()}
-            onClick={() => dispatch(changeDateCalendar(day))}
+            onClick={() => {
+              dispatch(
+                changeDateCalendar(
+                  day.toLocaleDateString().split('.').reverse().join('-'),
+                ),
+              );
+              navigate(
+                `/calendar/day/${day
+                  .toLocaleDateString()
+                  .split('.')
+                  .reverse()
+                  .join('-')}`,
+              );
+            }}
           >
             <DayWeek onClick={(event) => event.stopPropagation()}>
               {isMobile
@@ -45,7 +54,10 @@ const DayCalendarHead = ({ weekStartDay = 1 }) => {
                     .toUpperCase()}
             </DayWeek>
             <Number
-              $selected={selectedDay === day.getDate().toString()}
+              $selected={
+                dateCalendarSelected ===
+                day.toLocaleDateString().split('.').reverse().join('-')
+              }
               onClick={(event) => event.stopPropagation()}
             >
               {day.getDate()}

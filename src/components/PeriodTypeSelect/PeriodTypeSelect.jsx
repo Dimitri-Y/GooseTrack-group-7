@@ -1,34 +1,19 @@
-import { useNavigate } from 'react-router';
-import {
-  ButtonM,
-  ButtonD,
-  PeriodTypeSelectStyles,
-} from './PeriodTypeSelect.styled';
+import { PeriodTypeSelectStyles, Button } from './PeriodTypeSelect.styled';
 import { selectDateCalendar } from '../../redux/tasks/tasksSelectors';
 import { useSelector } from 'react-redux';
 
 const PeriodTypeSelect = () => {
-  const navigate = useNavigate();
   const dateCalendar = useSelector(selectDateCalendar);
-  const day = dateCalendar.toISOString().slice(0, 10);
-  const month = dateCalendar.toISOString().slice(0, 7);
-
-  const handleClickMonth = () => {
-    navigate(`/calendar/month/${month}`);
-  };
-
-  const handleClickDay = () => {
-    navigate(`/calendar/day/${day}`);
-  };
+  const month = dateCalendar.slice(0, 7);
 
   return (
     <PeriodTypeSelectStyles>
-      <ButtonM type="button" onClick={handleClickMonth}>
+      <Button to={`/calendar/month/${month}`} $type ="month" type="button">
         Month
-      </ButtonM>
-      <ButtonD type="button" onClick={handleClickDay}>
+      </Button>
+      <Button to={`/calendar/day/${dateCalendar}`} $type="day" type="button">
         Day
-      </ButtonD>
+      </Button>
     </PeriodTypeSelectStyles>
   );
 };

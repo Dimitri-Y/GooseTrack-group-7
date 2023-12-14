@@ -29,7 +29,11 @@ export const lightTheme = {
   taskTitleColor: 'rgba(52, 52, 52, 0.8)',
   modalBGColor: '#ffffff',
   taskModalBorderInputColor: 'rgba(255, 255, 255, 0.15)',
-  taskModalInputPlaceholderColor: '#343434',  
+  taskModalInputPlaceholderColor: '#343434',
+  buttonTypeSelectBg: '#E3F3FF',
+  buttonTypeSelectText: '#3E85F3',
+  buttonTypeSelectBgActive: '#CAE8FF',
+  buttonTypeSelectTextActive: '#3E85F3',
 };
 
 export const darkTheme = {
@@ -63,4 +67,8 @@ export const darkTheme = {
   modalBGColor: '#171820',
   taskModalBorderInputColor: 'rgba(255, 255, 255, 0.15)',
   taskModalInputPlaceholderColor: '#FFFFFF',
+  buttonTypeSelectBg: '#21222C',
+  buttonTypeSelectText: '#3E85F3',
+  buttonTypeSelectBgActive: '#3E85F3',
+  buttonTypeSelectTextActive: '#FFFFFF',
 };

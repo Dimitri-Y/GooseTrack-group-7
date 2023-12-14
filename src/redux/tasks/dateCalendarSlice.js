@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const dateCalendarInitialState = { dateCalendar: new Date() };
+const dateCalendarInitialState = {
+  dateCalendar: new Date().toLocaleDateString().split('.').reverse().join('-'),
+};
 
 const dateCalendarSlice = createSlice({
   name: 'dateCalendar',

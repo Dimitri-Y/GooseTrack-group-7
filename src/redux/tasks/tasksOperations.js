@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// axios.defaults.baseURL = 'http://localhost:3000/api/';
 axios.defaults.baseURL =
   'https://goose-track-backend-deployment-q70i.onrender.com/api/';
 const defaultFilter = '?filteredFrom=1980-01-01&filteredTo=3000-01-04';
