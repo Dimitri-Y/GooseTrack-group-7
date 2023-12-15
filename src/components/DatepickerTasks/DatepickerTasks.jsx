@@ -42,12 +42,21 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
 
   const handlePrevDay = () => {
     if (monthOrDay === 'month') {
-      setSelectedDate((prevDate) => subMonths(prevDate, 1));
+      const newDate = subMonths(selectedDate, 1);
+      setSelectedDate(newDate);
       setDate('PREV');
       dispatch(
         changeDateCalendar(
-          selectedDate.toLocaleDateString().split('.').reverse().join('-'),
+          newDate.toLocaleDateString().split('.').reverse().join('-'),
         ),
+      );
+      navigate(
+        `/calendar/month/${newDate
+          .toLocaleDateString()
+          .split('.')
+          .reverse()
+          .join('-')
+          .slice(0, 7)}`,
       );
     } else {
       const prevDay = selectedDate;
@@ -66,12 +75,21 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
 
   const handleNextDay = (date) => {
     if (monthOrDay === 'month') {
-      setSelectedDate((prevDate) => addMonths(prevDate, 1));
+      const newDate = addMonths(selectedDate, 1);
+      setSelectedDate(newDate);
       setDate('NEXT', date);
       dispatch(
         changeDateCalendar(
-          selectedDate.toLocaleDateString().split('.').reverse().join('-'),
+          newDate.toLocaleDateString().split('.').reverse().join('-'),
         ),
+      );
+      navigate(
+        `/calendar/month/${newDate
+          .toLocaleDateString()
+          .split('.')
+          .reverse()
+          .join('-')
+          .slice(0, 7)}`,
       );
     } else {
       const prevDay = selectedDate;
@@ -96,6 +114,14 @@ const DatepickerTasks = ({ setDate, themeColor }) => {
         changeDateCalendar(
           date.toLocaleDateString().split('.').reverse().join('-'),
         ),
+      );
+      navigate(
+        `/calendar/month/${date
+          .toLocaleDateString()
+          .split('.')
+          .reverse()
+          .join('-')
+          .slice(0, 7)}`,
       );
     } else {
       const newDate = format(date, 'yyyy-MM-dd');

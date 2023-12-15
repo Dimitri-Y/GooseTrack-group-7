@@ -3,11 +3,19 @@ import {
   WeekendHeaderItem,
   WeekHeaderList,
 } from './MonthCalendarHeader.styled';
-import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+import { initReactI18next, useTranslation } from 'react-i18next';
 
 export const MonthCalendarHeader = () => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
+  i18n.use(initReactI18next).init({
+    compatibilityJSON: 'v3',
+    lng: 'en',
+    react: {
+      useSuspense: false,
+    },
+  });
 
   const { t } = useTranslation();
 
