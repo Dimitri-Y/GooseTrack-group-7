@@ -8,19 +8,20 @@ import { useTranslation } from 'react-i18next';
 export const MonthCalendarHeader = () => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
+
   const { t } = useTranslation();
 
   return (
     <>
       {isMobile ? (
         <WeekHeaderList>
-          <li>{t('abbr_Mon')}</li>
-          <li>{t('abbr_Tue')}</li>
-          <li>{t('abbr_Wed')}</li>
-          <li>{t('abbr_Thu')}</li>
-          <li>{t('abbr_Fri')}</li>
-          <WeekendHeaderItem>{t('abbr_Sat')}</WeekendHeaderItem>
-          <WeekendHeaderItem>{t('abbr_Sun')}</WeekendHeaderItem>
+          <li>{t('M')}</li>
+          <li>{t('T')}</li>
+          <li>{t('W')}</li>
+          <li>{t('T')}</li>
+          <li>{t('F')}</li>
+          <WeekendHeaderItem>{t('S')}</WeekendHeaderItem>
+          <WeekendHeaderItem>{t('S')}</WeekendHeaderItem>
         </WeekHeaderList>
       ) : (
         <WeekHeaderList>

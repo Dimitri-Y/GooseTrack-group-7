@@ -7,9 +7,10 @@ import { endOfWeek, eachDayOfInterval, startOfWeek } from 'date-fns';
 import { changeDateCalendar } from '../../redux/tasks/dateCalendarSlice';
 import { useNavigate } from 'react-router';
 
-const DayCalendarHead = ({ weekStartDay = 1 }) => {
+const DayCalendarHead = () => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
+  const weekStartDay = 1;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
