@@ -4,10 +4,8 @@ export const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: ${(p) => p.theme.borderTasks};
   border-radius: 8px;
-  overflow: hidden;
-  background-color: #ffffff;
 `;
 
 export const DayWrapper = styled.div`
@@ -39,19 +37,40 @@ export const CellWrapper = styled.div`
   min-width: 30px;
   min-height: 84px;
   padding: 1px;
-  border-block-end: 1px solid rgba(220, 227, 229, 0.8);
-  border-inline-end: 1px solid rgba(220, 227, 229, 0.8);
+  border-block-end: ${(p) => p.theme.borderTasks};
+  border-inline-end: ${(p) => p.theme.borderTasks};
+  background-color: ${(p) => p.theme.secondaryBgColor};
+
   &:nth-child(7n) {
     border-right: none;
   }
+
+  &:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  &:last-child {
+    border-bottom-right-radius: 8px;
+  }
+
+  &:nth-child(7) {
+    border-top-right-radius: 8px;
+  }
+
+  &:nth-child(36) {
+    border-bottom-left-radius: 8px;
+  }
+
+  &:nth-last-child(-n + 7) {
+    border-block-end: none;
+  }
+
   cursor: ${(props) => (props.$isSelectedMonth ? 'pointer' : 'auto')};
   transition: box-shadow 300ms linear;
+
   &:hover,
   &:focus {
-    box-shadow:
-      0px 1px 1px rgba(0, 0, 0, 0.36),
-      0px 4px 4px rgba(255, 255, 255, 0.3),
-      1px 4px 6px rgba(0, 0, 0, 0.36);
+    box-shadow: ${(p) => p.theme.boxShadow};
   }
 
   @media screen and (min-width: 768px) {
