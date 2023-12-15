@@ -26,6 +26,7 @@
     "dayjs": "^1.11.10",
     "formik": "^2.4.5",
     "headlessui": "^0.0.0",
+    "i18next": "^23.6.0",
     "moment": "^2.29.4",
     "nanoid": "^4.0.2",
     "prop-types": "^15.8.1",

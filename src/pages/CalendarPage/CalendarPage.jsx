@@ -8,7 +8,7 @@ const CalendarPage = () => {
   const navigate = useNavigate();
 
   const dateCalendar = useSelector(selectDateCalendar);
-  const month = dateCalendar.toISOString().slice(0, 7);
+  const month = dateCalendar.slice(0, 7);
 
   useEffect(() => {
     navigate(`/calendar/month/${month}`);

@@ -14,8 +14,8 @@ import {
 } from '../../redux/tasks/tasksSelectors';
 
 const ChoosedDay = () => {
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
   const visibleTasks = useSelector(selectVisibleTasks);
 
   const toDo = useMemo(
@@ -32,7 +32,7 @@ const ChoosedDay = () => {
   );
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       dispatch(fetchTasks());
     };
     fetchData();
@@ -41,7 +41,7 @@ const ChoosedDay = () => {
 
   return (
     <ContainerSection>
-      <DayCalendarHead></DayCalendarHead>
+      <DayCalendarHead />
       <TasksColumnsList
         toDo={toDo}
         inProgress={inProgress}

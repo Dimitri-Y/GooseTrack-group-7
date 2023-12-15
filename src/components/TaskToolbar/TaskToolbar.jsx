@@ -42,14 +42,12 @@ const TaskToolbar = ({ task }) => {
     setIsOpenModal(false);
   };
   const onDeleteTask = (_id) => {
-    console.log(`delete task ${_id}`);
     const fetchData = async () => {
       dispatch(deleteTask(_id));
     };
     fetchData();
     dispatch(fetchTasks());
     if (error) toast.error(error);
-    console.log(`deleted task ${_id}`);
   };
 
   const handleClickCategory = (event) => {

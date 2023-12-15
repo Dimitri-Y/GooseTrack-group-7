@@ -31,7 +31,7 @@ const schema = Yup.object().shape({
 const TaskForm = ({ task, closeModal, headerCategory }) => {
   const user = useSelector(selectUser);
   const dateCalendarSelected = useSelector(selectDateCalendar);
-  const currentDay = format(dateCalendarSelected, 'yyyy-MM-dd');
+  const currentDay = format(new Date(dateCalendarSelected), 'yyyy-MM-dd');
   const dispatch = useDispatch();
 
   const getCurrentTime = (additionalMinutes = 0) => {

@@ -212,22 +212,24 @@ export const CalendarGlobalStyles = createGlobalStyle`
 `;
 
 export const TitleWrapper = styled.button`
-  width: 122px;
-  color: #ffffff;
-  background: #3e85f3;
+  justify-content: space-around;
+  height: 30px;
+  padding: 6px 12px;
   border-radius: 8px;
+
+  font-size: 16px;
   font-weight: 700;
   line-height: 18px;
   text-align: center;
   text-transform: uppercase;
-  padding: 8px 12px;
-  font-size: 16px;
-  justify-content: space-around;
   align-items: center;
-  height: 30px;
+
+  color: #ffffff;
+  background-color: #3e85f3;
+
   @media (min-width: 768px) {
     height: 34px;
-    width: 134px;
+    padding: 8px 12px;
   }
   @media (min-width: 1024px) {
     height: 36px;
@@ -235,9 +237,9 @@ export const TitleWrapper = styled.button`
 `;
 
 export const ContainerDatePicker = styled.div`
-display: flex;
-justify-content: space-between;
-`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const ContainerBtn = styled.div`
   border: ${(p) =>

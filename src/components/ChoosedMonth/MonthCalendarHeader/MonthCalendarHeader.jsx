@@ -3,24 +3,33 @@ import {
   WeekendHeaderItem,
   WeekHeaderList,
 } from './MonthCalendarHeader.styled';
-import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+import { initReactI18next, useTranslation } from 'react-i18next';
 
 export const MonthCalendarHeader = () => {
   const mediaResponse = useAdaptivePicture();
   const isMobile = mediaResponse.isMobile;
+  i18n.use(initReactI18next).init({
+    compatibilityJSON: 'v3',
+    lng: 'en',
+    react: {
+      useSuspense: false,
+    },
+  });
+
   const { t } = useTranslation();
 
   return (
     <>
       {isMobile ? (
         <WeekHeaderList>
-          <li>{t('abbr_Mon')}</li>
-          <li>{t('abbr_Tue')}</li>
-          <li>{t('abbr_Wed')}</li>
-          <li>{t('abbr_Thu')}</li>
-          <li>{t('abbr_Fri')}</li>
-          <WeekendHeaderItem>{t('abbr_Sat')}</WeekendHeaderItem>
-          <WeekendHeaderItem>{t('abbr_Sun')}</WeekendHeaderItem>
+          <li>{t('M')}</li>
+          <li>{t('T')}</li>
+          <li>{t('W')}</li>
+          <li>{t('T')}</li>
+          <li>{t('F')}</li>
+          <WeekendHeaderItem>{t('S')}</WeekendHeaderItem>
+          <WeekendHeaderItem>{t('S')}</WeekendHeaderItem>
         </WeekHeaderList>
       ) : (
         <WeekHeaderList>
